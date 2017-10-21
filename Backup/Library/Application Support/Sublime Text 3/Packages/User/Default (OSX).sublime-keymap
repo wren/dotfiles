@@ -1,0 +1,12 @@
+[
+    { "keys": ["super+ctrl+t"], "command": "delete_trailing_spaces" },
+    { "keys": ["super+alt+w"], "command": "wrap_lines_plus" },
+    { "keys": ["super+ctrl+h"], "command": "goto_documentation" },
+    { "keys": ["ctrl+shift+t"], "command": "todo_review", "args": { "paths": [], "open_files": true } },
+    { "keys": ["super+h"], "command": "dash_doc"},
+    { "keys": ["super+shift+h"], "command": "dash_doc", "args": { "flip_syntax_sensitive": true } },
+    { "keys": ["shift+f5"], "command": "permute_lines", "args": {"operation": "reverse"} },
+    { "keys": ["super+alt+m"], "command": "markdown_preview", "args": {"target": "browser", "parser":"markdown"} },
+    { "keys": ["super+shift+alt+m"], "command": "markdown_preview_select", "args": {"target": "browser"} }
+
+]

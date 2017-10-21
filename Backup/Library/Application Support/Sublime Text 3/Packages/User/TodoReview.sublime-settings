@@ -1,0 +1,26 @@
+{
+    "patterns": {
+        "DEBUG": "@DEBUG:?\\s+(?P<DEBUG>.*)$",
+        "TODO": "@TODO:?\\s+(?P<TODO>.*)$"
+    },
+    "exclude_folders": [
+        "*.git*",
+        "*.svn*",
+        "tmp/*",
+        ".tmp/*",
+        "dist/*",
+        "node_modules/*",
+        ".sass-cache/*",
+        "bower_components/*"
+    ],
+    "exclude_files": [
+        "*.sublime-workspace",
+        "*.sublime-project",
+        "*.sublime-settings",
+        "*.phar"
+    ],
+    "case_sensitive": false,
+    "render_include_folder": true,
+    "render_spaces": 40,
+    "disable_project_import": false
+}
