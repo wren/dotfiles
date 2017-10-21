@@ -1,0 +1,69 @@
+############################################
+# Modified from emilis bash prompt script
+# from https://github.com/emilis/emilis-config/blob/master/.bash_ps1
+#
+# Modified for Mac OS X by
+# @corndogcomputer
+#
+# Further modified by
+# Jonathan Wren (@nowandwren)
+###########################################
+# Fill with minuses
+# (this is recalculated every time the prompt is shown in function prompt_command):
+fill="--- "
+
+escape='\e['
+reset_style="\[\e[0m\]"
+status_style="$reset_style\[\e[0;90m\]" # gray color; use 0;37m for lighter color
+prompt_style="$reset_style"
+command_style="$reset_style\[\e[0;29m\]" # bold black
+error_style="${reset_style}\[\e[41m\]"
+error_edge_style="${reset_style}\[\e[31m\]"
+
+#set some machine specific vars
+prompt_color=37 #white
+gitemail='empty'
+
+#prompt color
+if [[ "$my_name" =~ ^Aura(.local)?$ ]]; then
+  prompt_color=95 # magenta
+  user_color=35   # light magenta
+  gitemail='jonathan@nowandwren.com'
+elif [[ "$my_name" =~ (\.corp\.possible\.com|[0-9]+-[a-zA-Z]+.*\.local)$ ]]; then
+  prompt_color=94 # blue
+  user_color=34   # light blue
+  gitemail='jonathan.wren@possible.com'
+fi
+
+git_email_status='$(
+    currentgitemail=${GIT_AUTHOR_EMAIL:-$(git config user.email)}
+    if [[ ! -z ${currentgitemail##$gitemail} ]]; then
+        printf -- "   \e[0m\e[41m--- Git E-mail Config Error ---\nIs set to: %s\nShould be: %s \e[0m\n\n" "${currentgitemail}" "${gitemail}"
+    fi
+)'
+
+prompt_color="${reset_style}\[\e[${prompt_color}m\]"
+user_color="${reset_style}\[\e[${user_color}m\]"
+
+#the prompt
+GIT_PS1_SHOWDIRTYSTATE=true;
+GIT_PS1_SHOWSTASHSTATE=true;
+GIT_PS1_SHOWUNTRACKEDFILES=true;
+p_fill=$status_style'$fill \t'                     #dashes and time from previous command
+p_uh="${user_color}\u${status_style}@${reset_style}${prompt_color}\h"                          #username and hostname
+p_git='\e[0;37m$(__git_ps1 " [%s]")'                #git prompt
+p_cwd='\e[93m\w'                               #current directory
+p_prompt="${command_style}\$"                        #prompt and command
+PS1="$p_fill\n\n$p_uh${p_git} ${p_cwd}\n${git_email_status}$p_prompt $prompt_style"   #build the prompt
+
+# Prompt variable:
+
+# Reset color for command output
+# (this one is invoked every time before a command is executed):
+trap 'echo -ne "\033[0m"' DEBUG
+
+function prompt_command {
+  # create a $fill of all screen width minus the time string and a space:
+  fill=$(printf '%*s\n' $(expr ${COLUMNS} - 9) | tr ' ' '-')
+}
+PROMPT_COMMAND=prompt_command

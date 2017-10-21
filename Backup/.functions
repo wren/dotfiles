@@ -1,0 +1,280 @@
+#!/usr/local/bin/bash
+
+#################
+### Functions ###
+#################
+
+alias realpath='python -c "import os,sys; print os.path.realpath(sys.argv[1])"'
+
+function ssh.hostinfo {
+  printf "\n$(sed -ne "/$1/,/^$/p" ~/.ssh/configs/* | grep -i -B 10 -A 10 "$1")\n\n"
+}
+
+function ssh.hostname {
+  SSHHOSTNAME=$(sed -ne "/$1/,/^$/p" ~/.ssh/configs/* | tr '\n' ' ' | perl -pe 's!^.*?Hostname (.*?) .*?$!$1!')
+  printf '%s' "$SSHHOSTNAME"
+}
+
+function ssh.clearknownhost {
+  reset_style="\e[0m"
+  error_style="${reset_style}\e[31m"
+
+  if [[ -z $1 ]]; then
+    printf "${error_style}ERROR:${reset_style} Please provide a value to search for\n"
+    return
+  fi
+
+  SSHHOST="$(ssh.hostname $1)"
+
+  if [[ -z $SSHHOST ]]; then
+    printf "${error_style}ERROR:${reset_style} Your value (%s) didn't return any hosts from ~/.ssh/config\n" "$1"
+    return
+  fi
+
+  HOSTCOUNT="$(cat ~/.ssh/known_hosts | grep -i "^$SSHHOST" | wc -l)"
+  reset_style="\e[0m"
+  error_style="${reset_style}\e[31m"
+
+  if [[ $HOSTCOUNT -ne 1 ]]; then
+    printf "${error_style}ERROR:${reset_style} There are %s matches for '%s' (%s) in ~/.ssh/known_hosts\n" "$HOSTCOUNT" "$1" "$SSHHOST"
+    cat ~/.ssh/known_hosts | grep -i "^$SSHHOST"
+    return
+  fi
+
+  printf '%s' "$(cat ~/.ssh/known_hosts | grep -iv "^$SSHHOST")" > ~/.ssh/known_hosts
+
+  HOSTCOUNT="$(cat ~/.ssh/known_hosts | grep -i "^$SSHHOST" | wc -l)"
+  if [[ $HOSTCOUNT -gt 0 ]]; then
+    printf "${error_style}ERROR:${reset_style} %s\n  %s%s%s\n\n%s\n  " \
+      'I tried to delete the entry with the following command, but something went wrong:' \
+      '$(cat ~/.ssh/known_hosts | grep -iv "^' \
+      "${SSHHOST}" \
+      '") > ~/.ssh/known_hosts' \
+      'Here are the grep results from the file:'
+    cat ~/.ssh/known_hosts | grep -i "^$SSHHOST"
+    return
+  else
+    printf 'Successfully removed "%s" (%s) from known hosts!\n' "$1" "$SSHHOST"
+  fi
+}
+
+# Gets the IP of the machine
+ip() {
+  printf '%s\nInternal: %s\nExternal: Connecting...' \
+         '----- IP INFO -----' \
+         "$(ifconfig | grep inet | grep -v inet6 | cut -d" " -f2 | tail -n1)"
+
+  EXTERNALIP="$(curl -m 5 -s -H 'Accept: application/json' ipinfo.io | \
+               sed -e '1d; $ d; s/ip//' | \
+               perl -pe 's!^\s*"(.*?)": "(.*?)",?\s*$!\u$1\E: $2\n!g')"
+
+  if [[ -z "$EXTERNALIP" ]]; then
+    EXTERNALIP=": n/a          "
+  fi
+
+  printf '\rExternal%s\n' "$EXTERNALIP"
+
+}
+
+function alldone {
+# Parrot from http://www.asciiworld.com/-Parrots-.html
+# Text from http://patorjk.com/software/taag/#p=display&f=Delta%20Corps%20Priest%201&t=All%0ADone
+# Layout assembled by Jonathan Wren <jonathan@nowandwren.com>
+# @see https://youtu.be/SPO7NZ97In4?t=2m16s
+lolcat <<'EOM'
+     ▄█████████   ▄█             ▄█
+     ███     ███ ███            ███
+     ███     ███ ███            ███
+   ▀████████████ ███            ███
+     ███     ███ ███            ███
+     ███     ███ ████           ████
+     ███    .▀▀--▀▀████      ▄▄ ██████      ▄▄
+     ███   /  ~ ~   \▀▀▀▀▀▀▀▀██ ██████████████
+     ███ ,'  ~ ~ ~  /  (@)   \█ █▀'      \████
+     ██,'          /`.    ~ ~ \ /         \
+     ,'           | ,'\  ~ ~ ~ X     \  \  \
+   ,'  ,'          V--<       (       \  \  \
+ ,'  ,'               (vv      \/\  \  \  |  |
+(__,'  ,'   /         (vv   ""    \  \  | |  |
+  (__,'    /   /       vv   """    \ |  / / /
+      \__,'   /  |     vv          / / / / /
+          \__/   / |  | \         / /,',','
+             \__/\_^  |  \       /,'',','\
+                    `-^.__>.____/  ' ,'   \
+                            // //---'\     |
+    ████████▄   ▄██████▄  █((((((▄    |▄████████
+    ███   ▀███ ███    ███ ███▀▀▀██▄  /███ |  ███
+    ███    ███ ███    ███ ███   ███ / ███/ \ █▀
+    ███    ███ ███    ███ ███   ███ `▄███▄▄▄|  \
+    ███    ███ ███    ███ ███   ███ ▀▀███▀▀▀---'
+    ███    ███ ███    ███ ███   ███   ███    █▄
+    ███   ▄███ ███    ███ ███   ███   ███    ███
+    ████████▀   ▀██████▀   ▀█   █▀    ██████████
+EOM
+}
+
+function alldone_small {
+lolcat <<'EOM'
+ ALL .-. DONE
+    /'v'\
+   (/   \)
+ >==="="===<
+     |_|
+EOM
+}
+
+function kirby {
+  lolcat <<'EOM'
+                      ██ ██ ██ ██ ██    ██ ██
+              ██ ██ ▒▒             ██ ▒▒    ██
+           ██ ▒▒       ██    ██       ██       ██
+        ██ ▒▒          ██    ██          ▒▒    ██
+        ██             ██    ██          ▒▒ ▒▒ ██
+     ██          ▒▒ ▒▒          ▒▒ ▒▒       ▒▒ ██
+  ██ ▒▒                   ██                   ██
+  ██       ▒▒             ██                ▒▒ ██
+  ██       ▒▒                               ██
+     ██ ██ ██                            ▒▒ ██
+  ██          ██                            ██
+  ██             ██                      ██
+  ██             ██                   ██ ██
+     ██             ██          ██ ██       ██
+        ██       ██ ██ ██ ██ ██                ██
+           ██ ██ ██          ██ ██ ██ ██ ██ ██
+EOM
+}
+
+function changemac {
+
+  # Disconnect wifi (but keep it powered on)
+  sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -z
+  printf 'en0 before: %s\n' "$(ifconfig en0 | grep ether | awk '{print $2}')"
+  sudo "${DOTFILES_DIR}/scripts/mac-address/mac-address.sh"
+  printf 'en0 after:  %s\n' "$(ifconfig en0 | grep ether | awk '{print $2}')"
+}
+
+function ap {
+
+  local install_dir="$HOME/.atom/packages/"
+  local install_list="${DOTFILES_DIR}/atom-packages.list"
+  local temp=''
+
+  case $1 in
+    'save' )
+    echo 'Saving...'
+    gls "$install_dir" > "$install_list"
+    echo '... Done!'
+    ;;
+
+
+    'install' )
+    cat "$install_list" | grep -Fvx "$(gls -1 $install_dir)" | xargs apm install
+    echo '... Done!'
+    ;;
+
+
+    'remove' )
+    gls -1 "$install_dir" | grep -Fvx -f "$install_list" | xargs apm uninstall
+    ;;
+
+
+    'list' )
+    temp=`cat $install_list | grep -Fvx "$(gls -1 $install_dir)"`
+    if [[ -n "$temp" ]]; then
+      echo -e "--- Missing ---\n${temp}"
+    fi
+
+    temp=`gls -1 "$install_dir" | grep -Fvx -f "$install_list"`
+    if [[ -n "$temp" ]]; then
+      echo -e "\n--- Not Saved ---\n${temp}"
+    fi
+
+    echo -e "\n--- Installed ---"
+    temp=`gls -1 "$install_dir"`
+    if [[ -n "$temp" ]]; then
+      echo -e "${temp}"
+    else
+      echo -e "\nNo packages installed!\n"
+    fi
+    ;;
+
+
+    * )
+    echo 'Usage: ap save|install|list|remove'
+    echo 'Perform selected action.'
+    echo ''
+    echo 'install   Installs any packages not yet installed in Atom that are in the package list'
+    echo 'list      Lists the installed, missing, and not saved packages on the current system'
+    echo 'remove    Removes any packages installed that are not in the package list'
+    echo -e "save      Saves a list of all packages installed in Atom ${install_list}"
+    ;;
+
+  esac
+}
+
+# wrap_alias takes three arguments:
+# $1: The name of the alias
+# $2: The command used in the alias
+# $3: The arguments in the alias all in one string
+# Generate a wrapper completion function (completer) for an alias
+# based on the command and the given arguments, if there is a
+# completer for the command, and set the wrapper as the completer for
+# the alias.
+function wrap_alias {
+    [[ "$#" == 3 ]] || return 1
+
+    local alias_name="$1"
+    local aliased_command="$2"
+    local alias_arguments="$3"
+    local num_alias_arguments=$(echo "$alias_arguments" | wc -w)
+
+    # The completion currently being used for the aliased command.
+    local completion=$(complete -p $aliased_command 2> /dev/null)
+
+    # Only a completer based on a function can be wrapped so look for -F
+    # in the current completion. This check will also catch commands
+    # with no completer for which $completion will be empty.
+    echo $completion | grep -q -- -F || return 0
+
+    local namespace=alias_completion::
+
+    # Extract the name of the completion function from a string that
+    # looks like: something -F function_name something
+    # First strip the beginning of the string up to the function name by
+    # removing "* -F " from the front.
+    local completion_function=${completion##* -F }
+    # Then strip " *" from the end, leaving only the function name.
+    completion_function=${completion_function%% *}
+
+    # Try to prevent an infinite loop by not wrapping a function
+    # generated by this function. This can happen when the user runs
+    # this twice for an alias like ls='ls --color=auto' or alias l='ls'
+    # and alias ls='l foo'
+    [[ "${completion_function#$namespace}" != $completion_function ]] && return 0
+
+    local wrapper_name="${namespace}${alias_name}"
+
+    eval "
+    function ${wrapper_name}() {
+    ((COMP_CWORD+=$num_alias_arguments))
+    args=( \"${alias_arguments}\" )
+    COMP_WORDS=( $aliased_command \${args[@]} \${COMP_WORDS[@]:1} )
+    $completion_function
+    }
+    "
+#
+    # To create the new completion we use the old one with two
+    # replacements:
+    # 1) Replace the function with the wrapper.
+    local new_completion=${completion/-F * /-F $wrapper_name }
+    # 2) Replace the command being completed with the alias.
+    new_completion="${new_completion% *} $alias_name"
+
+    eval "$new_completion"
+}
+
+# For each defined alias, extract the necessary elements and use them
+# to call wrap_alias.
+eval "$(alias -p | grep -v '[";|&]' | sed -e 's/alias \([^=][^=]*\)='\''\([^ ][^ ]*\) *\(.*\)'\''/wrap_alias \1 \2 '\''\3'\'' /')"
+
+unset wrap_alias
