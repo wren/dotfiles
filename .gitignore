@@ -2,17 +2,4 @@ alfred/Alfred.alfredpreferences/preferences/local/*
 alfred/Alfred.alfredpreferences/preferences/remote/*
 alfred/Alfred.alfredpreferences/remote/*
 
-backup/.ssh/keys/*
-
-backup/Library/Application Support/Cyberduck/History/
-backup/Library/Application Support/Cyberduck/Sessions/
-backup/Library/Application Support/Cyberduck/Transfers/
-
-backup/Library/Application Support/Sublime Text 3/Packages/User/Package Control.*-ca-bundle
-backup/Library/Application Support/Sublime Text 3/Packages/User/oscrypto-ca-bundle.crt
-backup/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Monokai (SL).tmTheme
-
-scripts/fitsync
-
-
-backup/.config/configstore/update-notifier-*.json
+backup/.config/configstore/*
