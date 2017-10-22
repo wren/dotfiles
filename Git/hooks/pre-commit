@@ -1,0 +1,95 @@
+#!/usr/bin/php
+<?php
+/**
+ * pre-commit
+ *
+ * Pre-commit hook for git repositories.
+ * Does lint checks for PHP and JS.
+ * Replaces line endings with \n
+ * Removes whitespace.
+ *
+ * @author Jonathan Rosenfeld <mail@jonathanrosenfeld.com>
+ * @license Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/3.0/)
+ * @version v1.0
+ **/
+
+
+//prep some vars
+$output = array();
+$rc = 0;
+exec('git rev-parse --verify HEAD 2> /dev/null', $output, $rc);
+$exit_status = 0;
+
+//4b82 is an empty branch included with all git installs
+$against = ( ($rc == 0) ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904' );
+
+//get the commit list
+exec("git diff-index --cached --name-status $against | egrep '^(A|M)' | awk '{print $2;}'", $output);
+
+//prep the output arrays
+$php_lint_output = array();
+$js_lint_output = array();
+$js_rc = 0;
+$php_rc = 0;
+
+foreach ($output as $file) {
+
+	//php lint check
+	$rc=0;
+	if ( preg_match('/(\.php|\.phtml)$/', $file) ) {
+		exec('php -l '.escapeshellarg($file), $php_lint_output, $rc);
+	}
+	if($rc!=0) $php_rc=$rc;
+
+	//js lint check
+	$rc=0;
+	if ( preg_match('/(\.js)$/', $file) ) {
+		exec('jsl -conf /usr/bin/jsl.default.conf -process '.escapeshellarg($file), $js_lint_output, $rc);
+	}
+	if($rc!=0) $js_rc=$rc;
+
+	if ( $php_rc!=0 || $js_rc!=0 ) $exit_status = 1;
+}
+
+//output error and exit, if any
+if( $exit_status != 0 ) {
+	echo "\n",'Could not commit files! Please resolve the following errors and try again:',"\n";
+	if( $php_rc!=0 ) {
+		echo "\n",'----------------------------------------------', "\n";
+		echo '                  PHP ERRORS                  ', "\n\n";
+		echo implode("\n", $php_lint_output), "\n";
+	}
+	if( $js_rc!=0 ) {
+		echo "\n\n",'----------------------------------------------', "\n";
+		echo '                  JS ERRORS                  ', "\n\n";
+		echo implode("\n", $js_lint_output), "\n";
+	}
+	echo "\n\n";
+	exit($exit_status);
+}
+
+//remove trailing whitespace
+foreach ($output as $key=>$file) {
+	if( $key != 0 && preg_match('/(\.php|\.phtml|\.xml|\.js|\.html|\.xhtml|\.css)$/', $file) ) {
+		$lines = file($file);
+		$writefile = '';
+		foreach($lines as $line) {
+			$writefile .= preg_replace('/\s*[\n|\r|\r\n|\n\r]$/', "\n", $line);
+		}
+		
+		//only rewrite if something actually changed
+		if( md5_file($file) != md5($writefile) ) {
+			echo "TRAILING WHITESPACE FOUND IN ".$file."\nIt will be removed automatically, but you should be more careful next time.\n\n";
+			
+			//rewrite the file
+			$temp = fopen($file, 'w'); 
+			fwrite($temp, $writefile); 
+			fclose($temp);
+			
+			exec('git add '.$file);
+		}
+	}
+}
+
+
+exit($rc);
