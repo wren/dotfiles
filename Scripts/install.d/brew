@@ -1,0 +1,34 @@
+bash
+bash-completion
+coreutils
+cowsay
+docker
+docker-compose
+docker-machine
+drush
+dtrx
+exiftool
+findutils
+fortune
+git
+git-flow
+git-lfs
+gnu-sed --default-names
+homebrew/dupes/grep --default-names
+homebrew/dupes/nano
+homebrew/homebrew-php/php56 --with-gmp
+imagemagick --with-webp
+mackup
+moreutils
+mysql
+node
+openssh
+pv
+rename
+sqlmap
+tidy-html5
+tree
+webkit2png
+wget --enable-iri
+xpdf
+zopfli
