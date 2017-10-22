@@ -1,5 +1,6 @@
-alfred/Alfred.alfredpreferences/preferences/local/*
-alfred/Alfred.alfredpreferences/preferences/remote/*
-alfred/Alfred.alfredpreferences/remote/*
+Apps/Alfred.alfredpreferences/preferences/local/*
+Apps/Alfred.alfredpreferences/preferences/remote/*
+Apps/Alfred.alfredpreferences/remote/*
 
-backup/.config/configstore/*
+Backup/.config/configstore/*
+Backup/Library/Preferences/*
