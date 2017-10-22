@@ -1,0 +1,10 @@
+*.plist diff=plist
+*.jpg diff=image
+*.jpeg diff=image
+*.png diff=image
+*.gif diff=image
+*.bmp diff=image
+* -crlf
+
+# LFS
+*.psd filter=lfs diff=lfs merge=lfs -text
