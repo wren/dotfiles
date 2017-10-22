@@ -1,6 +1,9 @@
+# These areas tend to have a lot of personal
+# info. Probably best to keep out of the repo.
+# You can `git add --force` if you really want.
 Apps/Alfred.alfredpreferences/preferences/local/*
 Apps/Alfred.alfredpreferences/preferences/remote/*
 Apps/Alfred.alfredpreferences/remote/*
-
 Backup/.config/configstore/*
+Backup/.config/hosts/*
 Backup/Library/Preferences/*
