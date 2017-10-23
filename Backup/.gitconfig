@@ -19,10 +19,9 @@
   co = checkout
   conflicts = diff --name-only --diff-filter=U
   cp = cherry-pick
-  dc = diff --cached
   dci = dcommit
   df = diff --word-diff=color
-  dfc = diff --cached --word-diff=color
+  dfc = diff --cached
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color -w
@@ -59,18 +58,18 @@
   t = tag -a
   todo = grep -in "@todo"
 [color]
-  ui = auto
+  ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
 [color "diff"]
-  meta = yellow bold
+  meta = 227
   frag = magenta bold
   old = red bold
   new = green bold
   plain = normal
-  commit = yellow
+  commit = 227 bold
   whitespace = reverse red
 [color "status"]
   added = yellow reverse
@@ -91,6 +90,7 @@
   autocrlf = input
   excludesfile = ~/dotfiles/git/global.gitignore
   attributesfile = ~/dotfiles/git/global.gitattributes
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [log]
   date = local
 [push]
@@ -106,3 +106,10 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[interactive]
+  diffFilter = "diff-so-fancy"
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
