@@ -14,6 +14,7 @@ fortune
 git
 git-flow
 git-lfs
+git-standup
 gnu-sed --default-names
 homebrew/dupes/grep --default-names
 homebrew/dupes/nano
