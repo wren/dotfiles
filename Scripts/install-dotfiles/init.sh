@@ -16,5 +16,5 @@ if command -v git >/dev/null 2>&1; then
 else
   printf "Git isn't installed! Using other means to get repo into '${DOTFILES_DIR}'...\n"
   curl -L https://github.com/jonathanwren/dotfiles/archive/master.zip -o /tmp/dotfiles.zip
-  unzip /tmp/dotfiles.zip -d ~ && mv ~/dotfiles-master "$DOTFILES_DIR" && cd "$DOTFILES_DIR" && ./Scripts/init.sh && rm /tmp/dotfiles.zip
+  unzip /tmp/dotfiles.zip -d "$DOTFILES_PARENT" && mv "${DOTFILES_PARENT}/dotfiles-master" "$DOTFILES_DIR" && cd "$DOTFILES_DIR" && ./Scripts/init.sh && rm /tmp/dotfiles.zip
 fi
