@@ -16,6 +16,8 @@ DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 mkdir -p "$DOTFILES_PARENT"
 cd "$DOTFILES_PARENT"
 
+# @todo Tell user what we're doing and give chance to abort
+
 # Do Dotfiles already exist?
 if [ -d "$DOTFILES_DIR" ]; then
   printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
