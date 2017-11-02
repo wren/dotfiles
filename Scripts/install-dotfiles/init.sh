@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# ---- Styling ---- #
+HIGHLIGHT_STYLE="\e[4;36m"
+ERROR_STYLE="\e[4;31m"
+WARNING_STYLE="\e[4;33m"
+RESET="\033[00m"
+ERR=0
+
 # Set some variables
 DOTFILES_DIR="${HOME}/Dotfiles"
 DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
@@ -8,6 +15,14 @@ DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 # Go to parent directory of dotfiles
 mkdir -p "$DOTFILES_PARENT"
 cd "$DOTFILES_PARENT"
+
+# Dotfiles already exist?
+if [ -d "$DOTFILES_DIR" ]; then
+  printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
+  printf "Are dotfiles already installed?\n"
+  printf "Please remove '%s' and try again.\n" "$DOTFILES_DIR"
+  exit
+fi
 
 # Check if Git is already installed
 if command -v git >/dev/null 2>&1; then
