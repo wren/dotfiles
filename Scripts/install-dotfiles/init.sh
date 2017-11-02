@@ -16,10 +16,10 @@ DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 mkdir -p "$DOTFILES_PARENT"
 cd "$DOTFILES_PARENT"
 
-# Dotfiles already exist?
+# Do Dotfiles already exist?
 if [ -d "$DOTFILES_DIR" ]; then
   printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
-  printf "Are dotfiles already installed?\n"
+  printf "Are Dotfiles already installed?\n"
   printf "Please remove '%s' and try again.\n" "$DOTFILES_DIR"
   exit
 fi
