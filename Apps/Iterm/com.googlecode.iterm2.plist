@@ -2328,8 +2328,6 @@
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
-			<key>Background Image Location</key>
-			<string>/Users/Jonathan/prefs/iterm/bg_terminal.png</string>
 			<key>Blend</key>
 			<real>0.5</real>
 			<key>Blink Allowed</key>
