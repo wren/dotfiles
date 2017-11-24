@@ -1,0 +1,8 @@
+[receive]
+  denyCurrentBranch = ignore
+[log]
+  date = local
+[push]
+  default = simple
+[mailmap]
+  file = ~/Dotfiles/Git/Global/Mailmap
