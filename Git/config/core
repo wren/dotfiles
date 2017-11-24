@@ -1,0 +1,10 @@
+[receive]
+  denyCurrentBranch = ignore
+[core]
+  autocrlf = input
+  excludesfile = ~/Dotfiles/Git/global/ignore
+  attributesfile = ~/Dotfiles/Git/global/attributes
+[log]
+  date = local
+[push]
+  default = simple

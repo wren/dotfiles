@@ -1,0 +1,10 @@
+[mergetool "diff3"]
+  trustExitCode = true
+[merge]
+  tool = kdiff3
+[diff "image"]
+  textconv = /usr/local/bin/exiftool -@ ~/Dotfiles/Git/misc/exiftool-args
+[mergetool]
+  keepBackup = false
+[diff "plist"]
+  textconv = plutil -convert xml1 -r -o -
