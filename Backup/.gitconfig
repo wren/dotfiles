@@ -8,8 +8,13 @@
   path = ~/Dotfiles/Git/config/lfs
   path = ~/Dotfiles/Git/config/misc
 
+  # If the "extra" file exists, it'll override anything in the above files.
+  # Use this to add any personal settings that you don't want committed in a
+  # repo (like your name and email).
+  path = ~/Dotfiles/Git/config/extra
+
 
 # Everything below here has been added since you last checked on your Git
-# config. I recommend sorting through, and if they are lines you want to
-# keep, sort them into one of the files at ~/Dotfiles/Git/config
+# config. I recommend looking through these, sorting them into one of the
+# files in ~/Dotfiles/Git/config if you want to keep them.
 
