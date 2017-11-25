@@ -41,7 +41,7 @@ then
 fi
 
 # Special cases
-args='-quiet'
+args='-quiet -highlight-color #2855b0 '
 
 # JPGs can be a bit fuzzy
 if [[ $name =~ \.jpe?g$ ]]; then
