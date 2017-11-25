@@ -51,7 +51,7 @@ fi
 # Do the image part of the diff
 destfile="${tmp_dir}.${bn}.png"
 compare $args "$file1" "$file2" png:- | \
-  montage -geometry +4+4 "$file1" - "$file2" png:"$destfile" 2>/dev/null || true
+montage -geometry +4+4 "$file1" - "$file2" png:"$destfile" 2>/dev/null
 
 # Output the diff montage to the stdin
 imgcat "$destfile"
