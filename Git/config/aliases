@@ -25,6 +25,8 @@
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color -w
+  dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
+  diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   ds = describe
   f = fetch
   lg = log --graph --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset%C(dim white) %s %Creset%C(cyan)%cd %Creset%C(green)by %aN%Creset' --abbrev-commit --date=relative

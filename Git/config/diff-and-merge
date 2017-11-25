@@ -2,9 +2,13 @@
   trustExitCode = true
 [merge]
   tool = kdiff3
-[diff "image"]
-  textconv = /usr/local/bin/exiftool -@ ~/Dotfiles/Git/misc/exiftool-args
 [mergetool]
   keepBackup = false
+
+[diff "image"]
+  command = ~/Sync/Drive/Dotfiles/Scripts/git-image-diff.sh
+[pager]
+  dfi = false
+
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -
