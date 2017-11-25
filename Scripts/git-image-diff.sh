@@ -26,7 +26,9 @@ if ! command -v exiftool >/dev/null 2>&1; then
 fi
 
 # The text part of the diff
-git diff "$(exif "$file1" 'a')" "$(exif "$file2" 'b')" | sed -e "s!${tmp_dir}/[ab]!!;s!${2}!${name}!" | diff-so-fancy
+git df "$(exif "$file1" 'a')" "$(exif "$file2" 'b')" | \
+sed -e "s!${tmp_dir}/[ab]!!;s!${2}!${name}!" | \
+diff-so-fancy
 
 # Check requirements for image part of diff
 if [ -z "${IMAGE_DIFF}" ] || \
