@@ -55,6 +55,7 @@
   sp = stash pop
   ss = stash save
   st = status -s
+  standup = "!func(){ git log --all --no-merges --graph --date=relative --committer=\"$(git config --get user.email)\" --pretty=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --since=\"$(if [[ "Mon" == "$(date +%a)" ]]; then echo 'last friday'; else echo 'yesterday'; fi;)\"; }; func"
   sur = submodule update --recursive
   suri = submodule update --recursive --init
   t = tag -a
