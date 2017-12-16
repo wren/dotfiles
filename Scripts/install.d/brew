@@ -21,6 +21,7 @@ homebrew/dupes/grep --default-names
 homebrew/dupes/nano
 homebrew/homebrew-php/php56 --with-gmp
 imagemagick --with-webp
+eddieantonio/imgcat
 mackup
 moreutils
 mysql
