@@ -2,9 +2,9 @@
 ##############
 ### System ###
 ##############
-alias ls='ls --color -1p'
-alias lsa='ls --color -1pa'
-alias lsaa='ls --color -1plha'
+alias ls='ls --color -1pN'
+alias lsa='ls --color -1paN'
+alias lsaa='ls --color -1plhaN'
 alias ssh.init='eval `ssh-agent`;ssh-add'
 alias ssh.copy='ssh-copy-id'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
