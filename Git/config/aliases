@@ -22,11 +22,11 @@
   dci = dcommit
   df = diff --word-diff=color
   dfc = diff --cached
+  dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   dfp = diff --no-color
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color -w
-  dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   ds = describe
   f = fetch
@@ -44,8 +44,8 @@
   rb = rebase
   rem = remote -v
   rh = reset --hard
-  rs = reset --soft
   rp = reset --patch
+  rs = reset --soft
   s = stash
   sb = submodule
   sbst = submodule status
