@@ -9,6 +9,7 @@
   command = ~/Sync/Drive/Dotfiles/Scripts/git-image-diff.sh
 [pager]
   dfi = false
+  dfp = false
 
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -
