@@ -5,7 +5,7 @@ override_git_prompt_colors() {
 
   GIT_PROMPT_ONLY_IN_REPO=0
   GIT_PROMPT_FETCH_REMOTE_STATUS=0
-  # GIT_PROMPT_SHOW_UPSTREAM=1
+  GIT_PROMPT_SHOW_UPSTREAM=1
 
   # determines counting of untracked files
   # Possible values: no, normal, all
@@ -24,7 +24,7 @@ override_git_prompt_colors() {
   GIT_PROMPT_SUFFIX=" | ${Grey}_GIT_EMAIL_${ResetColor} ]\n"       # the end of the git info string
   GIT_PROMPT_SEPARATOR="${ResetColor} |"       # separates each item
 
-  GIT_PROMPT_BRANCH="${Green}"                # the git branch that is active in the current directory
+  GIT_PROMPT_BRANCH="${Yellow}"                # the git branch that is active in the current directory
   GIT_PROMPT_STAGED="${Yellow} ●"                 # the number of staged files/directories
   GIT_PROMPT_CONFLICTS="${Red} ✖ "             # the number of files in conflict
   GIT_PROMPT_CHANGED="${Green} +"              # the number of changed files
@@ -57,7 +57,7 @@ override_git_prompt_colors() {
 
   # _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
   GIT_PROMPT_START_USER="${Grey}_PROMPT_FILL_ _LAST_COMMAND_INDICATOR_ ${Grey}${Time12a}\n\n${userhost}${ResetColor} ${PathShort}${ResetColor}\n"
-  GIT_PROMPT_END_USER="$ "
+  GIT_PROMPT_END_USER="${Grey}$ ${ResetColor}"
 
   # function prompt_callback {
   #   printf 'PROMPT_COMMAND: %s' "${PROMPT_COMMAND}"

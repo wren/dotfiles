@@ -54,7 +54,7 @@
   sl = stash list
   sp = stash pop
   ss = stash save
-  st = status -sb
+  st = status -s
   sur = submodule update --recursive
   suri = submodule update --recursive --init
   t = tag -a
