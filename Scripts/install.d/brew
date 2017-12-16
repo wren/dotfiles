@@ -1,5 +1,6 @@
 bash
 bash-completion
+bash-git-prompt
 coreutils
 cowsay
 diff-so-fancy

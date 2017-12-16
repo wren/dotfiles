@@ -1,58 +1,30 @@
-############################################
-# Modified from emilis bash prompt script
-# from https://github.com/emilis/emilis-config/blob/master/.bash_ps1
-#
-# Modified for Mac OS X by
-# @corndogcomputer
-#
-# Further modified by
-# Jonathan Wren (@nowandwren)
-###########################################
-# Fill with minuses
-# (this is recalculated every time the prompt is shown in function prompt_command):
-fill="--- "
-
-escape='\e['
-reset_style="\[\e[0m\]"
-status_style="$reset_style\[\e[0;90m\]" # gray color; use 0;37m for lighter color
-prompt_style="$reset_style"
-command_style="$reset_style\[\e[0;29m\]" # bold black
-error_style="${reset_style}\[\e[41m\]"
-error_edge_style="${reset_style}\[\e[31m\]"
+# Builds the prompt
+# Depends on bash-git-prompt (brew install bash-git-prompt)
+# @see https://github.com/magicmonty/bash-git-prompt
 
 #set some machine specific var defaults
 prompt_color="${prompt_color:-37}" #white
-gitemail="${gitemail:-empty}"
-
-git_email_status='$(
-    currentgitemail=${GIT_AUTHOR_EMAIL:-$(git config user.email)}
-    if [[ ! -z ${currentgitemail##$gitemail} ]]; then
-        printf -- "   \e[0m\e[41m--- Git E-mail Config Error ---\nIs set to: %s\nShould be: %s \e[0m\n\n" "${currentgitemail}" "${gitemail}"
-    fi
-)'
-
-prompt_color="${reset_style}\[\e[${prompt_color}m\]"
-user_color="${reset_style}\[\e[${user_color}m\]"
-
-#the prompt
-GIT_PS1_SHOWDIRTYSTATE=true;
-GIT_PS1_SHOWSTASHSTATE=true;
-GIT_PS1_SHOWUNTRACKEDFILES=true;
-p_fill=$status_style'$fill \t'                     #dashes and time from previous command
-p_uh="${user_color}\u${status_style}@${reset_style}${prompt_color}\h"                          #username and hostname
-p_git='\e[0;37m$(__git_ps1 " [%s]")'                #git prompt
-p_cwd='\e[93m\w'                               #current directory
-p_prompt="${command_style}\$"                        #prompt and command
-PS1="$p_fill\n\n$p_uh${p_git} ${p_cwd}\n${git_email_status}$p_prompt $prompt_style"   #build the prompt
-
-# Prompt variable:
 
 # Reset color for command output
 # (this one is invoked every time before a command is executed):
 trap 'echo -ne "\033[0m"' DEBUG
 
-function prompt_command {
+function set_prompt_vars {
   # create a $fill of all screen width minus the time string and a space:
-  fill=$(printf '%*s\n' $(expr ${COLUMNS} - 9) | tr ' ' '-')
+  prompt_fill=$(printf '%*s\n' $(expr ${COLUMNS} + 1 - ${#LAST_COMMAND_INDICATOR}) | tr ' ' '-')
+  git_email="$(git config user.email)"
+  PS1="${PS1//_GIT_EMAIL_/${git_email}}"
+  PS1="${PS1//_PROMPT_FILL_/${prompt_fill}}"
 }
-PROMPT_COMMAND=prompt_command
+
+# @see https://github.com/magicmonty/bash-git-prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR="$(brew --prefix)/opt/bash-git-prompt/share"
+  GIT_PROMPT_THEME=Custom
+  GIT_PROMPT_THEME_FILE=~/.bash_prompt_theme
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
+PROMPT_COMMAND="$PROMPT_COMMAND;set_prompt_vars"
+
+# printf 'PROMPT_COMMAND: %s' "${PROMPT_COMMAND}"
