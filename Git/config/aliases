@@ -49,12 +49,10 @@
   s = stash
   sb = submodule
   sbst = submodule status
-  sc = svn clone --prefix=origin/
-  sd = svn dcommit
+  sd = stash drop
   sh = show --word-diff=color
   sl = stash list
   sp = stash pop
-  sr = svn rebase
   ss = stash save
   st = status -sb
   sur = submodule update --recursive
