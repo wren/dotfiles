@@ -4,6 +4,7 @@
 Apps/Alfred.alfredpreferences/preferences/local/*
 Apps/Alfred.alfredpreferences/preferences/remote/*
 Apps/Alfred.alfredpreferences/remote/*
+Apps/Alfred.alfredpreferences/snippets/*
 Alfred.alfredpreferences/workflows/user.workflow.4A630204-F2AD-49DE-8084-5F759C70652B/* # Dash manages its own Alfred workflow
 Backup/.config/configstore/*
 Backup/.config/hosts/*
