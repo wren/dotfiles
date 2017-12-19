@@ -34,11 +34,12 @@
   logs = log --stat=100,100,25
   logs-full = log --format=wren-full --stat --use-mailmap --date=format:'%H:%M%p %a %B %d, %Y '
   ls = ls-files
+  lsu = ls-files --others --exclude-standard
   mg = merge
   mgs = merge --squash
   mgt = mergetool
   pl = pull
-  pls = "!func(){ printf -- '--- Pull ---\n' && git pull && printf '\n--- Push ---\n' && git push; }; func"
+  pls = "!func(){ cyan=$(tput setaf 6); reset=$(tput sgr0); printf -- \"${cyan}───── Pull ─────${reset}\n\" && git pull && printf \"\n${cyan}───── Push ─────${reset}\n\" && git push; }; func"
   ps = push
   pst = push --tags
   r = reset
