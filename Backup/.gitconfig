@@ -5,6 +5,7 @@
   path = ~/Dotfiles/Git/config/core
   path = ~/Dotfiles/Git/config/diff-and-merge
   path = ~/Dotfiles/Git/config/diff-so-fancy
+  path = ~/Dotfiles/Git/config/format
   path = ~/Dotfiles/Git/config/lfs
   path = ~/Dotfiles/Git/config/misc
 

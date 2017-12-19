@@ -30,8 +30,9 @@
   diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   ds = describe
   f = fetch
-  lg = log --graph --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset%C(dim white) %s %Creset%C(cyan)%cd %Creset%C(green)by %aN%Creset' --abbrev-commit --date=relative
-  logs = log --stat --graph --decorate --use-mailmap
+  lg = log --format=wren-short --abbrev-commit --date=relative
+  logs = log --stat=100,100,25
+  logs-full = log --format=wren-full --stat --use-mailmap --date=format:'%H:%M%p %a %B %d, %Y '
   ls = ls-files
   mg = merge
   mgs = merge --squash

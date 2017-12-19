@@ -12,13 +12,25 @@
   plain = normal
   commit = 227 bold
   whitespace = reverse red
+[color "decorate"]
+  branch = yellow
+  remoteBranch = cyan
+  tag = magenta
+  stash = reverse magenta
+  HEAD = yellow
 [color "status"]
+  header =
   added = yellow reverse
   changed = green
   untracked = cyan
   header = white dim
   updated = yellow
   nobranch = red bold
+  branch = cyan
+  nobranch = red bold
+  localBranch = yellow
+  remoteBranch = cyan
+  unmerged =
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
