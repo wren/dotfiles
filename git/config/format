@@ -1,9 +1,6 @@
 [format]
   pretty = wren-full
 
-[log]
-  date = %H:%M%p %a %B %d, %Y
-
 [pretty]
   wren-short = ● %C(auto)%h %C(white)%s%C(auto)%d%C(dim white) %cd by %aN
   wren-full = %n%C(dim white)――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――%n%w(0,0,2)● %C(auto)%h %ad (%ar)%C(auto)%d%n%w(0,2,4)%C(dim white)by %aN <%ae>%n%n%C(magenta)%s%n%n%-b
