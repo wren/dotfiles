@@ -1,5 +1,6 @@
+# https://git-scm.com/docs/git-config#git-config-color
 [color]
-  ui = true
+  ui = auto
 [color "branch"]
   current = yellow reverse
   local = yellow
