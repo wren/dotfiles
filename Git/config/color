@@ -31,7 +31,7 @@
   nobranch = red bold
   localBranch = yellow
   remoteBranch = cyan
-  unmerged =
+  unmerged = red
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
