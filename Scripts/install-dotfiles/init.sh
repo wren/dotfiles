@@ -39,7 +39,7 @@ if [ -d "$DOTFILES_DIR" ]; then
 
 else
   # Check if Git is already installed
-  if [ command -v git >/dev/null 2>&1 ]; then
+  if command -v git >/dev/null 2>&1; then
     printf "Cloning repo into '${DOTFILES_DIR}'...\n"
     git clone https://github.com/jonathanwren/dotfiles.git "$DOTFILES_DIR"
   else
