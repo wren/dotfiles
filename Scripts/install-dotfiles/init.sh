@@ -60,8 +60,9 @@ case ${answer:0:1} in
   [yY])
     # Start the install
     cd "$DOTFILES_DIR"
-    echo '---Do the thing---'
-    # ./Scripts/init.sh
+    ./Scripts/install.sh
+    ./Scripts/mackup.sh
+    ./Scripts/osx.sh
   ;;
   *)
     # @todo add more info about installing later here
