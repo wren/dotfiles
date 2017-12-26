@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # ---- Styling ---- #
 HIGHLIGHT_STYLE="\e[4;36m"
