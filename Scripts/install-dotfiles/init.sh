@@ -37,25 +37,26 @@ if [ -d "$DOTFILES_DIR" ]; then
     ;;
   esac
 
-fi
-
-# Check if Git is already installed
-if command -v git >/dev/null 2>&1; then
-  printf "Cloning repo into '${DOTFILES_DIR}'...\n"
-  git clone https://github.com/jonathanwren/dotfiles.git "$DOTFILES_DIR"
 else
-  printf "Git isn't installed! Using other means to get repo into '${DOTFILES_DIR}'...\n"
-  curl -L https://github.com/jonathanwren/dotfiles/archive/master.zip -o /tmp/dotfiles.zip
-  unzip /tmp/dotfiles.zip -d "$DOTFILES_PARENT"
-  mv "${DOTFILES_PARENT}/dotfiles-master" "$DOTFILES_DIR"
+  # Check if Git is already installed
+  if [ command -v git >/dev/null 2>&1 ]; then
+    printf "Cloning repo into '${DOTFILES_DIR}'...\n"
+    git clone https://github.com/jonathanwren/dotfiles.git "$DOTFILES_DIR"
+  else
+    printf "Git isn't installed! Using other means to get repo into '${DOTFILES_DIR}'...\n"
+    curl -L https://github.com/jonathanwren/dotfiles/archive/master.zip -o /tmp/dotfiles.zip
+    unzip /tmp/dotfiles.zip -d "$DOTFILES_PARENT"
+    mv "${DOTFILES_PARENT}/dotfiles-master" "$DOTFILES_DIR"
 
-  # Clean up
-  rm /tmp/dotfiles.zip
+    # Clean up
+    rm /tmp/dotfiles.zip
+  fi
 fi
+
 
 # Should we do the thing?
 printf '\n'
-read -p 'Do you want to install now, too? (y/n)? ' answer
+read -p 'Do you want to install right now (y), or stop to edit the settings (n)? (y/n) ' answer
 case ${answer:0:1} in
   [yY])
     # Start the install
