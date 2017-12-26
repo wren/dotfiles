@@ -20,10 +20,23 @@ cd "$DOTFILES_PARENT"
 
 # Do Dotfiles already exist?
 if [ -d "$DOTFILES_DIR" ]; then
-  printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
-  printf "Are Dotfiles already installed?\n"
-  printf "Please remove '%s' and try again.\n" "$DOTFILES_DIR"
-  exit
+  printf "\n${WARNING_STYLE}WARNING: Dotfiles directory already exists!${RESET}\n"
+
+  read -p "This could erase your current Dotfiles! Are you sure you want to continue? (y/n) " answer
+  case ${answer:0:1} in
+    [yY])
+      # Keep going
+      printf -- '\n\n--- You were warned! ---\n\n'
+    ;;
+    *)
+      # @todo add more info about installing later here
+      printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
+      printf "Are Dotfiles already installed?\n"
+      printf "Please remove '%s' and try again.\n" "$DOTFILES_DIR"
+      exit
+    ;;
+  esac
+
 fi
 
 # Check if Git is already installed
@@ -41,14 +54,16 @@ else
 fi
 
 # Should we do the thing?
-read -p "Do you want to install now, too? (y/n)? " answer
+printf '\n'
+read -p 'Do you want to install now, too? (y/n)? ' answer
 case ${answer:0:1} in
-  y|Y|Yes|yes|YES )
+  [yY])
     # Start the install
     cd "$DOTFILES_DIR"
-    ./Scripts/init.sh
+    echo '---Do the thing---'
+    # ./Scripts/init.sh
   ;;
-  * )
+  *)
     # @todo add more info about installing later here
     printf '\nExiting...\n\nBy the way, you can finish the install later by running this command:\n  sh %s/Scripts/init.sh\n' "$DOTFILES_DIR"
     printf '\nBye!\n'
