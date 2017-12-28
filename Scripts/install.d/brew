@@ -17,8 +17,8 @@ git-flow
 git-lfs
 git-standup
 gnu-sed --default-names
-homebrew/dupes/grep --default-names
-homebrew/dupes/nano
+grep --default-names
+nano
 homebrew/homebrew-php/php56 --with-gmp
 imagemagick --with-webp
 eddieantonio/imgcat
