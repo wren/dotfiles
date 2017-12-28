@@ -60,7 +60,7 @@ printf "\n"
 
 # Install everything
 IFS=$'\r\n'
-CONFIGPATH="$(if [[ ! -z "${DOTFILES_DIR}" ]]; then printf '%s/scripts' "${DOTFILES_DIR}"; else printf '.'; fi)/install.d"
+CONFIGPATH="$(if [[ ! -z "${DOTFILE_SCRIPTS_DIR}" ]]; then printf '%s' "${DOTFILE_SCRIPTS_DIR}"; else printf '.'; fi)/install.d"
 
 
 
@@ -70,7 +70,7 @@ install_apps() {
 
   # gem needs sudo and y flag
   if [ "$1" == "gem" ]; then
-    INSTALL_COMMAND="sudo ${INSTALL_COMMAND} -y"
+    INSTALL_COMMAND="sudo ${INSTALL_COMMAND}"
   fi
 
   # npm uses a special flag

@@ -8,9 +8,9 @@ RESET="\033[00m"
 ERR=0
 
 # Set some variables
-DOTFILES_DIR="${HOME}/Dotfiles"
-DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
-DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
+export DOTFILES_DIR="${HOME}/Dotfiles"
+export DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
+export DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 
 # Go to parent directory of dotfiles
 mkdir -p "$DOTFILES_PARENT"
