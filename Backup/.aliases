@@ -12,7 +12,6 @@ alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killal
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias grep='grep --color=auto'
 alias backup="sh '${DOTFILES_DIR}/scripts/backup/backup.sh'"
-alias imgcat="${DOTFILES_DIR}/scripts/imgcat.sh"
 alias rmds="find . -name ".DS_Store" -depth -exec rm {} \;"
 alias wifi:reboot='m wifi:disable && sleep 3 && m wifi:enable'
 

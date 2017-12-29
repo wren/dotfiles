@@ -21,7 +21,7 @@ grep --default-names
 nano
 homebrew/homebrew-php/php56 --with-gmp
 imagemagick --with-webp
-eddieantonio/imgcat
+eddieantonio/eddieantonio/imgcat
 mackup
 moreutils
 mysql
