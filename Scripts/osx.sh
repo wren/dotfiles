@@ -46,6 +46,19 @@ sudo nvram SystemAudioVolume=" "
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
+# Set dark theme for menu bar
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
+# Reduce transparency and motion in the UI
+defaults write com.apple.universalaccess reduceMotion -bool true
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Set buttons to graphite, instead of the default blue
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+
+# Finder highlight color: Orange
+defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.874510 0.701961"
+
 # Menu bar hide
 defaults write ~/Library/Preferences/ByHost/com.apple.systemuiserver.* dontAutoLoad -array \
     "/System/Library/CoreServices/Menu Extras/Clock.menu" \
@@ -223,6 +236,9 @@ echo "Setting Mouse preferences"
 # Set scroll direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Disable "spring loaded" directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool false
+
 # Secondary click:
 # Possible values: OneButton, TwoButton, TwoButtonSwapped
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string TwoButton
@@ -285,6 +301,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Screen Saver: Google Trends
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -string "Google Trends" path -string "${HOME}/Library/Screen Savers/Google Trends.saver" type -int 0
+defaults -currentHost write com.google.GoogleTrendsScreensaver cols -int 4
+defaults -currentHost write com.google.GoogleTrendsScreensaver rows -int 4
 
 # Save screenshots to a directory on the desktop
 mkdir -pv "${HOME}/Screenshots"
