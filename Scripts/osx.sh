@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # Based on: ~/.osx — http://mths.be/osx
+# See http://www.real-world-systems.com/docs/defaults.1.html for more details
+# on how reading/writing with 'defaults' works.
 
 # some styling
 HIGHLIGHT_STYLE="\e[4;33m"
