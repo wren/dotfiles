@@ -10,19 +10,20 @@ docker-machine
 drush
 dtrx
 exiftool
-findutils
+findutils --with-default-names
 fortune
 git
 git-flow
 git-lfs
 git-standup
-gnu-sed --default-names
-grep --default-names
+gnu-sed --with-default-names
+grep --with-default-names
 nano
 homebrew/homebrew-php/php56 --with-gmp
 imagemagick --with-webp
 eddieantonio/eddieantonio/imgcat
 mackup
+mas
 moreutils
 mysql
 node
