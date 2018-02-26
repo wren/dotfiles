@@ -46,6 +46,9 @@ sudo nvram SystemAudioVolume=" "
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
+# Change first day of the week to Monday
+defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian -int 2
+
 # Set dark theme for menu bar
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
@@ -58,6 +61,9 @@ defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 
 # Finder highlight color: Orange
 defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.874510 0.701961"
+
+# Don't switch to a new space when alt+tabbing to an app
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false
 
 # Menu bar hide
 defaults write ~/Library/Preferences/ByHost/com.apple.systemuiserver.* dontAutoLoad -array \
