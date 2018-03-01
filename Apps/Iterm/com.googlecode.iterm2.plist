@@ -192,6 +192,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>Background Color</key>
@@ -671,25 +673,36 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
-	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<key>NSTouchBarConfig: regular</key>
 	<dict>
-		<key>TB Is Shown</key>
-		<integer>1</integer>
+		<key>CurrentItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierManPage</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>iTermTouchBarIdentifierPreviousMark</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+			<string>iTermTouchBarIdentifierAddMark</string>
+			<string>iTermTouchBarIdentifierNextMark</string>
+		</array>
+		<key>DefaultItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierManPage</string>
+			<string>iTermTouchBarIdentifierColorPreset</string>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+			<string>iTermTouchBarIdentifierAddMark</string>
+			<string>iTermTouchBarIdentifierPreviousMark</string>
+			<string>iTermTouchBarIdentifierNextMark</string>
+		</array>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>815 277 587 185 0 0 1440 878 </string>
-	<key>NSWindow Frame Preferences</key>
-	<string>269 401 606 456 0 0 1440 877 </string>
-	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>410 365 620 392 0 0 1440 878 </string>
-	<key>NSWindow Frame SUUpdateAlertFrame</key>
-	<string>566 573 575 392 0 0 1600 1178 </string>
+	<string>317 84 722 340 0 0 3440 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>258 321 796 473 0 0 1440 878 </string>
+	<string>432 467 796 473 0 0 3440 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>310 0 1130 878 0 0 1440 878 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 18 717 859 0 0 1440 877 </string>
+	<string>1150 -1 2290 1418 0 0 3440 1418 </string>
 	<key>NeverWarnAboutShortLivedSessions_2F2C4B13-3ECF-4897-B728-42CA13611DBE</key>
 	<true/>
 	<key>New Bookmarks</key>
