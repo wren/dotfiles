@@ -2,6 +2,7 @@
   a = add
   ap = add -p
   au = update-index --assume-unchanged
+  nau = update-index --no-assume-unchanged
   bi = bisect start
   bib = bisect bad
   big = bisect good
