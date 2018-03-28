@@ -10,3 +10,4 @@ Backup/.config/configstore/*
 Backup/.config/hosts/*
 Backup/Library/Preferences/*
 Backup/.config/hub
+Backup/.config/yarn
