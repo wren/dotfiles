@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+eval $(
+  git for-each-ref \
+  --format="$(cat <<EOM
+  INDENT='   %(if)%(HEAD)%(then)>%(else)·%(end) '
+  PREFIX="\$(echo "%(refname:short)" | sed -r "s/^((.*\/).+|.*)$/\2/" )";
+  SECTION="\${PREFIX##\${OLD_PREFIX}}";
+  printf "%b%s\$(tput setaf 3)%-80s\$(tput sgr0)%-100s\n"
+    "\$([ ! -z "\${SECTION}" ] && (printf -- ' %s' "\${SECTION}\n"))"
+    "\$([ ! -z "\${PREFIX}" ] && (printf -- '%s' "\${INDENT}"))"
+    "%(if)%(HEAD)%(then)\$(tput smso)%(end) \$(echo "%(refname:short)" | sed 's/.*\\///')"
+    "\$(git config branch.%(refname:short).note)";
+  OLD_PREFIX="\${PREFIX}";
+EOM
+)" refs/heads/${1}
+)
+
+
+# git branch | cut -c 3-
+# "!f(){ eval $(git for-each-ref --format='PREFIX=\"$(echo \"%(refname:short)\" | sed -r \"s/^((.*\\/).+|.*)$/\\2/\" )\"; ME=\"${PREFIX##${OLD_PREFIX}}\"; printf \"%-1b%-1s $(tput setaf 3)%-80s$(tput sgr0) %-100s\\n\" \"${ME}" "$([ ! -z \"${ME}\" ] && printf \"%s\" \"\\\\n\")\" \"%(HEAD)\" \"%(if)%(HEAD)%(then)$(tput smso)%(end) $(echo \"%(refname:short)\" | sed 's/.*\\\\\\\\///')\" \"$(git config branch.%(refname:short).note)\"; OLD_PREFIX=\"${PREFIX}\";' refs/heads/${1} ); }; f"
