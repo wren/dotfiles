@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Parameters (from Git)
+COMMIT_MSG_FILE="$1"
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Get the ticket number
+branch="$(git rev-parse --abbrev-ref HEAD)"
+regex='((DEV|FE)-[0-9]+)'
+ticket="${branch}"
+if [[ $branch =~ $regex ]]; then
+  ticket="${BASH_REMATCH}"
+fi
+
+# @see https://git-scm.com/docs/githooks#_prepare_commit_msg
+case "$COMMIT_SOURCE" in
+  'message')
+    # Inline message (e.g. git commit -m "Lorem ipsum")
+    if [[ -z $(egrep -v '(^#|^\s*$|^\s*\t*#)' $COMMIT_MSG_FILE) ]] \
+      || [[ ! -z $(egrep "${ticket}" $COMMIT_MSG_FILE) ]]
+    then
+      # empty message or already has the ticket
+      exit
+    fi
+    sed -i "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    ;;
+
+  'template')
+    # Template file (either global or repo-specific)
+    ;;
+
+  'merge')
+    # Merge
+    ;;
+
+  'squash')
+    # Squash
+    ;;
+
+  'commit')
+    # ?
+    ;;
+
+  *)
+    # Blank is the default message (e.g. git commit)
+    sed -i "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    ;;
+esac
