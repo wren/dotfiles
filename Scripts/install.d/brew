@@ -18,6 +18,7 @@ git-lfs
 git-standup
 gnu-sed --with-default-names
 grep --with-default-names
+hub
 nano
 homebrew/homebrew-php/php56 --with-gmp
 imagemagick --with-webp
