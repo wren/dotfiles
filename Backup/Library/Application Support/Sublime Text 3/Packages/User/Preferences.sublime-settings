@@ -25,7 +25,7 @@
 		"node_modules/**"
 	],
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Material Flatland (SL).tmTheme",
 	"default_line_ending": "unix",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
@@ -68,14 +68,14 @@
 		"gray_antialias",
 		"subpixel_antialias"
 	],
-	"font_size": 12,
+	"font_size": 14,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"HTMLBeautify",
 		"JavaScript",
 		"Markdown",
-		"PlainTasks",
+		"PHP-Twig",
 		"Vintage"
 	],
 	"indent_guide_options":

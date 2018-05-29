@@ -58,6 +58,10 @@ function ssh.clearknownhost {
   fi
 }
 
+function de {
+  docker exec -it "$1" bash
+}
+
 # Gets the IP of the machine
 ip() {
   printf '%s\nInternal: %s\nExternal: Connecting...' \

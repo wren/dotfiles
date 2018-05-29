@@ -7,6 +7,6 @@
     { "keys": ["super+shift+h"], "command": "dash_doc", "args": { "flip_syntax_sensitive": true } },
     { "keys": ["shift+f5"], "command": "permute_lines", "args": {"operation": "reverse"} },
     { "keys": ["super+alt+m"], "command": "markdown_preview", "args": {"target": "browser", "parser":"markdown"} },
-    { "keys": ["super+shift+alt+m"], "command": "markdown_preview_select", "args": {"target": "browser"} }
-
+    { "keys": ["super+shift+alt+m"], "command": "markdown_preview_select", "args": {"target": "browser"} },
+    { "keys": ["shift+super+a"], "command": "sublimelinter_show_all_errors" },
 ]

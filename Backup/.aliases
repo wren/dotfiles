@@ -2,44 +2,53 @@
 ##############
 ### System ###
 ##############
-alias ls='ls --color -1p'
-alias lsa='ls --color -1pa'
-alias lsaa='ls --color -1plha'
+alias ls='ls --color -1pN'
+alias lsa='ls --color -1paN'
+alias lsaa='ls --color -1plhaN'
 alias ssh.init='eval `ssh-agent`;ssh-add'
 alias ssh.copy='ssh-copy-id'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias grep='grep --color=auto'
-alias backup="sh '${DOTFILES_DIR}/scripts/backup/backup.sh'"
-alias imgcat="${DOTFILES_DIR}/scripts/imgcat.sh"
+alias lgi='ls -1plhaN | grep -i'
 alias rmds="find . -name ".DS_Store" -depth -exec rm {} \;"
 alias wifi:reboot='m wifi:disable && sleep 3 && m wifi:enable'
 
 ###########
 ### Git ###
 ###########
+alias git='hub'
+alias g='git'
+alias ga='git-annex'
+alias gf='git-flow' && __git_complete gf _git_flow
 alias rmorig="find . -name '*.orig' -type f -print0 | xargs -0 rm -fv"
 alias gar="git ls-files -z -d | xargs -0 git rm"
 alias gblame="git ls-files|grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' |xargs -n1 git blame --line|grep -E '^author '|sort|uniq -c|sort -nr"
+alias dsf='diff-so-fancy'
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 
+##############
+### Docker ###
+##############
+alias d='docker'
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias ds='docker-sync'
+alias d.rmall.containers='docker rm $(docker ps -a -q)'
+alias d.rmall.images='docker rmi $(docker images -q)'
+alias d.stop.containers='docker stop $(docker ps -aq)'
+alias d.start='eval $(docker-machine env default)'
 
 ############
 ### Apps ###
 ############
+alias a='aliases'
 alias b='brew'
 alias brew.install='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
 alias c='brew cask'
 alias chrome='open -a "Google Chrome" --args --disable-web-security'
-alias d='docker'
-alias dc='docker-compose'
-alias dm='docker-machine'
-alias docker.start='eval $(docker-machine env default)'
-alias g='git'
-alias ga='git-annex'
-alias gf='git-flow' && __git_complete gf _git_flow
 alias gl='gulp'
 alias gr='grunt'
-alias m='mac'
 alias speedtest='speed-test --verbose'
+alias p='python2'

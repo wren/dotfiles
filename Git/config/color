@@ -1,9 +1,10 @@
+# https://git-scm.com/docs/git-config#git-config-color
 [color]
-  ui = true
+  ui = auto
 [color "branch"]
   current = yellow reverse
   local = yellow
-  remote = green
+  remote = cyan
 [color "diff"]
   meta = 227
   frag = magenta bold
@@ -12,13 +13,25 @@
   plain = normal
   commit = 227 bold
   whitespace = reverse red
+[color "decorate"]
+  branch = yellow
+  remoteBranch = cyan
+  tag = magenta
+  stash = reverse magenta
+  HEAD = yellow
 [color "status"]
+  header =
   added = yellow reverse
   changed = green
   untracked = cyan
   header = white dim
   updated = yellow
   nobranch = red bold
+  branch = cyan
+  nobranch = red bold
+  localBranch = yellow
+  remoteBranch = cyan
+  unmerged = red
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52

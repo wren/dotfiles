@@ -2,15 +2,18 @@
   a = add
   ap = add -p
   au = update-index --assume-unchanged
+  nau = update-index --no-assume-unchanged
   bi = bisect start
   bib = bisect bad
   big = bisect good
   bir = bisect reset
   bis = bisect skip
-  br = branch -v
+  br = branch
   bra = branch -av
-  brn = "!git config branch.$(git symbolic-ref HEAD|sed \"s/refs\\/heads\\///\").note $( if [ $# -gt 0 ]; then $1; fi)"
+  brn = "!git config branch.$(git symbolic-ref HEAD|sed \"s/refs\\/heads\\///\").note \"$@\""
   brr = branch -rv
+  brl = branch-list
+  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git branch -m active/$1; }; f"
   c = clone
   ca = commit -a
   cam = commit -a -m
@@ -20,39 +23,45 @@
   conflicts = diff --name-only --diff-filter=U
   cp = cherry-pick
   dci = dcommit
-  df = diff --word-diff=color
-  dfc = diff --cached
+  df = diff --color
+  dfc = diff --cached --color
+  dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
+  dfp = diff --no-color
   dfs = diff --shortstat --numstat
   dft = difftool
-  dfw = diff --word-diff=color -w
+  dfw = diff --word-diff=color
+  diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   ds = describe
   f = fetch
-  lg = log --graph --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset%C(dim white) %s %Creset%C(cyan)%cd %Creset%C(green)by %aN%Creset' --abbrev-commit --date=relative
-  logs = log --stat --graph --decorate --use-mailmap
+  lg = log --format=wren-short --abbrev-commit --date=relative
+  lgs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
+  logs-full = log --format=wren-full --stat --use-mailmap --date=format:'%a %l:%M %p %B %d, %Y'
   ls = ls-files
+  lsu = ls-files --others --exclude-standard
   mg = merge
   mgs = merge --squash
   mgt = mergetool
   pl = pull
-  pls = "!func(){ printf -- '--- Pull ---\n' && git pull && printf '\n--- Push ---\n' && git push; }; func"
+  pls = "!func(){ cyan=$(tput setaf 6); reset=$(tput sgr0); printf -- \"${cyan}───── Pull ─────${reset}\n\" && git pull && printf \"\n${cyan}───── Push ─────${reset}\n\" && git push; }; func"
   ps = push
   pst = push --tags
+  pr = pull-request
   r = reset
   rb = rebase
   rem = remote -v
   rh = reset --hard
+  rp = reset --patch
   rs = reset --soft
   s = stash
   sb = submodule
   sbst = submodule status
-  sc = svn clone --prefix=origin/
-  sd = svn dcommit
+  sd = stash drop
   sh = show --word-diff=color
   sl = stash list
   sp = stash pop
-  sr = svn rebase
   ss = stash save
-  st = status -sb
+  st = status -s
+  standup = "!func(){ git log --all --no-merges --graph --date=relative --committer=\"$(git config --get user.email)\" --pretty=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --since=\"$(if [[ "Mon" == "$(date +%a)" ]]; then echo 'last friday'; else echo 'yesterday'; fi;)\"; }; func"
   sur = submodule update --recursive
   suri = submodule update --recursive --init
   t = tag -a

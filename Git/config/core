@@ -7,4 +7,4 @@
 [log]
   date = local
 [push]
-  default = simple
+  default = upstream

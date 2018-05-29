@@ -6,6 +6,7 @@
 *.dll
 *.exe
 *.o
+*.pyc
 *.so
 .sass-cache
 

@@ -60,17 +60,18 @@ printf "\n"
 
 # Install everything
 IFS=$'\r\n'
-CONFIGPATH="$(if [[ ! -z "${DOTFILES_DIR}" ]]; then printf '%s/scripts' "${DOTFILES_DIR}"; else printf '.'; fi)/install.d"
+CONFIGPATH="$(if [[ ! -z "${DOTFILE_SCRIPTS_DIR}" ]]; then printf '%s' "${DOTFILE_SCRIPTS_DIR}"; else printf '.'; fi)/install.d"
 
 
 
 install_apps() {
 
   INSTALL_COMMAND="$1 install"
+  APP="$2"
 
   # gem needs sudo and y flag
   if [ "$1" == "gem" ]; then
-    INSTALL_COMMAND="sudo ${INSTALL_COMMAND} -y"
+    INSTALL_COMMAND="sudo ${INSTALL_COMMAND}"
   fi
 
   # npm uses a special flag
@@ -78,13 +79,19 @@ install_apps() {
     INSTALL_COMMAND="${INSTALL_COMMAND} -g"
   fi
 
-  INSTALL_COMMAND="${INSTALL_COMMAND} $2"
+  # mas only uses the first column of input
+  if [[ $1 == "mas" ]]; then
+    APP="$(printf "$APP" | cut -d' ' -f1)"
+  fi
+
+
+  INSTALL_COMMAND="${INSTALL_COMMAND} $APP"
 
   printf "\n${HIGHLIGHT_STYLE}${INSTALL_COMMAND}${RESET}\n"
   eval "${INSTALL_COMMAND}"
 }
 
-for type in gem brew 'brew cask' npm; do
+for type in mas; do
   APPSLIST=( $(cat "$CONFIGPATH/$type") )
   for app in ${APPSLIST[@]}; do
     # check if line is commented out

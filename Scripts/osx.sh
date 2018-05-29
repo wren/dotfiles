@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # Based on: ~/.osx — http://mths.be/osx
+# See http://www.real-world-systems.com/docs/defaults.1.html for more details
+# on how reading/writing with 'defaults' works.
 
 # some styling
 HIGHLIGHT_STYLE="\e[4;33m"
@@ -43,6 +45,25 @@ sudo nvram SystemAudioVolume=" "
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+
+# Change first day of the week to Monday
+defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian -int 2
+
+# Set dark theme for menu bar
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
+# Reduce transparency and motion in the UI
+defaults write com.apple.universalaccess reduceMotion -bool true
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Set buttons to graphite, instead of the default blue
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+
+# Finder highlight color: Orange
+defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.874510 0.701961"
+
+# Don't switch to a new space when alt+tabbing to an app
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false
 
 # Menu bar hide
 defaults write ~/Library/Preferences/ByHost/com.apple.systemuiserver.* dontAutoLoad -array \
@@ -221,6 +242,9 @@ echo "Setting Mouse preferences"
 # Set scroll direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Disable "spring loaded" directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool false
+
 # Secondary click:
 # Possible values: OneButton, TwoButton, TwoButtonSwapped
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string TwoButton
@@ -283,6 +307,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Screen Saver: Google Trends
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -string "Google Trends" path -string "${HOME}/Library/Screen Savers/Google Trends.saver" type -int 0
+defaults -currentHost write com.google.GoogleTrendsScreensaver cols -int 4
+defaults -currentHost write com.google.GoogleTrendsScreensaver rows -int 4
 
 # Save screenshots to a directory on the desktop
 mkdir -pv "${HOME}/Screenshots"
