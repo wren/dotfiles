@@ -1,0 +1,71 @@
+{
+  // Controls the font size in pixels.
+  "editor.fontSize": 12,
+  // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+  "editor.tabSize": 2,
+  // Controls how the editor should render whitespace characters, possibilities are 'none', 'boundary', and 'all'. The 'boundary' option does not render single spaces between words.
+  "editor.renderWhitespace": "all",
+  // Controls the cursor style, accepted values are 'block', 'block-outline', 'line', 'line-thin', 'underline' and 'underline-thin'
+  "editor.cursorStyle": "line",
+  // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
+  "editor.lineHeight": 24,
+  // Enables font ligatures
+  "editor.fontLigatures": true,
+  // Controls if file decorations should use badges.
+  "explorer.decorations.badges": false,
+  // Enable/disable JavaScript validation.
+  "javascript.validate.enable": false, // prevent TypeScript errors on Flow types
+  "prettier.eslintIntegration": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnPaste": false,
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.colorTheme": "Material Theme Palenight High Contrast",
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#7CB342",
+    "list.activeSelectionForeground": "#7CB342",
+    "list.inactiveSelectionForeground": "#7CB342",
+    "list.highlightForeground": "#7CB342",
+    "scrollbarSlider.activeBackground": "#7CB34250",
+    "editorSuggestWidget.highlightForeground": "#7CB342",
+    "textLink.foreground": "#7CB342",
+    "progressBar.background": "#7CB342",
+    "pickerGroup.foreground": "#7CB342",
+    "tab.activeBorder": "#7CB342",
+    "notificationLink.foreground": "#7CB342"
+  },
+  // "editor.formatOnSave": true, // runs prettier on files as you save them
+  "eslint.packageManager": "yarn",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true
+  },
+
+  "window.zoomLevel": 0,
+
+  "files.maxMemoryForLargeFilesMB": 8192,
+  "explorer.confirmDelete": false,
+  "editor.autoClosingBrackets": false,
+  "[python]": {
+  },
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.quickSuggestionsDelay": 50,
+  "files.insertFinalNewline": true,
+  "editor.find.seedSearchStringFromSelection": false,
+  "editor.scrollBeyondLastLine": true,
+  "files.trimTrailingWhitespace": false,
+  "editor.wordWrap": "off",
+  "gitlens.historyExplorer.enabled": true,
+  "eslint.workingDirectories": [
+    {
+        "directory": "./src/frontend",
+        "changeProcessCWD": true
+    }
+]
+}
