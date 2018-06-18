@@ -4,7 +4,7 @@ export DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 # Determine which host we're on, if possible
 my_name="$(echo $HOSTNAME)"
 my_hostname="default"
-for i in $(find ~/.config/hosts -name 'test.sh'); do
+for i in $(find ~/.config/hosts/ -name 'test.sh'); do
   . "$i"
   [[ "${my_hostname}" =~ ^default$ ]] || break
 done
