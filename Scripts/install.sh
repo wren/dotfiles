@@ -91,7 +91,8 @@ install_apps() {
   eval "${INSTALL_COMMAND}"
 }
 
-for type in mas; do
+for type in $(ls -1 install.d); do
+  printf -- 'installing: %s\n' "$type"
   APPSLIST=( $(cat "$CONFIGPATH/$type") )
   for app in ${APPSLIST[@]}; do
     # check if line is commented out
