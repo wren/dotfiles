@@ -1,74 +1,100 @@
 #!/bin/bash
 
 # ---- Styling ---- #
-HIGHLIGHT_STYLE="\e[4;36m"
-ERROR_STYLE="\e[4;31m"
-WARNING_STYLE="\e[4;33m"
-RESET="\033[00m"
-ERR=0
+UNDERLINE=$(tput smul)
+ERROR_STYLE=$UNDERLINE$(tput setaf 1)
+WARNING_STYLE=$UNDERLINE$(tput setaf 3)
+RESET=$(tput sgr0)
+DOTFILES_DIR="${HOME}/Dotfiles-test"
+DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
+DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 
-# Set some variables
-export DOTFILES_DIR="${HOME}/Dotfiles"
-export DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
-export DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
+# Export some variables
+export DOTFILES_DIR
+export DOTFILES_PARENT
+export DOTFILE_SCRIPTS_DIR
 
 # Go to parent directory of dotfiles
 mkdir -p "$DOTFILES_PARENT"
-cd "$DOTFILES_PARENT"
+cd "$DOTFILES_PARENT" || exit
+
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+install_homebrew() {
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+clone_dotfiles() {
+  printf "Cloning repo into '%s'...\\n" "$DOTFILES_DIR"
+  git clone https://github.com/wren/dotfiles.git "$DOTFILES_DIR"
+}
+
+print_warning() {
+  printf "\\n${WARNING_STYLE}WARNING: %s${RESET}\\n" "$1"
+}
+
+print_error() {
+  printf "\\n${ERROR_STYLE}ERROR: %s${RESET}\\n" "$1"
+}
 
 # @todo Tell user what we're doing and give chance to abort
 
 # Do Dotfiles already exist?
 if [ -d "$DOTFILES_DIR" ]; then
-  printf "\n${WARNING_STYLE}WARNING: Dotfiles directory already exists!${RESET}\n"
+  print_warning 'Dotfiles directory already exists!'
 
-  read -p "This could erase your current Dotfiles! Are you sure you want to continue? (y/n) " answer
+  read -r -p "This will erase your current Dotfiles! Are you sure you want to continue? (y/n) " answer
   case ${answer:0:1} in
     [yY])
       # Keep going
-      printf -- '\n\n--- You were warned! ---\n\n'
+      timestamp="$(date +"%Y-%m-%d_%H%M%S")"
+      old_dir="${DOTFILES_DIR}_OLD_${timestamp}"
+      printf -- '\n--- Okay! Moving old Dotfiles into "%s"---\n\n' "$old_dir"
+      mv "$DOTFILES_DIR" "$old_dir"
     ;;
     *)
       # @todo add more info about installing later here
-      printf "\n${ERROR_STYLE}ERROR: Dotfiles directory already exists!${RESET}\n"
-      printf "Are Dotfiles already installed?\n"
-      printf "Please remove '%s' and try again.\n" "$DOTFILES_DIR"
+      print_error 'Dotfiles directory already exists!'
+      printf 'Are Dotfiles already installed?\n'
+      printf 'Please remove "%s" and try again.\n' "$DOTFILES_DIR"
       exit
     ;;
   esac
 
-else
-  # Check if Git is already installed
-  if command -v git >/dev/null 2>&1; then
-    printf "Cloning repo into '${DOTFILES_DIR}'...\n"
-    git clone https://github.com/jonathanwren/dotfiles.git "$DOTFILES_DIR"
-  else
-    printf "Git isn't installed! Using other means to get repo into '${DOTFILES_DIR}'...\n"
-    curl -L https://github.com/jonathanwren/dotfiles/archive/master.zip -o /tmp/dotfiles.zip
-    unzip /tmp/dotfiles.zip -d "$DOTFILES_PARENT"
-    mv "${DOTFILES_PARENT}/dotfiles-master" "$DOTFILES_DIR"
-
-    # Clean up
-    rm /tmp/dotfiles.zip
-  fi
 fi
 
+# Homebrew first
+if ! command_exists brew; then
+  printf "Homebrew isn't installed! Installing now...\\n"
+  install_homebrew || exit
+fi
+
+# Now git (we can't ask MacOS because ugh)
+if ! brew ls --versions git > /dev/null; then
+  printf "Git isn't installed through Homebrew! Installing now...\\n"
+  brew install git || exit
+fi
+
+clone_dotfiles
 
 # Should we do the thing?
 printf '\n'
-read -p 'Do you want to install right now (y), or stop to edit the settings (n)? (y/n) ' answer
+read -r -p 'Do you want to install right now (y), or stop to edit the settings (n)? (y/n) ' answer
 case ${answer:0:1} in
   [yY])
     # Start the install
-    cd "$DOTFILES_DIR"
+    mkdir -p "$DOTFILES_DIR"
+    cd "$DOTFILES_DIR" || exit
     ./Scripts/install.sh
     ./Scripts/mackup.sh
     ./Scripts/osx.sh
   ;;
   *)
     # @todo add more info about installing later here
-    printf '\nExiting...\n\nBy the way, you can finish the install later by running this command:\n  sh %s/Scripts/init.sh\n' "$DOTFILES_DIR"
-    printf '\nBye!\n'
+    printf '\\nExiting...\\n\\nBy the way, you can finish the install later by running this command:\\n  /bin/bash "%s/Scripts/install-dotfiles/init.sh"\\n' "$DOTFILES_DIR"
+    printf '\\nBye!\\n'
   ;;
 esac
 
