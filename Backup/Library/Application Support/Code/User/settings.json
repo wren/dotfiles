@@ -1,7 +1,4 @@
 {
-  // Controls the font size in pixels.
-  "editor.fontSize": 12,
-  // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
   "editor.tabSize": 2,
   // Controls how the editor should render whitespace characters, possibilities are 'none', 'boundary', and 'all'. The 'boundary' option does not render single spaces between words.
   "editor.renderWhitespace": "all",
@@ -19,8 +16,8 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.snippetSuggestions": "top",
   "editor.formatOnPaste": false,
-  "workbench.iconTheme": "eq-material-theme-icons",
-  "workbench.colorTheme": "Material Theme Palenight High Contrast",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.colorCustomizations": {
     "activityBarBadge.background": "#7CB342",
     "list.activeSelectionForeground": "#7CB342",
@@ -32,7 +29,16 @@
     "progressBar.background": "#7CB342",
     "pickerGroup.foreground": "#7CB342",
     "tab.activeBorder": "#7CB342",
-    "notificationLink.foreground": "#7CB342"
+    "notificationLink.foreground": "#7CB342",
+    "editorWidget.resizeBorder": "#7CB342",
+    "editorWidget.border": "#7CB342",
+    "settings.modifiedItemIndicator": "#7CB342",
+    "settings.modifiedItemForeground": "#7CB342",
+    "settings.headerForeground": "#7CB342",
+    "panelTitle.activeBorder": "#7CB342",
+    "breadcrumb.activeSelectionForeground": "#7CB342",
+    "menu.selectionForeground": "#7CB342",
+    "menubar.selectionForeground": "#7CB342"
   },
   // "editor.formatOnSave": true, // runs prettier on files as you save them
   "eslint.packageManager": "yarn",
@@ -47,13 +53,12 @@
     "suppressShowKeyBindingsNotice": true
   },
 
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
 
   "files.maxMemoryForLargeFilesMB": 8192,
   "explorer.confirmDelete": false,
-  "editor.autoClosingBrackets": false,
-  "[python]": {
-  },
+  "editor.autoClosingBrackets": "beforeWhitespace",
+  "[python]": {},
   "editor.acceptSuggestionOnEnter": "off",
   "editor.quickSuggestionsDelay": 50,
   "files.insertFinalNewline": true,
@@ -64,8 +69,25 @@
   "gitlens.historyExplorer.enabled": true,
   "eslint.workingDirectories": [
     {
-        "directory": "./src/frontend",
-        "changeProcessCWD": true
+      "directory": "./src/frontend",
+      "changeProcessCWD": true
     }
-]
+  ],
+  "eslint.validate": ["javascript", "javascriptreact", "vue"],
+  "eslint.alwaysShowStatus": true,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "search.location": "panel",
+  "breadcrumbs.enabled": true,
+  "editor.rulers": [98],
+  "editor.hover.delay": 300,
+  "editor.hover.sticky": false,
+  "editor.formatOnSave": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "materialTheme.accent": "Lime",
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "python.jediEnabled": false,
+  "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14
+  // "search.useRipgrep": false // Ripgrep doesn't support lookahead/behind in regex search
 }
