@@ -14,6 +14,13 @@ alias grep='grep --color=auto'
 alias lgi='ls -1plhaN | grep -i'
 alias rmds="find . -name ".DS_Store" -depth -exec rm {} \;"
 alias wifi:reboot='m wifi:disable && sleep 3 && m wifi:enable'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.." # eight is enough
 
 ###########
 ### Git ###
@@ -52,3 +59,4 @@ alias gl='gulp'
 alias gr='grunt'
 alias speedtest='speed-test --verbose'
 alias p='python2'
+alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
