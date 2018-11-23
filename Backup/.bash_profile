@@ -34,6 +34,7 @@ unset file
 # * cdspell: Autocorrect typos in path names when using `cd`
 # * autocd: e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * globstar: Recursive globbing, e.g. `echo **/*.txt`
+# @see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
 for option in {nocaseglob,histappend,cdspell,autocd,globstar}; do
   shopt -s "$option" 2> /dev/null
 done
@@ -55,8 +56,3 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # Init aliases if it's installed
 command -v aliases >/dev/null 2>&1 && eval "$(aliases init --global)"
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
