@@ -26,11 +26,12 @@
   df = diff --color
   dfc = diff --cached --color
   dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
-  dfp = diff --no-color
+  dfp = --no-pager diff --no-color
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color
   diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
+  dmb = delete-merged-branches
   ds = describe
   f = fetch
   lg = log --format=wren-short --abbrev-commit --date=relative
@@ -42,12 +43,15 @@
   mgs = merge --squash
   mgt = mergetool
   pl = pull
-  pls = "!func(){ cyan=$(tput setaf 6); reset=$(tput sgr0); printf -- \"${cyan}───── Pull ─────${reset}\n\" && git pull && printf \"\n${cyan}───── Push ─────${reset}\n\" && git push; }; func"
+  pls = "!f(){ p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p 'Pull' && git pull && p 'Push' && git push; }; f"
   ps = push
   pst = push --tags
-  pr = pull-request
+  pr = pull-request -o
+  prg = "!f(){ git checkout $1 && git br -m pr/$1; }; f"
   r = reset
   rb = rebase
+  rbi = rebase --interactive
+  rbc = rebase --continue
   rem = remote -v
   rh = reset --hard
   rp = reset --patch
