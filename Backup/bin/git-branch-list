@@ -6,7 +6,7 @@ eval $(
   INDENT='   %(if)%(HEAD)%(then)>%(else)·%(end) '
   PREFIX="\$(echo "%(refname:short)" | sed -r "s/^((.*\/).+|.*)$/\2/" )";
   SECTION="\${PREFIX##\${OLD_PREFIX}}";
-  printf "%b%s\$(tput setaf 3)%-80s\$(tput sgr0)%-100s\n"
+  printf "%b%s\$(tput setaf 3)%-64s\$(tput sgr0)%-32s\n"
     "\$([ ! -z "\${SECTION}" ] && (printf -- ' %s' "\${SECTION}\n"))"
     "\$([ ! -z "\${PREFIX}" ] && (printf -- '%s' "\${INDENT}"))"
     "%(if)%(HEAD)%(then)\$(tput smso)%(end) \$(echo "%(refname:short)" | sed 's/.*\\///')"
