@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ClockFormat</key>
+	<string>h:mm:ss a</string>
+	<key>HighlightedDOWs</key>
+	<integer>65</integer>
+	<key>KeyboardShortcut</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGFhdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OV0tleUNvZGVWJGNsYXNzXU1vZGlmaWVyRmxhZ3MQ
+	LIACEgAUAADSEBESE1okY2xhc3NuYW1lWCRjbGFzc2VzW01BU1Nob3J0Y3V0ohQVW01B
+	U1Nob3J0Y3V0WE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0RgZVHJvb3SAAQgRGiMt
+	Mjc7QUhQV2VnaW5zfoeTlqKrvcDFAAAAAAAAAQEAAAAAAAAAGgAAAAAAAAAAAAAAAAAA
+	AMc=
+	</data>
+	<key>PinItsycal</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2018-11-20T21:59:36Z</date>
+	<key>SelectedCalendars</key>
+	<array>
+		<string>E7951342-765C-433E-9ADA-C6E0A3843E1E</string>
+		<string>64D6C7CE-8A8B-408E-84D6-4645EFA9DB10</string>
+	</array>
+	<key>ShowDayOfWeekInIcon</key>
+	<true/>
+	<key>ShowEventDays</key>
+	<integer>1</integer>
+	<key>ShowMonthInIcon</key>
+	<true/>
+	<key>SizePreference</key>
+	<false/>
+	<key>UseOutlineIcon</key>
+	<true/>
+	<key>WeekStartDOW</key>
+	<integer>1</integer>
+	<key>kShowEventDots</key>
+	<false/>
+</dict>
+</plist>
