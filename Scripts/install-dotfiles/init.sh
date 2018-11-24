@@ -5,7 +5,7 @@ UNDERLINE=$(tput smul)
 ERROR_STYLE=$UNDERLINE$(tput setaf 1)
 WARNING_STYLE=$UNDERLINE$(tput setaf 3)
 RESET=$(tput sgr0)
-DOTFILES_DIR="${HOME}/Dotfiles-test"
+DOTFILES_DIR="${HOME}/Dotfiles"
 DOTFILES_PARENT="$(dirname "$DOTFILES_DIR")"
 DOTFILE_SCRIPTS_DIR="${DOTFILES_DIR}/Scripts"
 
