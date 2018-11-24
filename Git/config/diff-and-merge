@@ -6,7 +6,7 @@
   keepBackup = false
 
 [diff "image"]
-  command = ~/Sync/Drive/Dotfiles/Scripts/git-image-diff.sh
+  command = git-image-diff
 [pager]
   dfi = false
   dfp = false
