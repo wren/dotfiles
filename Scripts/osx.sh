@@ -5,11 +5,10 @@
 # on how reading/writing with 'defaults' works.
 
 # some styling
-HIGHLIGHT_STYLE="\e[4;33m"
-ERROR_STYLE="\e[4;31m"
-WARNING_STYLE="\e[4;33m"
-RESET="\033[00m"
-ERR=0
+UNDERLINE=$(tput smul)
+ERROR_STYLE=$UNDERLINE$(tput setaf 1)
+WARNING_STYLE=$UNDERLINE$(tput setaf 3)
+RESET=$(tput sgr0)
 
 # Close any open System Preferences panes to prevent overriding settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
