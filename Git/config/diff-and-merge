@@ -1,7 +1,7 @@
-[mergetool "diff3"]
+[mergetool "opendiff"]
   trustExitCode = true
 [merge]
-  tool = kdiff3
+  tool = opendiff
 [mergetool]
   keepBackup = false
 
