@@ -16,5 +16,7 @@
 	<integer>3</integer>
 	<key>persistForImages</key>
 	<integer>3</integer>
+	<key>unicodeMatching</key>
+	<true/>
 </dict>
 </plist>
