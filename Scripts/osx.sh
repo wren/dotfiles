@@ -96,10 +96,6 @@ defaults write com.apple.systemuiserver menuExtras -array \
 # Show percentage next to battery
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-
-# Set highlight color to green
-# defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
-
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
@@ -301,8 +297,8 @@ defaults write com.apple.dock showLaunchpadGestureEnabled -bool true
 ###############################################################################
 
 # Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults -currentHost write com.apple.screensaver askForPassword -int 1
+defaults -currentHost write com.apple.screensaver askForPasswordDelay -int 0
 
 # Screen Saver: Google Trends
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -string "Google Trends" path -string "${HOME}/Library/Screen Savers/Google Trends.saver" type -int 0
