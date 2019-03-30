@@ -23,3 +23,8 @@ export LESS_TERMCAP_md="$ORANGE"
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
+# Use the ~/.config folder for config when app supports it
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# default options for fzf (used in vim)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
