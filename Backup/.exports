@@ -11,7 +11,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 # Make some common commands not show up in history (to keep things)
-export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help:jrnl *:'
+export HISTIGNORE='jrnl *:ls:cd:cd -:pwd:exit:date:* --help'
 
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
