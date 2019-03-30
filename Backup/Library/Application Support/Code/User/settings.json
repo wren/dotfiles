@@ -88,6 +88,8 @@
   "telemetry.enableTelemetry": false,
   "python.jediEnabled": false,
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
   // "search.useRipgrep": false // Ripgrep doesn't support lookahead/behind in regex search
 }
