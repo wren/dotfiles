@@ -101,8 +101,8 @@ function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
 
-let g:flow_path = StrTrim(system('PATH=$(npm bin):$(cd src/frontend && npm bin):$PATH && which flow'))
-let g:eslint_path = StrTrim(system('PATH=$(npm bin):$(cd src/frontend && npm bin):$PATH && which eslint'))
+let g:flow_path = StrTrim(system('PATH=$(pwd)/node_modules/.bin:$(pwd)/src/frontend/node_modules/.bin:$PATH && which flow'))
+" let g:eslint_path = StrTrim(system('PATH=$(npm bin):$(cd src/frontend && npm bin):$PATH && which eslint'))
 
 " == Shougo/deoplete.nvim ==
 " == carlitux/deoplete-ternjs ==
