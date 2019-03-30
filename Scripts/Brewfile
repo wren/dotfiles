@@ -31,15 +31,17 @@ brew "htop"
 brew "hub"
 brew "imagemagick"
 brew "jq"
-brew "links"
-brew "lolcat"
 brew "python"
+brew "jrnl"
+brew "links"
+brew "lolcat", link: false
 brew "mackup"
 brew "mas"
 brew "moreutils"
 brew "mysql"
 brew "nano"
 brew "openssh"
+brew "pipenv"
 brew "pv"
 brew "rename"
 brew "rsync"
@@ -53,14 +55,16 @@ brew "webkit2png"
 brew "wget"
 brew "xpdf"
 brew "yarn", args: ["without-node"]
+brew "zopfli"
 brew "eddieantonio/eddieantonio/imgcat"
 cask "1password"
 cask "adobe-creative-cloud"
 cask "alfred"
-cask "authy"
+cask "android-studio"
 cask "chicken"
 cask "cyberduck"
 cask "docker"
+cask "docker-edge"
 cask "firefox"
 cask "gitup"
 cask "google-backup-and-sync"
@@ -85,8 +89,12 @@ cask "the-unarchiver"
 cask "ukelele"
 cask "visual-studio-code"
 cask "vlc"
+mas "1Password", id: 443987910
 mas "Bear", id: 1091189122
 mas "Frank DeLoupe", id: 530458789
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Remote Desktop", id: 715768417
 mas "Skitch", id: 425955336
+mas "TickTick", id: 966085870
 mas "Todoist", id: 585829637
+mas "Xcode", id: 497799835
