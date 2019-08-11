@@ -47,7 +47,7 @@
   pls = "!f(){ p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p 'Pull' && git pull && p 'Push' && git push; }; f"
   ps = push
   pst = push --tags
-  pr = pull-request -o
+  pro = pull-request -o
   prg = "!f(){ git checkout $1 && git br -m pr/$1; }; f"
   r = reset
   rb = rebase
