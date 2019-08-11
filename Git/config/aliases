@@ -19,6 +19,7 @@
   cam = commit -a -m
   ci = commit
   cim = commit -m
+  cia = commit --amend
   co = checkout
   conflicts = diff --name-only --diff-filter=U
   cp = cherry-pick
