@@ -643,7 +643,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Sync/Dotfiles/Apps/Iterm</string>
+	<string>~/Dotfiles/Apps/Iterm</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{955, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
