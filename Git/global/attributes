@@ -4,6 +4,7 @@
 *.png diff=image
 *.gif diff=image
 *.bmp diff=image
+*.docx diff=pandoc
 * -crlf
 
 # LFS
