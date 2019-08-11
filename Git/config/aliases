@@ -36,7 +36,7 @@
   ds = describe
   f = fetch
   lg = log --format=wren-short --abbrev-commit --date=relative
-  lgs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
+  logs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
   logs-full = log --format=wren-full --stat --use-mailmap --date=format:'%a %l:%M %p %B %d, %Y'
   ls = ls-files
   lsu = ls-files --others --exclude-standard
