@@ -1,4 +1,5 @@
 tap "beeftornado/rmtree"
+tap "caskroom/fonts"
 tap "eddieantonio/eddieantonio"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -93,6 +94,7 @@ cask "the-unarchiver"
 cask "ukelele"
 cask "visual-studio-code"
 cask "vlc"
+cask "caskroom/fonts/font-hack-nerd-font"
 mas "1Password", id: 443987910
 mas "Bear", id: 1091189122
 mas "Frank DeLoupe", id: 530458789
