@@ -6,5 +6,4 @@
   attributesfile = ~/Dotfiles/Git/global/attributes
 [log]
   date = local
-[push]
-  default = upstream
+
