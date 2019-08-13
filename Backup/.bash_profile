@@ -1,4 +1,3 @@
-[ -f ~/.profile ] && source ~/.profile
 export DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
 # Determine which host we're on, if possible
