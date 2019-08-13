@@ -30,6 +30,8 @@
 *.sublime-project
 *.sublime-workspace
 .todo.cfg
+.tern-port
+.vim/*
 
 ###########################
 # Other Source Management #

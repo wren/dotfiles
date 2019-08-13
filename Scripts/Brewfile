@@ -44,7 +44,7 @@ brew "mas"
 brew "moreutils"
 brew "mysql"
 brew "nano"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "openssh"
 brew "pipenv"
 brew "pv"
