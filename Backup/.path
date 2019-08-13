@@ -16,5 +16,7 @@ PATH="$PATH:$HOME/bin"
 # for sebglazebrook/aliases
 [ -e "${HOME}/.aliases.d/shims" ] && PATH="${HOME}/.aliases.d/shims:${PATH}"
 
+# fzf (fuzzy file completion)
+export PATH="$PATH:/usr/local/opt/fzf/bin"
 
 export PATH
