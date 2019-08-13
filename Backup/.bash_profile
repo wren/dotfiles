@@ -1,10 +1,9 @@
 export DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
 # Determine which host we're on, if possible
-my_name="$(echo $HOSTNAME)"
 my_hostname="default"
 for i in $(find ~/.config/hosts/ -name 'test.sh'); do
-  . "$i"
+  source "$i"
   [[ "${my_hostname}" =~ ^default$ ]] || break
 done
 
@@ -61,3 +60,4 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # Init aliases if it's installed
 command -v aliases >/dev/null 2>&1 && eval "$(aliases init --global)"
+
