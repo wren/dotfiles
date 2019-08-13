@@ -27,6 +27,9 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done
 unset file
 
+# fuzzy file completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # Enable some Bash 4 features when possible:
 # * nocaseglob: Case-insensitive globbing (used in pathname expansion)
 # * histappend: Append to the Bash history file, rather than overwriting it
