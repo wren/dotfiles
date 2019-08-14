@@ -53,18 +53,12 @@ override_git_prompt_colors() {
   prompt_color="${ResetColor}\[\e[${prompt_color}m\]"
   user_color="${ResetColor}\[\e[${user_color}m\]"
 
-  userhost="${user_color}\u${Grey}@${prompt_color}\h"
+  userhost="${user_color}\u${Grey}@${prompt_color}\h${ResetColor}"
+  virtual_env="_VENVSTART_${ResetColor}(virtual_env: ${prompt_color}_VENV_${ResetColor})\n_VENVEND_"
 
   # _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="${Grey}_PROMPT_FILL_ _LAST_COMMAND_INDICATOR_ ${Grey}${Time12a}\n\n${userhost}${ResetColor} ${PathShort}${ResetColor}\n"
-  GIT_PROMPT_END_USER="${Grey}$ ${ResetColor}"
-
-  # function prompt_callback {
-  #   printf 'PROMPT_COMMAND: %s' "${PROMPT_COMMAND}"
-  # }
-
-  # GIT_PROMPT_START_ROOT="_LAST_COMMAND_INDICATOR_ ${GIT_PROMPT_START_USER}"
-  # GIT_PROMPT_END_ROOT=" \n${White}${Time12a}${ResetColor} # "
+  GIT_PROMPT_START_USER="${Grey}_PROMPT_FILL_ _LAST_COMMAND_INDICATOR_ ${Grey}${Time12a}\n\n${userhost} ${PathShort}${ResetColor}\n"
+  GIT_PROMPT_END_USER="${virtual_env}${Grey}$ ${ResetColor}"
 }
 
 reload_git_prompt_colors "Custom"

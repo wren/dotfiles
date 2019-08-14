@@ -5,6 +5,9 @@
 #set some machine specific var defaults
 prompt_color="${prompt_color:-37}" #white
 
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Reset color for command output
 # (this one is invoked every time before a command is executed):
 trap 'echo -ne "\033[0m"' DEBUG
@@ -13,8 +16,16 @@ function set_prompt_vars {
   # create a $prompt_fill of all screen width minus the exit code, time, and a space:
   prompt_fill=$(printf '%*s\n' $(expr ${COLUMNS} + 1 - ${#LAST_COMMAND_INDICATOR}) | sed -e 's/ /―/g')
   git_email="$(git config user.email)"
+  venv="$([[ -n "$VIRTUAL_ENV" ]] && echo "${VIRTUAL_ENV##*/}")"
   PS1="${PS1//_GIT_EMAIL_/${git_email}}"
   PS1="${PS1//_PROMPT_FILL_/${prompt_fill}}"
+  if [[ -n "$venv" ]]; then
+    PS1="${PS1//_VENV_/${venv}}"
+    PS1="${PS1//_VENVSTART_/}"
+    PS1="${PS1//_VENVEND_/}"
+  else
+    PS1="${PS1//_VENVSTART_*_VENVEND_/}"
+  fi
 }
 
 # @see https://github.com/magicmonty/bash-git-prompt
