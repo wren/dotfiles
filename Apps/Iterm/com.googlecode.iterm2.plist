@@ -3131,14 +3131,20 @@
 	</array>
 	<key>NoSyncBFPFavorites</key>
 	<array>
+		<string>Hack Nerd Font</string>
 		<string>Inconsolata</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>Menlo</string>
-		<string>Inconsolata</string>
 		<string>Hack Nerd Font</string>
+		<string>Menlo</string>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt_selection</key>
+	<integer>1</integer>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
