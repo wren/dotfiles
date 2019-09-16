@@ -1,8 +1,2 @@
-#!/usr/bin/env bash
-
-clear;
-
-printf '\n'
-alldone
-
-sleep 1;
+file="${XDG_CONFIG_HOME}/bash/logout"
+[ -f "$file" ] && source "$file"

@@ -1,0 +1,14 @@
+# Use the ~/.config folder for config when app supports it
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+# npm manager
+export N_PREFIX="${XDG_CONFIG_HOME}"
+
+# bash
+export INPUTRC="${XDG_CONFIG_HOME}/bash/inputrc"
+export HISTFILE="${XDG_DATA_HOME}/bash/history"
+export NETRC="${XDG_CONFIG_HOME}/bash/netrc"
+# export HUSHLOGIN_FILE="${XDG_CONFIG_HOME}/bash/hushlogin"
+export MOTD_FILE="${XDG_CONFIG_HOME}/bash/butts"

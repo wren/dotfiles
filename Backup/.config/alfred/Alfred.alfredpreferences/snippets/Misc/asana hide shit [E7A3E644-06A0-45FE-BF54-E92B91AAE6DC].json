@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "for (i of document.querySelectorAll('.SidebarTeamMembersList-facepileRow, .Sidebar-invite, .SidebarTeamMembersList-inviteAd')) { i.style.display = 'none'; }\n",
+    "uid" : "E7A3E644-06A0-45FE-BF54-E92B91AAE6DC",
+    "name" : "asana hide shit",
+    "keyword" : "asana"
+  }
+}
