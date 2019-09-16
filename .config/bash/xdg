@@ -12,3 +12,5 @@ export HISTFILE="${XDG_DATA_HOME}/bash/history"
 export NETRC="${XDG_CONFIG_HOME}/bash/netrc"
 # export HUSHLOGIN_FILE="${XDG_CONFIG_HOME}/bash/hushlogin"
 export MOTD_FILE="${XDG_CONFIG_HOME}/bash/butts"
+
+export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
