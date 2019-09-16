@@ -305,7 +305,7 @@ defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -s
 defaults -currentHost write com.google.GoogleTrendsScreensaver cols -int 4
 defaults -currentHost write com.google.GoogleTrendsScreensaver rows -int 4
 
-# Save screenshots to a directory on the desktop
+# Save screenshots to a user directory (instead of the desktop)
 mkdir -pv "${HOME}/Screenshots"
 defaults write com.apple.screencapture location "${HOME}/Screenshots"
 
@@ -637,12 +637,10 @@ defaults write com.apple.terminal StringEncodings -array 4
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true
 
-# Install pretty iTerm colors
-# open "${HOME}/init/Mathias.itermcolors"
-
-# Set iTerm to load our preferences file
+# Set iTerm to load our preferences file and color scheme
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
-defaults write com.googlecode.iterm2 PrefsCustomFolder -string "${DOTFILES_DIR}/Apps/Iterm"
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "${XDG_CONFIG_HOME}/iterm"
+open "${XDG_CONFIG_HOME}/iterm/colors.itermcolors"
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false

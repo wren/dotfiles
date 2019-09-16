@@ -9,6 +9,7 @@
 *.pyc
 *.so
 .sass-cache
+.cache/*
 
 ############
 # Packages #
