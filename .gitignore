@@ -1,14 +1,12 @@
 # These areas tend to have a lot of personal
 # info. Probably best to keep out of the repo.
 # You can `git add --force` if you really want.
-Apps/Alfred.alfredpreferences/preferences/local/*
-Apps/Alfred.alfredpreferences/preferences/remote/*
-Apps/Alfred.alfredpreferences/remote/*
-Apps/Alfred.alfredpreferences/snippets/*
-Apps/Alfred.alfredpreferences/workflows/*
-Backup/.config/configstore/*
+Backup/.config/Alfred.alfredpreferences/preferences/local/*
+Backup/.config/Alfred.alfredpreferences/preferences/remote/*
+Backup/.config/Alfred.alfredpreferences/remote/*
+Backup/.config/Alfred.alfredpreferences/snippets/*
+Backup/.config/Alfred.alfredpreferences/workflows/*
 Backup/.config/hosts/*
 Backup/Library/Preferences/*
 Backup/.config/hub
-Backup/.config/yarn
 Backup/bin/*
