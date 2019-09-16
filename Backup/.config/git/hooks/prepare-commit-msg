@@ -1,29 +1,48 @@
 #!/bin/bash
 
+# A hook to insert a Jira ticket number from the current branch name into a commit message.
+
+# Note: This hook will insert the entire branch name if it the Jira ticket regex doesn't match
+# anything. This is done to be backwards compatible with the hold version of this hook that would
+# always insert the full branch name.
+#
+# @see https://git-scm.com/docs/githooks#_prepare_commit_msg
+
 # Parameters (from Git)
 COMMIT_MSG_FILE="$1"
-COMMIT_SOURCE=$2
-SHA1=$3
+COMMIT_SOURCE="$2"
 
-# Get the ticket number
+# Get the branch
 branch="$(git rev-parse --abbrev-ref HEAD)"
-regex='((DEV|FE)-[0-9]+)'
+
+if [[ "${branch}" == "HEAD" ]] ; then
+  # Are we in a rebase?
+  if [[ -d "$(git rev-parse --git-path rebase-merge)" || \
+        -d "$(git rev-parse --git-path rebase-apply)" ]] ; then
+    # During a rebase, git branch --list returns the branch being rebased
+    branch="$(git branch --list | head -n 1)"
+  fi
+fi
 ticket="${branch}"
-if [[ $branch =~ $regex ]]; then
-  ticket="${BASH_REMATCH}"
+
+if [[ $branch =~ ((AND|DEV|FE|IOS|OPS|WIZ)-[0-9]+) ]]; then
+  ticket="${BASH_REMATCH[0]}"
 fi
 
-# @see https://git-scm.com/docs/githooks#_prepare_commit_msg
 case "$COMMIT_SOURCE" in
   'message')
     # Inline message (e.g. git commit -m "Lorem ipsum")
-    if [[ -z $(egrep -v '(^#|^\s*$|^\s*\t*#)' $COMMIT_MSG_FILE) ]] \
-      || [[ ! -z $(egrep "${ticket}" $COMMIT_MSG_FILE) ]]
+    if ! grep -qEv '(^\s*$|^\s*\t*#)' "$COMMIT_MSG_FILE" \
+       || grep -qE "${ticket}" "$COMMIT_MSG_FILE"
     then
-      # empty message or already has the ticket
+      # empty message or already has the ticket number
+      # Note: It's important to exit on an empty message, or the user will never receive an error
+      # for invoking -m without a commit message. They will instead get a commit with
+      # nothing but the ticket number.
       exit
     fi
-    sed -i "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    sed -i.bak "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    rm "${COMMIT_MSG_FILE}.bak"
     ;;
 
   'template')
@@ -39,11 +58,12 @@ case "$COMMIT_SOURCE" in
     ;;
 
   'commit')
-    # ?
+    # -c, -C, or --amend
     ;;
 
   *)
     # Blank is the default message (e.g. git commit)
-    sed -i "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    sed -i.bak "1s;^;[${ticket}] ;" "$COMMIT_MSG_FILE"
+    rm "${COMMIT_MSG_FILE}.bak"
     ;;
 esac

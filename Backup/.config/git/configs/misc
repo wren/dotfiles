@@ -5,4 +5,4 @@
 [push]
   default = upstream
 [mailmap]
-  file = ~/Dotfiles/Git/Global/Mailmap
+  file = ../mailmap
