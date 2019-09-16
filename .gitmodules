@@ -1,3 +1,3 @@
 [submodule "Apps/Nano"]
-	path = Backup/.config/nano/nanorcs
+	path = .config/nano/nanorcs/nanorcs
 	url = https://github.com/scopatz/nanorc.git
