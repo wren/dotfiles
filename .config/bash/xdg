@@ -11,6 +11,9 @@ export INPUTRC="${XDG_CONFIG_HOME}/bash/inputrc"
 export HISTFILE="${XDG_DATA_HOME}/bash/history"
 export NETRC="${XDG_CONFIG_HOME}/bash/netrc"
 # export HUSHLOGIN_FILE="${XDG_CONFIG_HOME}/bash/hushlogin"
-export MOTD_FILE="${XDG_CONFIG_HOME}/bash/butts"
+export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
 
-export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
+# Pyenv (https://github.com/pyenv/pyenv/issues/139)
+export PYENV_ROOT="${XDG_CACHE_HOME}/pyenv"
+
+export N_PREFIX="${XDG_DATA_HOME}/n"
