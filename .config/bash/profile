@@ -17,11 +17,6 @@ done
 # Enable bash-completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-for file in "${XDG_CONFIG_HOME}/hosts/${my_hostname}/"{envvars,sig}.sh; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file"
-done
-unset file
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don't want to commit.
@@ -30,8 +25,16 @@ for file in "${XDG_CONFIG_HOME}/bash/"{exports,path,prompt,aliases,functions,ext
 done
 unset file
 
+for file in "${XDG_CONFIG_HOME}/hosts/${my_hostname}/"{envvars,sig}.sh; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+
 # fuzzy file completion
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# https://github.com/nvbn/thefuck
+eval $(thefuck --alias)
 
 # Enable some Bash 4 features when possible:
 # * nocaseglob: Case-insensitive globbing (used in pathname expansion)
