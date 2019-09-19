@@ -5,7 +5,7 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/local/Cellar:$PATH"
 PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
 
 # node.js to the back of the line
-PATH="$PATH:/usr/local/share/npm/bin:${N_PREFIX}/bin"
+PATH="$PATH:${N_PREFIX}/bin:/usr/local/share/npm/bin"
 
 # also Ruby, I guess
 PATH="$PATH:/Library/Ruby/Gems/2.3.0"
