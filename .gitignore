@@ -9,4 +9,5 @@
 .config/hosts/*
 Library/Preferences/*
 .config/hub
+.config/simplenote
 bin/*
