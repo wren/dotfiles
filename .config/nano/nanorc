@@ -1,4 +1,4 @@
-# @see https://www.nano-editor.org/dist/v2.7/nanorc.5.html
+# @see https://www.nano-editor.org/dist/latest/nanorc.5.html
 set tabsize 2
 set tabstospaces
 set mouse
@@ -10,7 +10,6 @@ bind M-B prevword main
 bind M-F nextword main
 bind M-5 cutwordleft main
 bind ^F whereis main
-bind M-E copytext main
 bind ^Z undo main
 bind ^Y redo main
 
