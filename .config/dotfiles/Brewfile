@@ -101,7 +101,7 @@ brew "n"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Python dependency management tool
