@@ -190,7 +190,6 @@ cask "visual-studio-code"
 cask "vlc"
 cask "caskroom/fonts/font-hack-nerd-font"
 mas "1Password", id: 443987910
-mas "Bear", id: 1091189122
 mas "Frank DeLoupe", id: 530458789
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Remote Desktop", id: 715768417
