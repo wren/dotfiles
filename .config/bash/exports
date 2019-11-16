@@ -1,5 +1,6 @@
 # Make neovim the default editor
-EDITOR=nvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Color options for ls
 export CLICOLOR=true
