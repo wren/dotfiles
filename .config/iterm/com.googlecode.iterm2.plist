@@ -219,7 +219,7 @@
 		<real>0.82352941176470584</real>
 	</dict>
 	<key>CheckTestRelease</key>
-	<true/>
+	<false/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<false/>
 	<key>CommandSelection</key>
@@ -467,6 +467,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>Default Arrangement Name</key>
+	<string>2 window coding</string>
 	<key>Default Bookmark Guid</key>
 	<string>2F2C4B13-3ECF-4897-B728-42CA13611DBE</string>
 	<key>DimBackgroundWindows</key>
