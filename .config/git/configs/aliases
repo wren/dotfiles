@@ -33,7 +33,7 @@
   dfw = diff --word-diff=color
   diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   dmb = delete-merged-branches
-  ds = describe
+  ds = describe --tags
   f = fetch
   lg = log --format=wren-short --abbrev-commit --date=relative
   logs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
@@ -64,7 +64,9 @@
   sh = show --word-diff=color
   sl = stash list
   sp = stash pop
-  ss = stash save
+  ssa = stash save
+  ssh = stash show
+  sshp = stash show -p
   st = status -s
   sur = submodule update --recursive
   suri = submodule update --recursive --init

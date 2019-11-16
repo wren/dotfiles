@@ -29,13 +29,13 @@ function set_prompt_vars {
 }
 
 # @see https://github.com/magicmonty/bash-git-prompt
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR="$(brew --prefix)/opt/bash-git-prompt/share"
+if [ -f "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR="$BREW_PREFIX/opt/bash-git-prompt/share"
   GIT_PROMPT_THEME=Custom
   GIT_PROMPT_THEME_FILE="${XDG_CONFIG_HOME}/bash/prompt_theme"
-  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  source "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-PROMPT_COMMAND="$PROMPT_COMMAND;set_prompt_vars"
+PROMPT_COMMAND="$PROMPT_COMMAND;set_prompt_vars;history -n"
 
 # printf 'PROMPT_COMMAND: %s' "${PROMPT_COMMAND}"

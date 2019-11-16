@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-clear;
+clear
 
 printf '\n'
 alldone
 
-sleep 1;
+sleep 1

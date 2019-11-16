@@ -15,6 +15,7 @@ alias lgi='ls -1plhaN | grep -i'
 alias rmds="find . -name ".DS_Store" -depth -exec rm {} \;"
 alias wifi:reboot='m wifi:disable && sleep 3 && m wifi:enable'
 alias history.reload='history -a && history -c && history -r'
+alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
 alias jfg="[[ -z \$(jobs) ]] && echo 'No Jobs' || fg \"\$(jobs | fzf --height=10 --layout=reverse | awk -F '  +' '{print \$1}' | tr -d \"[]+-\" )\""
 alias ..="cd .."
 alias ...="cd ../.."

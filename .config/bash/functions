@@ -148,19 +148,10 @@ function kirby {
 EOM
 }
 
-function changemac {
-
-  # Disconnect wifi (but keep it powered on)
-  sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -z
-  printf 'en0 before: %s\n' "$(ifconfig en0 | grep ether | awk '{print $2}')"
-  sudo "${DOTFILES_DIR}/scripts/mac-address/mac-address.sh"
-  printf 'en0 after:  %s\n' "$(ifconfig en0 | grep ether | awk '{print $2}')"
-}
-
 function ap {
 
   local install_dir="$HOME/.atom/packages/"
-  local install_list="${DOTFILES_DIR}/atom-packages.list"
+  local install_list="$HOME/atom-packages.list"
   local temp=''
 
   case $1 in
@@ -279,6 +270,6 @@ function wrap_alias {
 
 # For each defined alias, extract the necessary elements and use them
 # to call wrap_alias.
-eval "$(alias -p | grep -v '[";|&]' | sed -e 's/alias \([^=][^=]*\)='\''\([^ ][^ ]*\) *\(.*\)'\''/wrap_alias \1 \2 '\''\3'\'' /')"
+# eval "$(alias -p | grep -v '[";|&]' | sed -e 's/alias \([^=][^=]*\)='\''\([^ ][^ ]*\) *\(.*\)'\''/wrap_alias \1 \2 '\''\3'\'' /')"
 
-unset wrap_alias
+# unset wrap_alias
