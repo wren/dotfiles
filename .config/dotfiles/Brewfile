@@ -13,7 +13,9 @@ brew "aspell"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 3.2
-brew "bash-completion"
+brew "bash-completion", link: false
+# Programmable completion for Bash 4.1+
+brew "bash-completion@2"
 # Informative, fancy bash prompt for Git users
 brew "bash-git-prompt"
 # Clone of cat(1) with syntax highlighting and Git integration
