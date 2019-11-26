@@ -3,5 +3,7 @@
 
 [pretty]
   wren-short = ● %C(auto)%h %C(white)%s%C(auto)%d%C(dim white) %cd by %aN
+  fzf-short = %C(auto)%h %C(white)%s%C(auto)%d%C(dim white) %cd by %aN
   wren-full = %n%C(dim white)――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――%n%w(0,0,2)● %C(auto)%h %ad (%ar)%C(auto)%d%n%w(0,2,4)%C(dim white)by %aN <%ae>%n%n%C(magenta)%s%n%n%-b
-  shortlog = format:%C(auto,yellow)%h%C(auto)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
+  shortlog = format:%C(auto,yellow)%h%C(auto)%  %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
+
