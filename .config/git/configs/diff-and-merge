@@ -8,6 +8,7 @@
 
 [diff "image"]
   command = git-image-diff
+
 [pager]
   dfi = false
   dfp = false

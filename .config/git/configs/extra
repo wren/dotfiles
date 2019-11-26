@@ -6,3 +6,4 @@
 
 [includeIf "gitdir:~/Projects - Rover/"]
   path = ~/.config/hosts/rover/.gitconfig
+
