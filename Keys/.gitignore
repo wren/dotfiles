@@ -1,4 +1,0 @@
-# Put licenses/keys in this directory.
-# Don't commit them into the repo.
-*
-!.gitignore

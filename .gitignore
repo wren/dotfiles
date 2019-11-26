@@ -12,3 +12,5 @@ Library/Preferences/*
 .config/simplenote
 .config/bash/extra
 bin/*
+keys/*
+
