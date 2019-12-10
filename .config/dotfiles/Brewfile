@@ -6,6 +6,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "kryptco/tap"
 tap "sebglazebrook/aliases"
 tap "universal-ctags/universal-ctags"
 # Spell checker with better logic than ispell
@@ -70,6 +71,8 @@ brew "gnu-sed"
 brew "gnu-tar"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Improved top (interactive process viewer)
@@ -144,6 +147,8 @@ brew "youtube-dl"
 brew "zopfli"
 # It's like cat(1), but for images.
 brew "eddieantonio/eddieantonio/imgcat"
+# Krypton command-line client, daemon, and SSH integration
+brew "kryptco/tap/kr"
 # Maintained ctags implementation
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "1password"

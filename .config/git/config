@@ -8,6 +8,7 @@
   path = configs/format
   path = configs/lfs
   path = configs/misc
+  path = configs/gpg
 
   # If the "extra" file exists, it'll override anything in the above files.
   # Use this to add any personal settings that you don't want committed in a

@@ -6,6 +6,8 @@ export EDITOR="$VISUAL"
 export CLICOLOR=true
 export LSCOLORS='gxfxcxdxbxegedabagacad' #`man ls` to see options
 
+export GPG_TTY=$(tty)
+
 # Larger bash history (allow 32³ entries; default is 500)
 HISTSIZE='INFINITY'
 HISTFILESIZE=$HISTSIZE

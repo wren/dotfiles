@@ -13,4 +13,5 @@ Library/Preferences/*
 .config/bash/extra
 bin/*
 keys/*
+.ssh/*.pub
 
