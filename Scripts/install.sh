@@ -53,7 +53,7 @@ printf '\n'
 
 # Install everything
 printf '\nInstalling or updating everything...\n'
-brew bundle
+brew bundle --file="$DOTFILES_DIR/.config/dotfiles/Brewfile"
 
 printf '\nCleaning up...\n'
 brew cleanup
