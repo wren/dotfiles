@@ -1,8 +1,0 @@
-[receive]
-  denyCurrentBranch = ignore
-[log]
-  date = local
-[push]
-  default = upstream
-[mailmap]
-  file = ../mailmap

@@ -1,0 +1,19 @@
+#----- Vim -----#
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+bindkey -v
+# KEYTIMEOUT=10
+bindkey -M vicmd '^[' undefined-key
+bindkey -M viins '^[' vi-cmd-mode
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+bindkey -M vicmd '/' fzf-history-widget
+bindkey -r '\ec' # Bindings that start with esc are non-sensical in vicmd
+
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_VIINS="blinking bar"
+# MODE_CURSOR_SEARCH="#ff00ff steady underline"

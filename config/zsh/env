@@ -1,0 +1,40 @@
+# Prefer US English and use UTF-8
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Choose the default editor
+export VISUAL=micro
+export EDITOR="$VISUAL"
+
+# Color options for ls
+export CLICOLOR=true
+export LSCOLORS='gxfxcxdxbxegedabagacad' #`man ls` to see options
+
+# @see https://the.exa.website/docs/colour-themes
+TEMP_COLORS=(
+  "uu=38;5;242"
+  "un=38;5;212"
+  "da=38;5;250"
+  "ur=38;5;3;1"
+  "uw=38;5;5;1"
+  "ux=38;5;1;1"
+  "ue=38;5;1;1"
+  "gr=38;5;249"
+  "gw=38;5;249"
+  "gx=38;5;249"
+  "tr=38;5;249"
+  "tw=38;5;249"
+  "tx=38;5;249"
+)
+export LS_COLORS="$( IFS=':'; echo "${TEMP_COLORS[*]}" )"
+export EXA_COLORS="$LS_COLORS"
+
+export GPG_TTY=$(tty)
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$ORANGE"
+
+export MANPAGER="bat -p -l man"
+
+# Required to get rid of deprecation warning until pyenv updates
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1

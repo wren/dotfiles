@@ -1,0 +1,57 @@
+
+##############
+### System ###
+##############
+alias l='exa --time-style=long-iso -la'
+alias ll='exa --time-style=long-iso -l'
+alias ls='l'
+alias lt='l --tree'
+alias ssh.init='eval `ssh-agent`;ssh-add'
+alias ssh.copy='ssh-copy-id'
+alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
+alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
+alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
+alias lgi='exa -la | grep -i'
+alias rmds="find . -depth -name .DS_Store -exec rm {} \;"
+alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
+alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
+
+###########
+### Git ###
+###########
+alias g='git'
+alias rmorig="find . -name '*.orig' exec rm {} \;"
+alias gar="git ls-files -z -d | xargs -0 git rm"
+alias gblame="git ls-files|grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' |xargs -n1 git blame --line|grep -E '^author '|sort|uniq -c|sort -nr"
+alias dsf='diff-so-fancy'
+alias df='func(){ diff -u "$@" | diff-so-fancy; }; func'
+alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
+
+##############
+### Docker ###
+##############
+alias d='docker'
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias ds='docker-sync'
+alias d.rmall.containers='docker rm $(docker ps -a -q)'
+alias d.rmall.images='docker rmi $(docker images -q)'
+alias d.stop.containers='docker stop $(docker ps -aq)'
+alias d.start='eval $(docker-machine env default)'
+
+############
+### Apps ###
+############
+alias b='brew'
+alias c='brew cask'
+alias f='fd -HI'
+alias gr='grep --color=auto -iP'
+alias speedtest='speed-test --verbose'
+alias p='ipython'
+alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
+alias v='nvim'
+alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
+# alias n='f(){ v note:"$(echo $@)"; }; f'
+alias j='jrnl'
+alias je='jrnl --edit'
+alias jn='jrnl notes --edit'

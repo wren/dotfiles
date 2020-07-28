@@ -1,0 +1,9 @@
+[pager]
+  # diff = diff-so-fancy | less --tabs=4 -RFX +'/^(Date|added|deleted|modified):' +1g
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
+[core]
+    pager = diff-so-fancy
+[interactive]
+  # diffFilter = (echo && diff-so-fancy)
+

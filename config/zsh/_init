@@ -1,0 +1,37 @@
+# check global zshenv
+if [[ -z "$ZDOTDIR" ]]; then
+  # zsh won't find our dotfiles without this
+  ZDOTDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
+
+  printf "\n\nInstall dotfiles to /etc/zshenv (requires sudo)? [y/N]: "
+  if read; then
+    echo; sudo sh -c 'echo ZDOTDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh" >> /etc/zshenv'
+  fi
+fi
+
+# these files are loaded in this order
+my_dotfiles=(
+  xdg
+  plugin_manager
+  shell_config
+  env
+  vim
+  path
+  theme
+  aliases
+  functions
+  misc
+  completion
+  extra
+  load_host
+)
+
+for my_file in $my_dotfiles; do
+  [[ -r "$ZDOTDIR/$my_file" ]] && source "$ZDOTDIR/$my_file"
+done
+unset my_dotfiles
+
+if type -a sig &>/dev/null; then
+  sig
+fi
+

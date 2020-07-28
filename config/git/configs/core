@@ -1,0 +1,7 @@
+[receive]
+  denyCurrentBranch = ignore
+[core]
+  autocrlf = input
+  excludesfile = /Users/jonathan/.config/git/ignore
+[log]
+  date = local

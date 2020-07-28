@@ -1,0 +1,41 @@
+# Use the ~/.config folder for config when app supports it
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_BIN_HOME="$HOME/.local/bin"
+
+# ZSH
+export HISTFILE="$XDG_DATA_HOME/zsh/history"
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+export ZPLUG_HOME="$XDG_DATA_HOME/zplug"
+export ZPLUG_CACHE_DIR="$XDG_CACHE_HOME/zplug"
+export ZPLUG_LOADFILE="$ZDOTDIR/plugins"
+
+# Old *nix stuff
+export LESSHISTFILE="$XDG_DATA_HOME/less/history"
+export NETRC="$XDG_CONFIG_HOME/zsh/netrc"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+# Pyenv (https://github.com/pyenv/pyenv/issues/139)
+export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
+
+# IPython (https://ipython.readthedocs.io/en/stable/config/intro.html#the-ipython-directory)
+export IPYTHONDIR="$XDG_DATA_HOME/ipython"
+
+# Python
+export PYTHONHISTORY="$XDG_DATA_HOME/python/history"
+
+# npm manager
+export N_PREFIX="$XDG_CONFIG_HOME"
+export N_PREFIX="$XDG_DATA_HOME/n"
+
+# aws cli
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
+export AWS_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_CONFIG_HOME/aws/token"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/shared-credentials"
+
+# secrethub
+export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
+

@@ -1,17 +1,7 @@
 # These areas tend to have a lot of personal
 # info. Probably best to keep out of the repo.
 # You can `git add --force` if you really want.
-.config/alfred/Alfred.alfredpreferences/preferences/local/*
-.config/alfred/Alfred.alfredpreferences/preferences/remote/*
-.config/alfred/Alfred.alfredpreferences/remote/*
-.config/alfred/Alfred.alfredpreferences/snippets/*
-.config/alfred/Alfred.alfredpreferences/workflows/*
-.config/hosts/*
-Library/Preferences/*
-.config/hub
-.config/simplenote
-.config/bash/extra
+config/hub
+config/simplenote
 bin/*
-keys/*
-.ssh/*.pub
 

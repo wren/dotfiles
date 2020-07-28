@@ -1,0 +1,60 @@
+###################
+# Compiled source #
+###################
+*.class
+*.dll
+*.exe
+*.o
+*.pyc
+*.so
+.sass-cache
+.cache/*
+
+############
+# Packages #
+############
+# It's usually better to unpack these and commit the raw source
+# since git has its own built in compression methods.
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#################
+# Project Files #
+#################
+*.sublime-project
+*.sublime-workspace
+.todo.cfg
+.tern-port
+.vim/*
+
+###########################
+# Other Source Management #
+###########################
+.svn
+
+######################
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+######################
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+*~
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+

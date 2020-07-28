@@ -1,9 +1,0 @@
-[include]
-  path = ~/.config/hosts/default/.gitconfig
-
-[includeIf "gitdir:~/Projects - Possible/"]
-  path = ~/.config/hosts/possible/.gitconfig
-
-[includeIf "gitdir:~/Projects - Rover/"]
-  path = ~/.config/hosts/rover/.gitconfig
-

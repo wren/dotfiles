@@ -1,0 +1,104 @@
+- defaults:
+    link:
+        relink: true
+        ignore-missing: true
+        force: true
+        create: true
+        quiet: true
+    shell:
+        stdin: false
+        stdout: true
+        stderr: true
+        quiet: true
+
+- clean:
+    - '~'
+
+- create: []
+
+- link:
+    # General
+    ~/.config/:
+        glob: true
+        path: config/*
+    ~/.local/bin/:
+        glob: true
+        path: bin/*
+
+    # Alfred
+    ~/Library/ApplicationSupport/Alfred/prefs.json:
+        path: config/alfred/prefs.json
+    ~/Library/Application Support/Spectacle/Shortcuts.json:
+        path: config/spectacle/shortcuts.json
+
+    # Special cases
+    ~/Library/Preferences/:
+        glob: true
+        path: config/cyberduck/*.plist
+    ~/Library/Preferences/:
+        glob: true
+        path: config/itsycal/*.plist
+    ~/Library/Preferences/:
+        glob: true
+        path: config/sequelpro/*.plist
+    ~/Library/Preferences/:
+        glob: true
+        path: config/spectacle/*.plist
+
+    # Neovim
+    ~/.cache/nvim/spell/custom.en.utf-8.add: data/dictionaries/custom.en.dict
+    ~/.cache/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
+
+
+- shell:
+    - description: Checking superuser access
+      command: |-
+        if [[ -z $DOTFILES_LOADED ]] && [[ "$EUID" -ne 0 ]]; then
+        sudo -v || {
+            printf "\n$UNDERLINE$(tput setaf 1)ERROR:$(tput sgr0) "
+            printf "Superuser access is required for some later steps in this script."
+            printf "\n\nPlease ctrl+c to try again\n"
+            sleep 9999
+        }
+        fi
+        # Keep sudo going in background for duration of the script
+        # see: https://gist.github.com/cowboy/3118588
+        while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+    - description: Installing apps via Homebrew
+      command: |-
+        BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
+        HOMEBREW_NO_AUTO_UPDATE=1
+        if ! brew bundle check --file="$BREWFILE" >/dev/null; then
+            brew bundle --file="$BREWFILE"
+        fi
+
+    - description: Installing latest Python via Pyenv
+      command: |-
+        if ! pyenv global >/dev/null; then
+            pyenv install -s $(pyenv install --list | grep -v '\-\|a\|b' | tail -1)
+        fi
+
+    - description: Setting up Neovim Python environment
+      command: |-
+        if ! pyenv virtualenvs | grep -iq neovim3; then
+            pyenv virtualenv neovim3
+            eval "$(pyenv init -)"
+            eval "$(pyenv-virtualenv init -)"
+            pyenv activate neovim3
+            pip install --upgrade pip
+            pip install pynvim
+            nvim -c ':UpdateRemotePlugins' -c 'qa!'
+        fi
+
+    # - description: Downloading Spanish dictionary for Neovim
+    #   command: >-
+    #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
+
+    - description: Setting MacOS preferences
+      command: |-
+        if [[ ! $DOTFILES_LOADED ]]; then
+          sh ./config/dotfiles/osx.sh
+        fi
+
+

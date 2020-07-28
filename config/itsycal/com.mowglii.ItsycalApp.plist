@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ClockFormat</key>
+	<string>h:mm:ss a</string>
+	<key>HighlightedDOWs</key>
+	<integer>65</integer>
+	<key>KeyboardShortcut</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldL
+	ZXlDb2RlViRjbGFzc11Nb2RpZmllckZsYWdzECyAAhIAFAAA0hQVFhdaJGNsYXNzbmFt
+	ZVgkY2xhc3Nlc1tNQVNTaG9ydGN1dKIYGVtNQVNTaG9ydGN1dFhOU09iamVjdAgRGiQp
+	MjdJTFFTV11kbHOBg4WKj5qjr7K+AAAAAAAAAQEAAAAAAAAAGgAAAAAAAAAAAAAAAAAA
+	AMc=
+	</data>
+	<key>NSStatusItem Preferred Position ItsycalStatusItem</key>
+	<real>240</real>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>1410 767 620 392 0 0 3440 1417 </string>
+	<key>PinItsycal</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2020-07-26T01:53:05Z</date>
+	<key>SelectedCalendars</key>
+	<array>
+		<string>E7951342-765C-433E-9ADA-C6E0A3843E1E</string>
+		<string>64D6C7CE-8A8B-408E-84D6-4645EFA9DB10</string>
+	</array>
+	<key>ShowDayOfWeekInIcon</key>
+	<true/>
+	<key>ShowEventDays</key>
+	<integer>1</integer>
+	<key>ShowMonthInIcon</key>
+	<true/>
+	<key>SizePreference</key>
+	<false/>
+	<key>UseOutlineIcon</key>
+	<true/>
+	<key>WeekStartDOW</key>
+	<integer>1</integer>
+	<key>kShowEventDots</key>
+	<false/>
+</dict>
+</plist>

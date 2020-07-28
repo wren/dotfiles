@@ -1,7 +1,0 @@
-[receive]
-  denyCurrentBranch = ignore
-[core]
-  autocrlf = input
-[log]
-  date = local
-

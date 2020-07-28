@@ -1,0 +1,144 @@
+tap "beeftornado/rmtree"
+tap "homebrew/cask-fonts"
+tap "eddieantonio/eddieantonio"
+tap "homebrew/bundle"
+tap "homebrew/cask-drivers"
+tap "homebrew/core"
+tap "jrnl-org/prerelease"
+tap "kryptco/tap"
+tap "sachaos/todoist"
+tap "sebglazebrook/aliases"
+tap "twpayne/taps"
+tap "universal-ctags/universal-ctags"
+brew "aspell" # Spell checker with better logic than ispell
+brew "awscli" # Official Amazon AWS command-line interface
+brew "baobab" # Gnome disk usage analyzer
+brew "bash" # Bourne-Again SHell, a UNIX command interpreter
+brew "bash-completion", link: false # Programmable completion for Bash 3.2
+brew "bash-completion@2" # Programmable completion for Bash 4.1+
+brew "bash-git-prompt" # Informative, fancy bash prompt for Git users
+brew "bat" # Clone of cat(1) with syntax highlighting and Git integration
+brew "bfg" # Remove large files or passwords from Git history like git-filter-branch
+brew "cmake" # Cross-platform make
+brew "coreutils" # GNU File, Shell, and Text utilities
+brew "cowsay" # Configurable talking characters in ASCII art
+brew "diff-so-fancy" # Good-lookin' diffs with diff-highlight and more
+brew "direnv" # Load/unload environment variables based on $PWD
+brew "dtrx" # Intelligent archive extraction
+brew "entr" # Run arbitrary commands when files change
+brew "exa" # Modern replacement for 'ls'
+brew "exiftool" # Perl lib for reading and writing EXIF metadata
+brew "expect" # Program that can automate interactive applications
+brew "fd" # Simple, fast and user-friendly alternative to find
+brew "findutils" # Collection of GNU find, xargs, and locate
+brew "fortune" # Infamous electronic fortune-cookie generator
+brew "fswatch" # Monitor a directory for changes and run a shell command
+brew "fzf" # Command-line fuzzy finder written in Go
+brew "gawk" # GNU awk utility
+brew "git" # Distributed revision control system
+brew "git-delta" # Syntax-highlighting pager for git and diff output
+brew "git-extras" # Small git utilities
+brew "git-filter-repo" # Quickly rewrite git repository history
+brew "git-flow" # Extensions to follow Vincent Driessen's branching model
+brew "git-lfs" # Git extension for versioning large files
+brew "git-when-merged" # Find where a commit was merged in git
+brew "gnu-getopt" # Command-line option parsing utility
+brew "gnu-indent" # C code prettifier
+brew "gnu-sed" # GNU implementation of the famous stream editor
+brew "gnu-tar" # GNU version of the tar archiving utility
+brew "gnutls" # GNU Transport Layer Security (TLS) Library
+brew "gnupg" # GNU Pretty Good Privacy (PGP) package
+brew "grep" # GNU grep, egrep and fgrep
+brew "htop" # Improved top (interactive process viewer)
+brew "hub" # Add GitHub support to git on the command-line
+brew "jq" # Lightweight and flexible command-line JSON processor
+brew "links" # Lynx-like WWW browser that supports tables, menus, etc.
+brew "lolcat" # Rainbows and unicorns in your console!
+brew "luarocks" # Package manager for the Lua programming language
+brew "mackup" # Keep your Mac's application settings in sync
+brew "mas" # Mac App Store command-line interface
+brew "moreutils" # Collection of tools that nobody wrote when UNIX was young
+brew "multimarkdown" # Turn marked-up plain text into well-formatted documents
+brew "mysql" # Open source relational database management system
+brew "micro" # Tiny sensible cli text editor
+brew "n" # Node version management
+brew "neovim" # Ambitious Vim-fork focused on extensibility and agility
+brew "nmap" # Port scanning utility for large networks
+brew "openssh" # OpenBSD freely-licensed SSH connectivity tools
+brew "tree" # Display directories as trees (with optional color/HTML output)
+brew "pipx" # Execute binaries from Python packages in isolated environments
+brew "prettier" # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+brew "pv" # Monitor data's progress through a pipe
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "rename" # Perl-powered file rename script with many helpful built-ins
+brew "ripgrep" # Search tool like grep and The Silver Searcher
+brew "rsync" # Utility that provides fast incremental file transfer
+brew "shellcheck" # Static analysis and lint tool, for (ba)sh scripts
+brew "shfmt" # Autoformat shell script source code
+brew "sqlmap" # Penetration testing for SQL injection and database servers
+brew "tag" # Manipulate and query tags on macOS files
+brew "thefuck" # Programatically correct mistyped console commands
+brew "tidy-html5" # Granddaddy of HTML tools, with support for modern standards
+brew "webkit2png" # Create screenshots of webpages from the terminal
+brew "wget" # Internet file retriever
+brew "xpdf" # PDF viewer
+brew "yarn" # JavaScript package manager
+brew "youtube-dl" # Download YouTube videos from the command-line
+brew "yq" # Process YAML documents from the CLI
+brew "zopfli" # New zlib (gzip, deflate) compatible compressor
+brew "zplug" # The next-generation plugin manager for zsh
+brew "zsh" # UNIX shell (command interpreter)
+brew "eddieantonio/eddieantonio/imgcat" # It's like cat(1), but for images.
+brew "kryptco/tap/kr" # Krypton command-line client, daemon, and SSH integration
+brew "sachaos/todoist/todoist" # Todoist CLI client
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] # Maintained ctags implementation
+cask "1password"
+cask "adobe-creative-cloud"
+cask "alfred"
+cask "android-file-transfer"
+cask "android-studio"
+cask "authy"
+cask "balenaetcher"
+cask "borgbackup"
+cask "calibre"
+cask "chicken"
+cask "chromium"
+cask "cyberduck"
+cask "discord"
+cask "disk-inventory-x"
+cask "firefox"
+cask "font-hack-nerd-font"
+cask "gitup"
+cask "google-backup-and-sync"
+cask "google-chrome"
+cask "google-trends"
+cask "hyper"
+cask "imagealpha"
+cask "imageoptim"
+cask "iterm2"
+cask "itsycal"
+cask "java"
+cask "karabiner-elements"
+cask "marshallofsound-google-play-music-player"
+cask "meld"
+cask "music-manager"
+cask "opera"
+cask "qlmarkdown"
+cask "sequel-pro"
+cask "signal"
+cask "simplenote"
+cask "slack"
+cask "spectacle"
+cask "steam"
+cask "sublime-text"
+cask "synology-drive"
+cask "the-archive-browser"
+cask "the-unarchiver"
+cask "ukelele"
+cask "visual-studio-code"
+cask "vlc"
+cask "xquartz"
+mas "Microsoft Remote Desktop", id: 715768417
+mas "Skitch", id: 425955336
+mas "Todoist", id: 585829637

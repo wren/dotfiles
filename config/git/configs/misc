@@ -1,0 +1,10 @@
+[receive]
+  denyCurrentBranch = ignore
+[log]
+  date = local
+[push]
+  default = upstream
+[pull]
+  rebase = true
+[mailmap]
+  file = ../mailmap
