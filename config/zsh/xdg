@@ -29,6 +29,9 @@ export PYTHONHISTORY="$XDG_DATA_HOME/python/history"
 export N_PREFIX="$XDG_CONFIG_HOME"
 export N_PREFIX="$XDG_DATA_HOME/n"
 
+# npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
 # aws cli
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
