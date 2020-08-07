@@ -32,7 +32,8 @@ nnoremap <silent> <C-l> :noh<return><esc>
 
 " Write buffer (save)
 noremap <Leader>w :w<CR>
-noremap QQ :qa!<CR>
+noremap <Leader>q :q<CR>
+noremap QQ :qa<CR>
 imap <C-S> <esc>:w<CR>a
 imap <C-Q> <esc>:wq<CR>
 
