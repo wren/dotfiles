@@ -32,18 +32,10 @@ augroup user_plugin_defx
 
   " Define defx window mappings
   autocmd FileType defx call s:defx_mappings()
-  autocmd BufEnter * call s:open_defx_if_directory()
 augroup END
 
 " Internal functions
 " ---
-function! s:open_defx_if_directory()
-  let l:full_path = expand(expand('%:p'))
-  if isdirectory(l:full_path)
-    Defx `expand('%:p')`
-  endif
-endfunction
-
 
 function! s:defx_close_tab(tabnr)
   " When a tab is closed, find and delete any associated defx buffers
