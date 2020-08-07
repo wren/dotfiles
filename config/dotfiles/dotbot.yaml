@@ -32,18 +32,14 @@
         path: config/spectacle/shortcuts.json
 
     # Special cases
-    ~/Library/Preferences/:
-        glob: true
-        path: config/cyberduck/*.plist
-    ~/Library/Preferences/:
-        glob: true
-        path: config/itsycal/*.plist
-    ~/Library/Preferences/:
-        glob: true
-        path: config/sequelpro/*.plist
-    ~/Library/Preferences/:
-        glob: true
-        path: config/spectacle/*.plist
+    ~/Library/Preferences/com.sudo.cyberduck.plist:
+        path: config/cyberduck/com.sudo.cyberduck.plist
+    ~/Library/Preferences/com.mowglii.ItsycalApp.plist:
+        path: config/itsycal/com.mowglii.ItsycalApp.plist
+    ~/Library/Preferences/com.sequelpro.SequelPro.plist:
+        path: config/sequelpro/com.sequelpro.SequelPro.plist
+    ~/Library/Preferences/com.divisiblebyzero.Spectacle.plist:
+        path: config/spectacle/com.divisiblebyzero.Spectacle.plist
     ~/Library/Preferences/:
         glob: true
         path: config/macos/*.plist
@@ -101,7 +97,11 @@
     - description: Setting MacOS preferences
       command: |-
         if [[ ! $DOTFILES_LOADED ]]; then
-          sh ./config/dotfiles/osx.sh
+          sh ./config/dotfiles/macos.sh
         fi
 
 
+- pipx:
+    file: config/dotfiles/pipx.txt
+    stdout: false
+    stderr: true
