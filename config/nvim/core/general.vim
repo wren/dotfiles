@@ -170,3 +170,15 @@ augroup dynamic_smartcase
     autocmd CmdLineEnter : set nosmartcase
     autocmd CmdLineLeave : set smartcase
 augroup END
+
+augroup cd_if_directory
+  autocmd!
+  autocmd BufEnter * call s:cd_if_open_directory()
+augroup END
+
+function! s:cd_if_open_directory()
+  let l:full_path = expand(expand('%:p'))
+  if isdirectory(l:full_path)
+    execute 'cd' fnameescape(l:full_path)
+  endif
+endfunction
