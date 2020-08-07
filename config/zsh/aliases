@@ -3,7 +3,7 @@
 ### System ###
 ##############
 alias l='exa --time-style=long-iso -la'
-alias ll='exa --time-style=long-iso -l'
+alias ll='exa --time-style=long-iso -lhaa'
 alias ls='l'
 alias lt='l --tree'
 alias ssh.init='eval `ssh-agent`;ssh-add'
