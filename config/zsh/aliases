@@ -15,6 +15,12 @@ alias lgi='exa -la | grep -i'
 alias rmds="find . -depth -name .DS_Store -exec rm {} \;"
 alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
 alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..' # eight is enough
 
 ###########
 ### Git ###
