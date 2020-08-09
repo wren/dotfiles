@@ -87,14 +87,22 @@ highlight  gitInfoHeadtitle   guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitInfoUpstreamtitle  guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitInfoPushtitle   guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitCommitModetitle  guibg=NONE guisp=NONE gui=bold cterm=bold
-" 
+
 highlight  gitSectionsStaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitSectionsUnstaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitSectionsCommitMsg guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitSectionsCommitStash  guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitSectionsRecentCommit guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 
-"GetColorSynatxGroup
+" diff
+" ---------------------------------------------------------
+highlight DiffAdd    gui=none guifg=none guibg=#1c2e1c
+highlight DiffDelete gui=none guifg=#2e1c1c guibg=#2e1c1c
+highlight DiffChange cterm=none gui=none guibg=#313225
+highlight DiffText   gui=none guibg=#313225
+" highlight DiffText   gui=none guifg=bg guibg=Red
+
+" GetColorSynatxGroup
 " ---------------------------------------------------------
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"

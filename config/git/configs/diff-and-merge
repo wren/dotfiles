@@ -1,7 +1,11 @@
-[mergetool "opendiff"]
+[mergetool "diffconflicts"]
+  cmd = diffconflicts nvim \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
   trustExitCode = true
+  keepBackup = false
+
 [merge]
-  tool = opendiff
+  tool = diffconflicts
+  conflictstyle = merge
 
 [mergetool]
   keepBackup = false
