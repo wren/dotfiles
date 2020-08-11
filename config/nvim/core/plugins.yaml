@@ -1,134 +1,107 @@
-# Why use YAML to manage plugins? See: http://genkisugimoto.com/blog/manage-vim-plugins-via-yaml/
-
-# StartUp Plugins{{{
-
-# - repo: honza/vim-snippets
-- repo: vim-airline/vim-airline
-  hook_add: source $VIM_PATH/core/plugins/airline.vim
-- repo: vim-airline/vim-airline-themes
-- repo: kaicataldo/material.vim
-- repo: hzchirs/vim-material
-
-#}}}
-
-# Notes Plugins {{{
-# - repo: simplenote-vim/simplenote.vim
-#   hook_add: source $VIM_PATH/core/plugins/simplenote.vim
-# }}}
+# Why use YAML to manage plugins?
+# See: http://genkisugimoto.com/blog/manage-vim-plugins-via-yaml/
+# Or don't because it now 404's and I don't know where to find it again ¯\_(ツ)_/¯
+# There were good reasons there. Just take my word for it.
 
 # Core Plugins {{{
-- repo: neoclide/coc.nvim
-  merge: 0
-  branch: release
-  rev: release
-  hook_add: source $VIM_PATH/core/plugins/coc.vim
 
+# Status line w/ plugins
+- repo: vim-airline/vim-airline
+  hook_source: source $VIM_PATH/core/plugins/airline.vim
+- repo: vim-airline/vim-airline-themes
+
+# # Save/restore a bunch of settings in each file
+- repo: vim-scripts/restore_view.vim
+
+# Lots of cool stuff, but not very integrated with vim (all separate menus, etc), also slow
+# - repo: neoclide/coc.nvim
+#   merge: 0
+#   branch: release
+#   rev: release
+#   hook_source: source $VIM_PATH/core/plugins/coc.vim
+# }}}
+
+# Visual {{{
+# Color scheme
+- repo: kaicataldo/material.vim
+
+# Highlights CSS colors inline
+- repo: ap/vim-css-color
+
+# Close buffers without changing window layout
 - repo: moll/vim-bbye
   rev: release
 
-- repo: ap/vim-css-color
+# Nice visual icons for filetypes and more
+- repo: ryanoasis/vim-devicons
 
-- repo: vim-scripts/restore_view.vim
+# Smooth/fast scrolling with j/k keys
+- repo: rhysd/accelerated-jk
+
+# Visual overlay to quickly select a window
+- repo: t9md/vim-choosewin
+  hook_source: source $VIM_PATH/core/plugins/vim-choosewin.vim
+
+# Start screen with some options
+- repo: mhinz/vim-startify
+  depends: vim-devicons
+  hook_post_source: source $VIM_PATH/core/plugins/startify.vim
 # }}}
 
-# Explorer {{{
+# File Explorer {{{
 - repo: Shougo/defx.nvim
   do: ':UpdateRemotePlugins'
   hook_post_source: source $VIM_PATH/core/plugins/defx.vim
 - repo: kristijanhusak/defx-git
 - repo: kristijanhusak/defx-icons
+
 # }}}
 
 
-# =============================================== #
-# Everything below this line lazy loads as needed #
-# =============================================== #
-# Interface {{{
-- repo: ryanoasis/vim-devicons
-  hook_add: let g:webdevicons_enable_denite = 1
-
-- repo: rhysd/accelerated-jk
-  on_map: { n: <Plug> }
-
-- repo: t9md/vim-choosewin
-  on_map: { n: <Plug> }
-  hook_source: source  $VIM_PATH/core/plugins/vim-choosewin.vim
-
-# - repo: kizza/actionmenu.nvim
-#   on_path: .*
-
-- repo: mhinz/vim-startify
-  on_cmd: Startify
-  depends: vim-devicons
-  hook_post_source: source $VIM_PATH/core/plugins/startify.vim
-
-
+# Misc {{{
 - repo: junegunn/vim-easy-align
-  on_ft: [vim,json,go,html,js,jsx,py,css,less,tmpl,toml,xml,sql,Dockerfile]
-
 
 - repo: yuttie/comfortable-motion.vim
-  on_func: comfortable_motion#flick
   hook_post_source: |
-        let g:comfortable_motion_no_default_key_mappings = 1
-        let g:comfortable_motion_impulse_multiplier = 1
+    let g:comfortable_motion_no_default_key_mappings = 1
+    let g:comfortable_motion_impulse_multiplier = 1
 
-# - repo: rizzatti/dash.vim
-#   on_map: { n: <Plug> }
-#   hook_add: |
-#       let g:dash_map = {
-#         \ 'javascript': ['javascript', 'NodeJS'],
-#         \ 'javascript.jsx': ['react'],
-#         \ 'html': ['html', 'svg'],
-#         \ 'go' : 'Go',
-#         \}
+# Vim startuptime analysis (use with nvim +StartupTime)
+- repo: dstein64/vim-startuptime
+# }}}
 
-# - repo: thinca/vim-quickrun
-#   on_cmd: QuickRun
-#   hook_add: |
-#         let g:quickrun_config = {
-#             \   "_" : {
-#             \       "outputter" : "message",
-#             \   },
-#             \}
-#         let g:quickrun_no_default_key_mappings = 1
+# Navigation {{{
 
+# Undo tree visualization
 - repo: simnalamburt/vim-mundo
-  on_map: { n: <Plug> }
 
+# Better repeating with period command
 - repo: tpope/vim-repeat
-  on_map: .*
 
+# Pop-up cheatsheet for keyboard commands
 - repo: liuchengxu/vim-which-key
-  on_cmd: [Whichkey, Whichkey!]
-  hook_source: source  $VIM_PATH/core/plugins/whichkey.vim
+  hook_source: source $VIM_PATH/core/plugins/whichkey.vim
   hook_post_source: |
-        call which_key#register('<Space>', 'g:which_key_map')
-        call which_key#register(';', 'g:which_key_localmap')
-        call which_key#register(']', 'g:which_key_rsbgmap')
-        call which_key#register('[', 'g:which_key_lsbgmap')
+    call which_key#register('<Space>', 'g:which_key_map')
+    call which_key#register(';', 'g:which_key_localmap')
+    call which_key#register(']', 'g:which_key_rsbgmap')
+    call which_key#register('[', 'g:which_key_lsbgmap')
 
+# Visual overlay to jump cursor to any part of screen
 - repo: easymotion/vim-easymotion
-  on_map: { n: <Plug> }
   hook_post_source: |
         let g:EasyMotion_do_mapping = 0
         let g:EasyMotion_prompt = 'Jump to → '
         let g:EasyMotion_keys = 'asdfwevbnjklio'
         let g:EasyMotion_smartcase = 1
         let g:EasyMotion_use_smartsign_us = 1
-
 # }}}
 
 # FZF {{{
+# Fantastic fuzzy finder
 - repo: junegunn/fzf.vim
   depends: fzf
-  on_cmd: [Colors,Rg,Buffers,Files,Commands,Maps,Find]
-  on_func: Fzf_dev
   hook_source: source $VIM_PATH/core/plugins/fzf.vim
-
-# - repo: junegunn/fzf
-#   do: './install --all'
-  # do: call fzf#install()
 
 # - repo: yuki-ycino/fzf-preview.vim
 #   branch: release
@@ -136,129 +109,111 @@
 
 # }}}
 
-# Git Plugins {{{
+# Versioning {{{
 
-# git integration
+# Git integration
 - repo: tpope/vim-fugitive
 
-# - repo: lambdalisue/gina.vim
-#   on_cmd: Gina
+# Inline git blame while you type
+- repo: apzelos/blamer.nvim
+  hook_source: |
+    let g:blamer_enabled = 0
+    let g:blamer_delay = 250
+    let g:blamer_prefix = ' > '
+  # hook_post_source: |-
+  #   call blamer#Enable()
+  #   :BlamerToggle<CR>
 
-# - repo: chemzqm/vim-easygit
-#   on_cmd: [Gcd, Glcd, Gcommit, Gblame, Gstatus, Gdiff, Gbrowse, Gstatus, Gpush]
-#   hook_source: let g:easygit_enable_command = 1
 
+# Git integration
+- repo: chemzqm/vim-easygit
+  hook_source: let g:easygit_enable_command = 1
 
-# use coc-git instead of vim-gitgutter
-# - repo: airblade/vim-gitgutter
-#   on_path: .*
-#   hook_source: source ~/.config/nvim/core/plugins/vim-gitgutter.vim
+# Status markers in gutter
+- repo: airblade/vim-gitgutter
+  hook_source: source $VIM_PATH/core/plugins/vim-gitgutter.vim
 
+- repo: rhysd/committia.vim
 # }}}
 
-# Language {{{
+# Languages {{{
 
 - repo: honza/dockerfile.vim
-  on_ft: Dockerfile
 
 - repo: junegunn/vim-emoji
-  on_ft: [markdown,vim]
 
-# - repo: Vimjas/vim-python-pep8-indent
-#   on_ft: python
-
-- repo: tmhedberg/SimpylFold
-  on_ft: python
-
-- repo: Konfekt/FastFold
-
-- repo: vim-scripts/python_match.vim
-  on_ft: python
+- repo: Vimjas/vim-python-pep8-indent
 
 - repo: vim-python/python-syntax
-  on_ft: python
-  hook_add: let g:python_highlight_all = 1
+  hook_source: let g:python_highlight_all = 1
 
 - repo: neoclide/vim-jsx-improve
-  on_ft: [javascript,jsx,javascript.jsx]
 
 - repo: vim-scripts/xml.vim
-  on_ft: xm
 
 - repo: pearofducks/ansible-vim
-  on_ft: [ yaml.ansible, ansible_hosts ]
 
 - repo: cespare/vim-toml
-  on_ft: toml
 
 - repo: elzr/vim-json
-  on_ft: json
-  hook_add: let g:vim_json_syntax_conceal = 0
+  hook_source: let g:vim_json_syntax_conceal = 0
 
 - repo: dearrrfish/vim-applescript
 
 - repo: tpope/vim-cucumber
 
 - repo: fatih/vim-go
-  on_ft: go
-  hook_source: source  $VIM_PATH/core/plugins/vim-go.vim
+  hook_source: source $VIM_PATH/core/plugins/vim-go.vim
 
-- repo: tpope/vim-markdown
-  on_ft: markdown
-  hook_add: |
-    let g:markdown_fenced_languages = [ 'html', 'bash=sh', 'css', 'javascript', 'js=javascript', 'go', ]
+- repo: plasticboy/vim-markdown
 # }}}
 
 # Coding {{{
-  # comments
+# Commenting
 - repo: tyru/caw.vim
-  on_map: { nx: <Plug> }
 
-  # formatting
+# Auto formatting files by syntax
 - repo: sbdchd/neoformat
-  on_cmd: [Neoformat,Neoformat!]
-  hook_source: source  $VIM_PATH/core/plugins/neoformat.vim
+  hook_source: source $VIM_PATH/core/plugins/neoformat.vim
 
+# Display thin vertical lines at each indentation level
 - repo: Yggdroot/indentLine
-  on_ft: [python,html,css,vim,javascript,jsx,javascript.jsx,vue,sh]
   hook_source: source $VIM_PATH/core/plugins/indentline.vim
 
-# - repo: liuchengxu/vista.vim
-#   on_cmd: [Vista,Vista!,Vista!!]
-#   hook_source: source  $VIM_PATH/core/plugins/vista.vim
+# LSP support for tags
+- repo: liuchengxu/vista.vim
+  hook_source: source $VIM_PATH/core/plugins/vista.vim
 
-# - repo: majutsushi/tagbar
-#   on_cmd: TagbarToggle
-#   hook_source: source  $VIM_PATH/core/plugins/tagbar.vim
-
-# - repo: mattn/emmet-vim
-#   on_ft: [html,css,jsx,javascript,javascript.jsx]
-#   on_event: InsertEnter
-#   hook_add: |
-#         let g:use_emmet_complete_tag = 0
-#         let g:user_emmet_install_global = 0
-#         let g:user_emmet_install_command = 0
-#         let g:user_emmet_mode = 'i'
-#         let g:user_emmet_leader_key='<C-g>'
-#         let g:user_emmet_settings = {
-#             \  'javascript.jsx' : {
-#             \      'extends' : 'jsx',
-#             \  },
-#         \}
-
-  # parens matchings
+# Parens matchings
 - repo: luochen1990/rainbow
-  for: [python,javascript,jsx,javascript.jsx,html,css,go,vim,toml]
   hook_source: let g:rainbow_active = 1
 
-# - repo: Shougo/echodoc.vim
-#   on_event: CompleteDone
-#   hook_source: |
-#         call echodoc#enable()
-#         let g:echodoc#type = "virtual"
+# Support editorconfig files in projects
+- repo: editorconfig/editorconfig-vim
 
-# - repo: w0rp/ale
-#   hook_add: source ~/.config/nvim/core/plugins/vim-ale.vim
+# Show function signature
+- repo: Shougo/echodoc.vim
+  hook_source: |
+    let g:echodoc#enable_at_startup = 1
+    " let g:echodoc#type = "virtual"
+    let g:echodoc#type = 'floating'
+    highlight link EchoDocFloat Pmenu
+
+# Async linting engine
+# - repo: dense-analysis/ale
+#   hook_source: source ~/.config/nvim/core/plugins/vim-ale.vim
+
+# Turn statements into one-line or multi-line expressions
+# - repo: AndrewRadev/splitjoin.vim
+
+# Expanding selection of regions with same key
+- repo: terryma/vim-expand-region
+
+# Operations on matching charcs (e.g. parens, brackets, etc)
+- repo: machakann/vim-sandwich
+
+# Multiple cursors
+- repo: mg979/vim-visual-multi
 
 # }}}
 
@@ -270,49 +225,8 @@
     let g:mkdp_command_for_global = 1
 
 # - repo: junegunn/goyo.vim
-#   on_cmd: Goyo
 #   hook_source: source  $VIM_PATH/core/plugins/goyo.vim
 #
 # - repo: junegunn/Limelight.vim
-#   on_cmd: Limelight
-#}}}
-
-# TextObjectOperator {{{
-# - repo: AndrewRadev/splitjoin.vim
-#   on_map: { n: <Plug>Splitjoin }
-
-# - repo: terryma/vim-expand-region
-#   on_map: { x: <Plug> }
-
-# - repo: kana/vim-textobj-user
-#   on_func: textobj#user#
-
-# - repo: kana/vim-operator-user
-#   lazy: 1
-
-# - repo: kana/vim-niceblock
-#   on_map: { x: <Plug> }
-
-# - repo: kana/vim-smartchr
-#   on_event: InsertCharPre
-
-# - repo: kana/vim-operator-replace
-#   depends: vim-operator-user
-#   on_map: { vnx: <Plug> }
-
-- repo: machakann/vim-sandwich
-  on_map: { vnx: [<Plug>(operator-sandwich-,<Plug>(textobj-sandwich-]}
-
-- repo: editorconfig/editorconfig-vim
-
-- repo: mg979/vim-visual-multi
-
-# spelling
-- repo: tweekmonster/spellrotate.vim
-
-# - repo: osyo-manga/vim-textobj-multiblock
-#   depends: vim-textobj-user
-#   on_map: { ox: <Plug> }
-#   hook_add:  let g:textobj_multiblock_no_default_key_mappings = 1
-
 # }}}
+

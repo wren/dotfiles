@@ -121,15 +121,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" --- nerdtree --- "
-map <leader>nb :NERDTreeFromBookmark<Space>
-nnoremap <silent> <leader>nv :NERDTreeFind<cr>
-" nnoremap <C-\> :NERDTreeToggle<CR>
-" inoremap <C-\> <ESC>:NERDTreeToggle<CR>
-" Automatically close a tab if the only window is NERDTree
-" autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
-
-
 " --- vim-go --- "
 nnoremap <silent> <LocalLeader>gi :GoImpl<CR>
 nnoremap <silent> <LocalLeader>gd :GoDescribe<CR>
@@ -197,8 +188,6 @@ nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impu
 " noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 " nnoremap <silent><C-K> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
 " nnoremap <silent><C-J> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-nnoremap <C-L> zL " Scroll 20 characters to the right
-noremap <C-H> zH " Scroll 20 characters to the left
 
 " --- python_match.vim --- "
 nmap <buffer> {{ [%
@@ -277,22 +266,8 @@ map F <Plug>(easymotion-b)
 " --- vim-which-key --- "
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-" nnoremap <silent>[              :<c-u>WhichKey  '['<CR>
-" nnoremap <silent>]              :<c-u>WhichKey  ']'<CR>
-
-" call which_key#register('<Space>', 'g:which_key_map')
-" call which_key#register(';', 'g:which_key_localmap')
-" call which_key#register(']', 'g:which_key_rsbgmap')
-" call which_key#register('[', 'g:which_key_lsbgmap')
-
-" --- vim-smartchr --- "
-" inoremap <expr> , smartchr#one_of(',', ',')
-" augroup MyAutoCmd
-"   autocmd FileType go inoremap <buffer><expr> ;
-"        \ smartchr#loop(':=',';')
-"   autocmd FileType go inoremap <buffer> <expr> .
-"        \ smartchr#loop('.', '<-', '->','...')
-" augroup end
+nnoremap <silent>[              :<c-u>WhichKey  '['<CR>
+nnoremap <silent>]              :<c-u>WhichKey  ']'<CR>
 
 
 " --- vim-niceblock --- "
