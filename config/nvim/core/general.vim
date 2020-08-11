@@ -179,3 +179,7 @@ function! s:cd_if_open_directory()
     execute 'cd' fnameescape(l:full_path)
   endif
 endfunction
+
+" Markdown fenced syntax highlighting
+let g:markdown_fenced_languages = [ 'html', 'bash=sh', 'css', 'javascript', 'js=javascript', 'go', ]
+
