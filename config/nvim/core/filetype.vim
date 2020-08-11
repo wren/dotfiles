@@ -24,7 +24,7 @@ augroup MyAutoCmd
   " autocmd FileType markdown syntax match NoSpellSeasonEp '\'s' contains=@NoSpell
 
   " Go (Google)
-  autocmd FileType go let b:coc_pairs_disabled = ['<']
+  " autocmd FileType go let b:coc_pairs_disabled = ['<']
 
   " HTML (.gohtml and .tpl for server side)
   autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl  setf html

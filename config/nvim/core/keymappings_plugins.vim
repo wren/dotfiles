@@ -1,100 +1,72 @@
 
-" --- denite.nvim --- "
-nnoremap <silent><LocalLeader>m :<C-u>Denite menu<CR>
-" noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
-" noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
-noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
+" " --- coc.nvim --- "
+" " Using CocList
+" " Show all diagnostics
+" nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
+" " Use `[c` and `]c` for navigate diagnostics
+" nmap <silent> ]c <Plug>(coc-diagnostic-prev)
+" nmap <silent> [c <Plug>(coc-diagnostic-next)
+" " Remap for rename current word
+" nmap <leader>cn <Plug>(coc-rename)
+" " Remap for format selected region
+" vmap <leader>cf  <Plug>(coc-format-selected)
+" nmap <leader>cf  <Plug>(coc-format-selected)
+" " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" xmap <leader>ca  <Plug>(coc-codeaction-selected)
+" nmap <leader>ca  <Plug>(coc-codeaction-selected)
+" " Remap for do codeAction of current line
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" " Fix autofix problem of current line
+" nmap <leader>qf  <Plug>(coc-fix-current)
+" " Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" " use <c-space> for trigger completion.
+" inoremap <silent><expr> <C-space> coc#refresh()
+" inoremap <silent><expr> <C-Space> pumvisible() ? "\<End>" : coc#refresh()
+" nmap [g <Plug>(coc-git-prevchunk)
+" nmap ]g <Plug>(coc-git-nextchunk)
+" " show chunk diff at current position
+" nmap gs <Plug>(coc-git-chunkinfo)
+" " show commit contains current position
+" nmap gm <Plug>(coc-git-commit)
+" nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
+" " float window scroll
+" nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+" nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+" " multiple cursors session
+" nmap <silent> <C-S-M> <Plug>(coc-cursors-position)
+" nmap <silent> <C-m> <Plug>(coc-cursors-word)
+" xmap <silent> <C-m> <Plug>(coc-cursors-range)
+" nnoremap <silent> <leader>cm ::CocSearch -w<Space>
+" " use normal command like `<leader>xi(`
+" nmap <leader>x  <Plug>(coc-cursors-operator)
 
-nnoremap <silent> <Leader>gl :<C-u>Denite gitlog:all<CR>
-nnoremap <silent> <Leader>gh :<C-u>Denite gitbranch<CR>
-function! s:my_denite_outline(filetype) abort
-  execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
-endfunction
-function! s:my_denite_decls(filetype) abort
-  if a:filetype ==# 'go'
-    Denite decls
-  else
-    call denite#util#print_error('decls does not support filetypes except go')
-  endif
-endfunction
-function! s:my_denite_file_rec_goroot() abort
-  if !executable('go')
-    call denite#util#print_error('`go` executable not found')
-    return
-  endif
-  let out = system('go env | grep ''^GOROOT='' | cut -d\" -f2')
-  let goroot = substitute(out, '\n', '', '')
-  call denite#start(
-        \ [{'name': 'file/rec', 'args': [goroot]}],
-        \ {'input': '.go'})
-endfunction
 
-" --- coc.nvim --- "
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> ]c <Plug>(coc-diagnostic-prev)
-nmap <silent> [c <Plug>(coc-diagnostic-next)
-" Remap for rename current word
-nmap <leader>cn <Plug>(coc-rename)
-" Remap for format selected region
-vmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <sid>show_documentation()<cr>
-" use <c-space> for trigger completion.
-inoremap <silent><expr> <C-space> coc#refresh()
-inoremap <silent><expr> <C-Space> pumvisible() ? "\<End>" : coc#refresh()
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-nmap gm <Plug>(coc-git-commit)
-nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
-" float window scroll
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
-" multiple cursors session
-nmap <silent> <C-S-M> <Plug>(coc-cursors-position)
-nmap <silent> <C-m> <Plug>(coc-cursors-word)
-xmap <silent> <C-m> <Plug>(coc-cursors-range)
-nnoremap <silent> <leader>cm ::CocSearch -w<Space>
-" use normal command like `<leader>xi(`
-nmap <leader>x  <Plug>(coc-cursors-operator)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    " call CocAction('doHover')
   endif
 endfunction
 
