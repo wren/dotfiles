@@ -28,38 +28,38 @@ nmap <c-_> gcc
 vmap <c-_> gcc
 
 " Clear search highlights
-nnoremap <silent> <C-l> :noh<return><esc>
+nnoremap <silent> <c-l> :nohlsearch<CR>
 
 " Write buffer (save)
-noremap <Leader>w :w<CR>
-noremap <Leader>q :q<CR>
+noremap <leader>w :w<CR>
+noremap <leader>q <c-w>q
+nnoremap <leader>Q :Bdelete<CR>
 noremap QQ :qa<CR>
+
 imap <C-S> <esc>:w<CR>a
 imap <C-Q> <esc>:wq<CR>
-
-"buffer
-nnoremap <leader>bc :BufOnly<CR>
-nnoremap <Leader>bo :BufOnly<space>
+nnoremap <C-x><C-x> :Bdelete!<CR>
 
 " make delete actually delete things
 nnoremap d "_d
 xnoremap d "_d
 vnoremap p "_dP
 
-"insert a newline
-" inoremap <C-O> <Esc>o
-
-nnoremap  [b :bp<CR>
-nnoremap  ]b :bn<CR>
-"delete buffer
+"buffer operation
+nnoremap <leader>bc :BufOnly<CR>
+nnoremap <leader>bo :BufOnly<space>
 nnoremap <C-x> :Bdelete<CR>
 nnoremap <C-x><C-x> :Bdelete!<CR>
+nnoremap  [b :bp<CR>
+nnoremap  ]b :bn<CR>
 
-"switch windw
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+"switch window
+nnoremap <a-h> <C-w>h
+nnoremap <a-l> <C-w>l
+nnoremap <a-j> <C-w>j
+nnoremap <a-k> <C-w>k
+nnoremap <c-a-l> zL
+nnoremap <c-a-h> zH
 
 "smart move
 nnoremap j gj
