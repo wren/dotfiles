@@ -85,7 +85,7 @@ set showmatch          " Jump to matching bracket
 set matchpairs+=<:>    " Add HTML brackets to pair matching
 set matchtime=1        " Tenths of a second to show the matching paren
 set cpoptions-=m       " showmatch will wait 0.5s or until a char is typed
-set viewoptions=cursor,folds,slash,unix "what
+set viewoptions=cursor,slash,unix "what
 set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 set wildmenu
@@ -150,11 +150,8 @@ augroup MyAutoCmd
 		\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
 augroup END
 
-if has('folding')
-    set foldenable
-    set foldmethod=syntax
-    set foldlevelstart=99
-endif
+set nofoldenable
+set foldlevelstart=99
 
 " Generate spell files if any updates have happened
 for d in glob($DATA_PATH . '/spell/*.add', 1, 1)

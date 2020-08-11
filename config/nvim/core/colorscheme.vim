@@ -56,7 +56,7 @@ hi default CocHighlightText  guibg=#725972 ctermbg=96
 " Folds
 " hi FoldColumn guifg=#00ff00
 hi def link Folded Comment
-hi Folded guifg=#525151 guibg=NONE gui=NONE
+hi Folded guifg=#6d8d8c guibg=NONE gui=NONE
 
 "GitGutter Coc-git Highlight
 " ---------------------------------------------------------

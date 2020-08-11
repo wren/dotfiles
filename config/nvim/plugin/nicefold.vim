@@ -47,13 +47,10 @@ function! FoldText()
 	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
 	let foldSize = 1 + v:foldend - v:foldstart
 	let foldSizeStr = ' ' . foldSize . ' lines '
-	let foldLevelStr = repeat('  ', v:foldlevel - 1)
+	let foldLevelStr = repeat('', v:foldlevel)
 	let lineCount = line('$')
-    if line =~ foldLevelStr
-      let foldLevelStr = ''
-    endif
 	let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
-	let expansionString = repeat('·', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-	return foldLevelStr . line . expansionString . foldSizeStr . foldPercentage
+	let expansionString = repeat('', (w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage.'  ') ) / 1)
+	return line . ' ' . foldLevelStr . expansionString . '' .foldSizeStr . foldPercentage
 endfunction
 
