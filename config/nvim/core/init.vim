@@ -32,85 +32,13 @@ let s:cache_path =
 
 let s:config_paths = get(g:, 'etc_config_paths', [
 	\ s:vim_path . '/core/plugins.yaml',
-	\ s:vim_path . '/usr/vimrc.yaml',
-	\ s:vim_path . '/usr/vimrc.json',
+	\ s:vim_path . '/core/plugins.json',
 	\ s:vim_path . '/vimrc.yaml',
 	\ s:vim_path . '/vimrc.json',
 	\ ])
 
 " Filter non-existent directories
 call filter(s:config_paths, 'filereadable(v:val)')
-
-function! s:use_dein()
-	" Use dein as a plugin manager
-	let g:dein#auto_recache = 1
-	let g:dein#install_max_processes = 16
-	let g:dein#install_progress_type = 'echo'
-	let g:dein#enable_notification = 0
-	let g:dein#install_log_filename = s:cache_path . '/dein.log'
-
-	" Add dein to vim's runtimepath
-	let l:cache_path = s:cache_path . '/dein'
-	if &runtimepath !~# '/dein.vim'
-		let s:dein_dir = l:cache_path . '/repos/github.com/Shougo/dein.vim'
-		" Clone dein if first-time setup
-		if ! isdirectory(s:dein_dir)
-			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
-			if v:shell_error
-				call s:error('dein installation has failed!')
-				finish
-			endif
-		endif
-
-		execute 'set runtimepath+='.substitute(
-			\ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
-	endif
-
-	" Initialize dein.vim (package manager)
-	if dein#load_state(l:cache_path)
-		let l:rc = s:parse_config_files()
-		if empty(l:rc)
-			call s:error('Empty plugin list')
-			return
-		endif
-
-		" Start propagating file paths and plugin presets
-		call dein#begin(l:cache_path, extend([expand('<sfile>')], s:config_paths))
-		for plugin in l:rc
-			call dein#add(plugin['repo'], extend(plugin, {}, 'keep'))
-		endfor
-
-		" Add any local ./dev plugins
-		if isdirectory(s:vim_path . '/dev')
-			call dein#local(s:vim_path . '/dev', { 'frozen': 1, 'merged': 0 })
-		endif
-		call dein#end()
-
-		" Save cached state for faster startups
-		if ! g:dein#_is_sudo
-			call dein#save_state()
-		endif
-
-		" Update or install plugins if a change detected
-		if dein#check_install()
-			if ! has('nvim')
-				set nomore
-			endif
-			call dein#install()
-		endif
-	endif
-
-	filetype plugin indent on
-
-	" Only enable syntax when vim is starting
-	if has('vim_starting')
-		syntax enable
-	else
-		" Trigger source events, only when vimrc is refreshing
-		call dein#call_hook('source')
-		call dein#call_hook('post_source')
-	endif
-endfunction
 
 function! s:use_plug() abort
 	" vim-plug package-manager initialization
@@ -142,14 +70,17 @@ function! s:use_plug() abort
 		return
 	endif
 
+	for plugin in l:rc
+		if has_key(plugin, 'hook_pre_source')
+			execute plugin['hook_pre_source']
+		endif
+	endfor
+
 	call plug#begin(l:cache_repos)
 	for plugin in l:rc
 		call plug#(plugin['repo'], extend(plugin, {}, 'keep'))
 		if has_key(plugin, 'hook_source')
 			execute plugin['hook_source']
-		endif
-		if has_key(plugin, 'hook_add')
-			execute plugin['hook_add']
 		endif
 	endfor
 	call plug#end()
@@ -272,23 +203,29 @@ function! s:load_yaml(filename)
 endfunction
 
 function! s:find_yaml2json_method()
-	if exists('*json_decode')
-		" First, try to decode YAML using a CLI tool named yaml2json, there's many
-		if executable('yaml2json') && s:test_yaml2json()
-			return 'yaml2json'
-		elseif executable('yq')
-			return 'yq'
-		" Or, try ruby. Which is installed on every macOS by default
-		" and has ruby built-in.
-		elseif executable('ruby') && s:test_ruby_yaml()
-			return 'ruby'
-		" Or, fallback to use python3 and PyYAML
-		elseif executable('python') && s:test_python_yaml()
-			return 'python'
-		endif
-		call s:error('Unable to find a proper YAML parsing utility')
+	if !exists('*json_decode')
+		call s:error('Please upgrade to neovim +v0.1.4 or vim: +v7.4.1304')
 	endif
-	call s:error('Please upgrade to neovim +v0.1.4 or vim: +v7.4.1304')
+
+	" Try yq since it's simple and fast
+	if executable('yq')
+		return 'yq'
+
+	" Or try a CLI tool named yaml2json (lots of versions available)
+	elseif executable('yaml2json') && s:test_yaml2json()
+		return 'yaml2json'
+
+	" Or, try ruby. Which is installed on every macOS by default
+	" and has ruby built-in.
+	elseif executable('ruby') && s:test_ruby_yaml()
+		return 'ruby'
+
+	" Or, fallback to use python3 and PyYAML
+	elseif executable('python') && s:test_python_yaml()
+		return 'python'
+	endif
+
+	call s:error('Unable to find a proper YAML parsing utility')
 endfunction
 
 function! s:test_yaml2json()
