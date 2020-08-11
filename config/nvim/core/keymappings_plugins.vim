@@ -108,6 +108,9 @@ nnoremap <leader>fp :call Fzf_dev()<CR>
 nnoremap <leader>ff :Find<Space>
 nnoremap <leader>fm :Maps<CR>
 nnoremap <leader>fc :Commands<CR>
+nnoremap <leader>fhf :History<CR>
+nnoremap <leader>fhc :History:<CR>
+nnoremap <leader>fhs :History/<CR>
 nnoremap <silent> <leader>fs :Colors<CR>
 
 nnoremap <silent> <leader>fw :Find <C-R><C-W><CR>
