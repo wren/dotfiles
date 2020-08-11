@@ -71,8 +71,8 @@ vnoremap k gk
 noremap <leader>tn :tabnew<cr>
 noremap <leader>te :tabedit
 noremap <leader>tm :tabmove
-nnoremap  [t :tabNext<CR>
-nnoremap  ]t :tabprevious<CR>
+nnoremap  [t :tabprevious<CR>
+nnoremap  ]t :tabnext<CR>
 
 "yank to end
 nnoremap Y y$
