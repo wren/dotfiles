@@ -21,11 +21,14 @@ let g:which_key_map = {
     \ 'c' : 'keep current buffer',
     \ 'o' : 'kill {numbers or name} buffer',
     \ },
-  \ 'e' : 'open file explorer' ,
+  \ 'e' : {
+  \    'name' : '+explorer',
+  \    'f' : 'find current file' ,
+  \    'o' : 'open' ,
+  \ },
   \ '-' : 'choose window by {prompt char}' ,
   \ 'd' : 'search cursor word on Dash.app' ,
   \ 'G' : 'distraction free writing' ,
-  \ 'F' : 'find current file' ,
   \ 'f' : {
     \ 'name' : '+search {files cursorword word outline}',
     \ 'b' : 'find buffers',
@@ -34,7 +37,6 @@ let g:which_key_map = {
     \ 'p' : 'find files in project',
     \ 'm' : 'find mappings',
     \ 'w' : 'search cursorword',
-    \ 'v' : 'search outline',
     \ 'h' : {
     \   'name' : '+history',
     \   'f': 'file history',
@@ -42,6 +44,7 @@ let g:which_key_map = {
     \   's': 'search history',
     \ },
     \ },
+  \ 'l' : 'clear search highlights' ,
   \ 'm' : 'open mundotree' ,
   \ 'w' : 'write file',
   \ 's' : {

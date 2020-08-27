@@ -24,11 +24,11 @@ nnoremap <CR> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <S-CR> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Comment/uncomment a line
-nmap <c-_> gcc
-vmap <c-_> gcc
+nmap <leader>/ gcc
+vmap <leader>/ gc
 
 " Clear search highlights
-nnoremap <silent> <c-l> :nohlsearch<CR>
+nnoremap <silent> <leader>l :nohlsearch<CR>
 
 " Write buffer (save)
 noremap <leader>w :w<CR>
@@ -54,10 +54,10 @@ nnoremap  [b :bp<CR>
 nnoremap  ]b :bn<CR>
 
 "switch window
-nnoremap <a-h> <C-w>h
-nnoremap <a-l> <C-w>l
-nnoremap <a-j> <C-w>j
-nnoremap <a-k> <C-w>k
+nnoremap <c-h> <C-w>h
+nnoremap <c-l> <C-w>l
+nnoremap <c-j> <C-w>j
+nnoremap <c-k> <C-w>k
 nnoremap <c-a-l> zL
 nnoremap <c-a-h> zH
 

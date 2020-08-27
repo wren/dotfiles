@@ -135,52 +135,24 @@ nmap <silent>j <Plug>(accelerated_jk_gj)
 nmap <silent>k <Plug>(accelerated_jk_gk)
 
 
-" --- caw.vim --- "
-function! InitCaw() abort
-  if !&l:modifiable
-    silent! nunmap <buffer> gc
-    silent! xunmap <buffer> gc
-    silent! nunmap <buffer> gcc
-    silent! xunmap <buffer> gcc
-  else
-    nmap <buffer> gc <Plug>(caw:prefix)
-    xmap <buffer> gc <Plug>(caw:prefix)
-    nmap <buffer> gcc <Plug>(caw:hatpos:toggle)
-    xmap <buffer> gcc <Plug>(caw:hatpos:toggle)
-  endif
-endfunction
-autocmd FileType * call InitCaw()
-call InitCaw()
-
-
-
 " --- comfortable-motion.vim --- "
 nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-" nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-" nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
 " noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 " noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-" nnoremap <silent><C-K> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-" nnoremap <silent><C-J> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent><C-A-J> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent><C-A-K> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+
 
 " --- python_match.vim --- "
 nmap <buffer> {{ [%
 nmap <buffer> }} ]%
 
 
-" --- goyo.vim --- "
-nnoremap <Leader>G :Goyo<CR>
-
-
 " --- defx.nvim --- "
 nnoremap <silent><C-\> :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-" inoremap <C-\> <ESC>:NERDTreeToggle<CR>
-nnoremap <silent> <Leader>e
-      \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>F
-      \ :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
-
+nnoremap <silent> <Leader>eo :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+nnoremap <silent> <Leader>ef :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
 
 
 " --- vim-startify --- "
@@ -197,10 +169,6 @@ nnoremap <silent> <leader>sp :SimplenotePin<CR>
 nnoremap <silent> <leader>sP :SimplenoteUnpin<CR>
 nnoremap <silent> <leader>sV :SimplenoteVersionInfo<CR>
 nnoremap <leader>sv :SimplenoteVersion<SPACE>
-
-
-" --- vim-quickrun --- "
-nnoremap <silent> <localleader>r :QuickRun<CR>
 
 
 " --- dash.vim --- "

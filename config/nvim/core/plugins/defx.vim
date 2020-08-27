@@ -99,7 +99,6 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
   nnoremap <silent><buffer><expr> l     defx#do_action('open_tree')
   nnoremap <silent><buffer><expr> <right>     defx#do_action('open_tree')
- 
   nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> <left>     defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> u     defx#async_action('cd', ['..'])
@@ -146,8 +145,6 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> gx  defx#async_action('execute_system')
   nnoremap <silent><buffer><expr> gd  defx#async_action('multi', ['drop', ['call', '<SID>git_diff']])
   nnoremap <silent><buffer><expr> gl  defx#async_action('call', '<SID>explorer')
-  nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
-  nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
   nnoremap <silent><buffer><expr> w   defx#async_action('call', '<SID>toggle_width')
 endfunction
 
@@ -156,22 +153,6 @@ endfunction
 
 function! s:git_diff(context) abort
   execute 'Gdiffsplit'
-endfunction
-
-function! s:find_files(context) abort
-  " Find files in parent directory with Denite
-  let l:target = a:context['targets'][0]
-  let l:parent = fnamemodify(l:target, ':h')
-  silent execute 'wincmd w'
-  silent execute 'Denite file/rec:'.l:parent
-endfunction
-
-function! s:grep(context) abort
-  " Grep in parent directory with Denite
-  let l:target = a:context['targets'][0]
-  let l:parent = fnamemodify(l:target, ':h')
-  silent execute 'wincmd w'
-  silent execute 'Denite grep:'.l:parent
 endfunction
 
 function! s:toggle_width(context) abort

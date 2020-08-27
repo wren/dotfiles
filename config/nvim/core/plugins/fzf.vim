@@ -68,7 +68,7 @@ endfunction
 
 " Files + devicons
 function! Fzf_dev()
-  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always {}"'
+  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --theme material {}"'
 
   let opts = fzf#wrap({})
   let opts.options .= l:fzf_files_options

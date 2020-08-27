@@ -54,9 +54,7 @@
   hook_post_source: source $VIM_PATH/core/plugins/defx.vim
 - repo: kristijanhusak/defx-git
 - repo: kristijanhusak/defx-icons
-
 # }}}
-
 
 # Misc {{{
 - repo: junegunn/vim-easy-align
@@ -170,7 +168,7 @@
 
 # Coding {{{
 # Commenting
-- repo: tyru/caw.vim
+- repo: tpope/vim-commentary
 
 # Auto formatting files by syntax
 - repo: sbdchd/neoformat
@@ -219,7 +217,7 @@
 
 # Writing {{{
 - repo: iamcco/markdown-preview.nvim
-  do: 'cd app & yarn install'
+  do: ':call mkdp#util#install()'
   hook_source: |
     let g:mkdp_auto_start = 0
     let g:mkdp_command_for_global = 1
