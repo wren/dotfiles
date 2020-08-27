@@ -28,6 +28,9 @@
 # Highlights CSS colors inline
 - repo: ap/vim-css-color
 
+# Highlight area being copied
+- repo: machakann/vim-highlightedyank
+
 # Close buffers without changing window layout
 - repo: moll/vim-bbye
   rev: release
@@ -196,6 +199,13 @@
     " let g:echodoc#type = "virtual"
     let g:echodoc#type = 'floating'
     highlight link EchoDocFloat Pmenu
+
+# Search documentation (also works offline)
+- repo: sunaku/vim-dasht
+
+# Completion engine
+- repo: Valloric/YouCompleteMe
+  do: ./install.py
 
 # Async linting engine
 # - repo: dense-analysis/ale
