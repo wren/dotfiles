@@ -93,9 +93,7 @@ set wildmenu
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=6
 
-if has('conceal')
-    set conceallevel=3 concealcursor=niv
-endif
+set conceallevel=3 concealcursor=n
 
 " Vim Directories {{{
 " ---------------
