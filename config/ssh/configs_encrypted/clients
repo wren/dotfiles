@@ -1,0 +1,20 @@
+{
+	"data": "ENC[AES256_GCM,data:1NpPCe/lxTO8qchrXXTI81Yu5Yd7qncmXvSdWMHjinOeYXbg5UPOfLnQqUobfzZ9EEGZ/tjWFe4IHv9AobqtJWWvF1y18p4W6skDMCwK3jxRYp9DcockFtPDKoPpBFxZlzAb3bOJIqG6hQW4vnpUg0s+Q2iiJLkXPH36rRK+vmAyLADoHRz8ekScpNg3ViWN6hcz8R8fUcm79E0Z1a61KUYGFvfqElz8zj2CxKzgHOUCetVYF5NBC7N24Vgra4VNBh0JgvW9XoSMku+vahAynQ9Ar/nBRe4O7iUJ6PcNHvFeJQA0EUbgOJ4WyszM9RSHSsdTHmUxc+TCSRj8EhGOIhLo3Vzhcf3FmK7M647H2pyuSQ7DYs0favKQFf5kZo2DXNhCruPQBNCtcCePUwYTSMMuu1rcrZWqr+bdqCNXtBaHGGA7cNdR1OlcFhomzlkvqqyY+dM+iI18/Fh+yIgF0lrnw4NLOUCTnBvif4rOXjpxUdPRycyOtdsmrjO7JjsM19JQbaDUBq5bAXLmXl6Ze4auLuf/Nf0ihVxQcAXhamrK4GxpYRxbpNYFB9fekDPwNoePYCTLSv4AC5p2wNmZMB4XTkOmxSZaF6ySBEGYE6icvKB4PbMgteBkSO+f6L5M4DqpwHfljr5RJO1xig7VrOnGdXStZp7mY87cv380iZPPKy8fG4mVUsiTC3wsO8k2XNX/PO70AqH3svFBMieDszewEy4WvX8LipbwjzTlC+5kaYk2W7XaJ7K+f5i92i0KC5VY5qYkE9fkkyb+6l7t0Mi7IbSdEKYE2WpaRmG0SvMo1ihKvC0Q22x+wjRjlmb2rDMAuGrB4f1703fQgxmW1tr2pHP6AdrUHZFeOPK4miZORHUjINB58s9fqgfc+nEaoYo2vr1SV4/oCYON07nbU02/CkIVNPykKc4MjaVAWLeJBO8xGueloIcI5iT2Bl/w9LB34GM=,iv:DzA0n+WPQ4oTXIMW46AM9Iag962qMUb++JUINnFhico=,tag:kMOVcn2FPT9mn18C42nyAQ==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"lastmodified": "2020-09-30T05:00:56Z",
+		"mac": "ENC[AES256_GCM,data:8Jc1xXzpZdZoWEGbNjZciYjWx9zJAvyp6aN16dum1k4HBSBDpeqi8MsItTHIE6M1DtPv7PulwFxKQuYapjLgrdTEC0294J4SLgorrmkKOJp5SlpkzJcChXQkH4eCjSVLGfOascouS6NhLrCbU/LFTZ5RlhQUtuH6SCjCiexibmU=,iv:eeRUZq/+C9p8hHUR6nYkJSmkc1SsLJS2/fjfaX8Gp9E=,tag:MBcN5dqmIentP86sVk9YFw==,type:str]",
+		"pgp": [
+			{
+				"created_at": "2020-09-30T05:00:55Z",
+				"enc": "-----BEGIN PGP MESSAGE-----\n\nhQEMA0AGVys8PZ/qAQf/S/W8GC7InAbpoHy+1oPr8QwpKkWtC3vLB/TlrAOv72O5\noQJwtQ4iBeWxnK9RSMbYNgwlFtnZF1TYG2fjWL0h9PfIaxlXKTiJ91zuLdaeB1lv\n1SC1t0TCI93QPVpQataEDNi3FBzX6GKLaLApjWOp7K8FTDcEXzG8j4LVoc3PGxY0\noklb1dkCJnjGKho1T1zVKLAU7JC+ADhpvHTEKD5H78w0oSD16Xj8VCni9LGW4lRD\nGD2hGxLg9xtXqx5MGWMTnTlfVcnvaDJI/DHKt/hnymO0PzQRUC6iANtANaGfyIei\nVMEhWBdUpVayFP/9/gMoZo0UZfzGs6CZFK6qcWhNgNJeAQ1Tq8nz8XcJaTft3imk\nmzlqGmAJQGW4dKXoe8N5ZUqgm42oPR2n7Yoj6tvmL+ccn0LHiQRFbmUA5GpkEj+J\n2FCR1cUHxPbtjkXghSflovpYqufJm6lUSy0Yv+J7rQ==\n=CAKq\n-----END PGP MESSAGE-----\n",
+				"fp": "B5C5503F193E8ADE58FB0B643CB59A7906ADEEF8"
+			}
+		],
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.6.0"
+	}
+}
