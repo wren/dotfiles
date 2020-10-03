@@ -24,7 +24,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-26T01:53:05Z</date>
+	<date>2020-10-03T02:29:00Z</date>
 	<key>SelectedCalendars</key>
 	<array>
 		<string>E7951342-765C-433E-9ADA-C6E0A3843E1E</string>
@@ -37,7 +37,7 @@
 	<key>ShowMonthInIcon</key>
 	<true/>
 	<key>SizePreference</key>
-	<false/>
+	<true/>
 	<key>UseOutlineIcon</key>
 	<true/>
 	<key>WeekStartDOW</key>
