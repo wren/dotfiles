@@ -8,3 +8,5 @@ let g:defx_git#indicators = {
 	\ 'Deleted'   : '✖',
 	\ 'Unknown'   : '⁇'
 	\ }
+
+call defx#custom#column('git', 'show_ignored', 1)

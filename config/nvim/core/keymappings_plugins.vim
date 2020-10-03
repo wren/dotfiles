@@ -195,10 +195,6 @@ nnoremap <silent><localleader>v :Vista!!<CR>
 nnoremap <silent><leader>fv     :Vista finder coc<CR>
 
 
-" --- tagbar --- "
-nnoremap <silent><localleader>t :TagbarToggle<CR>
-
-
 " --- ale --- "
 nmap [a <Plug>(ale_next_wrap)
 nmap ]a <Plug>(ale_previous_wrap)

@@ -49,6 +49,9 @@
 - repo: mhinz/vim-startify
   depends: vim-devicons
   hook_post_source: source $VIM_PATH/core/plugins/startify.vim
+
+# Fade text in inactive windows (while preserving syntax)
+- repo: tadaa/vimade
 # }}}
 
 # File Explorer {{{
@@ -166,7 +169,6 @@
 - repo: fatih/vim-go
   hook_source: source $VIM_PATH/core/plugins/vim-go.vim
 
-- repo: plasticboy/vim-markdown
 # }}}
 
 # Coding {{{
@@ -187,7 +189,7 @@
 
 # Parens matchings
 - repo: luochen1990/rainbow
-  hook_source: let g:rainbow_active = 1
+  hook_source: source $VIM_PATH/core/plugins/rainbow.vim
 
 # Support editorconfig files in projects
 - repo: editorconfig/editorconfig-vim
@@ -225,6 +227,15 @@
 
 # }}}
 
+# Productivity {{{
+
+# Toggle markdown checkboxes
+- repo: jkramer/vim-checkbox
+  hook_source: |
+    let g:insert_checkbox_prefix = '- '
+    let g:insert_checkbox_suffix = ' '
+
+# }}}
 # Writing {{{
 - repo: iamcco/markdown-preview.nvim
   do: ':call mkdp#util#install()'

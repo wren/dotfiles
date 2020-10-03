@@ -4,6 +4,7 @@ call defx#custom#option('_', {
   \ 'winwidth': 50,
   \ 'split': 'vertical',
   \ 'direction': 'topleft',
+  \ 'ignored_files': '.DS_Store*,.git',
   \ 'show_ignored_files': 0,
   \ 'toggle': 1,
   \ 'auto_cd': 1,
