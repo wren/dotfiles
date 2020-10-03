@@ -13,9 +13,8 @@ set background=dark
 " Colorscheme settings
 " ---------------------------------------------------------
 let g:material_theme_style = 'dark'
-" let g:material_terminal_italics = 1
+let g:material_terminal_italics = 1
 
-let g:material_style='oceanic'
 colorscheme material
 
 " Vim Colors
@@ -30,7 +29,8 @@ hi SignColumn guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE
 " hi! link pythonSpaceError  NONE
 " hi! link pythonIndentError NONE
 hi NormalFloat gui=NONE guifg=#93a1a1 guibg=#002931
-
+" hi SpellBad guifg=none guibg=#ff0000 gui=bold
+hi SpellBad guifg=#C69F9F guibg=none gui=underline
 
 " Change background color on inactive windows
 hi InactiveWindow guibg=#2E2E2E
@@ -67,14 +67,23 @@ hi Folded guifg=#6d8d8c guibg=NONE gui=NONE
 
 " Defx Highlight
 " ---------------------------------------------------------
-" highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
-" highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
-" highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
-" highlight def link Defx_filename_3_Untracked Comment
-" highlight def link Defx_filename_3_Unknown Comment
-" highlight def link Defx_filename_3_Renamed Title
-" highlight def link Defx_filename_3_Unmerged Label
-" " highlight Defx_git_Deleted   ctermfg=13 guifg=#b294bb
+highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
+highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
+highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
+highlight def link Defx_filename_3_Untracked Comment
+highlight def link Defx_filename_3_Unknown Comment
+highlight def link Defx_filename_3_Renamed Title
+highlight def link Defx_filename_3_Unmerged Label
+highlight Defx_git_Deleted ctermfg=13 guifg=#b294bb
+
+highlight Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+highlight Defx_git_Ignored guibg=#ff0000 guifg=NONE ctermbg=NONE ctermfg=NONE
+highlight Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+highlight Defx_git_Renamed ctermfg=214 guifg=#fabd2f
+highlight Defx_git_Modified ctermfg=214 guifg=#fabd2f
+highlight Defx_git_Unmerged ctermfg=167 guifg=#fb4934
+highlight Defx_git_Deleted ctermfg=167 guifg=#fb4934
+highlight Defx_git_Staged ctermfg=142 guifg=#b8bb26
 
 " buftabline highlight
 " ---------------------------------------------------------
