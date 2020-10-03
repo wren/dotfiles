@@ -12,7 +12,7 @@ alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killa
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias lgi='exa -la | grep -i'
-alias rmds="find . -depth -name .DS_Store -exec rm {} \;"
+alias rmds='find . -depth -name .DS_Store -exec rm {} \;'
 alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
 alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
 alias ...='cd ../..'
@@ -26,7 +26,6 @@ alias ........='cd ../../../../../../..' # eight is enough
 ### Git ###
 ###########
 alias g='git'
-alias rmorig="find . -name '*.orig' exec rm {} \;"
 alias gar="git ls-files -z -d | xargs -0 git rm"
 alias gblame="git ls-files|grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' |xargs -n1 git blame --line|grep -E '^author '|sort|uniq -c|sort -nr"
 alias dsf='diff-so-fancy'
