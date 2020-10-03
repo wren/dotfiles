@@ -85,7 +85,7 @@ set showmatch          " Jump to matching bracket
 set matchpairs+=<:>    " Add HTML brackets to pair matching
 set matchtime=1        " Tenths of a second to show the matching paren
 set cpoptions-=m       " showmatch will wait 0.5s or until a char is typed
-set viewoptions=cursor,slash,unix "what
+set viewoptions=cursor,folds,slash,unix "what
 set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 set wildmenu

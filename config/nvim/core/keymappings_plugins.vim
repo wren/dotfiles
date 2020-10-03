@@ -60,7 +60,7 @@
 
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <sid>show_documentation()<cr>
+nnoremap <silent><space>K :call <sid>show_documentation()<cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -69,6 +69,8 @@ function! s:show_documentation()
     " call CocAction('doHover')
   endif
 endfunction
+
+nnoremap <silent><localleader>t :call checkbox#ToggleCB()<CR>
 
 
 " --- fzf.vim --- "
@@ -116,6 +118,7 @@ nnoremap <silent> <Leader>gS :Gstatus<CR>
 
 " --- magit.vim --- "
 nnoremap <silent> mg :Magit<CR>
+
 
 " --- gina.vim --- "
 nnoremap <silent><Leader>gp :Gina push<CR>
