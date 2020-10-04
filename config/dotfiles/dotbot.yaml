@@ -113,18 +113,34 @@
           sh ./config/dotfiles/macos.sh
         fi
 
-    - description: Decrypt files
+    - description: Decrypt directories & files with _encrypted suffix
       command: |-
         if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
           printf "$UNDERLINE$(tput setaf 1)ERROR:$(tput sgr0) "
           printf "GPG key not available.\n"
           exit 1
         fi
-        for file in ./config/ssh/configs_encrypted/*; do
-          sops -d "$file" > "./config/ssh/configs/${file:t}" || {
-            echo " - problem decrypting ${file}"
-          }
+        # Decrypt files in folders
+        for dir in $(fd -HI -t d _encrypted); do
+          fd -HI -t f . "$dir" -x zsh -c '
+            OLD_DIR="{//}"
+            OLD_FILE="{}"
+            NEW_DIR="${OLD_DIR//_encrypted}"
+            NEW_FILE="$NEW_DIR/{/}"
+            mkdir -p $NEW_DIR
+            sops --decrypt $OLD_FILE > $NEW_FILE || {
+              printf " - Problem decrypting %s\n" "$OLD_FILE"
+            }
+            '
         done
+        # Decrypt individual files
+        fd -HI -t f _encrypted -x zsh -c '
+          OLD_FILE="{}"
+          NEW_FILE="${OLD_FILE//_encrypted}"
+          sops --decrypt $OLD_FILE > $NEW_FILE || {
+            printf " - Problem decrypting %s\n" "$OLD_FILE"
+          }
+          '
 
 - pipx:
     file: config/dotfiles/pipx.txt
