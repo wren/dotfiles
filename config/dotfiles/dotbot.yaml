@@ -67,15 +67,14 @@
 
     - description: Checking PGP Key
       command: |-
-        KEYNAME='B5C5503F193E8ADE58FB0B643CB59A7906ADEEF8'
-        if ! gpg -K $KEYNAME &>/dev/null; then
+        if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
           echo "Getting key from secrethub"
           KEY="$(secrethub read wren/dotfiles/gpg/private.key)"
           echo "Loading key into GPG."
           gpg-connect-agent killagent /bye
           echo "$KEY" | gpg --import
           echo "Setting trust on key."
-          expect -c "spawn gpg --edit-key $KEYNAME trust quit; send \"5\ry\r\"; expect eof"
+          expect -c "spawn gpg --edit-key $DOTFILES_GPG_KEY trust quit; send \"5\ry\r\"; expect eof"
         fi
 
     - description: Installing apps via Homebrew
@@ -116,7 +115,7 @@
 
     - description: Decrypt files
       command: |-
-        if ! gpg -K B5C5503F193E8ADE58FB0B643CB59A7906ADEEF8 &>/dev/null; then
+        if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
           printf "$UNDERLINE$(tput setaf 1)ERROR:$(tput sgr0) "
           printf "GPG key not available.\n"
           exit 1
