@@ -45,11 +45,6 @@
         glob: true
         path: config/macos/*.plist
 
-    # Neovim
-    ~/.cache/nvim/spell/custom.en.utf-8.add: data/dictionaries/custom.en.dict
-    ~/.cache/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
-
-
 - shell:
     - description: Checking superuser access
       command: |-
@@ -147,3 +142,7 @@
     stdout: false
     stderr: true
 
+- link:
+    # Neovim
+    ~/.cache/nvim/spell/custom.en.utf-8.add: data/dictionaries/custom.en.dict
+    ~/.cache/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
