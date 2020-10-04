@@ -124,8 +124,9 @@
           exit 1
         fi
         for file in ./config/ssh/configs_encrypted/*; do
-          echo " - decrypting ${file}"
-          sops -d "$file" > "./config/ssh/configs/${file:t}"
+          sops -d "$file" > "./config/ssh/configs/${file:t}" || {
+            echo " - problem decrypting ${file}"
+          }
         done
 
 - pipx:

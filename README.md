@@ -3,4 +3,5 @@
 ## Installation
 To install, run this command:
 
-    /bin/bash <(curl -s https://raw.githubusercontent.com/wren/dotfiles/master/install)
+    /bin/zsh <(curl -s https://raw.githubusercontent.com/wren/dotfiles/main/install)
+
