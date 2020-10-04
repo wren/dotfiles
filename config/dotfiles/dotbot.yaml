@@ -41,8 +41,6 @@
         path: config/itsycal/com.mowglii.ItsycalApp.plist
     ~/Library/Preferences/com.sequelpro.SequelPro.plist:
         path: config/sequelpro/com.sequelpro.SequelPro.plist
-    ~/Library/Preferences/com.divisiblebyzero.Spectacle.plist:
-        path: config/spectacle/com.divisiblebyzero.Spectacle.plist
     ~/Library/Preferences/:
         glob: true
         path: config/macos/*.plist
