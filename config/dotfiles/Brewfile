@@ -78,6 +78,7 @@ brew "tag" # Manipulate and query tags on macOS files
 brew "thefuck" # Programatically correct mistyped console commands
 brew "tidy-html5" # Granddaddy of HTML tools, with support for modern standards
 brew "tmux" # Terminal multiplexer
+brew "util-linux" # Collection of Linux utilities
 brew "webkit2png" # Create screenshots of webpages from the terminal
 brew "xpdf" # PDF viewer
 brew "yarn", link: false # JavaScript package manager

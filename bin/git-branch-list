@@ -1,18 +1,69 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
+# colors
+color_local_branch=3
+color_remote_branch=14
 
-eval $(
-  git for-each-ref \
-  --format="$(cat <<EOM
-  INDENT='   %(if)%(HEAD)%(then)>%(else)·%(end) '
-  PREFIX="\$(echo "%(refname:short)" | sed -r "s/^((.*\/).+|.*)$/\2/" )";
-  SECTION="\${PREFIX##\${OLD_PREFIX}}";
-  printf "%b%s\$(tput setaf 3)%-64s\$(tput sgr0)%-32s\n"
-    "\$([ ! -z "\${SECTION}" ] && (printf -- ' %s' "\${SECTION}\n"))"
-    "\$([ ! -z "\${PREFIX}" ] && (printf -- '%s' "\${INDENT}"))"
-    "%(if)%(HEAD)%(then)\$(tput smso)%(end) \$(echo "%(refname:short)" | sed 's/.*\\///')"
-    "\$(git config branch.%(refname:short).note)";
-  OLD_PREFIX="\${PREFIX}";
-EOM
-)" refs/heads/${1}
+# format='branch_name=%(refname:short) is_head=%(HEAD) branch_type=%(refname:rstrip=-2) date_committed=%(committerdate:relative) subject=%(subject) author=%(authorname) push=%(push)'
+format=(
+  'branch_name=%(refname:short)'
+  'is_head=%(HEAD)'
+  'branch_type=%(refname:rstrip=-2)'
+  'date_committed=%(committerdate:relative)'
+  'subject=%(subject)'
+  'author=%(authorname)'
+  'push=%(push)'
 )
+
+make_report() {
+  git for-each-ref --shell --format="$format" --sort='-refname:rstrip=2' --sort='refname:rstrip=-2' refs/heads refs/remotes | grep -i "${1}" | \
+  while read git_info; do
+    # for debug
+    # printf '\n\ngit_info: %s\n' $git_info
+
+    eval $git_info
+
+    branch_type=${branch_type#refs/}
+    prefix=${(M)branch_name##*/}
+    bullet='·'
+
+    # new section
+    if [[ $prefix != $old_prefix ]]; then
+      [[ $branch_type = 'remotes' ]] && print
+      print " $prefix"
+    fi
+
+    # is this a remote?
+    output_color=$color_local_branch
+    if [[ $branch_type = 'remotes' ]]; then
+      output_color=$color_remote_branch
+    fi
+
+    branch_color_str="%F{$output_color}"
+    branch_name=${branch_name##*/}
+    if [[ -z $push && $branch_type = 'heads' ]]; then
+      branch_name+=' %F{#DB615E}%f'
+    fi
+
+    # special handling for current branch
+    if [[ $is_head = \* ]]; then
+      bullet='▶'
+      branch_color_str="%K{$output_color}%F{16}"
+    fi
+
+    start_str=" ${indent}${bullet} "
+    if [[ -z $prefix ]]; then
+      start_str=''
+    fi
+
+    # "\$(git config branch.%(refname:short).note)";
+
+    # output the thing
+    # print -P "${start_str}${branch_color_str} ${padded_branch}%f%k  %F{255}${(r:12:)date_committed}%f %F{141}$subject%f %F{247}by ${author}%f"
+    print -P "${start_str}${branch_color_str} ${branch_name}|%f%k %F{255}${date_committed}%f|%F{141}$subject%f|%F{247}by ${author}%f"
+
+    old_prefix=$prefix
+  done
+}
+
+column -ts'|' <(make_report "$@") --table-empty-lines
