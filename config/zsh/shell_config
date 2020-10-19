@@ -28,4 +28,4 @@ setopt MENU_COMPLETE             # autoselect the first completion entry
 setopt AUTO_LIST
 
 setopt AUTO_CD                  # try to cd to entries that aren't valid commands
-
+setopt RC_QUOTES                # Allow escaping quotes in strings by doubling i.e.' foo ''bar'' baz' (good for aliases)

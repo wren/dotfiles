@@ -12,7 +12,7 @@ alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killa
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias lgi='exa -la | grep -i'
-alias rmds='find . -depth -name .DS_Store -exec rm {} \;'
+alias rmds='fd .DS_Store --hidden --type file --exec sh -c ''echo "{}" && rm "{}"'' '
 alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
 alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
 alias ...='cd ../..'
