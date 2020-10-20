@@ -1,10 +1,13 @@
 #!/usr/bin/env zsh
 
+
 # colors
 color_local_branch=3
 color_remote_branch=14
 
-# format='branch_name=%(refname:short) is_head=%(HEAD) branch_type=%(refname:rstrip=-2) date_committed=%(committerdate:relative) subject=%(subject) author=%(authorname) push=%(push)'
+
+zparseopts -D a=all
+
 format=(
   'branch_name=%(refname:short)'
   'is_head=%(HEAD)'
@@ -13,14 +16,19 @@ format=(
   'subject=%(subject)'
   'author=%(authorname)'
   'push=%(push)'
+  'tracking=%(upstream:track,nobracket)'
 )
 
-make_report() {
-  git for-each-ref --shell --format="$format" --sort='-refname:rstrip=2' --sort='refname:rstrip=-2' refs/heads refs/remotes | grep -i "${1}" | \
-  while read git_info; do
-    # for debug
-    # printf '\n\ngit_info: %s\n' $git_info
+search_pattern=(
+  "refs/heads/**/*${1}*"
+)
+# Show all branches (include remote)?
+[[ -n $all ]] && search_pattern+=("refs/remotes/**/*${1}*")
 
+
+make_report() {
+  git for-each-ref --shell --format="$format" --sort='refname:rstrip=2' --sort='refname:rstrip=-2' $search_pattern | \
+  while read git_info; do
     eval $git_info
 
     branch_type=${branch_type#refs/}
@@ -29,8 +37,7 @@ make_report() {
 
     # new section
     if [[ $prefix != $old_prefix ]]; then
-      [[ $branch_type = 'remotes' ]] && print
-      print " $prefix"
+      print "\n $prefix"
     fi
 
     # is this a remote?
@@ -43,12 +50,17 @@ make_report() {
     branch_name=${branch_name##*/}
     if [[ -z $push && $branch_type = 'heads' ]]; then
       branch_name+=' %F{#DB615E}%f'
+    else
+      tracking=${tracking//behind /"%F{red}"}
+      tracking=${tracking//ahead /"%F{112}"}
+      tracking=${tracking//, }
     fi
 
     # special handling for current branch
     if [[ $is_head = \* ]]; then
       bullet='▶'
       branch_color_str="%K{$output_color}%F{16}"
+      tracking=''
     fi
 
     start_str=" ${indent}${bullet} "
@@ -59,11 +71,16 @@ make_report() {
     # "\$(git config branch.%(refname:short).note)";
 
     # output the thing
-    # print -P "${start_str}${branch_color_str} ${padded_branch}%f%k  %F{255}${(r:12:)date_committed}%f %F{141}$subject%f %F{247}by ${author}%f"
-    print -P "${start_str}${branch_color_str} ${branch_name}|%f%k %F{255}${date_committed}%f|%F{141}$subject%f|%F{247}by ${author}%f"
+    print -P "${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}$subject%f|%F{247}by ${author}%f"
 
     old_prefix=$prefix
   done
 }
 
-column -ts'|' <(make_report "$@") --table-empty-lines
+if command -v /usr/local/opt/util-linux/bin/column >/dev/null; then
+  # preserves empty lines which looks nicer
+  column -ts'|' <(make_report "$@") --table-empty-lines
+else
+  column -ts'|' <(make_report "$@")
+fi
+
