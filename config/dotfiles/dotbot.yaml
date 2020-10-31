@@ -137,6 +137,10 @@
           }
           '
 
+    - description: Installing software licenses
+      command: |-
+        sops exec-env ./data/keys/alfred.enc.yaml 'sh "$DOTFILES_DIR/bin/sops-install-key.sh"'
+
 - pipx:
     file: config/dotfiles/pipx.txt
     stdout: false
