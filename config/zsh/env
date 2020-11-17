@@ -34,7 +34,6 @@ export GPG_TTY=$(tty)
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
 
-export BAT_THEME="material"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Required to get rid of deprecation warning until pyenv updates
