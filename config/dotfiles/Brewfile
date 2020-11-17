@@ -63,6 +63,7 @@ brew "nmap" # Port scanning utility for large networks
 brew "openssh" # OpenBSD freely-licensed SSH connectivity tools
 brew "pipx" # Execute binaries from Python packages in isolated environments
 brew "prettier" # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+brew "prettyping"
 brew "pv" # Monitor data's progress through a pipe
 brew "pyenv" # Python version management
 brew "pyenv-virtualenv" # Pyenv plugin to manage virtualenv
