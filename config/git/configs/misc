@@ -1,3 +1,5 @@
+[advice]
+  detachedHead = false
 [receive]
   denyCurrentBranch = ignore
 [log]
@@ -6,5 +8,7 @@
   default = upstream
 [pull]
   rebase = true
+[fetch]
+  prune = true
 [mailmap]
   file = ../mailmap

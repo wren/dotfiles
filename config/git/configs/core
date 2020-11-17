@@ -2,6 +2,7 @@
   denyCurrentBranch = ignore
 [core]
   autocrlf = input
-  excludesfile = /Users/jonathan/.config/git/ignore
+  excludesfile = ~/.config/git/ignore
+  whitespace = -blank-at-eof
 [log]
   date = local
