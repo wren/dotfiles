@@ -22,8 +22,6 @@ call defx#custom#column('icons', {
 
 augroup user_plugin_defx
   autocmd!
-  " autocmd DirChanged * call s:defx_refresh_cwd(v:event)
-
   " Delete defx if it's the only buffer left in the window
   autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bd | endif
 
@@ -61,26 +59,6 @@ function! s:defx_toggle_tree() abort
   return defx#do_action('multi', ['drop', 'quit'])
 endfunction
 
-function! s:defx_refresh_cwd(event)
-  " Automatically refresh opened Defx windows when changing working-directory
-  let l:cwd = get(a:event, 'cwd', '')
-  let l:scope = get(a:event, 'scope', '')   " global, tab, window
-  let l:is_opened = bufwinnr('defx') > -1
-  if ! l:is_opened || empty(l:cwd) || empty(l:scope)
-    return
-  endif
-
-  " Abort if Defx is already on the cwd triggered (new files trigger this)
-  let l:paths = get(getbufvar('defx', 'defx', {}), 'paths', [])
-  if index(l:paths, l:cwd) >= 0
-    return
-  endif
-
-  let l:tab = tabpagenr()
-  call execute(printf('Defx -buffer-name=tab%s %s', l:tab, l:cwd))
-  wincmd p
-endfunction
-
 function! s:jump_dirty(dir) abort
   " Jump to the next position with defx-git dirty symbols
   let l:icons = get(g:, 'defx_git_indicators', {})
@@ -103,10 +81,9 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> <left>     defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> u     defx#async_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> u     defx#async_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-  nnoremap <silent><buffer><expr> sg    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
-  nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
+  nnoremap <silent><buffer><expr> ot    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
+  nnoremap <silent><buffer><expr> o\    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+  nnoremap <silent><buffer><expr> o-    defx#do_action('multi', [['drop', 'split'], 'quit'])
   nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
   nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
@@ -130,8 +107,8 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
   nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
 
-  nnoremap <silent><buffer><expr><nowait> <Space>
-    \ defx#do_action('toggle_select') . 'j'
+  " nnoremap <silent><buffer><expr><nowait> <Space>
+  "  \ defx#do_action('toggle_select') . 'j'
 
   nnoremap <silent><buffer><expr> '      defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> *      defx#do_action('toggle_select_all')

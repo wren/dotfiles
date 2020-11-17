@@ -1,3 +1,10 @@
+
+let g:which_key_use_floating_win = 0
+
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
 let g:which_key_map =  {}
 let g:which_key_map = {
   \ 'name' : '+Root ' ,
@@ -12,10 +19,6 @@ let g:which_key_map = {
   \ '9' : 'which_key_ignore'      ,
   \ '0' : 'which_key_ignore'     ,
   \ '0-9': 'select window 1-10'  ,
-  \ 'a' : {
-    \ 'name' : '+coc-code-action',
-    \ 'c' : 'code action',
-    \ },
   \ 'b' : {
     \ 'name' : 'buffer +',
     \ 'c' : 'keep current buffer',
@@ -27,16 +30,15 @@ let g:which_key_map = {
   \    'o' : 'open' ,
   \ },
   \ '-' : 'choose window by {prompt char}' ,
-  \ 'd' : 'search cursor word on Dash.app' ,
-  \ 'G' : 'distraction free writing' ,
   \ 'f' : {
     \ 'name' : '+search {files cursorword word outline}',
     \ 'b' : 'find buffers',
-    \ 'f' : 'find {word} under cursor',
+    \ 'f' : 'find in project',
     \ 'c' : 'find commands',
     \ 'p' : 'find files in project',
     \ 'm' : 'find mappings',
-    \ 'w' : 'search cursorword',
+    \ 'w' : 'find {word} in project',
+    \ 'v' : 'find in vista outline',
     \ 'h' : {
     \   'name' : '+history',
     \   'f': 'file history',
@@ -47,18 +49,6 @@ let g:which_key_map = {
   \ 'l' : 'clear search highlights' ,
   \ 'm' : 'open mundotree' ,
   \ 'w' : 'write file',
-  \ 's' : {
-    \ 'name' : '+SimpleNote ',
-    \ 'n'    : 'New',
-    \ 'l'    : 'List',
-    \ 'd'    : 'Delete',
-    \ 't'    : 'Tag',
-    \ 'u'    : 'Update',
-    \ 'p'    : 'Pin',
-    \ 'P'    : 'Unpin',
-    \ 'V'    : 'VersionInfo',
-    \ 'v'    : 'Version',
-    \ },
   \ 'p' : 'edit pluginsconfig {filename}',
   \ 'g'  :{
     \'name'  : ' git +',
@@ -71,32 +61,14 @@ let g:which_key_map = {
     \ 'l'    : 'GitLogAll',
     \ 'h'    : 'GitBranch',
     \},
-  \ 'c'    : {
-    \ 'name' : '+coc list' ,
-    \ 'a'    : 'coc CodeActionSelected',
-    \ 'd'    : 'coc Diagnostics',
-    \ 'c'    : 'coc Commands',
-    \ 'e'    : 'coc Extensions',
-    \ 'j'    : 'coc Next',
-    \ 'k'    : 'coc Prev',
-    \ 'o'    : 'coc OutLine',
-    \ 'r'    : 'coc Resume',
-    \ 'n'    : 'coc Rename',
-    \ 's'    : 'coc Isymbols',
-    \ 'g'    : 'coc Gitstatus',
-    \ 'f'    : 'coc Format',
-    \ 'm'    : 'coc search word to multiple cursors',
-    \ },
-  \ 'q' : {
-    \ 'name' : '+coc-quickfix',
-    \ 'f' : 'coc fixcurrent',
-    \ },
   \ 't' : {
     \ 'name' : '+tab-operate',
     \ 'n' : 'new tab',
     \ 'e' : 'edit tab',
     \ 'm' : 'move tab',
     \ },
+  \ 'q' : 'quit window',
+  \ '/' : 'comment/uncomment line',
   \ }
 
 let g:which_key_map[' '] = {
@@ -107,19 +79,11 @@ let g:which_key_map[' '] = {
   \ }
 
 let g:which_key_localmap ={
-  \ 'name' : '+LocalLeaderKey'  ,
-  \ 't'    : 'toggle markdown checkbox',
-  \ 'v'    : 'open vista show outline',
-  \ 'r'    : 'quick run',
-  \ 'm'    : 'toolkit Menu',
-  \ 'g' : {
-    \ 'name' : '+golang-toolkit',
-    \ 'i'    : 'go impl',
-    \ 'd'    : 'go describe',
-    \ 'c'    : 'go callees',
-    \ 'C'    : 'go callers',
-    \ 's'    : 'go callstack',
-    \ },
+  \ 'name'    : '+LocalLeaderKey'  ,
+  \ 't'       : 'toggle markdown checkbox',
+  \ 'v'       : 'open vista show outline',
+  \ 's'       : 'show theme classes on cursor word',
+  \ '<space>' : 'clear whitespace at end of lines',
   \ }
 
 let g:which_key_rsbgmap = {
@@ -127,7 +91,6 @@ let g:which_key_rsbgmap = {
   \ 'a'    : 'ale nextwarp',
   \ 'c'    : 'next change',
   \ 'b'    : 'next buffer',
-  \ 'g'    : 'coc gitnextchunk',
   \ 't'    : 'next tab',
   \ ']'    : 'jump prefunction-golang',
   \ }
@@ -138,8 +101,6 @@ let g:which_key_lsbgmap = {
   \ 'a'    : 'ale prewarp',
   \ 'c'    : 'previous change',
   \ 'b'    : 'pre buffer',
-  \ 'g'    : 'coc gitprevchunk',
   \ 't'    : 'previous tab',
   \ '['    : 'jump nextfunction-golang',
   \ }
-

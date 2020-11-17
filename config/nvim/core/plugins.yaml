@@ -13,7 +13,10 @@
 # # Save/restore a bunch of settings in each file
 - repo: vim-scripts/restore_view.vim
 
-# Lots of cool stuff, but not very integrated with vim (all separate menus, etc), also slow
+- repo: tpope/vim-obsession
+
+# Lots of cool stuff, but not very integrated with vim (all separate menus,
+# etc), but so very slow
 # - repo: neoclide/coc.nvim
 #   merge: 0
 #   branch: release
@@ -23,7 +26,7 @@
 
 # Visual {{{
 # Color scheme
-- repo: kaicataldo/material.vim
+- repo: rakr/vim-one
 
 # Highlights CSS colors inline
 - repo: ap/vim-css-color
@@ -32,8 +35,8 @@
 - repo: machakann/vim-highlightedyank
 
 # Close buffers without changing window layout
-- repo: moll/vim-bbye
-  rev: release
+# - repo: moll/vim-bbye
+#   rev: release
 
 # Nice visual icons for filetypes and more
 - repo: ryanoasis/vim-devicons
@@ -45,13 +48,16 @@
 - repo: t9md/vim-choosewin
   hook_source: source $VIM_PATH/core/plugins/vim-choosewin.vim
 
-# Start screen with some options
-- repo: mhinz/vim-startify
-  depends: vim-devicons
-  hook_post_source: source $VIM_PATH/core/plugins/startify.vim
-
 # Fade text in inactive windows (while preserving syntax)
 - repo: tadaa/vimade
+
+# Tab management
+- repo: zefei/vim-wintabs
+
+  # Also tab management. As of 2020-11-01: still early, but looks promising.
+# - repo: kyazdani42/nvim-web-devicons
+# - repo: romgrk/barbar.nvim
+
 # }}}
 
 # File Explorer {{{
@@ -64,6 +70,8 @@
 
 # Misc {{{
 - repo: junegunn/vim-easy-align
+
+- repo: godlygeek/tabular
 
 - repo: yuttie/comfortable-motion.vim
   hook_post_source: |
@@ -99,6 +107,19 @@
         let g:EasyMotion_keys = 'asdfwevbnjklio'
         let g:EasyMotion_smartcase = 1
         let g:EasyMotion_use_smartsign_us = 1
+
+# More control over what motions apply to (like word separators)
+- repo: wellle/targets.vim
+# - repo: chaoren/vim-wordmotion
+#   hook_source: |
+#     let g:wordmotion_spaces = ['-', '/', '.', ':', "'", '"', '=', '#', ',', '.', '<', '>', '(', ')']
+#     let g:wordmotion_uppercase_spaces = [' ']
+
+# Navigate windows in vim and tmux with the same keys
+- repo: christoomey/vim-tmux-navigator
+  hook_source: |
+    let g:tmux_navigator_no_mappings = 1
+
 # }}}
 
 # FZF {{{
@@ -169,11 +190,13 @@
 - repo: fatih/vim-go
   hook_source: source $VIM_PATH/core/plugins/vim-go.vim
 
+- repo: tmux-plugins/vim-tmux
+
 # }}}
 
 # Coding {{{
 # Commenting
-- repo: tpope/vim-commentary
+- repo: tyru/caw.vim
 
 # Auto formatting files by syntax
 - repo: sbdchd/neoformat
@@ -204,6 +227,9 @@
 
 # Search documentation (also works offline)
 - repo: sunaku/vim-dasht
+  hook_source: |
+    let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp "
+    let g:dasht_filetype_docsets['html'] = ['css', 'js', 'bootstrap']
 
 # Completion engine
 - repo: Valloric/YouCompleteMe
@@ -214,10 +240,7 @@
 #   hook_source: source ~/.config/nvim/core/plugins/vim-ale.vim
 
 # Turn statements into one-line or multi-line expressions
-# - repo: AndrewRadev/splitjoin.vim
-
-# Expanding selection of regions with same key
-- repo: terryma/vim-expand-region
+- repo: AndrewRadev/splitjoin.vim
 
 # Operations on matching charcs (e.g. parens, brackets, etc)
 - repo: machakann/vim-sandwich
@@ -236,6 +259,7 @@
     let g:insert_checkbox_suffix = ' '
 
 # }}}
+
 # Writing {{{
 - repo: iamcco/markdown-preview.nvim
   do: ':call mkdp#util#install()'

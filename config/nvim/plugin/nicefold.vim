@@ -10,23 +10,6 @@ if exists('g:loaded_nicefold')
 endif
 let g:loaded_nicefold = 1
 
-" Fast fold
-" Credits: https://github.com/Shougo/shougo-s-github
-augroup plugin_fastfold
-	autocmd!
-	autocmd TextChangedI,TextChanged *
-		\  if &l:foldenable && &l:foldmethod !=# 'manual'
-		\|   let b:foldmethod_save = &l:foldmethod
-		\|   let &l:foldmethod = 'manual'
-		\| endif
-
-	autocmd BufWritePost *
-		\  if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save')
-		\|   let &l:foldmethod = b:foldmethod_save
-		\|   execute 'normal! zx'
-		\| endif
-augroup END
-
 if has('folding')
 	set foldtext=FoldText()
 endif

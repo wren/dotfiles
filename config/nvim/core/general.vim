@@ -86,8 +86,10 @@ set matchpairs+=<:>    " Add HTML brackets to pair matching
 set matchtime=1        " Tenths of a second to show the matching paren
 set cpoptions-=m       " showmatch will wait 0.5s or until a char is typed
 set viewoptions=cursor,folds,slash,unix "what
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,globals
+
 set grepprg=rg\ --vimgrep\ $*
-set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
+set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*,*/node_modules/*
 set wildmenu
 
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -106,7 +108,8 @@ set viewdir=$DATA_PATH/view/
 let $CUSTOM_DICT = expand($DATA_PATH.'/spell/custom.en.utf-8.add')
 let $WORDS_DICT = expand($DATA_PATH.'/spell/words.en.utf-8.add')
 set nospell spellfile=$CUSTOM_DICT
-set spelllang=en,es
+" set spelllang=en,es
+set spelllang=en
 set dictionary+=$WORDS_DICT
 set dictionary+=$CUSTOM_DICT
 
@@ -174,7 +177,7 @@ augroup END
 function! s:cd_if_open_directory()
   let l:full_path = expand(expand('%:p'))
   if isdirectory(l:full_path)
-    execute 'cd' fnameescape(l:full_path)
+    execute 'tcd' fnameescape(l:full_path)
   endif
 endfunction
 

@@ -1,75 +1,23 @@
 
-" " --- coc.nvim --- "
-" " Using CocList
-" " Show all diagnostics
-" nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
-" " Use `[c` and `]c` for navigate diagnostics
-" nmap <silent> ]c <Plug>(coc-diagnostic-prev)
-" nmap <silent> [c <Plug>(coc-diagnostic-next)
-" " Remap for rename current word
-" nmap <leader>cn <Plug>(coc-rename)
-" " Remap for format selected region
-" vmap <leader>cf  <Plug>(coc-format-selected)
-" nmap <leader>cf  <Plug>(coc-format-selected)
-" " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-" xmap <leader>ca  <Plug>(coc-codeaction-selected)
-" nmap <leader>ca  <Plug>(coc-codeaction-selected)
-" " Remap for do codeAction of current line
-" nmap <leader>ac  <Plug>(coc-codeaction)
-" " Fix autofix problem of current line
-" nmap <leader>qf  <Plug>(coc-fix-current)
-" " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-" " use <c-space> for trigger completion.
-" inoremap <silent><expr> <C-space> coc#refresh()
-" inoremap <silent><expr> <C-Space> pumvisible() ? "\<End>" : coc#refresh()
-" nmap [g <Plug>(coc-git-prevchunk)
-" nmap ]g <Plug>(coc-git-nextchunk)
-" " show chunk diff at current position
-" nmap gs <Plug>(coc-git-chunkinfo)
-" " show commit contains current position
-" nmap gm <Plug>(coc-git-commit)
-" nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
-" " float window scroll
-" nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-" nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
-" " multiple cursors session
-" nmap <silent> <C-S-M> <Plug>(coc-cursors-position)
-" nmap <silent> <C-m> <Plug>(coc-cursors-word)
-" xmap <silent> <C-m> <Plug>(coc-cursors-range)
-" nnoremap <silent> <leader>cm ::CocSearch -w<Space>
-" " use normal command like `<leader>xi(`
-" nmap <leader>x  <Plug>(coc-cursors-operator)
-
-
-" Use K for show documentation in preview window
-nnoremap <silent><space>K :call <sid>show_documentation()<cr>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+" --- caw.vim --- "
+function! InitCaw() abort
+  if !&l:modifiable
+    silent! nunmap <buffer> gc
+    silent! xunmap <buffer> gc
+    silent! nunmap <buffer> gcc
+    silent! xunmap <buffer> gcc
   else
-    " call CocAction('doHover')
+    nmap <buffer> gc <Plug>(caw:prefix)
+    xmap <buffer> gc <Plug>(caw:prefix)
+    nmap <buffer> gcc <Plug>(caw:hatpos:toggle)
+    xmap <buffer> gcc <Plug>(caw:hatpos:toggle)
   endif
 endfunction
+autocmd FileType * call InitCaw()
+call InitCaw()
 
+
+" -- Markdown -- "
 nnoremap <silent><localleader>t :call checkbox#ToggleCB()<CR>
 
 
@@ -116,21 +64,13 @@ nnoremap <silent> <Leader>gS :Gstatus<CR>
 " nnoremap <silent> <localleader>gp :Gpush<CR>
 
 
-" --- magit.vim --- "
-nnoremap <silent> mg :Magit<CR>
-
-
-" --- gina.vim --- "
-nnoremap <silent><Leader>gp :Gina push<CR>
-
-
 " --- vim-mundo --- "
 nnoremap <silent> <leader>m :MundoToggle<CR>
 
 
 " --- vim-choosewin --- "
 nmap -         <Plug>(choosewin)
-nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
+nmap <Leader>_ :<C-u>ChooseWinSwap<CR>
 
 
 " --- accelerated-jk --- "
@@ -152,6 +92,14 @@ nmap <buffer> {{ [%
 nmap <buffer> }} ]%
 
 
+" --- vim-tmux-navigator --- "
+nnoremap <silent> <a-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <a-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <a-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <a-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <a-\> :TmuxNavigatePrevious<cr>
+
+
 " --- defx.nvim --- "
 nnoremap <silent><C-\> :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
 nnoremap <silent> <Leader>eo :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
@@ -163,24 +111,33 @@ nnoremap <silent> <leader>s :Startify<CR>
 
 
 " --- simplenote.vim --- "
-nnoremap <silent> <leader>sl :SimplenoteList<CR>
-nnoremap <silent> <leader>sn :SimplenoteNew<CR>
-nnoremap <silent> <leader>sd :SimplenoteDelete<CR>
-nnoremap <silent> <leader>st :SimplenoteTag<CR>
-nnoremap <silent> <leader>su :SimplenoteUpdate<CR>
-nnoremap <silent> <leader>sp :SimplenotePin<CR>
-nnoremap <silent> <leader>sP :SimplenoteUnpin<CR>
-nnoremap <silent> <leader>sV :SimplenoteVersionInfo<CR>
-nnoremap <leader>sv :SimplenoteVersion<SPACE>
+" nnoremap <silent> <leader>sl :SimplenoteList<CR>
+" nnoremap <silent> <leader>sn :SimplenoteNew<CR>
+" nnoremap <silent> <leader>sd :SimplenoteDelete<CR>
+" nnoremap <silent> <leader>st :SimplenoteTag<CR>
+" nnoremap <silent> <leader>su :SimplenoteUpdate<CR>
+" nnoremap <silent> <leader>sp :SimplenotePin<CR>
+" nnoremap <silent> <leader>sP :SimplenoteUnpin<CR>
+" nnoremap <silent> <leader>sV :SimplenoteVersionInfo<CR>
+" nnoremap <leader>sv :SimplenoteVersion<SPACE>
 
 
 " --- dash.vim --- "
-nnoremap <silent><leader>d :Dash<CR>
-
-
-" --- vim-expand-region --- "
-xmap v <Plug>(expand_region_expand)
-xmap V <Plug>(expand_region_shrink)
+" Search given docset for words
+nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
+vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
+" Search all the docsets (not sure if this is ever useful)
+" nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
+" vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
+" Use K for show documentation in preview window
+nnoremap <silent><space>K :call <sid>show_documentation()<cr>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call Dasht(dasht#cursor_search_terms())
+  endif
+endfunction
 
 
 " --- splitjoin.vim --- "
@@ -198,6 +155,11 @@ nnoremap <silent><leader>fv     :Vista finder coc<CR>
 " --- ale --- "
 nmap [a <Plug>(ale_next_wrap)
 nmap ]a <Plug>(ale_previous_wrap)
+
+
+" --- obsession.vim --- "
+nmap <leader>so :Obsession<cr>
+nmap <leader>sc :Obsession!<cr>
 
 
 " --- vim-easymotion --- "
@@ -265,3 +227,40 @@ omap <silent> ib <Plug>(textobj-multiblock-i)
 xmap <silent> ab <Plug>(textobj-multiblock-a)
 xmap <silent> ib <Plug>(textobj-multiblock-i)
 
+" --- vim-wintab --- "
+nmap <leader>bn <Plug>(wintabs_next)
+nmap <leader>bp <Plug>(wintabs_previous)
+nmap <leader>bc <Plug>(wintabs_close)
+nmap <leader>bu <Plug>(wintabs_undo)
+nmap <leader>bo <Plug>(wintabs_only)
+nmap <leader>bq <Plug>(wintabs_close_window)
+nmap <leader>bwo <Plug>(wintabs_only_window)
+nmap <leader>btc <Plug>(wintabs_close_vimtab)
+nmap <leader>bto <Plug>(wintabs_only_vimtab)
+nmap <leader>ba :WintabsAllBuffers<cr>
+nmap  [b <Plug>(wintabs_previous)
+nmap  ]b <Plug>(wintabs_next)
+
+" --- vim-wordmotion --- "
+" nmap w          <Plug>WordMotion_w
+" nmap b          <Plug>WordMotion_b
+" nmap gE         <Plug>WordMotion_gE
+" omap aW         <Plug>WordMotion_aW
+" cmap <C-R><C-W> <Plug>WordMotion_<C-R><C-W>
+
+" --- Tabular --- "
+inoremap <localleader><Bar> <Bar><Esc>:call <SID>align()<CR>a
+" Calls tabularize whenever a pipe char (|) is typed in normal mode
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+" from: https://gist.github.com/tpope/287147
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
