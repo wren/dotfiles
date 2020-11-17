@@ -6,7 +6,7 @@ alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
 # alias rm="rm -rv"
-alias rm='echo \'Don\'t use `rm`. Use `trash` (or `\\rm` if you must).\'; false'
+alias rm='echo ''Don''''t use `rm`. Use `trash` (or `\\rm` if you must).''; false'
 alias tr='trash -v'
 alias top='bpytop || htop || top'
 alias l='exa --time-style=long-iso --color=always -la'
