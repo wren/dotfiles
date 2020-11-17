@@ -1,0 +1,154 @@
+:root.simulate-svg-context-fill tab-item:not(.collapsed) tab-twisty::before {
+  mask-size: 80%;
+}
+
+tab-item {
+/*  margin-left: 0 !important; */
+}
+
+tab-item {
+  margin-left: 0 !important;
+  padding-right: 0 !important;
+}
+tab-item[data-level="0"] {
+  background: #31363B;
+}
+tab-item[data-level="1"] {
+  background: #23262A;
+  padding-left: 12px;
+}
+tab-item[data-level="2"] {
+  background: #1C1E21;
+  padding-left: 24px;
+}
+tab-item[data-level="3"] {
+  background: #131416;
+  padding-left: 36px;
+}
+
+tab-item[data-child-ids] {
+/*  border-bottom: 2px solid white; */
+}
+
+
+/* Push tab labels slightly to the right so they're completely hidden in collapsed state */
+.tab .label {
+  margin-left: 7px;
+}
+
+/* Close buttons on tabs. */
+.tab .closebox {
+  /* visibility: collapse; */
+  /* background-color: #637A87; */
+}
+.tab:hover .closebox {
+  /* visibility: collapse; */
+  /* background-color: #7E93A0; */
+}
+tab-item tab-closebox {
+  margin-bottom: var(--tab-closebox-negative-offset);
+  margin-top: var(--tab-closebox-negative-offset);
+  padding: var(--tab-closebox-offset) 0.25em;
+}
+
+.tab .closebox:hover {
+  background-color: #C9CCCF;
+}
+
+:root.simulate-svg-context-fill tab-closebox::after {
+  background-color: #93999F;
+}
+:root.simulate-svg-context-fill tab-closebox:hover::after {
+  background-color: #31363B;
+}
+
+
+/* Hide sound playing/muted button. */
+.sound-button::before {
+  display: none !important;
+}
+
+/* Hide 'new tab' button. */
+.newtab-button {
+  display: none;
+}
+
+/* ################################################ */
+/* ##### COLOR THEME ############################## */
+/* ################################################ */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+  100% {
+    width: 350px;
+    height: 350px;
+    opacity: 0;
+    top: calc(50% - 175px);
+    left: calc(50% - 175px);
+  }
+}
+:root {
+  background-color: #313B41;
+}
+#tabbar {
+  border-right: 1px solid #1d1d1d;
+  box-shadow: none !important;
+}
+.tab {
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid white !important;
+  color: rgba(207, 207, 207, 0.75);
+  box-shadow: none !important;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.5em;
+}
+.tab:hover {
+  background-color: #637A87 !important;
+  color: rgba(207, 207, 207, 1) !important;
+}
+.tab.discarded {
+  background-color: #1d1d1d;
+  color: #383838 !important;
+}
+.tab.discarded:hover {
+  background-color: #292929 !important;
+}
+.tab.active {
+  background-color: #475862;
+}
+.tab.active:hover {
+  background-color: #637A87 !important;
+}
+
+/* Adjust style for tab that has sound playing. */
+.tab.sound-playing .favicon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: pulse 2s ease-out 0s infinite;
+  z-index: -1;
+  opacity: 0;
+}
+
+/* Adjust style for tab that is muted. */
+.tab.muted {
+  opacity: 0.5;
+}
+
+
