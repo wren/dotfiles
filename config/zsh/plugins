@@ -10,5 +10,6 @@ zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-history-substring-search', defer:1
 zplug 'softmoth/zsh-vim-mode', defer:2
 zplug 'kutsan/zsh-system-clipboard', defer:3
+zplug 'aloxaf/fzf-tab', defer:3
 # zplug 'plugins/vi-mode', from:oh-my-zsh
 

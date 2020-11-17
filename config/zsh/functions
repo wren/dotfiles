@@ -210,6 +210,22 @@ function ap {
   esac
 }
 
+# Use FZF to attach/switch a tmux session
+function ta {
+  session="$(t ls -F '#{session_name} #{?session_attached,  ,}|  #{session_alerts}|#{t:session_activity}|' \
+    | perl -pe 's/\d#,?//g' \
+    | column -ts'|' \
+    | fzf --query="$1" --select-1 --exit-0 \
+    | perl -pe 's/^(.*?)\s{3,}.*$/$1/')"
+
+  [[ -z $session ]] && echo "No sessions" && return
+
+  if [[ -z $TMUX ]]; then
+    tmux attach -t "$session"
+  else
+    tmux switch -t "$session"
+  fi
+}
 
 # Uses fuzzy finder to show background jobs, and foregrounds selection
 function jfg {
