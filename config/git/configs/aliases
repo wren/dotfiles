@@ -9,11 +9,9 @@
   bir = bisect reset
   bis = bisect skip
   br = branch
-  bra = branch -av
-  brn = "!git config branch.$(git symbolic-ref HEAD|sed \"s/refs\\/heads\\///\").note \"$@\""
   brr = branch -rv
   brl = branch-list
-  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git branch -m active/$1; }; f"
+  bra = branch-list -a
   c = clone
   ca = commit -a
   cam = commit -a -m
@@ -47,8 +45,12 @@
   pls = "!f(){ p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p 'Pull' && git pull && p 'Push' && git push; }; f"
   ps = push
   pst = push --tags
-  pro = pull-request -o
-  prg = "!f(){ git checkout $1 && git br -m pr/$1; }; f"
+  brn = "!git config branch.$(git symbolic-ref HEAD|sed 's!refs/heads/!!').note \"$@\""
+  brs = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
+  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
+  current-branch = "!git symbolic-ref HEAD | sed 's!refs/heads/!!'"
+  pro = "!f(){ hub pull-request -o "$@" && git brs 'PR Opened'; }; f"
+  prg = "!f(){ gh pr checkout ${1:-0} && git br -m ${2:-pr-$1-$(git current-branch)} && git brs 'PRs for Review'; }; f"
   r = reset
   rb = rebase
   rbi = rebase --interactive

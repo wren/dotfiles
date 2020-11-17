@@ -1,10 +1,8 @@
 #!/usr/bin/env zsh
 
-
 # colors
 color_local_branch=3
 color_remote_branch=14
-
 
 zparseopts -D a=all
 
@@ -13,8 +11,8 @@ format=(
   'is_head=%(HEAD)'
   'branch_type=%(refname:rstrip=-2)'
   'date_committed=%(committerdate:relative)'
-  'subject=%(subject)'
-  'author=%(authorname)'
+  'subject="%(subject)"'
+  'author="%(authorname)"'
   'push=%(push)'
   'tracking=%(upstream:track,nobracket)'
 )
@@ -32,28 +30,28 @@ make_report() {
     eval $git_info
 
     branch_type=${branch_type#refs/}
-    prefix=${(M)branch_name##*/}
+    branch_name=${branch_name#(heads|remotes)/}
     bullet='·'
-
-    # new section
-    if [[ $prefix != $old_prefix ]]; then
-      print "\n $prefix"
-    fi
 
     # is this a remote?
     output_color=$color_local_branch
     if [[ $branch_type = 'remotes' ]]; then
       output_color=$color_remote_branch
+      branch_status=${(M)branch_name##*/}
+    else
+      branch_status="$(git config branch.${branch_name}.status)"
+      [[ -z $branch_status ]] && branch_status=' '
     fi
 
+    branch_name=${branch_name#$branch_status}
     branch_color_str="%F{$output_color}"
-    branch_name=${branch_name##*/}
     if [[ -z $push && $branch_type = 'heads' ]]; then
       branch_name+=' %F{#DB615E}%f'
     else
       tracking=${tracking//behind /"%F{red}"}
       tracking=${tracking//ahead /"%F{112}"}
       tracking=${tracking//, }
+      tracking=${tracking//gone/%F{#4CA0BC}%f}
     fi
 
     # special handling for current branch
@@ -64,14 +62,29 @@ make_report() {
     fi
 
     start_str=" ${indent}${bullet} "
-    if [[ -z $prefix ]]; then
+    if [[ $branch_status = ' ' ]]; then
       start_str=''
     fi
 
-    # "\$(git config branch.%(refname:short).note)";
-
     # output the thing
-    print -P "${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}$subject%f|%F{247}by ${author}%f"
+    print -P "${branch_type}|${branch_status}|${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}${(Q)subject}%f|%F{247}by ${(Q)author}%f"
+  done
+}
+
+sort_report() {
+  make_report "$@" | sort | \
+  while read line; do
+
+    line=${line#*|}
+    prefix=${(M)line#*|}
+    prefix=${prefix%%|}
+
+    # new section
+    if [[ $prefix != ' ' && $prefix != $old_prefix ]]; then
+      print "\n $prefix"
+    fi
+
+    print -P "${line#*|}"
 
     old_prefix=$prefix
   done
@@ -79,8 +92,8 @@ make_report() {
 
 if command -v /usr/local/opt/util-linux/bin/column >/dev/null; then
   # preserves empty lines which looks nicer
-  column -ts'|' <(make_report "$@") --table-empty-lines
+  column -ts'|' <(sort_report "$@") --table-empty-lines
 else
-  column -ts'|' <(make_report "$@")
+  column -ts'|' <(sort_report "$@")
 fi
 
