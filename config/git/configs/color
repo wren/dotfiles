@@ -7,10 +7,10 @@
   remote = cyan
 [color "diff"]
   meta = 227
-  frag = magenta bold
-  old = red bold
-  new = green bold
-  plain = normal
+  frag = cyan bold
+  old = red
+  new = green
+  plain = dim normal
   commit = 227 bold
   whitespace = reverse red
 [color "decorate"]
@@ -20,20 +20,19 @@
   stash = reverse magenta
   HEAD = yellow
 [color "status"]
-  header =
+  header = magenta
   added = yellow reverse
-  changed = green
+  changed = yellow
   untracked = cyan
-  header = white dim
-  updated = yellow
-  nobranch = red bold
-  branch = cyan
-  nobranch = red bold
+  header = white
+  updated = green
+  nobranch = bold blink red
+  branch = yellow
   localBranch = yellow
   remoteBranch = cyan
   unmerged = red
 [color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
+  oldNormal = red
+  oldHighlight = red 52
+  newNormal = green
+  newHighlight = green 22
