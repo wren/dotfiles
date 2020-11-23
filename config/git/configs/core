@@ -1,3 +1,5 @@
+[init]
+  defaultBranch = main
 [receive]
   denyCurrentBranch = ignore
 [core]
