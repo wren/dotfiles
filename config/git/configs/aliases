@@ -20,7 +20,7 @@
   cia = commit --amend
   co = checkout
   conflicts = diff --name-only --diff-filter=U
-  cp = cherry-pick
+  chp = cherry-pick
   dci = dcommit
   df = diff --color
   dfc = diff --cached --color
