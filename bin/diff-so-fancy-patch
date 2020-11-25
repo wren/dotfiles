@@ -1,0 +1,100 @@
+#!/usr/bin/env zsh
+
+# Author: Jonathan Wren <jonathan@nowandwren.com>
+# License: MIT
+# See: https://github.com/wren/dotfiles/blob/main/bin/diff-so-fancy-patch
+
+# Diff-so-fancy is awesome. It unfortunately doesn't work for `git add
+# --patch`, though, which is quite the bummer. What I'm saying is that my eyes
+# have grown accustomed to a certain lifestyle, and I can't look at raw diffs
+# anymore. It offends my delicate sensibilities, and I just can't, and I won't.
+#
+# The script below is intended to add a working patch mode to d-s-f. It does so
+# by standing in between git and d-s-f, then normalizing and comparing their
+# outputs, then padding d-s-f's output with blank lines to match the number of
+# lines that git expects. This avoids the common error seen when attempting this:
+#
+# fatal: mismatched output from interactive.diffFilter
+# hint: Your filter must maintain a one-to-one correspondence
+# hint: between its input and output lines.
+#
+# This script is tested with the following use cases:
+#
+# 1. Diffs with added or removed lines at start or middle of a file
+#      These are just normal diffs and there's nothing really exciting about
+#      this. But it works, so that's cool, I guess.
+#
+# 2. Diffs for the last line of a file both with and without a newline following
+#      One of the common pitfalls with attempted solutions to this problem are
+#      diffs at the end of a file. Depending on whether a newline trails the
+#      last line or not, the output must be padded differently. This sidesteps
+#      the problem by trimming all trailing empty lines. This doesn't mess with
+#      diffs, though, because git prepends a space to each "empty" line that is
+#      part of the diff, so those lines remain.
+#
+# 3. Diffs for deleted files
+#      Git moves around some of the lines in patch mode after d-s-f has output.
+#      Specifically, it moves the seconds line to become the fifth line.
+#      Normally, this results in the d-s-f header getting mangled, and the
+#      filename getting moved down in the diff. Since this script normalizes
+#      the trailing newlines (mentioned above), the filename is no longer the
+#      one getting moved. Now a blank line is moved instead, and the header
+#      remains intact (there's an extra blank line in deleted file diffs, but
+#      it seems like a pretty minor gotcha to me.
+#
+# You can use this script by adding it to your bin folder of choice, `chmod +x`
+# it, and then running the following:
+#
+# $ git config --global interactive.diffFilter diff-so-fancy-patch
+#
+# Or if you prefer to work with your git config file directly, add this:
+#
+# [interactive]
+#   diffFilter = diff-so-fancy-patch
+#
+# Anyway, I plan to try to merge this upstream, but my perl is a bit uh rusty,
+# so consider this a quick hack to get patch mode working while everything else
+# gets sorted with some proper test cases and whatnot.
+
+zparseopts -D -debug=debug
+
+input=$(cat)
+output=$(printf %s $input | diff-so-fancy)
+
+in_lines=$(printf %s $input | grep -c '^')
+out_lines=$(printf %s $output | grep -c '^')
+
+diff=$(( $in_lines - $out_lines ))
+
+[[ $diff > 0 ]] && printf '\n%.0s' {1..$diff}
+printf '%s\n' $output
+
+
+# Enable like this:
+# [interactive]
+#   diffFilter = diff-so-fancy-patch --debug
+# Then watch in other window with `tail -f` as you do the thing
+if [[ -n $debug ]]; then
+
+format=$(cat <<'EOM'
+\n\n\n\n\n
+─────IN───── in_lines: %s
+%s
+─────DONE─────
+\n\n\n
+─────OUT───── out_lines: %s | diff: %s
+%s
+%s
+─────DONE─────
+EOM
+)
+
+printf "$format" \
+  "$in_lines" \
+  "$input" \
+  "$out_lines" \
+  "$diff" \
+  "$([[ $diff > 0 ]] && printf -- '---empty-line---\n%.0s' {1..$diff})" \
+  "$output" | sed 's/ /␠/g' >> /tmp/diff-so-fancy.debug
+
+fi
