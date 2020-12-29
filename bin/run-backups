@@ -1,0 +1,178 @@
+#!/usr/bin/env zsh
+# License: MIT
+# Copyright © 2020 Jonathan Wren <jonathan@nowandwren.com>
+# https://github.com/wren/dotfiles/blob/main/bin/run-backups
+#
+# See bottom of file for configurable variables.
+
+set -Eeo pipefail
+
+if [[ -n $DEBUG ]] && [[ $DEBUG == 'x' ]]; then
+  set -x
+fi
+
+ping_healthcheck() {
+  local cmd_output
+  local error
+  local exit_code
+  local healthcheck_id
+  local line
+  local msg
+  cmd_output=''
+  error=0
+  exit_code="${2:-0}"
+  healthcheck_id="$1"
+  line="${3:-0}"
+  msg=''
+
+  if [[ -r "$TEMP_DIR/$healthcheck_id" ]]; then
+    cmd_output="$(sed 's/\x1b\[[0-9;]*[mGKH]//g' "$TEMP_DIR/$healthcheck_id")"
+  fi
+
+  if [[ $exit_code != "start" ]] && [[ $exit_code != 0 ]]; then
+    error=1
+    msg="$(printf 'Error on line %s\n\n%s' "$line" "$cmd_output")"
+  else
+    msg="$cmd_output"
+  fi
+
+  # Ping the web service (in the background so script can continue and not wait
+  # for a network connection). Don't run this in debug (lots of noise).
+  curl \
+    --fail \
+    --silent \
+    --retry 3 \
+    --show-error \
+    --max-time 3 \
+    --data-raw "$msg" \
+    --output /dev/null \
+    "https://hc-ping.com/${healthcheck_id}/${exit_code}" &
+
+  if [[ $error == 1 ]]; then
+    exit "$exit_code"
+  fi
+}
+
+quiet_or_debug() {
+  local add_other_flag
+  add_other_flag="${1:-1}"
+
+  if [[ -z $DEBUG ]]; then
+    printf -- '--quiet'
+  elif [[ $add_other_flag == 1 ]]; then
+    printf -- '--dry-run'
+  fi
+}
+
+take_snapshot() {
+  local repo
+  local pw_cmd
+  local parent
+  repo="$1"
+  pw_cmd="$2"
+
+  restic backup $(quiet_or_debug 0) \
+    --repo "$repo" \
+    --password-command "$pw_cmd" \
+    --tag $TAGS \
+    $(get_parent_flag "$repo" "$pw_cmd") \
+    --files-from-raw <( fd -0Ht f --ignore-file "$CONFIG_HOME/ignore" . )
+
+  restic forget \
+    --quiet \
+    --repo "$repo" \
+    --password-command "$pw_cmd" \
+    --keep-within 48h \
+    --keep-hourly 24 \
+    --keep-daily 14 \
+    --keep-weekly 6 \
+    --keep-monthly 12 \
+    --keep-yearly 5 \
+    --group-by host,tags \
+    --prune
+
+  restic prune $(quiet_or_debug) \
+    --repo "$repo" \
+    --password-command "$pw_cmd"
+
+  restic check $(quiet_or_debug 0) \
+    --repo "$repo" \
+    --password-command "$pw_cmd"
+}
+
+get_parent_flag() {
+  local parent
+  local repo
+  local pw_cmd
+  repo="$1"
+  pw_cmd="$2"
+  parent="$(restic snapshots \
+    --repo "$repo" \
+    --password-command "$pw_cmd" \
+    --compact \
+    --group-by hosts,tags \
+    --host "$HOST" \
+    --last \
+    | tac \
+    | ggrep -iPm1 "${HOST}\s+${TAGS}\$" \
+    | gsed -r 's/^([0-9a-f]+).*?$/\1/' || echo)"
+
+  if [[ -n $parent ]]; then
+    printf -- '--parent %s' "$parent"
+  fi
+}
+
+sync_to_server() {
+  local rsync_server
+  local repo
+  repo="$1"
+  rsync_server="$2"
+
+  rsync $(quiet_or_debug) \
+    --delete \
+    --archive \
+    --compress \
+    --timeout 10 \
+    --human-readable \
+    "$repo/" "$rsync_server/"
+}
+
+analytics_wrapper() {
+  local healthcheck_id
+  local cmd
+  healthcheck_id="$1"
+  cmd=( "${@:2}" )
+
+  trap 'ping_healthcheck "$healthcheck_id" "$?" "$LINENO"' ERR INT
+  if [[ -z $DEBUG ]]; then
+    exec 2> "$TEMP_DIR/$healthcheck_id"
+  fi
+
+  ping_healthcheck "$healthcheck_id" start
+  "${cmd[@]}"
+  ping_healthcheck "$healthcheck_id" 0
+}
+
+get_config_val() {
+  local val
+  val="$(yq r "$CONFIG_HOME/config.yaml" "$1")" || exit 1
+  printf -- '%s' "$val"
+}
+
+# Edit below this point as needed
+# Note: Don't forget to `chmod 400` your sensitive files (e.g. config.yaml)
+CONFIG_HOME="$HOME/.config/backups"
+REPO=${RESTIC_REPOSITORY:-$(get_config_val restic.repo)}
+REPO=${REPO/#\~/$HOME} # expand tilde, if it exists
+PW_CMD="${RESTIC_PASSWORD_COMMAND:-yq r '$CONFIG_HOME/config.yaml' restic.passphrase}"
+TAGS="scheduled"
+HOST="$(hostname)"
+TEMP_DIR="$(mktemp -d)"
+
+cd "$HOME"
+
+analytics_wrapper "$(get_config_val analytics_ids.snapshot)" \
+  take_snapshot "$REPO" "$PW_CMD"
+
+analytics_wrapper "$(get_config_val analytics_ids.sync)" \
+  sync_to_server "$REPO" 'wren-persephone:~/Backups'

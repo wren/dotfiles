@@ -1,0 +1,31 @@
+analytics_ids:
+    snapshot: ENC[AES256_GCM,data:8aO/UotVCE9KP/rxfMn9hG+UJiOWOYXeAuEdGeJn3BG2OlCS,iv:XeWC8raQS99IIqe6Zcn6jc+xY9WpadfsNTLEg+CiQxY=,tag:uvCpNygzyytiHzgxCHfKcQ==,type:str]
+    sync: ENC[AES256_GCM,data:WpWMMiFsw6Gx6pMDscfeZ6FNPJ/hbImqrYvOk/yfb0eUqIr+,iv:PJbQ59Gr+Pe9B9Dm2de8HjSNylvX1qQKjqkXJqhuyrI=,tag:7dDvyqNLKMvJOLSguJFKZA==,type:str]
+restic:
+    passphrase: ENC[AES256_GCM,data:pnpI7PsOML16cnhkjD8Dk937+uMYjXsyABYEStFymstS8PLLNBauNg44b1V3D6vHe9f7irHtdyMLwiFzIBeDGGCkJszU1kJMjlghGqt1sqNcyQmE9aBiPMbcfUgXClXNQCF55Q==,iv:XTERXukYPH6kApYDmQoqZntWk8uUp+yLZYSTwJNTIjk=,tag:hquMJr7hsFUq8KVqDOE8Dg==,type:str]
+    repo: ENC[AES256_GCM,data:e96rzDFUP8ma,iv:XGJv3ecj2CGdvD88Htq8A5HVfa1VtPf55dgi0ENbffY=,tag:cVJIwyY44nFFLlqsARYamg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2020-12-25T04:39:05Z'
+    mac: ENC[AES256_GCM,data:4i9bRb+VtwcGoRRn47Zjw2Xcvf/jRFVWnkMOmATViGqY5xwo1RXspCmx2Il/uFhxE9NLDeeVoQtAw9HPkvAKBX4h4MEEN4qWLY1RNOrBqFYpX6RWmkljqxdyLPDn1z+QBCBPlNIFW9bZ0yEhjMPuFzDvnu7EEam0vsbBiObHpGs=,iv:nDktMNUxDCP9bTDtOr9ImW3Dh230QvmFfJk6vAL1r98=,tag:mRjiY2GLAk9+X9Aja9+BBg==,type:str]
+    pgp:
+    -   created_at: '2020-12-25T04:39:04Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQEMA0AGVys8PZ/qAQf+JmUWMLoLu/dLPQuLNkJkhsWVNmtPWZc4OyArX9+X5q7b
+            aIvAiDS/YsVV17vs5exkbKcsvI3C1yrfK/wEUX7dvH3wqce0zwalP3oFXDxqYbzX
+            3cjrY8oKVTa8ru/p/W5aYl7ff0U7DRCC+BvCzJ9qGGSwtX53LBJ8UiBstbgkPFWO
+            jdpJD80b6aI5ZPgrPDWMjUku+qyW/LywhLEEb0faJRGe3p6g6Qk12yuR1V9I8oki
+            V3zPnbmdCOLGaapz1dVTujvr8aQxxVk99sKpORuhr9xS1ZTfl5JGIgVO6NxJQvZc
+            vHov9YdPoAJHmced2a6uPIx7u6Xc3KqRQPG2jV4PC9JeAYiuppj7JQz7KfT50VqS
+            tUApytjPaSpLuVi386PA5z3JXljxEANPM40YKvRxo6RGag0hu8b2hl2LgBIaSyZr
+            Iq1u4BSaTI32odf0woYhDjsJODYRZ66roDtdA9/0WQ==
+            =H8We
+            -----END PGP MESSAGE-----
+        fp: B5C5503F193E8ADE58FB0B643CB59A7906ADEEF8
+    unencrypted_suffix: _unencrypted
+    version: 3.6.1

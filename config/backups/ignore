@@ -13,8 +13,7 @@
 !/Projects
 !/Screenshots
 
-
-# Always ignore OS generated files
+# Always ignore generated files
 .localized
 .DS_Store
 .DS_Store?
