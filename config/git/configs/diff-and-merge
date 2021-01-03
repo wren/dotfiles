@@ -1,3 +1,6 @@
+[core]
+  pager = diff-so-fancy | less --tabs=4 -RFX
+
 [mergetool "diffconflicts"]
   cmd = diffconflicts nvim \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
   trustExitCode = true
@@ -16,6 +19,8 @@
 [pager]
   dfi = false
   dfp = false
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
 
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -
@@ -24,3 +29,12 @@
   textconv=pandoc --to=markdown
   prompt = false
 
+[interactive]
+  diffFilter = diff-so-fancy --patch
+
+[diff-so-fancy]
+  markEmptyLines = true
+  changeHunkIndicators = true
+  stripLeadingSymbols = true
+  useUnicodeRuler = true
+  rulerWidth = 88
