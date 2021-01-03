@@ -171,7 +171,7 @@ endfunction
 " YAML related
 " ---
 
-let g:yaml2json_method = ''
+let g:yaml2json_method = 'python'
 
 function! s:load_yaml(filename)
 	if empty(g:yaml2json_method)
@@ -184,7 +184,7 @@ function! s:load_yaml(filename)
 	elseif g:yaml2json_method ==# 'python'
 		let l:cmd = "python -c 'import sys,yaml,json; y=yaml.safe_load(sys.stdin.read()); print(json.dumps(y))'"
 	elseif g:yaml2json_method ==# 'yq'
-		let l:cmd = 'yq r -j -'
+		let l:cmd = 'yq .'
 	else
 		let l:cmd = g:yaml2json_method
 	endif
@@ -207,8 +207,12 @@ function! s:find_yaml2json_method()
 		call s:error('Please upgrade to neovim +v0.1.4 or vim: +v7.4.1304')
 	endif
 
+	" Try python since we know it's in the neovim virtualenv
+	if executable('python') && s:test_python_yaml()
+		return 'python'
+
 	" Try yq since it's simple and fast
-	if executable('yq')
+	elseif executable('yq')
 		return 'yq'
 
 	" Or try a CLI tool named yaml2json (lots of versions available)
@@ -219,10 +223,6 @@ function! s:find_yaml2json_method()
 	" and has ruby built-in.
 	elseif executable('ruby') && s:test_ruby_yaml()
 		return 'ruby'
-
-	" Or, fallback to use python3 and PyYAML
-	elseif executable('python') && s:test_python_yaml()
-		return 'python'
 	endif
 
 	call s:error('Unable to find a proper YAML parsing utility')

@@ -14,7 +14,7 @@ endif
 " Set main configuration directory as parent directory
 let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 let $CACHE_PATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache'))
-let $DATA_PATH = expand($CACHE_PATH.'/nvim')
+let $DATA_PATH = expand($XDG_DATA_HOME.'/nvim')
 
 " When using VIMINIT trick for exotic MYVIMRC locations, add path now.
 if &runtimepath !~# $VIM_PATH
@@ -90,13 +90,14 @@ if has('vim_starting')
 	endfor
 
 	" Search and use virtual environments specifically made for Neovim.
-		if has('nvim') && isdirectory($CACHE_PATH . '/pyenv/versions/neovim3')
-			let g:python3_host_prog = $CACHE_PATH . '/pyenv/versions/neovim3/bin/python'
-		endif
-		if has('nvim') && isdirectory($CACHE_PATH . '/pyenv/versions/neovim2')
-			let g:python_host_prog = $CACHE_PATH . '/pyenv/versions/neovim2/bin/python'
-		endif
-
+	" Disable python 2
+	let g:loaded_python_provider = 0
+	" Add python 3 to path, and tell neovim to use it when possible
+	let s:python_venv = $CACHE_PATH . '/pyenv/versions/neovim3/bin'
+	if has('nvim') && isdirectory(s:python_venv)
+		let g:python3_host_prog = s:python_venv . '/python'
+		let $PATH = s:python_venv . ':' . $PATH
+	endif
 
 	if ! has('nvim') && has('pythonx')
 		if has('python3')
