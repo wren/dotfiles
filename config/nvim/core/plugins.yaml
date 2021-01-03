@@ -5,10 +5,9 @@
 
 # Core Plugins {{{
 
-# Status line w/ plugins
-- repo: vim-airline/vim-airline
-  hook_source: source $VIM_PATH/core/plugins/airline.vim
-- repo: vim-airline/vim-airline-themes
+# Status line
+- repo: glepnir/galaxyline.nvim
+  hook_post_source: luafile $VIM_PATH/core/plugins/galaxyline.lua
 
 # # Save/restore a bunch of settings in each file
 - repo: vim-scripts/restore_view.vim
@@ -39,7 +38,7 @@
 #   rev: release
 
 # Nice visual icons for filetypes and more
-- repo: ryanoasis/vim-devicons
+- repo: kyazdani42/nvim-web-devicons
 
 # Smooth/fast scrolling with j/k keys
 - repo: rhysd/accelerated-jk
