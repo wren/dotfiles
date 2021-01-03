@@ -6,6 +6,7 @@ set autowrite
 set confirm
 set splitbelow
 set splitright
+set nofixeol  " don't secretly add newlines to every file at eof
 set bsdir=buffer
 if has('vim_starting')
     set encoding=UTF-8
