@@ -155,24 +155,24 @@ analytics_wrapper() {
 
 get_config_val() {
   local val
-  val="$(yq r "$CONFIG_HOME/config.yaml" "$1")" || exit 1
+  val="$(yq e "$1" "$CONFIG_HOME/config.yaml")" || exit 1
   printf -- '%s' "$val"
 }
 
 # Edit below this point as needed
 # Note: Don't forget to `chmod 400` your sensitive files (e.g. config.yaml)
 CONFIG_HOME="$HOME/.config/backups"
-REPO=${RESTIC_REPOSITORY:-$(get_config_val restic.repo)}
+REPO=${RESTIC_REPOSITORY:-$(get_config_val .restic.repo)}
 REPO=${REPO/#\~/$HOME} # expand tilde, if it exists
-PW_CMD="${RESTIC_PASSWORD_COMMAND:-yq r '$CONFIG_HOME/config.yaml' restic.passphrase}"
+PW_CMD="${RESTIC_PASSWORD_COMMAND:-yq e .restic.passphrase '$CONFIG_HOME/config.yaml'}"
 TAGS="scheduled"
 HOST="$(hostname)"
 TEMP_DIR="$(mktemp -d)"
 
 cd "$HOME"
 
-analytics_wrapper "$(get_config_val analytics_ids.snapshot)" \
+analytics_wrapper "$(get_config_val .analytics_ids.snapshot)" \
   take_snapshot "$REPO" "$PW_CMD"
 
-analytics_wrapper "$(get_config_val analytics_ids.sync)" \
+analytics_wrapper "$(get_config_val .analytics_ids.sync)" \
   sync_to_server "$REPO" 'wren-persephone:~/Backups'

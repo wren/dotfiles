@@ -108,7 +108,7 @@
           sh ./config/dotfiles/macos.sh
         fi
 
-    - description: Decrypt directories & files with _encrypted suffix
+    - description: Decrypt encrypted directories & files
       command: |-
         if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
           printf "$UNDERLINE$(tput setaf 1)ERROR:$(tput sgr0) "
@@ -132,6 +132,14 @@
         fd -HI -t f _encrypted -x zsh -c '
           OLD_FILE="{}"
           NEW_FILE="${OLD_FILE//_encrypted}"
+          sops --decrypt $OLD_FILE > $NEW_FILE || {
+            printf " - Problem decrypting %s\n" "$OLD_FILE"
+          }
+          '
+        # Decrypt yaml files
+        fd -HI -t f .encrypted.yaml -x zsh -c '
+          OLD_FILE="{}"
+          NEW_FILE="${OLD_FILE//.encrypted}"
           sops --decrypt $OLD_FILE > $NEW_FILE || {
             printf " - Problem decrypting %s\n" "$OLD_FILE"
           }

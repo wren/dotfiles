@@ -3,5 +3,4 @@
 # You can `git add --force` if you really want.
 config/hub
 config/simplenote
-bin/*
 
