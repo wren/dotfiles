@@ -70,6 +70,7 @@ brew "pyenv-virtualenv" # Pyenv plugin to manage virtualenv
 brew "rename" # Perl-powered file rename script with many helpful built-ins
 brew "ripgrep" # Search tool like grep and The Silver Searcher
 brew "rsync" # Utility that provides fast incremental file transfer
+brew "restic" # Fast, efficient and secure backup program
 brew "shellcheck" # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt" # Autoformat shell script source code
 brew "sops" # Editor of encrypted files
@@ -97,10 +98,6 @@ cask "1password"
 cask "adobe-creative-cloud"
 cask "alfred"
 cask "android-file-transfer"
-cask "android-studio"
-cask "authy"
-cask "balenaetcher"
-cask "calibre"
 cask "chromium"
 cask "cyberduck"
 cask "discord"
@@ -115,10 +112,9 @@ cask "google-chrome"
 cask "google-trends"
 cask "imagealpha"
 cask "imageoptim"
-cask "iterm2"
 cask "itsycal"
 cask "karabiner-elements"
-cask "marshallofsound-google-play-music-player"
+cask "kitty"
 cask "mdimagesizemdimporter"
 cask "qlimagesize"
 cask "qlmarkdown"
