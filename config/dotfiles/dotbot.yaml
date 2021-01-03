@@ -121,35 +121,30 @@
           printf "GPG key not available.\n"
           exit 1
         fi
-        # Decrypt files in folders
-        for dir in $(fd -HI -t d _encrypted); do
-          fd -HI -t f . "$dir" -x zsh -c '
-            OLD_DIR="{//}"
-            OLD_FILE="{}"
-            NEW_DIR="${OLD_DIR//_encrypted}"
-            NEW_FILE="$NEW_DIR/{/}"
+
+        decrypt_script='
+          OLD_DIR="{//}"
+          OLD_FILE="{/}"
+          NEW_DIR="${OLD_DIR//[_.]encrypted}"
+          NEW_FILE="${OLD_FILE//[_.]encrypted}"
+          OLD_PATH="${OLD_DIR}/${OLD_FILE}"
+          NEW_PATH="${NEW_DIR}/${NEW_FILE}"
+
+          if [[ ! -r $NEW_PATH ]] || [[ ! -s $NEW_PATH ]]; then
+            printf " - decrypting %s\n" $OLD_PATH
             mkdir -p $NEW_DIR
-            sops --decrypt $OLD_FILE > $NEW_FILE || {
-              printf " - Problem decrypting %s\n" "$OLD_FILE"
+            sops --decrypt $OLD_PATH > $NEW_PATH || {
+              print -P "   %F{001} Problem decrypting %s\n" $OLD_PATH
             }
-            '
+          fi
+        '
+
+        # Decrypt files in folders
+        for dir in $(fd -HI -t d '[\._]encrypted'); do
+          fd -HI -t f . $dir -x zsh -c $decrypt_script
         done
         # Decrypt individual files
-        fd -HI -t f _encrypted -x zsh -c '
-          OLD_FILE="{}"
-          NEW_FILE="${OLD_FILE//_encrypted}"
-          sops --decrypt $OLD_FILE > $NEW_FILE || {
-            printf " - Problem decrypting %s\n" "$OLD_FILE"
-          }
-          '
-        # Decrypt yaml files
-        fd -HI -t f .encrypted.yaml -x zsh -c '
-          OLD_FILE="{}"
-          NEW_FILE="${OLD_FILE//.encrypted}"
-          sops --decrypt $OLD_FILE > $NEW_FILE || {
-            printf " - Problem decrypting %s\n" "$OLD_FILE"
-          }
-          '
+        fd -HI -t f '[\._]encrypted' -x zsh -c $decrypt_script
 
     - description: Installing software licenses
       command: |-
