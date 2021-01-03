@@ -8,7 +8,7 @@ alias mkdir="mkdir -pv"
 # alias rm="rm -rv"
 alias rm='echo ''Don''''t use `rm`. Use `trash` (or `\\rm` if you must).''; false'
 alias tr='trash -v'
-alias top='bpytop || htop || top'
+alias top='bpytop'
 alias l='exa --time-style=long-iso --color=always -la'
 alias ll='exa --time-style=long-iso --color=always -lhaa'
 alias ls='l || ls'
@@ -18,8 +18,8 @@ alias ssh.copy='ssh-copy-id'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
-alias ping='func(){ prettyping --nolegend "$@" || ping "$@"; }; func'
-alias lg='exa --color=always -la | grep --color=always -i'
+alias ping='prettyping --nolegend'
+alias lg='func(){ exa --color=always -la $2 | grep --color=always -i $1; }; func'
 alias rmds='fd -HI .DS_Store --type file --exec sh -c ''echo "{}" && rm "{}"'' '
 alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
 alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
@@ -37,7 +37,7 @@ alias g='git'
 alias gar="git ls-files -z -d | xargs -0 git rm"
 alias gblame="git ls-files|grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' |xargs -n1 git blame --line|grep -E '^author '|sort|uniq -c|sort -nr"
 alias dsf='diff-so-fancy'
-alias df='func(){ diff -u "$@" | diff-so-fancy; }; func'
+alias df='func(){ diff -r -u "$@" | diff-so-fancy | less --tabs=4 -RFX; }; func'
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 
 ##############
