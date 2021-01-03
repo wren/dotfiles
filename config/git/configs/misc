@@ -1,5 +1,10 @@
 [advice]
-  detachedHead = false
+  commitBeforeMerge  = false
+  detachedHead       = false
+  implicitIdentity   = false
+  pushNonFastForward = false
+  resolveConflict    = false
+  statusHints        = false
 [receive]
   denyCurrentBranch = ignore
 [log]
