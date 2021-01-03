@@ -31,6 +31,8 @@
 .todo.cfg
 .tern-port
 .vim/*
+node_modules/**
+Session.vim
 
 ###########################
 # Other Source Management #
