@@ -74,7 +74,7 @@
         HOMEBREW_NO_AUTO_UPDATE=1
         if ! brew bundle check --no-upgrade --file="$BREWFILE" >/dev/null; then
             printf "Some brew dependencies are missing. Installing...\n"
-            brew bundle --file="$BREWFILE" --no-lock install
+            brew bundle --file="$BREWFILE" --no-lock
         fi
         brew bundle dump \
           --all \
