@@ -79,6 +79,7 @@
     - description: Installing latest Python via Pyenv
       command: |-
         if ! pyenv global >/dev/null; then
+            export PYTHON_CONFIGURE_OPTS="--enable-framework"
             pyenv install -s $(pyenv install --list | grep -v '\-\|a\|b' | tail -1)
         fi
 
@@ -91,9 +92,9 @@
             pyenv activate neovim3
             pip install --upgrade pip
             pip install pynvim
-            nvim -c ':UpdateRemotePlugins' -c 'qa!'
+            pip install yq
         fi
-
+ 
     # - description: Downloading Spanish dictionary for Neovim
     #   command: >-
     #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
