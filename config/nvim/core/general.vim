@@ -47,7 +47,7 @@ set timeout ttimeout
 set colorcolumn=+1  " Set guide relative to textwidth
 set timeoutlen=500
 set ttimeoutlen=10
-set updatetime=750
+set updatetime=250
 set undofile
 set undodir=~/.cache/vim/undo
 set relativenumber
