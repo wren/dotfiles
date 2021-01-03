@@ -73,7 +73,7 @@
         BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
         HOMEBREW_NO_AUTO_UPDATE=1
         if ! brew bundle check --file="$BREWFILE" >/dev/null; then
-            brew bundle --file="$BREWFILE"
+            brew bundle --file="$BREWFILE" --no-lock
         fi
 
     - description: Installing latest Python via Pyenv
