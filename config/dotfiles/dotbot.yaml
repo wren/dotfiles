@@ -35,12 +35,8 @@
         path: config/spectacle/shortcuts.json
 
     # Special cases
-    ~/Library/Preferences/com.sudo.cyberduck.plist:
-        path: config/cyberduck/com.sudo.cyberduck.plist
     ~/Library/Preferences/com.mowglii.ItsycalApp.plist:
         path: config/itsycal/com.mowglii.ItsycalApp.plist
-    ~/Library/Preferences/com.sequelpro.SequelPro.plist:
-        path: config/sequelpro/com.sequelpro.SequelPro.plist
     ~/Library/Preferences/:
         glob: true
         path: config/macos/*.plist
