@@ -38,6 +38,8 @@ nnoremap <silent> <leader>fs :Colors<CR>
 nnoremap <silent> <leader>fw :Find <C-R><C-W><CR>
 nnoremap <silent> z= :call FzfSpell()<CR>
 
+" --- Neoformat --- "
+nnoremap <localleader>f :Neoformat<CR>
 
 " --- vim-easy-align --- "
 " Start interactive EasyAlign in visual mode (e.g. vipga)
