@@ -52,11 +52,8 @@
 - repo: tadaa/vimade
 
 # Tab management
-- repo: zefei/vim-wintabs
-
-  # Also tab management. As of 2020-11-01: still early, but looks promising.
-# - repo: kyazdani42/nvim-web-devicons
-# - repo: romgrk/barbar.nvim
+- repo: romgrk/barbar.nvim
+  hook_source: source $VIM_PATH/core/plugins/barbar.vim
 
 # }}}
 

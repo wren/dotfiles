@@ -39,7 +39,7 @@ vnoremap <silent> <c-l> :nohlsearch<CR>
 " Write buffer (save)
 noremap <leader>w :w<CR>
 noremap <leader>q <c-w>c
-nnoremap <leader>Q :Bdelete<CR>
+nnoremap <leader>Q :BufferClose<CR>
 noremap QQ :qa<CR>
 
 imap <C-S> <esc>:w<CR>a
@@ -55,14 +55,20 @@ vnoremap p "_dp
 vnoremap P "_dP
 
 "buffer operation
-nnoremap <leader>bk :BufOnly<CR>
-nnoremap <leader>bd :bdelete<CR>
-nnoremap <C-x> :Bdelete<CR>
-nnoremap <C-x><C-x> :Bdelete!<CR>
+nnoremap <leader>bk :BufferCloseAllButCurrent<CR>
+" nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>bd :BufferClose<CR>
+nnoremap <C-x> :BufferClose<CR>
+nnoremap <C-x><C-x> :BufferClose!<CR>
 " Currently handled by wintab
-" nmap  [b :bprevious<cr>
-" nmap  ]b :bnext<cr>
-
+nmap  [b :BufferPrevious<cr>
+nmap  ]b :BufferNext<cr>
+nnoremap <silent> <A-,> :BufferPrevious<CR>
+nnoremap <silent> <A-.> :BufferNext<CR>
+nnoremap <silent> <A-<> :BufferMovePrevious<CR>
+nnoremap <silent> <A->> :BufferMoveNext<CR>
+nnoremap [B :BufferMovePrevious<CR>
+nnoremap ]B :BufferMoveNext<CR>
 
 "navigate window
 nnoremap <c-a-l> zL
