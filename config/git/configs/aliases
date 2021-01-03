@@ -1,77 +1,112 @@
 [alias]
+  # core functionality
+  c = clone
+  st = status -s
+
+  # staging and committing
   a = add
-  ap = add -p
-  au = update-index --assume-unchanged
-  nau = update-index --no-assume-unchanged
+  ap = add --patch
+  ca = commit --all
+  cam = commit --all -m
+  ci = commit
+  cia = commit --amend
+  cim = commit -m
+  co = checkout
+  r = reset
+  rh = reset --hard
+  rp = reset --patch
+  rs = reset --soft
+
+  # bisect
   bi = bisect start
   bib = bisect bad
   big = bisect good
   bir = bisect reset
   bis = bisect skip
+
+  # branching
   br = branch
   brr = branch -rv
   brl = branch-list
   bra = branch-list -a
-  c = clone
-  ca = commit -a
-  cam = commit -a -m
-  ci = commit
-  cim = commit -m
-  cia = commit --amend
-  co = checkout
-  conflicts = diff --name-only --diff-filter=U
-  chp = cherry-pick
-  dci = dcommit
+
+  # diff
   df = diff --color
   dfc = diff --cached --color
-  dfi = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
   dfp = --no-pager diff --no-color
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color
-  diff-image = !cd "${GIT_PREFIX:-.}" && export IMAGE_DIFF=1 && git diff
-  dmb = delete-merged-branches
-  ds = describe --tags
-  f = fetch
-  lg = log --format=wren-short --abbrev-commit --date=relative
-  logs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
-  logs-full = log --format=wren-full --stat --use-mailmap --date=format:'%a %l:%M %p %B %d, %Y'
-  ls = ls-files
-  lsu = ls-files --others --exclude-standard
+
+  # merging/rebasing/etc
+  chp = cherry-pick
   mg = merge
+  mga = merge --abort
   mgs = merge --squash
   mgt = mergetool
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbi = rebase --interactive
+
+  # tags
+  ds = describe --tags
+  pst = push --tags
+  t = tag -a
+
+  # remotes
+  f = fetch
   pl = pull
   pls = "!f(){ p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p 'Pull' && git pull && p 'Push' && git push; }; f"
   ps = push
-  pst = push --tags
-  brn = "!git config branch.$(git symbolic-ref HEAD|sed 's!refs/heads/!!').note \"$@\""
-  brs = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
-  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
-  current-branch = "!git symbolic-ref HEAD | sed 's!refs/heads/!!'"
-  pro = "!f(){ hub pull-request -o "$@" && git brs 'PR Opened'; }; f"
-  prg = "!f(){ gh pr checkout ${1:-0} && git br -m ${2:-pr-$1-$(git current-branch)} && git brs 'PRs for Review'; }; f"
-  r = reset
-  rb = rebase
-  rbi = rebase --interactive
-  rbc = rebase --continue
-  rba = rebase --abort
   rem = remote -v
-  rh = reset --hard
-  rp = reset --patch
-  rs = reset --soft
+
+  # repo stats/info
+  conflicts = diff --name-only --diff-filter=U
+  current-branch = "!git symbolic-ref HEAD | sed 's!refs/heads/!!'"
+  ls = ls-files
+  lsu = ls-files --others --exclude-standard
+
+  # history/log
+  lg = forgit log
+  logs = log --stat=100,100,25 --date=format:'%a %l:%M %p %B %d, %Y'
+  sh = show --word-diff=color
+
+  # stashes
   s = stash
+  sd = stash drop
+  sp = stash pop
+  ss = forgit stash-show
+  ssa = stash save
+
+  # submodules
   sb = submodule
   sbst = submodule status
-  sd = stash drop
-  sh = show --word-diff=color
-  sl = stash list
-  sp = stash pop
-  ssa = stash save
-  ssh = stash show
-  sshp = stash show -p
-  st = status -s
   sur = submodule update --recursive
   suri = submodule update --recursive --init
-  t = tag -a
+
+  # workflow
+  brn = "!git config branch.$(git symbolic-ref HEAD|sed 's!refs/heads/!!').note \"$@\""
+  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
+  brs = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
+  dmb = delete-merged-branches
+  prg = "!f(){ gh pr checkout ${1:-0} && git br -m ${2:-pr-$1-$(git current-branch)} && git brs 'PRs for Review'; }; f"
+  pro = "!f(){ hub pull-request -o "$@" && git brs 'PR Opened'; }; f"
   todo = grep -in "@todo"
+
+  # fzf integration
+  lgf = forgit log
+  dff = forgit diff
+  af = forgit add
+  rhf = forgit reset-head
+  if = forgit ignore
+  rf = forgit restore
+  clf = forgit clean
+  ssf = forgit stash-show
+  chpf = forgit cherry-pick
+  rbf = forgit rebase
+
+  # misc
+  au = update-index --assume-unchanged
+  nau = update-index --no-assume-unchanged
+  cl = clean
