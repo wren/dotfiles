@@ -71,8 +71,8 @@ nnoremap [B :BufferMovePrevious<CR>
 nnoremap ]B :BufferMoveNext<CR>
 
 "navigate window
-nnoremap <c-a-l> zL
-nnoremap <c-a-h> zH
+nnoremap <m-L> zL
+nnoremap <m-H> zH
 
 "smart move
 nnoremap j gj
