@@ -56,7 +56,6 @@ alias d.start='eval $(docker-machine env default)'
 ### Apps ###
 ############
 alias b='brew'
-alias bm='borgmatic'
 alias bp='bat -p'
 alias c='brew cask'
 alias f='fd -HI'
