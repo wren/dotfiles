@@ -9,18 +9,17 @@
 - repo: glepnir/galaxyline.nvim
   hook_post_source: luafile $VIM_PATH/core/plugins/galaxyline.lua
 
-# # Save/restore a bunch of settings in each file
+# Save/restore a bunch of settings in each file
 - repo: vim-scripts/restore_view.vim
 
 - repo: tpope/vim-obsession
 
-# Lots of cool stuff, but not very integrated with vim (all separate menus,
-# etc), but so very slow
-# - repo: neoclide/coc.nvim
-#   merge: 0
-#   branch: release
-#   rev: release
-#   hook_source: source $VIM_PATH/core/plugins/coc.vim
+# Enhance terminal compatibility (especially w/ tmux)
+- repo: wincent/terminus
+
+# Better search with /
+- repo: junegunn/vim-pseudocl
+- repo: junegunn/vim-oblique
 # }}}
 
 # Visual {{{
@@ -106,10 +105,10 @@
 
 # More control over what motions apply to (like word separators)
 - repo: wellle/targets.vim
-# - repo: chaoren/vim-wordmotion
-#   hook_source: |
-#     let g:wordmotion_spaces = ['-', '/', '.', ':', "'", '"', '=', '#', ',', '.', '<', '>', '(', ')']
-#     let g:wordmotion_uppercase_spaces = [' ']
+- repo: chaoren/vim-wordmotion
+  hook_source: |
+    let g:wordmotion_spaces = ['-', '_', '/', '.', ':', "'", '"', '=', '#', ',', '.', '<', '>', '(', ')', ';']
+    let g:wordmotion_uppercase_spaces = [' ', '(', ')', '{', '}', ',', ';', '>', '<']
 
 # Navigate windows in vim and tmux with the same keys
 - repo: christoomey/vim-tmux-navigator
@@ -210,6 +209,9 @@
 - repo: luochen1990/rainbow
   hook_source: source $VIM_PATH/core/plugins/rainbow.vim
 
+# Matching various braces
+- repo: andymass/vim-matchup
+
 # Support editorconfig files in projects
 - repo: editorconfig/editorconfig-vim
 
@@ -243,6 +245,9 @@
 
 # Multiple cursors
 - repo: mg979/vim-visual-multi
+
+- repo: lfv89/vim-interestingwords
+  hook_source: source $VIM_PATH/core/plugins/interestingwords.vim
 
 # }}}
 
