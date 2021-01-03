@@ -1,6 +1,3 @@
-tap "beeftornado/rmtree"
-tap "clementtsang/bottom"
-tap "eddieantonio/eddieantonio"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
@@ -8,24 +5,24 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "jrnl-org/prerelease"
 tap "kryptco/tap"
-tap "sebglazebrook/aliases"
 tap "secrethub/tools"
-tap "twpayne/taps"
 tap "universal-ctags/universal-ctags"
-brew "apktool" # Tool for reverse engineering 3rd party, closed, binary Android apps
+brew "openssl@1.1" # Cryptography and SSL/TLS Toolkit
 brew "aspell" # Spell checker with better logic than ispell
-brew "awscli" # Official Amazon AWS command-line interface
 brew "baobab" # Gnome disk usage analyzer
 brew "bash" # Bourne-Again SHell, a UNIX command interpreter
 brew "bash-completion", link: false # Programmable completion for Bash 3.2
-brew "bash-completion@2" # Programmable completion for Bash 4.2+
+brew "bash-completion@2", link: false # Programmable completion for Bash 4.2+
+brew "bash-git-prompt" # Informative, fancy bash prompt for Git users
 brew "bat" # Clone of cat(1) with syntax highlighting and Git integration
-brew "cmake" # Cross-platform make
 brew "coreutils" # GNU File, Shell, and Text utilities
+brew "bats-core" # Bash Automated Testing System
+brew "cmake" # Cross-platform make
 brew "wget" # Internet file retriever
 brew "dasht" # Search API docs offline, in your terminal or browser
 brew "diff-so-fancy" # Good-lookin' diffs with diff-highlight and more
 brew "direnv" # Load/unload environment variables based on $PWD
+brew "gnupg" # GNU Pretty Good Privacy (PGP) package
 brew "entr" # Run arbitrary commands when files change
 brew "exa" # Modern replacement for 'ls'
 brew "exiftool" # Perl lib for reading and writing EXIF metadata
@@ -33,63 +30,62 @@ brew "expect" # Program that can automate interactive applications
 brew "fd" # Simple, fast and user-friendly alternative to find
 brew "findutils" # Collection of GNU find, xargs, and locate
 brew "fortune" # Infamous electronic fortune-cookie generator
-brew "fswatch" # Monitor a directory for changes and run a shell command
 brew "fzf" # Command-line fuzzy finder written in Go
 brew "gawk" # GNU awk utility
+brew "gh" # GitHub command-line tool
 brew "git" # Distributed revision control system
 brew "git-extras" # Small git utilities
 brew "git-filter-repo" # Quickly rewrite git repository history
 brew "git-lfs" # Git extension for versioning large files
 brew "git-when-merged" # Find where a commit was merged in git
 brew "gnu-getopt" # Command-line option parsing utility
-brew "gnu-indent" # C code prettifier
 brew "gnu-sed" # GNU implementation of the famous stream editor
 brew "gnu-tar" # GNU version of the tar archiving utility
-brew "gnutls" # GNU Transport Layer Security (TLS) Library
-brew "gnupg" # GNU Pretty Good Privacy (PGP) package
+brew "go" # Open source programming language to build simple/reliable/efficient software
 brew "grep" # GNU grep, egrep and fgrep
 brew "hub" # Add GitHub support to git on the command-line
 brew "hyperfine" # Command-line benchmarking tool
+brew "imagemagick" # Tools and libraries to manipulate images in many formats
 brew "jq" # Lightweight and flexible command-line JSON processor
-brew "links" # Lynx-like WWW browser that supports tables, menus, etc.
+brew "jrnl" # Command-line note taker
 brew "lolcat" # Rainbows and unicorns in your console!
+brew "luarocks" # Package manager for the Lua programming language
 brew "mas" # Mac App Store command-line interface
 brew "micro" # Modern and intuitive terminal-based text editor
 brew "moreutils" # Collection of tools that nobody wrote when UNIX was young
-brew "multimarkdown" # Turn marked-up plain text into well-formatted documents
 brew "n" # Node version management
-brew "neovim" # Ambitious Vim-fork focused on extensibility and agility
+brew "neovim", args: ["HEAD"] # Ambitious Vim-fork focused on extensibility and agility
 brew "nmap" # Port scanning utility for large networks
+brew "node" # Platform built on V8 to build network applications
 brew "openssh" # OpenBSD freely-licensed SSH connectivity tools
+brew "pandoc" # Swiss-army knife of markup format conversion
+brew "perl" # Highly capable, feature-rich programming language
+brew "pipgrip" # Lightweight pip dependency resolver
 brew "pipx" # Execute binaries from Python packages in isolated environments
+brew "poetry" # Python package management tool
 brew "prettier" # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
-brew "prettyping"
+brew "prettyping" # Wrapper to colorize and simplify ping's output
 brew "pv" # Monitor data's progress through a pipe
 brew "pyenv" # Python version management
 brew "pyenv-virtualenv" # Pyenv plugin to manage virtualenv
+brew "rclone" # Rsync for cloud storage
 brew "rename" # Perl-powered file rename script with many helpful built-ins
 brew "ripgrep" # Search tool like grep and The Silver Searcher
 brew "rsync" # Utility that provides fast incremental file transfer
-brew "restic" # Fast, efficient and secure backup program
+brew "ruby" # Powerful, clean, object-oriented scripting language
 brew "shellcheck" # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt" # Autoformat shell script source code
 brew "sops" # Editor of encrypted files
 brew "sox" # SOund eXchange: universal sound sample translator
-brew "sqlmap" # Penetration testing for SQL injection and database servers
 brew "tag" # Manipulate and query tags on macOS files
-brew "thefuck" # Programatically correct mistyped console commands
-brew "tidy-html5" # Granddaddy of HTML tools, with support for modern standards
 brew "tmux" # Terminal multiplexer
+brew "trash" # CLI tool that moves files or folder to the trash
 brew "util-linux" # Collection of Linux utilities
 brew "webkit2png" # Create screenshots of webpages from the terminal
-brew "xpdf" # PDF viewer
-brew "yarn", link: false # JavaScript package manager
 brew "youtube-dl" # Download YouTube videos from the command-line
 brew "yq" # Process YAML documents from the CLI
 brew "zplug" # Next-generation plugin manager for zsh
 brew "zsh" # UNIX shell (command interpreter)
-brew "clementtsang/bottom/bottom" # A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
-brew "eddieantonio/eddieantonio/imgcat" # It's like cat(1), but for images.
 brew "jrnl-org/prerelease/jrnl-beta", link: false # Command-line note taker
 brew "kryptco/tap/kr" # Krypton command-line client, daemon, and SSH integration
 brew "secrethub/tools/secrethub-cli" # Command-line interface for SecretHub
@@ -98,13 +94,14 @@ cask "1password"
 cask "adobe-creative-cloud"
 cask "alfred"
 cask "android-file-transfer"
+cask "chicken"
 cask "chromium"
 cask "cyberduck"
 cask "discord"
-cask "disk-inventory-x"
 cask "docker"
 cask "firefox"
 cask "flux"
+cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "gitup"
@@ -115,19 +112,21 @@ cask "imageoptim"
 cask "itsycal"
 cask "karabiner-elements"
 cask "kitty"
-cask "mdimagesizemdimporter"
+cask "logitech-camera-settings"
+cask "pandora"
 cask "qlimagesize"
 cask "qlmarkdown"
 cask "qlvideo"
+cask "qview"
 cask "sequel-pro"
 cask "signal"
-cask "simplenote"
 cask "slack"
 cask "spectacle"
-cask "steam"
 cask "the-archive-browser"
 cask "the-unarchiver"
 cask "vlc"
+cask "webpquicklook"
+cask "zoom"
 mas "Microsoft Remote Desktop", id: 715768417
 mas "Skitch", id: 425955336
 mas "Xcode", id: 497799835
