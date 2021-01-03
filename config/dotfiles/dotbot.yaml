@@ -68,13 +68,22 @@
           expect -c "spawn gpg --edit-key $DOTFILES_GPG_KEY trust quit; send \"5\ry\r\"; expect eof"
         fi
 
-    - description: Installing apps via Homebrew
+    - description: Checking Homebrew bundles
       command: |-
         BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
         HOMEBREW_NO_AUTO_UPDATE=1
-        if ! brew bundle check --file="$BREWFILE" >/dev/null; then
-            brew bundle --file="$BREWFILE" --no-lock
+        if ! brew bundle check --no-upgrade --file="$BREWFILE" >/dev/null; then
+            printf "Some brew dependencies are missing. Installing...\n"
+            brew bundle --file="$BREWFILE" --no-lock install
         fi
+        brew bundle dump \
+          --all \
+          --force \
+          --no-lock \
+          --describe \
+          --file="$BREWFILE"
+        # This perl line moves the "describe" comments inline
+        perl -0777 -i -pe 's/(#.*?)\n(.*?)\n/$2 $1\n/g' "$BREWFILE"
 
     - description: Installing latest Python via Pyenv
       command: |-
