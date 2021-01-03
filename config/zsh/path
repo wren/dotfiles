@@ -2,7 +2,10 @@
 typeset -U path
 
 path=(
-  # give Homebrew priority
+  # our local shenanigans get priority
+  ~/.local/bin
+
+  # then Homebrew comes next
   /usr/local/bin
   /usr/local/sbin
   /usr/local/Cellar
@@ -35,9 +38,5 @@ path=(
 
   # fzf (fuzzy file completion)
   /usr/local/opt/fzf/bin
-
-  # our local shenanigans
-  ~/.local/bin
-  ~/bin
 )
 

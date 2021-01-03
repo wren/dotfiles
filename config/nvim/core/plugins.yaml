@@ -230,8 +230,10 @@
     let g:dasht_filetype_docsets['html'] = ['css', 'js', 'bootstrap']
 
 # Completion engine
-- repo: Valloric/YouCompleteMe
-  do: ./install.py
+- repo: ycm-core/YouCompleteMe
+  do: ./install.py --all
+  hook_source: |
+    let g:ycm_disable_for_files_larger_than_kb = 10000
 
 # Async linting engine
 # - repo: dense-analysis/ale
