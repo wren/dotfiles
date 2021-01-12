@@ -1,5 +1,4 @@
 asciinema
 jrnl
 poetry
-rdiff-backup
 tldr

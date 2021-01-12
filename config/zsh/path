@@ -32,6 +32,10 @@ path=(
   # default path
   $path
 
+  # other things that need special linking
+  /usr/local/opt/postgresql@11/bin
+  /usr/local/opt/terraform@0.13/bin
+
   # node.js to the back of the line
   ${N_PREFIX}/bin
   /usr/local/share/npm/bin

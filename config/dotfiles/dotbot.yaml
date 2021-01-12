@@ -14,7 +14,8 @@
 - clean:
     - '~'
 
-- create: []
+- create:
+    - ~/.local/share/gnupg
 
 - link:
     # General
@@ -56,20 +57,11 @@
         # see: https://gist.github.com/cowboy/3118588
         while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-    - description: Checking PGP Key
-      command: |-
-        if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
-          echo "Getting key from secrethub"
-          KEY="$(secrethub read wren/dotfiles/gpg/private.key)"
-          echo "Loading key into GPG."
-          gpg-connect-agent killagent /bye
-          echo "$KEY" | gpg --import
-          echo "Setting trust on key."
-          expect -c "spawn gpg --edit-key $DOTFILES_GPG_KEY trust quit; send \"5\ry\r\"; expect eof"
-        fi
-
     - description: Checking Homebrew bundles
       command: |-
+        if ! command -v brew >/dev/null; then
+          echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
         BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
         HOMEBREW_NO_AUTO_UPDATE=1
         if ! brew bundle check --no-upgrade --file="$BREWFILE" >/dev/null; then
@@ -85,11 +77,34 @@
         # This perl line moves the "describe" comments inline
         perl -0777 -i -pe 's/(#.*?)\n(.*?)\n/$2 $1\n/g' "$BREWFILE"
 
+    - description: Checking Secrethub Credential
+      command: |-
+        if [[ ! -r config/secrethub/credential ]]; then
+          gpg config/secrethub/credential.asc
+        fi
+
+    - description: Checking PGP Key
+      command: |-
+        if ! gpg -K $DOTFILES_GPG_KEY &>/dev/null; then
+          echo "Getting key from secrethub"
+          KEY="$(secrethub read wren/dotfiles/gpg/private.key)"
+          echo "Loading key into GPG."
+          gpg-connect-agent killagent /bye
+          echo "$KEY" | gpg --import
+          echo "Setting trust on key."
+          expect -c "spawn gpg --edit-key $DOTFILES_GPG_KEY trust quit; send \"5\ry\r\"; expect eof"
+        else
+          echo 'GPG already correct'
+        fi
+
+
     - description: Installing latest Python via Pyenv
       command: |-
-        if ! pyenv global >/dev/null; then
+        if ! pyenv global >/dev/null || [[ "$(pyenv global)" == "system" ]]; then
             export PYTHON_CONFIGURE_OPTS="--enable-framework"
-            pyenv install -s $(pyenv install --list | grep -v '\-\|a\|b' | tail -1)
+            python_version=$(pyenv install --list | grep -v '\-\|a\|b' | tail -1)
+            pyenv install -s $python_version
+            pyenv global $python_version
         fi
 
     - description: Setting up Neovim Python environment

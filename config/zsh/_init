@@ -35,3 +35,4 @@ if type -a sig &>/dev/null; then
   sig
 fi
 
+export DOTFILES_LOADED=1
