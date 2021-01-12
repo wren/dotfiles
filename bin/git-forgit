@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+source "${ZPLUG_REPOS}/wfxr/forgit/forgit.plugin.zsh"
+
+cmd="$1"
+shift
+forgit::${cmd/-/::} "$@"
