@@ -137,7 +137,7 @@
 # Inline git blame while you type
 - repo: apzelos/blamer.nvim
   hook_source: |
-    let g:blamer_enabled = 0
+    let g:blamer_enabled = 1
     let g:blamer_delay = 250
     let g:blamer_prefix = ' > '
   # hook_post_source: |-
