@@ -11,22 +11,23 @@ format=(
   'is_head=%(HEAD)'
   'branch_type=%(refname:rstrip=-2)'
   'date_committed=%(committerdate:relative)'
-  'subject="%(subject)"'
-  'author="%(authorname)"'
+  'subject=%(subject)'
+  'author=%(authorname)'
   'push=%(push)'
   'tracking=%(upstream:track,nobracket)'
 )
 
 search_pattern=(
-  "refs/heads/**/*${1}*"
+  "refs/heads/*${2}*/*${1}*"
 )
 # Show all branches (include remote)?
-[[ -n $all ]] && search_pattern+=("refs/remotes/**/*${1}*")
+[[ -n $all ]] && search_pattern+=("refs/remotes/*${2}*/*${1}*")
 
 
 make_report() {
-  git for-each-ref --shell --format="$format" --sort='refname:rstrip=2' --sort='refname:rstrip=-2' $search_pattern | \
+  git for-each-ref --shell --format="${(j: && :)format}" --sort='refname:rstrip=2' --sort='refname:rstrip=-2' $search_pattern | \
   while read git_info; do
+    git_info=${git_info//\'\'\'/\'\'}
     eval $git_info
 
     branch_type=${branch_type#refs/}
@@ -37,7 +38,7 @@ make_report() {
     output_color=$color_local_branch
     if [[ $branch_type = 'remotes' ]]; then
       output_color=$color_remote_branch
-      branch_status=${(M)branch_name##*/}
+      branch_status=${(M)branch_name#*/}
     else
       branch_status="$(git config branch.${branch_name}.status)"
       [[ -z $branch_status ]] && branch_status=' '
@@ -67,7 +68,8 @@ make_report() {
     fi
 
     # output the thing
-    print -P "${branch_type}|${branch_status}|${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}${(Q)subject}%f|%F{247}by ${(Q)author}%f"
+    short_subject="$(echo ${subject} | head -c $(( $COLUMNS - 120 )) )"
+    print -P "${branch_type}|${branch_status}|${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}${short_subject}%f|%F{247}by ${author}%f"
   done
 }
 
