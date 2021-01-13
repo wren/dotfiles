@@ -37,8 +37,8 @@ sudo -v || {
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+# Disable sound effect when plugged in to power
+defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
@@ -770,7 +770,7 @@ sudo launchctl list | grep -iq locate || launchctl load -w /System/Library/Launc
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
     "Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
-    "Transmission" "Twitter" "iCal"; do
+    "Transmission" "Twitter" "iCal" "PowerChime"; do
     killall "${app}" > /dev/null 2>&1
 done
 echo
