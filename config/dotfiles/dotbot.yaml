@@ -93,10 +93,7 @@
           echo "$KEY" | gpg --import
           echo "Setting trust on key."
           expect -c "spawn gpg --edit-key $DOTFILES_GPG_KEY trust quit; send \"5\ry\r\"; expect eof"
-        else
-          echo 'GPG already correct'
         fi
-
 
     - description: Installing latest Python via Pyenv
       command: |-
