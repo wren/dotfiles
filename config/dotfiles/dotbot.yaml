@@ -63,7 +63,7 @@
           echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
         BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
-        HOMEBREW_NO_AUTO_UPDATE=1
+        export HOMEBREW_NO_AUTO_UPDATE=1
         if ! brew bundle check --no-upgrade --file="$BREWFILE" >/dev/null; then
             printf "Some brew dependencies are missing. Installing...\n"
             brew bundle --file="$BREWFILE" --no-lock
