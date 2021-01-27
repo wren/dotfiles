@@ -20,6 +20,7 @@ my_dotfiles=(
   theme
   aliases
   functions
+  sig
   misc
   completion
   extra
@@ -29,7 +30,6 @@ my_dotfiles=(
 for my_file in $my_dotfiles; do
   [[ -r "$ZDOTDIR/$my_file" ]] && source "$ZDOTDIR/$my_file"
 done
-unset my_dotfiles
 
 if type -a sig &>/dev/null; then
   sig
