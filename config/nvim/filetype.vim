@@ -31,7 +31,7 @@ augroup filetypedetect "{{{
 	autocmd BufNewFile,BufRead */*config/git/*          setfiletype gitconfig
 	autocmd BufNewFile,BufRead */*ssh/configs/*         setfiletype sshconfig
 	autocmd BufNewFile,BufRead */*config/tmux/*         setfiletype tmux
-	autocmd BufNewFile,BufRead jrnl*.txt                setfiletype jrnl
+	autocmd BufNewFile,BufRead jrnl*                    setfiletype jrnl
 augroup END
 " }}}
 
