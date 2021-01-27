@@ -5,6 +5,10 @@ path=(
   # our local shenanigans get priority
   ~/.local/bin
 
+  # node.js to the front(ish) of the line
+  ${N_PREFIX}/bin
+  /usr/local/share/npm/bin
+
   # then Homebrew comes next
   /usr/local/bin
   /usr/local/sbin
@@ -40,9 +44,6 @@ path=(
   /usr/local/opt/postgresql@11/bin
   /usr/local/opt/terraform@0.13/bin
 
-  # node.js to the back of the line
-  ${N_PREFIX}/bin
-  /usr/local/share/npm/bin
 
   # fzf (fuzzy file completion)
   /usr/local/opt/fzf/bin
