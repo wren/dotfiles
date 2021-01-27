@@ -165,7 +165,9 @@
 
     - description: Installing software licenses
       command: |-
-        sops exec-env ./data/keys/alfred.enc.yaml 'sh "$DOTFILES_DIR/bin/sops-install-key.sh"'
+        if [[ -z $DOTFILES_LOADED ]]; then
+          sops exec-env ./data/keys/alfred.enc.yaml 'sh "$DOTFILES_DIR/bin/sops-install-key.sh"'
+        fi
 
 - pipx:
     file: config/dotfiles/pipx.txt
