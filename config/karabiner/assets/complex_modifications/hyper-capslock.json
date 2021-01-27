@@ -114,6 +114,27 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "left_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": [
+                "left_control"
+              ]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
