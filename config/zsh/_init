@@ -5,7 +5,7 @@ if [[ -z "$ZDOTDIR" ]]; then
 
   printf "\n\nInstall dotfiles to /etc/zshenv (requires sudo)? [y/N]: "
   if read; then
-    echo; sudo sh -c 'echo ZDOTDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh" >> /etc/zshenv'
+    echo; sudo sh -c 'echo ''ZDOTDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"'' >> /etc/zshenv'
   fi
 fi
 
