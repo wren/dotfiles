@@ -11,6 +11,8 @@ export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
 # --- AWS CLI --- #
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+# Caveats:
+# - ~/.aws/cli/cache/*.json (used for shared credentials)
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 export AWS_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/credentials"
