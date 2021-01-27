@@ -118,8 +118,7 @@
             eval "$(pyenv-virtualenv init -)"
             pyenv activate neovim3
             pip install --upgrade pip
-            pip install pynvim
-            pip install yq
+            pip install pynvim yq Send2Trash
         fi
  
     # - description: Downloading Spanish dictionary for Neovim
