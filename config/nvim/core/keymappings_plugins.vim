@@ -223,12 +223,6 @@ endfunc
 xmap p <Plug>(operator-replace)
 
 
-" --- vim-textobj-multiblock --- "
-omap <silent> ab <Plug>(textobj-multiblock-a)
-omap <silent> ib <Plug>(textobj-multiblock-i)
-xmap <silent> ab <Plug>(textobj-multiblock-a)
-xmap <silent> ib <Plug>(textobj-multiblock-i)
-
 " --- vim-wintab --- "
 nmap <leader>bn <Plug>(wintabs_next)
 nmap <leader>bp <Plug>(wintabs_previous)

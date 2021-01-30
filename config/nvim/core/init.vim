@@ -1,6 +1,6 @@
 lua << EOF
 ----- Helpers -----
-local api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
+api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua --
 local function map(mode, lhs, rhs, opts)
@@ -9,7 +9,7 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local function is_dir(path)
+function is_dir(path)
   return os.execute('[[ -d "' .. path .. '" ]]')
 end
 
@@ -86,7 +86,7 @@ local files = {
 }
 
 for _, file in ipairs(files) do
-  vim.cmd('source core/' .. file .. '.vim')
+  vim.cmd(string.format('source %s/core/%s.vim', VIM_PATH, file))
 end
 
 -- Just in case --
