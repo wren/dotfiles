@@ -1,2 +1,2 @@
-local myfile = vim.call('fnamemodify', vim.call('expand', '<sfile>'), ':h')
-vim.cmd('source ' .. myfile .. '/core/init.vim')
+VIM_PATH = vim.call('expand', '<sfile>:p:h')
+vim.cmd(string.format('luafile %s/core/init.lua', VIM_PATH))

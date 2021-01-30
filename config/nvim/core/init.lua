@@ -1,4 +1,3 @@
-lua << EOF
 ----- Helpers -----
 api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
 
@@ -14,7 +13,6 @@ function is_dir(path)
 end
 
 -- Set main config directory as parent directory --
-VIM_PATH = vim.call('fnamemodify', vim.call('resolve', vim.call('expand', '<sfile>:p')), ':h:h')
 CACHE_PATH = vim.call('expand', os.getenv('XDG_CACHE_HOME') or '~/.cache')
 DATA_PATH = vim.call('expand', os.getenv('XDG_DATA_HOME') or '~/.local/share') .. '/nvim'
 
@@ -76,8 +74,16 @@ if fn.has('vim_starting') == 1 then
 
 end
 
+
 local files = {
   'load_plugins',
+}
+
+for _, file in ipairs(files) do
+  cmd(string.format('luafile %s/core/%s.lua', VIM_PATH, file))
+end
+
+local vim_files = {
   'general',
   'filetype',
   'keymappings_plugins',
@@ -85,10 +91,9 @@ local files = {
   'colorscheme'
 }
 
-for _, file in ipairs(files) do
+for _, file in ipairs(vim_files) do
   vim.cmd(string.format('source %s/core/%s.vim', VIM_PATH, file))
 end
 
 -- Just in case --
 set.secure = true
-EOF

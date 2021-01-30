@@ -1,4 +1,3 @@
-lua << EOF
 local package_manager = g.etc_package_manager or 'plug'
 local vim_path = g.etc_vim_path or VIM_PATH
 local cache_path = CACHE_PATH .. '/vim'
@@ -60,7 +59,7 @@ local function use_plug()
       install_plug()
     end
     -- add plug to runtimepath
-    cmd(string.format('set runtimepath+=%s', vim.call('fnamemodify', cache_init, ':p')))
+    cmd(string.format('set runtimepath+=%s', cache_init))
   end
 
   local rc = load_config(config_path)
@@ -123,4 +122,3 @@ local function install_plug()
 end
 
 start_plugin_manager(package_manager)
-EOF
