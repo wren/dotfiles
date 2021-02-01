@@ -75,41 +75,42 @@ brew "youtube-dl" # Download YouTube videos from the command-line
 brew "yq" # Process YAML documents from the CLI
 brew "zplug" # Next-generation plugin manager for zsh
 brew "zsh" # UNIX shell (command interpreter)
-cask "1password"
-cask "adobe-creative-cloud"
-cask "alfred"
-cask "chromium"
-cask "cyberduck"
-cask "discord"
-cask "docker"
-cask "firefox"
-cask "flux"
+cask "1password" # Password manager that keeps all passwords secure behind one password
+cask "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
+cask "alfred" # Application launcher and productivity software
+cask "chromium" # Free and open-source web browser
+cask "cyberduck" # Server and cloud storage browser
+cask "discord" # Voice and text chat software
+cask "docker" # App to build and share containerized applications and microservices
+cask "firefox" # Web browser
+cask "flux" # Screen color temperature controller
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
-cask "gitup"
-cask "google-chrome"
+cask "gitup" # Git interface focused on visual interaction
+cask "google-chrome" # Web browser
 cask "google-trends"
-cask "itsycal"
-cask "karabiner-elements"
-cask "kitty"
+cask "itsycal" # Menu bar calendar
+cask "karabiner-elements" # Keyboard customizer
+cask "kitty" # GPU-based terminal emulator
 cask "logitech-camera-settings"
-cask "pandora"
-cask "postman"
-cask "qlimagesize"
-cask "qlmarkdown"
+cask "pandora" # Desktop client for the Pandora web radio service
+cask "postman" # Collaboration platform for API development
+cask "qlimagesize" # Display image info and preview unsupported formats in QuickLook
+cask "qlmarkdown" # QuickLook generator for Markdown files
 cask "qlvideo"
 cask "qmk-toolbox"
 cask "qview"
-cask "sequel-pro"
-cask "signal"
-cask "slack"
-cask "spectacle"
+cask "sequel-pro" # MySQL/MariaDB database management platform
+cask "signal" # Instant messaging application focusing on security
+cask "slack" # Team communication and collaboration software
+cask "spectacle" # Move and resize windows with ease
+cask "steam" # Video game digital distribution service
 cask "the-archive-browser"
-cask "the-unarchiver"
-cask "vlc"
+cask "the-unarchiver" # Unpacks archive files
+cask "vlc" # Multimedia player
 cask "webpquicklook"
-cask "zoom"
+cask "zoom" # Video communication and virtual meeting platform
 cask "zsa-wally"
 mas "Skitch", id: 425955336
 mas "Xcode", id: 497799835
