@@ -4,9 +4,8 @@ local cache_path = CACHE_PATH .. '/vim'
 local config_path = vim_path .. '/core/plugins.yaml'
 local yaml2json_method = 'python'
 
-local function is_empty(s)
-  return s == nil or s == ''
-end
+-- Temporary handoff while we change over to lua --
+cmd(string.format('let $VIM_PATH = "%s"', vim_path ))
 
 local function get_cmd()
   if is_empty(yaml2json_method) then

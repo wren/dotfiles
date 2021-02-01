@@ -1,6 +1,9 @@
 " File-type Detection
 " ===
 
+" -- Default to bash for files with syntax sh
+" g.is_bash = 1
+
 if exists('did_load_filetypes')
 	finish
 endif
