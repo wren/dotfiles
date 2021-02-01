@@ -14,7 +14,7 @@ local vim_files = {
 }
 
 for _, file in ipairs(vim_files) do
-  vim.cmd(string.format('source %s/core/%s.vim', VIM_PATH, file))
+  vim.cmd(string.format('source %s/core/%s.vim', fn.stdpath('config'), file))
 end
 
 -- Just in case --

@@ -4,7 +4,6 @@ g.mapleader = ' '
 g.maplocalleader = ';'
 
 -- Set main config directory as parent directory --
-VIM_PATH = vim.call('expand', '<sfile>:p:h')
 CACHE_PATH = vim.call('expand', os.getenv('XDG_CACHE_HOME') or '~/.cache')
 DATA_PATH = vim.call('expand', os.getenv('XDG_DATA_HOME') or '~/.local/share') .. '/nvim'
 

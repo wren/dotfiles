@@ -1,11 +1,10 @@
 local package_manager = g.etc_package_manager or 'plug'
-local vim_path = g.etc_vim_path or VIM_PATH
-local cache_path = CACHE_PATH .. '/vim'
-local config_path = vim_path .. '/core/plugins.yaml'
+local cache_path = fn.stdpath('cache')
+local config_path = fn.stdpath('config') .. '/core/plugins.yaml'
 local yaml2json_method = 'python'
 
 -- Temporary handoff while we change over to lua --
-cmd(string.format('let $VIM_PATH = "%s"', vim_path ))
+cmd(string.format('let $VIM_PATH = "%s"', fn.stdpath('config') ))
 
 local function get_cmd()
   if is_empty(yaml2json_method) then
@@ -117,7 +116,7 @@ local function install_plug()
     augroup END
   ]])
   -- set PlugInstall to run on VimEnter
-  api.nvim_exec('autocmd user_plugin_vimplug VimEnter * PlugInstall --sync | source $MYVIMRC')
+  -- api.nvim_exec('autocmd user_plugin_vimplug VimEnter * PlugInstall --sync | source $MYVIMRC')
 end
 
 start_plugin_manager(package_manager)
