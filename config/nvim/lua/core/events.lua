@@ -17,7 +17,7 @@ nvim_create_augroups({
   },
 
   -- change directory when a dir (not a file) is opened
-  cd_if_directory = { 'BufEnter * luado cd_if_open_directory()' },
+  -- cd_if_directory = { 'BufEnter * luado cd_if_open_directory()' },
 
   -- turn off cursorline when window isn't active
   cursorline_on_active = {

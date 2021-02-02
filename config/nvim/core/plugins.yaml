@@ -7,7 +7,8 @@
 
 # Status line
 - repo: glepnir/galaxyline.nvim
-  hook_post_source: luafile $VIM_PATH/core/plugins/galaxyline.lua
+  # hook_post_source: luafile $VIM_PATH/core/plugins/galaxyline.lua
+  require: plugins.galaxyline
 
 # Save/restore a bunch of settings in each file
 - repo: vim-scripts/restore_view.vim

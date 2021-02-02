@@ -1,4 +1,4 @@
-cmd = vim.cmd
+cmd, set = vim.cmd, vim.o
 
 -- General settings --
 set.mouse = 'a'

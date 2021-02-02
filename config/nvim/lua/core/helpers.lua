@@ -1,17 +1,13 @@
 
 ----- Helpers -----
 api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
+local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua --
 function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
-  if opts then
-    if opts['remap'] then
-      opts['noremap'] = opts['remap']
-      opts['remap'] = nil
-    end
-    options = vim.tbl_extend('force', options, opts)
-  end
+  if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
@@ -74,4 +70,10 @@ end
 local function t(str)
     -- Example: t'<tab>' or t'<cr>'
     return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+function opt(key, value, scope)
+  if not scope then scope = 'o' end
+  scopes[scope][key] = value
+  if scope ~= 'o' then scopes['o'][key] = value end
 end

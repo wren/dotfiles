@@ -6,7 +6,7 @@ set t_Co=256
 
 " Enable true color
 if has('termguicolors')
-    set termguicolors
+  set termguicolors
 endif
 
 

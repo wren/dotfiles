@@ -66,30 +66,38 @@ local function use_plug()
     return
   end
 
-  -- Do the thing
-  for _, plugin in ipairs(rc) do
-    if plugin['hook_pre_source'] ~= nil then
-      api.nvim_exec(plugin['hook_pre_source'], false)
-    end
-  end
-
-  -- vim.call(string.format("plug#begin('%s')", cache_repos))
+  local plugin_requires = {}
+  local plugin_sources = {}
   vim.fn['plug#begin'](cache_repos)
   for _, plugin in ipairs(rc) do
-    -- vim.call(string.format('plug#("%s", extend(plugin, {}, "keep")', plugin['repo']))
     vim.fn['plug#'](plugin['repo'])
+
     if plugin['hook_source'] ~= nil then
       api.nvim_exec(plugin['hook_source'], false)
     end
-  end
-  -- vim.call('plug#end()')
-  vim.fn['plug#end']()
 
-  for _, plugin in ipairs(rc) do
-    if plugin['hook_post_source'] ~= nil then
-      api.nvim_exec(plugin['hook_post_source'], false)
+    if plugin['require_before'] then
+      require(plugin['require_before'])
+    end
+
+    if plugin['require'] then
+      table.insert(plugin_requires, plugin['require'])
+    end
+
+    if plugin['hook_post_source'] then
+      table.insert(plugin_sources, plugin['hook_post_source'])
     end
   end
+  vim.fn['plug#end']()
+
+  for _, source in pairs(plugin_sources) do
+    api.nvim_exec(source, false)
+  end
+
+  for _, source in pairs(plugin_requires) do
+    require(source)
+  end
+
 end
 
 local function start_plugin_manager(manager)

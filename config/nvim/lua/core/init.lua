@@ -1,16 +1,16 @@
 
 require 'core.helpers'
 require 'core.defaults'
-require 'core.events'
-require 'core.load_plugins'
 require 'core.general'
+require 'core.events'
+require 'core.plugin_manager'
+-- require 'core.load_plugins'
 require 'core.filetype'
 require 'core.keymap'
+require 'core.colorscheme'
 
 local vim_files = {
-  -- 'keymappings_general',
   'keymappings_plugins',
-  'colorscheme'
 }
 
 for _, file in ipairs(vim_files) do

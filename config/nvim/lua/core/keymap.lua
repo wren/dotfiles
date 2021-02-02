@@ -24,9 +24,9 @@ map('n', '<CR>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>')
 map('n', '<S-CR>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>')
 
 -- Comment/uncomment a line
-map('n', '<c-_>', 'gcc', {remap = true})
-map('v', '<c-_>', 'gcc', {remap = true})
-map('i', '<c-_>', '<esc>gcca', {remap = true})
+map('n', '<c-_>', 'gcc', {noremap = false})
+map('v', '<c-_>', 'gcc', {noremap = false})
+map('i', '<c-_>', '<esc>gcca', {noremap = false})
 
 -- Indent/deindent lines, then reselect
 map('v', '<tab>', '>gv')
@@ -42,8 +42,8 @@ map('n', '<leader>q', '<c-w>c')
 map('n', '<leader>Q', ':BufferClose<CR>')
 map('n', 'QQ', ':qa<CR>')
 
-map('i', '<C-S>', '<esc>:w<CR>a', {remap = true})
-map('i', '<C-Q>', '<esc>:wq<CR> {remap = true}')
+map('i', '<C-S>', '<esc>:w<CR>a', {noremap = false})
+map('i', '<C-Q>', '<esc>:wq<CR>', {noremap = false})
 map('n', '<C-x><C-x>', ':Bdelete!<CR>')
 
 -- make delete management delete management
@@ -62,8 +62,8 @@ map('n', '<C-x>', ':BufferClose<CR>')
 map('n', '<C-x><C-x>', ':BufferClose!<CR>')
 
 -- Currently handled by wintab
-map('n', '[b', ':BufferPrevious<cr>', {remap = true})
-map('n', ']b', ':BufferNext<cr>', {remap = true})
+map('n', '[b', ':BufferPrevious<cr>', {noremap = false})
+map('n', ']b', ':BufferNext<cr>', {noremap = false})
 map('n', '<A-,>', ':BufferPrevious<CR>', {silent = true})
 map('n', '<A-.>', ':BufferNext<CR>', {silent = true})
 map('n', '<A-<>', ':BufferMovePrevious<CR>', {silent = true})
@@ -97,8 +97,8 @@ map('n', ']t', ':tabnext<CR>')
 map('n', 'Y', 'y$')
 
 -- settings for resize splitted window
-map('n', '<leader>[', ':vertical resize -3<CR>', {remap = true})
-map('n', '<C-w>]', ':vertical resize +3<CR>', {remap = true})
+map('n', '<leader>[', ':vertical resize -3<CR>', {noremap = false})
+map('n', '<C-w>]', ':vertical resize +3<CR>', {noremap = false})
 
 -- Escape from terminal windows even if suspended
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
