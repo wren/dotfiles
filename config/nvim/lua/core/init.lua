@@ -5,10 +5,10 @@ require 'core.events'
 require 'core.load_plugins'
 require 'core.general'
 require 'core.filetype'
--- require 'core.keymap'
+require 'core.keymap'
 
 local vim_files = {
-  'keymappings_general',
+  -- 'keymappings_general',
   'keymappings_plugins',
   'colorscheme'
 }

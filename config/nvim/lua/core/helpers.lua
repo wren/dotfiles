@@ -5,7 +5,13 @@ api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua --
 function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
+  if opts then
+    if opts['remap'] then
+      opts['noremap'] = opts['remap']
+      opts['remap'] = nil
+    end
+    options = vim.tbl_extend('force', options, opts)
+  end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
