@@ -24,9 +24,9 @@ map('n', '<CR>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>')
 map('n', '<S-CR>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>')
 
 -- Comment/uncomment a line
-map('n', '<c-_>', 'gcc', {noremap = false})
-map('v', '<c-_>', 'gcc', {noremap = false})
-map('i', '<c-_>', '<esc>gcca', {noremap = false})
+map('n', '<A-/>', 'gcc', {noremap = false})
+map('v', '<A-/>', 'gcc', {noremap = false})
+map('i', '<A-/>', '<esc>gcca', {noremap = false})
 
 -- Indent/deindent lines, then reselect
 map('v', '<tab>', '>gv')

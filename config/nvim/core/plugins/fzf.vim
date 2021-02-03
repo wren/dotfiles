@@ -12,9 +12,24 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 " Customize fzf colors to match your color scheme
+" let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+"  \ 'bg':      ['bg', '#212121'],
+"  \ 'hl':      ['fg', 'Comment'],
+"  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"  \ 'hl+':     ['fg', 'Statement'],
+"  \ 'info':    ['fg', 'PreProc'],
+"  \ 'border':  ['fg', 'Ignore'],
+"  \ 'prompt':  ['fg', 'Conditional'],
+"  \ 'pointer': ['fg', 'Exception'],
+"  \ 'marker':  ['fg', 'Keyword'],
+"  \ 'spinner': ['fg', 'Label'],
+"  \ 'header':  ['fg', 'Comment'] }
+
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', '#5f5f87'],
+  \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
@@ -26,6 +41,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
 
 let g:fzf_commits_log_options = '--graph --color=always
   \ --format="%C(yellow)%h%C(red)%d%C(reset)
@@ -68,7 +84,7 @@ endfunction
 
 " Files + devicons
 function! Fzf_dev()
-  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --theme material {}"'
+  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --theme TwoDark {}"'
 
   let opts = fzf#wrap({})
   let opts.options .= l:fzf_files_options

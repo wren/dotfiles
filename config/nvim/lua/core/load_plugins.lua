@@ -1,5 +1,4 @@
 local package_manager = g.etc_package_manager or 'plug'
-local cache_path = fn.stdpath('cache')
 local config_path = fn.stdpath('config') .. '/core/plugins.yaml'
 local yaml2json_method = 'python'
 

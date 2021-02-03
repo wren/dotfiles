@@ -67,7 +67,7 @@ function cd_if_open_directory()
 end
 
 -- Allows us to use vim's escape codes with much less verbosity
-local function t(str)
+function t(str)
     -- Example: t'<tab>' or t'<cr>'
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end

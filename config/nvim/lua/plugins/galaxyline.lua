@@ -4,7 +4,7 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 gl.short_line_list = {'defx', 'LuaTree', 'vista'}
 
 local colors = {
-  bg = '#212122',
+  bg = '#1A1A1A',
   line_bg = '#353644',
   fg = '#8FBCBB',
   fg_green = '#65a380',

@@ -3,12 +3,12 @@ require 'core.helpers'
 require 'core.defaults'
 require 'core.general'
 require 'core.events'
-require 'core.plugin_manager'
--- require 'core.load_plugins'
 require 'core.filetype'
 require 'core.keymap'
 require 'core.colorscheme'
 
+-- Old files below here --
+-- require 'core.load_plugins'
 local vim_files = {
   'keymappings_plugins',
 }

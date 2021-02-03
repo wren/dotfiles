@@ -24,7 +24,7 @@ cmd 'colorscheme onedark'
 -- ---------------------------------------------------------
 
 -- default functionality
-fn['onedark#extend_highlight']("Normal", { bg = { gui = "#212122" } })
+fn['onedark#extend_highlight']("Normal", { bg = { gui = "#1a1a1a" } })
 -- fn['one#highlight']('Normal', '', '212122', 'none')
 -- fn['one#highlight']('NormalNC', '', '262627', 'none')
 -- fn['one#highlight']('Search', 'NONE', '353644', '')

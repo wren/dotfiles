@@ -4,8 +4,8 @@ g.mapleader = ' '
 g.maplocalleader = ';'
 
 -- Set main config directory as parent directory --
-CACHE_PATH = vim.call('expand', os.getenv('XDG_CACHE_HOME') or '~/.cache')
-DATA_PATH = vim.call('expand', os.getenv('XDG_DATA_HOME') or '~/.local/share') .. '/nvim'
+CACHE_PATH = fn.fnamemodify(fn.stdpath('cache'), ':h')
+DATA_PATH = fn.stdpath('data')
 
 -- Disable default vim plugins --
 g.loaded_getscript = 1
