@@ -61,6 +61,7 @@ brew "rsync" # Utility that provides fast incremental file transfer
 brew "secrethub/tools/secrethub-cli" # Command-line interface for SecretHub
 brew "shellcheck" # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt" # Autoformat shell script source code
+brew "showkey" # Simple keystroke visualizer
 brew "sops" # Editor of encrypted files
 brew "sox" # SOund eXchange: universal sound sample translator
 brew "tag" # Manipulate and query tags on macOS files
