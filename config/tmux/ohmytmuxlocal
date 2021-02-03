@@ -154,8 +154,8 @@ tmux_conf_theme_status_right_bg='#ffffff,#080808,#080808,#080808,#080808' # dark
 tmux_conf_theme_status_right_attr='bold,none,none,none,bold'
 
 # pairing indicator
-tmux_conf_theme_pairing='👓 '          # U+1F453
-tmux_conf_theme_pairing_fg='none'
+tmux_conf_theme_pairing=' 履 '          # U+1F453
+tmux_conf_theme_pairing_fg='#d75f87'
 tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
