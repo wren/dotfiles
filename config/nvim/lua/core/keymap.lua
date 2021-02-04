@@ -116,6 +116,13 @@ map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$/
 --  <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 --  <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
+-- @todo translate to lua
+-- cmd [[
+-- map <LocalLeader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+-- \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+-- \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+-- ]]
+
 -- Disable some keymappings that don't do anything useful, and get in the way
 map('n', 'q:', '')
 map('n', 'Q', '')

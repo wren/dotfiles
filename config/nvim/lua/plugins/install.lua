@@ -33,9 +33,7 @@ local plugins = {
   'junegunn/vim-oblique',
 
   ----- Visual -----
-
   'joshdick/onedark.vim',
-  -- 'sainnhe/sonokai',
 
   -- Highlights CSS colors inline
   'ap/vim-css-color',

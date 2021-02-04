@@ -76,6 +76,9 @@ set.grepprg=[[rg\ --vimgrep\ $*]]
 cmd [[set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*,*/node_modules/*]]
 set.wildmenu = true
 
+-- Changes style for inactive windows (can be updated in color scheme)
+-- set.winhighlight = 'Normal:Normal,NormalNC:InactiveWindow'
+
 -- Set 7 lines to the cursor - when moving vertically using j/k
 set.so = 6
 
