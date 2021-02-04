@@ -152,12 +152,45 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors
+# Colors (modified from One Dark template)
 colors:
   # Default colors
   primary:
+    foreground: '#eeeeee'
     background: '#1a1a1a'
-    foreground: '#c5c8c6'
+
+  # Cursor colors
+  cursor:
+    text: '#17191C'
+    cursor: '#abb2bf'
+
+  # Normal colors
+  normal:
+    black:   '#5c6370'
+    red:     '#e06c75'
+    green:   '#98c379'
+    yellow:  '#e5c07b'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#c5c8c6'
+
+  # Bright colors
+  bright:
+    black:   '#4b5263'
+    red:     '#be5046'
+    green:   '#98c379'
+    yellow:  '#d19a66'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#eeeeee'
+
+# colors:
+  # Default colors
+  # primary:
+  #   background: '#1a1a1a'
+    # foreground: '#c5c8c6'
 
     # Bright and dim foreground colors
     #
@@ -165,8 +198,8 @@ colors:
     # present. If the bright foreground color is not set, or
     # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
     # color will be used.
-    dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
+    # dim_foreground: '#828482'
+    # bright_foreground: '#eaeaea'
 
   # Cursor colors
   #
