@@ -60,6 +60,10 @@ function nvim_define_filetypes(definitions)
 end
 
 function cd_if_open_directory()
+  local ft = vim.bo.filetype
+  if ft == nil or ft == '' or ft == 'help' or ft == 'CHADtree' then
+    return
+  end
   local full_path = vim.call('expand', '%:p')
   if is_dir(full_path) then
     cmd('tcd ' .. full_path)

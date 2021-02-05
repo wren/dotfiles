@@ -90,11 +90,11 @@ set.concealcursor = 'n'
 set.undofile = true
 set.swapfile = false
 set.backup = false
-local format_str = DATA_PATH .. '/%s//,' .. DATA_PATH .. ',~/tmp/var/tmp,/tmp'
-set.directory = string.format(format_str, 'swap')
-set.undodir = string.format(format_str, 'undo')
-set.backupdir = string.format(format_str, 'backup')
-set.viewdir = string.format(format_str, 'view')
+local my_str = DATA_PATH .. '/%s//,' .. DATA_PATH .. ',~/tmp/var/tmp,/tmp'
+set.directory = my_str:format('swap')
+set.undodir = my_str:format('undo')
+set.backupdir = my_str:format('backup')
+set.viewdir = my_str:format('view')
 
 local CUSTOM_DICT = DATA_PATH .. '/spell/custom.en.utf-8.add'
 local WORDS_DICT = DATA_PATH .. '/spell/words.en.utf-8.add'
@@ -123,10 +123,8 @@ if not is_empty(sudo_user) and user ~= sudo_user then
 end
 
 -- Secure sensitive information, disable backup files in temp directories
-if vim.call('exists', '&backupskip') ~= 0 then
-  cmd [[
-    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
-  ]]
+if fn.exists('&backupskip') ~= 0 then
+  cmd 'set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
 end
 
 -- Markdown fenced syntax highlighting

@@ -103,9 +103,9 @@ nnoremap <silent> <a-\> :TmuxNavigatePrevious<cr>
 
 
 " --- defx.nvim --- "
-nnoremap <silent><C-\> :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>eo :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>ef :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
+" nnoremap <silent><C-\> :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+" nnoremap <silent> <Leader>eo :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+" nnoremap <silent> <Leader>ef :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
 
 
 " --- vim-startify --- "

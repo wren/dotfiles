@@ -3,7 +3,11 @@ local compile_path = vim.fn.stdpath('data') .. '/packer'
 vim.cmd('set rtp+=' .. compile_path)
 
 local config_overrides = {
-  compile_path = compile_path .. '/plugin/packer_compiled.vim'
+  compile_path = compile_path .. '/plugin/packer_compiled.vim',
+  display = {
+    -- non_interactive = true, -- If true, disable display windows for all operations
+    open_cmd = '165vnew [packer]', -- An optional command to open a window for packer's display
+  }
 }
 
 local plugins = {
@@ -73,7 +77,8 @@ local plugins = {
   {
     'ms-jpq/chadtree', 
     branch = 'chad',
-    run = 'python -m chadtree deps'
+    run = 'python -m chadtree deps',
+    config = function() require 'plugins.chadtree' end,
   },
 
   ----- Misc -----
