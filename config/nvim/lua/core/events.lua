@@ -17,7 +17,8 @@ nvim_create_augroups({
   },
 
   -- change directory when a dir (not a file) is opened
-  cd_if_directory = { 'BufEnter * luado cd_if_open_directory()' },
+  -- @todo this causes a bug with non-modifiable buffers (lots of red text). Fix it or find an alternative.
+  -- cd_if_directory = { 'BufEnter * luado cd_if_open_directory()' },
 
   -- turn off cursorline when window isn't active
   cursorline_on_active = {
