@@ -26,9 +26,9 @@ nvim_create_augroups({
   },
 
   -- ¯\_(ツ)_/¯
-  -- who_knows = {
-  --   [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]]
-  -- }
+  who_knows = {
+    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]]
+  }
 
   -- better syntax highlight performance with large files
   -- syntax_many_lines = {

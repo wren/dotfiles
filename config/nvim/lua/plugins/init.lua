@@ -10,6 +10,6 @@ local vim_files = {
 }
 
 for _, file in ipairs(vim_files) do
-  vim.cmd(string.format('source %s/core/%s.vim', fn.stdpath('config'), file))
+  vim.cmd(string.format('source %s/legacy/%s.vim', fn.stdpath('config'), file))
 end
 

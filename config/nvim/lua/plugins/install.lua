@@ -101,7 +101,10 @@ local plugins = {
   'tpope/vim-repeat',
 
   -- Pop-up cheatsheet for keyboard commands
-  'liuchengxu/vim-which-key',
+  {
+    'liuchengxu/vim-which-key',
+    config = function() require 'plugins.which-key' end,
+  },
 
   -- Visual overlay to jump cursor to any part of screen
   'easymotion/vim-easymotion',
@@ -138,7 +141,10 @@ local plugins = {
   'chemzqm/vim-easygit',
 
   -- Status markers in gutter
-  'airblade/vim-gitgutter',
+  {
+    'airblade/vim-gitgutter',
+    config = function() require 'plugins.gitgutter' end,
+  },
 
   'rhysd/committia.vim',
 
@@ -166,7 +172,10 @@ local plugins = {
 
   'tpope/vim-cucumber',
 
-  'fatih/vim-go',
+  {
+    'fatih/vim-go',
+    config = function() require 'plugins.golang' end,
+  },
 
   'tmux-plugins/vim-tmux',
 
@@ -176,7 +185,10 @@ local plugins = {
   'tyru/caw.vim',
 
   -- Auto formatting files by syntax
-  'sbdchd/neoformat',
+  {
+    'sbdchd/neoformat',
+    config = function() require 'plugins.neoformat' end,
+  },
 
   -- Display thin vertical lines at each indentation level
   {
@@ -203,9 +215,6 @@ local plugins = {
   -- Completion engine
   -- Causes startup lag. Worth keeping?
   -- {'ycm-core/YouCompleteMe', run = './install.py --all' },
-
-  -- Turn statements into one-line or multi-line expressions
-  'AndrewRadev/splitjoin.vim',
 
   -- Operations on matching charcs (e.g. parens, brackets, etc)
   'machakann/vim-sandwich',
