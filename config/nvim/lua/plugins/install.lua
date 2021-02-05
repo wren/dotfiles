@@ -129,7 +129,10 @@ local plugins = {
   'tpope/vim-fugitive',
 
   -- Inline git blame while you type
-  'apzelos/blamer.nvim',
+  {
+    'apzelos/blamer.nvim',
+    config = function() require 'plugins.blamer' end,
+  },
 
   -- Git integration
   'chemzqm/vim-easygit',
@@ -176,7 +179,10 @@ local plugins = {
   'sbdchd/neoformat',
 
   -- Display thin vertical lines at each indentation level
-  'Yggdroot/indentLine',
+  {
+    'Yggdroot/indentLine',
+    config = function() require 'plugins.indentline' end
+  },
 
   -- LSP support for tags
   'liuchengxu/vista.vim',

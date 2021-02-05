@@ -1,0 +1,9 @@
+g.indentline_enabled = 1
+g.indentLine_char_list = {}
+g.indentLine_char = '│'
+g.indentLine_first_char = '│'
+g.indentLine_fileTypeExclude = { 'CHADtree', 'help' }
+g.indentLine_concealcursor = 'c'
+g.indentLine_color_term = 96
+g.indentLine_color_gui = '#5A6872'
+g.indentLine_showFirstIndentLevel = 1
