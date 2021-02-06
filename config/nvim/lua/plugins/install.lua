@@ -107,7 +107,10 @@ local plugins = {
   },
 
   -- Visual overlay to jump cursor to any part of screen
-  'easymotion/vim-easymotion',
+  {
+    'easymotion/vim-easymotion',
+    config = function() require 'plugins.easymotion' end,
+  },
 
   -- More control over what motions apply to (like word separators)
   'wellle/targets.vim',
@@ -148,36 +151,19 @@ local plugins = {
 
   'rhysd/committia.vim',
 
-  ----- Languages -----
-
+  ----- Languages and syntax -----
   'honza/dockerfile.vim',
-
   'junegunn/vim-emoji',
-
   'Vimjas/vim-python-pep8-indent',
-
   'vim-python/python-syntax',
-
   'neoclide/vim-jsx-improve',
-
-  'vim-scripts/xml.vim',
-
-  'pearofducks/ansible-vim',
-
   'cespare/vim-toml',
-
-  'elzr/vim-json',
-
-  'dearrrfish/vim-applescript',
-
   'tpope/vim-cucumber',
-
+  'tmux-plugins/vim-tmux',
   {
     'fatih/vim-go',
     config = function() require 'plugins.golang' end,
   },
-
-  'tmux-plugins/vim-tmux',
 
   ----- Coding -----
 
