@@ -123,9 +123,11 @@ if not is_empty(sudo_user) and user ~= sudo_user then
 end
 
 -- Secure sensitive information, disable backup files in temp directories
+set.secure = true
 if fn.exists('&backupskip') ~= 0 then
   cmd 'set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
 end
+
 
 -- Markdown fenced syntax highlighting
 g.markdown_fenced_languages = { 'html', 'bash=sh', 'css', 'javascript', 'js=javascript', 'go' }

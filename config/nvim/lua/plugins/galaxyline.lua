@@ -6,25 +6,43 @@ gl.short_line_list = {'defx', 'LuaTree', 'vista'}
 local colors = {
   bg = '#1A1A1A',
   line_bg = '#353644',
+  inactive_bg = '#333333',
   fg = '#8FBCBB',
   fg_green = '#65a380',
 
   yellow = '#fabd2f',
   cyan = '#008080',
-  darkblue = '#081633',
+  darkblue = '#ff0000',
   green = '#98C379',
   orange = '#FF8800',
   purple = '#542F98',
   magenta = '#c678dd',
-  blue = '#51afef';
-  red = '#ec5f67'
+  blue = '#51afef',
+  red = '#ec5f67',
+  grey = '#171717',
+  white = '#AAB098',
 }
 
-local buffer_not_empty = function()
+local function buffer_not_empty()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
     return true
   end
   return false
+end
+
+local function filename_with_color()
+  local is_help = vim.bo.filetype == 'help'
+  local modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
+  local filename_color = colors.fg
+  if modified then
+    filename_color = colors.yellow
+  end
+  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color)
+  local filename = fileinfo.get_current_file_name()
+  if is_help then
+    filename = 'HELP - ' .. fn.expand('%:t:r')
+  end
+  return filename
 end
 
 local mode_info = {
@@ -49,7 +67,7 @@ local mode_info = {
     name = 'VISUAL BLOCK'
   },
   c = {
-    color = colors.red,
+    color = colors.white,
     name = 'COMMAND'
   },
   no = {
@@ -110,7 +128,7 @@ local mode_info = {
   },
 }
 
-local update_mode_color = function()
+local function update_mode_color()
   -- auto change color according the vim mode
   local modes = {
     "GalaxyViMode",
@@ -125,61 +143,8 @@ local update_mode_color = function()
   end
 end
 
----------------
--- Left side --
----------------
-gls.left[2] = {
-  ViMode = {
-    separator = ' ',
-    provider = function()
-      update_mode_color()
-      return '  ' .. mode_info[vim.fn.mode()].name .. ' '
-    end,
-    highlight = {colors.red,colors.line_bg,'bold'},
-    separator_highlight = {colors.red,colors.line_bg,'bold'},
-  },
-}
-gls.left[3] ={
-  FileIcon = {
-    provider = 'FileIcon',
-    condition = buffer_not_empty,
-    highlight = {fileinfo.get_file_icon_color,colors.line_bg},
-  },
-}
-gls.left[4] = {
-  FileName = {
-    provider = function()
-      local modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
-      local filename_color = colors.fg
-      if modified then
-        filename_color = colors.magenta
-      end
-      vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color)
-      return fileinfo.get_current_file_name()
-    end,
-    separator = ' ',
-    condition = buffer_not_empty,
-    highlight = {colors.fg,colors.line_bg,'bold'},
-    separator_highlight = {colors.fg,colors.line_bg,'bold'},
-  }
-}
 
--- gls.left[5] = {
---   GitIcon = {
---     provider = function() return '  ' end,
---     condition = require('galaxyline.provider_vcs').check_git_workspace,
---     highlight = {colors.orange,colors.line_bg},
---   }
--- }
--- gls.left[6] = {
---   GitBranch = {
---     provider = 'GitBranch',
---     condition = require('galaxyline.provider_vcs').check_git_workspace,
---     highlight = {'#8FBCBB',colors.line_bg,'bold'},
---   }
--- }
-
-local checkwidth = function()
+local function checkwidth()
   local squeeze_width  = vim.fn.winwidth(0) / 2
   if squeeze_width > 40 then
     return true
@@ -187,144 +152,217 @@ local checkwidth = function()
   return false
 end
 
-gls.left[7] = {
-  DiffAdd = {
-    provider = 'DiffAdd',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.green,colors.line_bg},
+local function buffer_is_modifiable()
+  return vim.bo.modifiable
+end
+
+local function buffer_is_not_modifiable()
+  return not buffer_is_modifiable()
+end
+
+local non_mod_spacer = {
+  NonMod = {
+    provider = function() return '    ' end,
+    highlight = { colors.red, colors.red },
+    condition = buffer_is_not_modifiable
   }
 }
-gls.left[8] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.yellow,colors.line_bg},
-  }
-}
-gls.left[9] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.red,colors.line_bg},
-  }
-}
-gls.left[10] = {
-  LeftEnd = {
-    provider = function() return '' end,
-    separator = '',
-    separator_highlight = {colors.bg,colors.line_bg},
-    highlight = {colors.line_bg,colors.line_bg}
-  }
-}
-gls.left[11] = {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.red,colors.bg}
-  }
-}
-gls.left[12] = {
-  Space = {
-    provider = function () return '   ' end
-  }
-}
-gls.left[13] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.blue,colors.bg},
-  }
+
+---------------
+-- Left side --
+---------------
+gls.left = {
+  non_mod_spacer,
+
+  {
+    ViMode = {
+      icon = ' ',
+      condition = buffer_is_modifiable,
+      provider = function()
+        update_mode_color()
+        return ' ' .. mode_info[vim.fn.mode()].name .. ' '
+      end,
+      highlight = {colors.red,colors.line_bg,'bold'},
+      separator_highlight = {colors.line_bg,colors.line_bg,'bold'},
+    }
+  },
+
+  {
+    FileIcon = {
+      icon = '  ',
+      provider = 'FileIcon',
+      condition = buffer_not_empty,
+      highlight = { fileinfo.get_file_icon_color, colors.line_bg, 'bold' },
+    }
+  },
+
+  {
+    FileName = {
+      provider = filename_with_color,
+      separator = ' ',
+      condition = buffer_not_empty,
+      highlight = { colors.fg, colors.line_bg, 'bold' },
+      separator_highlight = { colors.fg, colors.line_bg, 'bold' },
+    }
+  },
+
+  {
+    DiffAdd = {
+      provider = 'DiffAdd',
+      condition = checkwidth,
+      icon = ' ',
+      highlight = {colors.green,colors.line_bg},
+    }
+  },
+
+  {
+    DiffModified = {
+      provider = 'DiffModified',
+      condition = checkwidth,
+      icon = ' ',
+      highlight = {colors.yellow,colors.line_bg},
+    }
+  },
+
+  {
+    DiffRemove = {
+      provider = 'DiffRemove',
+      condition = checkwidth,
+      icon = ' ',
+      highlight = {colors.red,colors.line_bg},
+    }
+  },
+
+  {
+    DiagnosticError = {
+      provider = 'DiagnosticError',
+      icon = '  ',
+      highlight = {colors.red,colors.bg}
+    }
+  },
+
+  {
+    DiagnosticWarn = {
+      provider = 'DiagnosticWarn',
+      icon = '     ',
+      highlight = {colors.blue,colors.bg},
+    }
+  },
+
+  {
+    Space = {
+      provider = function() return ' ' end,
+      highlight = {colors.line_bg,colors.line_bg}
+    }
+ },
 }
 
 ----------------
 -- Right side --
 ----------------
 
-gls.right[1]= {
-  FileTypeName = {
-    provider = 'FileTypeName',
-    separator = ' ',
-    separator_highlight = {colors.bg,colors.line_bg},
-    highlight = {colors.fg,colors.line_bg,'bold'},
-  }
-}
-
-gls.right[2] = {
-  FileSize = {
-    provider = 'FileSize',
-    separator = ' ',
-    icon = ' ',
-    separator_highlight = {colors.blue,colors.line_bg},
-    highlight = {colors.fg,colors.line_bg},
-  }
-}
-
-gls.right[4] = {
-  FileFormat = {
-    provider = function()
-      return fileinfo.get_file_encode():gsub("%s+", "")..'['..fileinfo.get_file_format()..']'
-    end,
-    separator = ' ',
-    separator_highlight = {colors.fg,colors.line_bg},
-    highlight = {colors.fg,colors.line_bg},
+gls.right = {
+  {
+    FileTypeName = {
+      provider = 'FileTypeName',
+      condition = buffer_is_modifiable,
+      separator = ' ',
+      separator_highlight = {colors.bg,colors.line_bg},
+      highlight = {colors.fg,colors.line_bg,'bold'},
+    }
   },
-}
 
-gls.right[5] = {
-  Percent = {
-    provider = 'LinePercent',
-    separator = ' ',
-    separator_highlight = {colors.blue,colors.line_bg},
-    highlight = {colors.bg,colors.red},
-  }
-}
-
-gls.right[6] = {
-  LineColumn = {
-    provider = 'LineColumn',
-    separator = '☰ ',
-    separator_highlight = {colors.blue,colors.line_bg},
-    highlight = {colors.fg,colors.line_bg,'bold'},
+  {
+    FileSize = {
+      provider = 'FileSize',
+      condition = buffer_is_modifiable,
+      separator = ' ',
+      icon = ' ',
+      separator_highlight = {colors.blue,colors.line_bg},
+      highlight = {colors.fg,colors.line_bg},
+    }
   },
-}
 
-gls.right[7] = {
-  EndSpace = {
-    provider = function() return '' end,
-    separator = ' ',
+  {
+    FileFormat = {
+      provider = function()
+        return fileinfo.get_file_encode():gsub("%s+", "")..'['..fileinfo.get_file_format()..']'
+      end,
+      condition = buffer_is_modifiable,
+      separator = ' ',
+      separator_highlight = {colors.fg,colors.line_bg},
+      highlight = {colors.fg,colors.line_bg},
+    },
   },
+
+  {
+    Percent = {
+      provider = 'LinePercent',
+      condition = buffer_is_modifiable,
+      separator = ' ',
+      separator_highlight = {colors.blue,colors.line_bg},
+      highlight = {colors.bg,colors.red},
+    }
+  },
+
+  {
+    LineColumn = {
+      provider = 'LineColumn',
+      condition = buffer_is_modifiable,
+      separator = '☰ ',
+      separator_highlight = {colors.blue,colors.line_bg},
+      highlight = {colors.fg,colors.line_bg,'bold'},
+    },
+  },
+
+  {
+    EndSpace = {
+      separator = ' ',
+      condition = buffer_is_modifiable,
+      provider = function() return '' end,
+      highlight = {colors.fg,colors.line_bg,'bold'},
+    },
+  },
+
+  non_mod_spacer,
 }
 
 ----------------
 -- Short line --
 ----------------
 
-gls.short_line_left[1] = {
-  FileName = {
-    provider = function()
-      local modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
-      local filename_color = colors.fg
-      if modified then
-        filename_color = colors.magenta
-      end
-      vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color)
-      return fileinfo.get_current_file_name()
-    end,
-    separator = ' ',
-    condition = buffer_not_empty,
-    highlight = {colors.fg,colors.line_bg,'bold'},
-    separator_highlight = {colors.fg,colors.line_bg,'bold'},
-  }
+gls.short_line_left = {
+  non_mod_spacer,
+
+  {
+    InactiveMode = {
+      icon = ' ',
+      condition = buffer_is_modifiable,
+      provider = function()
+        return ' INACTIVE '
+      end,
+      highlight = { colors.grey, colors.inactive_bg },
+    },
+  },
+
+  {
+    FileIcon = {
+      icon = '  ',
+      provider = 'FileIcon',
+      condition = buffer_not_empty,
+      highlight = { fileinfo.get_file_icon_color, colors.inactive_bg },
+    },
+  },
+
+  {
+    FileName = {
+      provider = filename_with_color,
+      highlight = { colors.fg, colors.inactive_bg },
+    }
+  },
 }
 
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider= 'BufferIcon',
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.fg,colors.purple}
-  }
+gls.short_line_right = {
+  non_mod_spacer,
 }
+

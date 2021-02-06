@@ -81,3 +81,9 @@ function opt(key, value, scope)
   scopes[scope][key] = value
   if scope ~= 'o' then scopes['o'][key] = value end
 end
+
+function dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
+end
+

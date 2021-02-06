@@ -1,6 +1,6 @@
 require 'core.helpers'
 require 'core.defaults'
-require 'core.general'
+require 'core.settings'
 require 'core.events'
 require 'core.filetype'
 require 'core.keymap'
