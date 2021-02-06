@@ -53,7 +53,7 @@ function nvim_define_filetypes(definitions)
   api.nvim_command('augroup filetypedetect')
   for _, def in ipairs(definitions) do
     -- autocmd BufNewFile,BufRead *.jrnl setfiletype jrnl
-    local command = table.concat(vim.tbl_flatten{'autocmd BufNewFile,BufRead', def[0], 'setfiletype', def[1]}, ' ')
+    local command = table.concat(vim.tbl_flatten{'autocmd BufNewFile,BufRead', def[1], 'setfiletype', def[2]}, ' ')
     api.nvim_command(command)
   end
   api.nvim_command('augroup END')
