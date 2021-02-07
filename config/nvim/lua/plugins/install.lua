@@ -14,7 +14,7 @@ local plugins = {
   ----- Plugin management -----
   {
     'wbthomason/packer.nvim',
-    opt = true
+    opt = true,
   },
 
   ----- Statusline -----
@@ -24,23 +24,29 @@ local plugins = {
   },
 
   ----- Session/view management -----
-  'vim-scripts/restore_view.vim',
-  'tpope/vim-obsession',
+  -- 'vim-scripts/restore_view.vim',
+  -- 'tpope/vim-obsession',
 
   -- Enhance terminal compatibility (especially w/ tmux)
-  'wincent/terminus',
+  -- 'wincent/terminus',
 
   ----- Search -----
 
   -- Better search with
-  'junegunn/vim-pseudocl',
-  'junegunn/vim-oblique',
+  {
+    'junegunn/vim-oblique',
+    requires = 'junegunn/vim-pseudocl'
+  },
 
   ----- Visual -----
   'joshdick/onedark.vim',
 
   -- Highlights CSS colors inline
-  'ap/vim-css-color',
+  {
+    'RRethy/vim-hexokinase',
+    config = function() require 'plugins.hexokinase' end,
+    run = 'make hexokinase',
+  },
 
   -- Highlight area being copied
   'machakann/vim-highlightedyank',
@@ -49,7 +55,10 @@ local plugins = {
   'kyazdani42/nvim-web-devicons',
 
   -- Smooth/fast scrolling with j/k keys
-  'rhysd/accelerated-jk',
+  {
+    'rhysd/accelerated-jk',
+    config = function() require 'plugins.accelerated-jk' end,
+  },
 
   -- Fade text in inactive windows (while preserving syntax)
   -- Causes vimenter autocommand lag
@@ -57,11 +66,6 @@ local plugins = {
   -- 'tadaa/vimade',
 
   ----- Tab management -----
-
-  -- {
-    -- 'romgrk/barbar.nvim', 
-    -- config = function() require 'plugins.barbar' end
-  -- }
 
   {
     'akinsho/nvim-bufferline.lua',
@@ -83,19 +87,32 @@ local plugins = {
 
   ----- Misc -----
 
-  'junegunn/vim-easy-align',
+  {
+    'junegunn/vim-easy-align',
+    config = function() require 'plugins.easyalign' end,
+  },
 
-  'godlygeek/tabular',
+  {
+    'godlygeek/tabular', -- Text alignment
+    config = function() require 'plugins.tabular' end,
+  },
 
-  'yuttie/comfortable-motion.vim',
+  {
+    'yuttie/comfortable-motion.vim',
+    config = function() require 'plugins.comfortable-motion' end,
+  },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
   'dstein64/vim-startuptime',
+  -- 'tweekmonster/startuptime.vim',
 
   ----- Navigation -----
 
   -- Undo tree visualization
-  'simnalamburt/vim-mundo',
+  {
+    'simnalamburt/vim-mundo',
+    config = function() require 'plugins.mundo' end,
+  },
 
   -- Better repeating with period command
   'tpope/vim-repeat',
@@ -109,7 +126,6 @@ local plugins = {
   -- Visual overlay to jump cursor to any part of screen
   {
     'easymotion/vim-easymotion',
-    config = function() require 'plugins.easymotion' end,
   },
 
   -- More control over what motions apply to (like word separators)
@@ -117,7 +133,10 @@ local plugins = {
   'chaoren/vim-wordmotion',
 
   -- Navigate windows in vim and tmux with the same keys
-  'christoomey/vim-tmux-navigator',
+  {
+    'christoomey/vim-tmux-navigator',
+    config = function() require 'plugins.tmux-navigator' end,
+  },
 
   -- Fantastic fuzzy finder
   {
@@ -141,7 +160,10 @@ local plugins = {
   },
 
   -- Git integration
-  'chemzqm/vim-easygit',
+  {
+    'chemzqm/vim-easygit',
+    config = function() require 'plugins.easygit' end,
+  },
 
   -- Status markers in gutter
   {
@@ -149,6 +171,7 @@ local plugins = {
     config = function() require 'plugins.gitgutter' end,
   },
 
+  -- Git commit message editing
   'rhysd/committia.vim',
 
   ----- Languages and syntax -----
@@ -168,7 +191,10 @@ local plugins = {
   ----- Coding -----
 
   -- Commenting
-  'tyru/caw.vim',
+  {
+    'tyru/caw.vim',
+    config = function() require 'plugins.caw' end,
+  },
 
   -- Auto formatting files by syntax
   {
@@ -183,7 +209,7 @@ local plugins = {
   },
 
   -- LSP support for tags
-  'liuchengxu/vista.vim',
+  -- 'liuchengxu/vista.vim',
 
   -- Parens matching
   -- 'luochen1990/rainbow',
@@ -193,33 +219,53 @@ local plugins = {
   'editorconfig/editorconfig-vim',
 
   -- Show function signature
-  'Shougo/echodoc.vim',
+  -- 'Shougo/echodoc.vim',
 
   -- Search documentation (also works offline)
-  'sunaku/vim-dasht',
+  {
+    'sunaku/vim-dasht',
+    config = function() require 'plugins.dasht' end,
+  },
 
   -- Completion engine
   -- Causes startup lag. Worth keeping?
   -- {'ycm-core/YouCompleteMe', run = './install.py --all' },
 
+  {
+    'neovim/nvim-lsp',
+    -- requires = {
+    --   'anott03/nvim-lspinstall' -- linux only :(
+    -- },
+    config = function()
+      require 'plugins.nvimlsp'
+    end,
+  },
+
   -- Operations on matching charcs (e.g. parens, brackets, etc)
   'machakann/vim-sandwich',
 
   -- Multiple cursors
-  'mg979/vim-visual-multi',
+  -- 'mg979/vim-visual-multi',
 
-  'lfv89/vim-interestingwords',
+  {
+    'lfv89/vim-interestingwords',
+    config = function() require 'plugins.interestingwords' end,
+  },
 
   ---- Productivity -----
 
   -- Toggle markdown checkboxes
-  'jkramer/vim-checkbox',
+  {
+    'jkramer/vim-checkbox',
+    config = function() require 'plugins.checkbox' end,
+  },
 
   ----- Writing -----
-
   -- {'iamcco/markdown-preview.nvim', run = vim.fn['mkdp#util#install']},
-
-
 }
 
-return require('packer').startup {plugins, config = config_overrides}
+require('packer').startup {plugins, config = config_overrides}
+
+-- After loading plugins --
+require 'plugins.easymotion'
+

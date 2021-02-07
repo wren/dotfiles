@@ -1,3 +1,7 @@
+-- Keymap --
+map('n', '<localleader>f', ':Neoformat<CR>')
+
+-- Settings --
 g.neoformat_try_formatprg = 1
 g.jsx_ext_required = 0
 g.neoformat_enabled_javascript = {'prettier'}

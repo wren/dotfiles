@@ -1,1 +1,2 @@
-vim.cmd [[ autocmd BufWritePost install.lua PackerCompile ]]
+vim.cmd [[ autocmd BufWritePost */install.lua PackerCompile ]]
+

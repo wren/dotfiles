@@ -3,7 +3,7 @@ local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
   -- TODO: Maybe handle windows better?
-  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
+  if vim.fn.input("Download and install plugins? (y for yes)") ~= "y" then
     return
   end
 
