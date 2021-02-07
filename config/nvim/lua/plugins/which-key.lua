@@ -25,17 +25,6 @@ nvim_create_augroup('which_key', {
 
 g.which_key_leader = {
   name = '+Root ' ,
-  ['1'] = 'which_key_ignore'      ,
-  ['2'] = 'which_key_ignore'      ,
-  ['3'] = 'which_key_ignore'      ,
-  ['4'] = 'which_key_ignore'      ,
-  ['5'] = 'which_key_ignore'      ,
-  ['6'] = 'which_key_ignore'      ,
-  ['7'] = 'which_key_ignore'      ,
-  ['8'] = 'which_key_ignore'      ,
-  ['9'] = 'which_key_ignore'      ,
-  ['0'] = 'which_key_ignore'     ,
-  ['0-9']= 'select window 1-10'  ,
   b = {
     name = 'buffer +',
     c = 'keep current buffer',
@@ -58,17 +47,17 @@ g.which_key_leader = {
     v = 'find in vista outline',
     h = {
       name = '+history',
-      f= 'file history',
-      c= 'command history',
-      s= 'search history',
+      f    = 'file history',
+      c    = 'command history',
+      s    = 'search history',
     },
   },
   l = 'clear search highlights' ,
   m = 'open mundotree' ,
   w = 'write file',
   p = 'edit pluginsconfig {filename}',
-  g  ={
-    name  = ' git +',
+  g = {
+    name = ' git +',
     d    = 'Gdiff',
     c    = 'Gcommit',
     b    = 'Gblame',
@@ -80,9 +69,9 @@ g.which_key_leader = {
   },
   t = {
     name = '+tab-operate',
-    n = 'new tab',
-    e = 'edit tab',
-    m = 'move tab',
+    n    = 'new tab',
+    e    = 'edit tab',
+    m    = 'move tab',
   },
   q = 'quit window',
   ['/'] = 'comment/uncomment line',
@@ -95,10 +84,10 @@ g.which_key_leader = {
 }
 
 g.which_key_localleader ={
-  name        = '+LocalLeaderKey'  ,
-  t           = 'toggle markdown checkbox',
-  s           = 'show theme classes on cursor word',
-  [' ']       = 'clear trailing whitespace',
+  name  = '+LocalLeaderKey'  ,
+  t     = 'toggle markdown checkbox',
+  s     = 'show theme classes on cursor word',
+  [' '] = 'clear trailing whitespace',
 }
 
 g.which_key_next = {
