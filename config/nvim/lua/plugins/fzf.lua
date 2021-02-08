@@ -1,13 +1,11 @@
 
 cmd 'set rtp+=/usr/local/opt/fzf'
 
-
 g.fzf_action = {
   ['ctrl-t'] = 'tab split',
   ['ctrl-x'] = 'split',
   ['ctrl-v'] = 'vsplit'
 }
-
 
 g.fzf_colors = {
   fg      = {'fg', 'Normal'},
@@ -25,24 +23,61 @@ g.fzf_colors = {
   header  = {'fg', 'Comment'}
 }
 
-
-g.fzf_commits_log_options = '--graph --color=always'..
-  '--format="%C(yellow)%h%C(red)%d%C(reset)'..
-  '- %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
-
-
 -- ripgrep
 if fn.executable('rg') == 1 then
-  cmd [[let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!**/node_modules/*" --glob "!**/__pycache__/*" 2> /dev/null']]
-  set.grepprg = 'rg --vimgrep'
-  -- @todo make this lua
-  cmd [[command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)]]
+  local rg_default_opts = {
+    '--files',
+    ' --hidden',
+    ' --follow',
+  }
+  local rg_search_opts = {
+    '--column',
+    '--line-number',
+    '--no-heading',
+    '--fixed-strings',
+    '--ignore-case',
+    '--hidden',
+    '--follow',
+    '--color "always"',
+    [['.shellescape(<q-args>).']],
+    [[| tr -d "\017"]],
+  }
+  local rg_ignore_globs = {
+    '--glob "!.git/*"',
+    '--glob "!**/node_modules/*"',
+    '--glob "!**/__pycache__/*"',
+    '--glob "!*.lock"',
+  }
+
+  local my_opts = ''
+
+  my_opts = table.concat(rg_ignore_globs, ' ') .. ' ' .. table.concat(rg_default_opts, ' ')
+  cmd(string.format("let $FZF_DEFAULT_COMMAND='rg %s 2> /dev/null'", my_opts))
+
+  my_opts = table.concat(rg_ignore_globs, ' ') .. ' ' .. table.concat(rg_search_opts, ' ')
+  cmd(string.format("command! -bang -nargs=* Find call fzf#vim#grep('rg %s', 1, <bang>0)", my_opts))
 end
 
+local default_opts = table.concat({
+  '--multi',
+  '--bind ctrl-d:preview-page-down,ctrl-u:preview-page-up',
+  '--layout=reverse',
+}, ' ')
+cmd(string.format("let $FZF_DEFAULT_OPTS='%s'", default_opts))
 
-cmd "let $FZF_DEFAULT_OPTS='--layout=reverse'"
-g.fzf_layout = { window = 'call FloatingFZF()' }
+g.fzf_layout = {
+  window = {
+    relative = 'editor',
+    width    = 0.8,
+    height   = 0.5,
+    border   = 'no',
+  }
+}
 
+g.fzf_preview_window = {
+  'right:50%',
+  'ctrl-p',
+}
 
 -- @todo This one needs a lot of work to migrate to lua (worth it, but will do later)
 cmd(string.format('source %s/legacy/fzf.vim', fn.stdpath('config')))
@@ -52,8 +87,8 @@ silent = { silent = true }
 map('n', '<leader>fb', ':Buffers<CR>', silent)
 map('n', '<leader>ft', ':Filetypes<CR>', silent)
 map('n', '<M-C-p>', ':Buffers<CR>', silent)
-map('n', '<C-p>', ':call Fzf_dev()<CR>', silent)
-map('n', '<leader>fp', ':call Fzf_dev()<CR>')
+map('n', '<C-p>', ':Files<CR>', silent)
+map('n', '<leader>fp', ':Files<CR>')
 map('n', '<leader>ff', ':Find<Space>')
 map('n', '<leader>fm', ':Maps<CR>')
 map('n', '<leader>fc', ':Commands<CR>')
