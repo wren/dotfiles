@@ -700,6 +700,8 @@ key_bindings:
   - { key: H,              mods: Option,                   chars: "\x1bh"        }
   - { key: J,              mods: Option,                   chars: "\x1bj"        }
   - { key: K,              mods: Option,                   chars: "\x1bk"        }
+  - { key: Period,         mods: Option,                   chars: "\x1b."        }
+  - { key: Comma,          mods: Option,                   chars: "\x1b,"        }
   - { key: W,              mods: Control,                  chars: "^w"           }
   - { key: Slash,          mods: Command,                  chars: "\x1b/"        }
 
