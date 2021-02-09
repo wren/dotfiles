@@ -8,7 +8,7 @@ set.autowrite = true
 set.confirm = true
 set.splitbelow = true
 set.splitright = true
-set.fixeol = false              -- don't secretly add newlines to every file at eof
+cmd 'set nofixeol'        -- don't secretly add newlines to every file at eof
 set.encoding = 'UTF-8'
 -- cmd [[scriptencoding UTF-8]]
 set.laststatus = 2
@@ -80,9 +80,10 @@ set.wildmenu = true
 -- set.winhighlight = 'Normal:Normal,NormalNC:InactiveWindow'
 
 -- Set 7 lines to the cursor - when moving vertically using j/k
-set.so = 6
+cmd 'set so=6'
 
 set.conceallevel = 3
+
 set.concealcursor = 'n'
 
 -- Vim Directories --
@@ -90,6 +91,7 @@ set.concealcursor = 'n'
 set.undofile = true
 set.swapfile = false
 set.backup = false
+local DATA_PATH = fn.stdpath('data')
 local my_str = DATA_PATH .. '/%s//,' .. DATA_PATH .. ',~/tmp/var/tmp,/tmp'
 set.directory = my_str:format('swap')
 set.undodir = my_str:format('undo')

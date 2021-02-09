@@ -1,8 +1,6 @@
 
 ----- Helpers -----
-api, cmd, fn, g, set = vim.api, vim.cmd, vim.fn, vim.g, vim.o
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
+api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua --
 function map(mode, lhs, rhs, opts)
@@ -76,14 +74,29 @@ function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-function opt(key, value, scope)
-  if not scope then scope = 'o' end
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
-end
-
 function dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
 end
+
+
+-- from: https://www.reddit.com/r/neovim/comments/l6a8z8/is_it_just_me_or_some_options_dont_work_in_lua_yet/
+-- @todo: Remove when https://github.com/neovim/neovim/pull/13479 lands
+local opts_info = vim.api.nvim_get_all_options_info()
+set = setmetatable({}, {
+  __index = vim.o,
+  __newindex = function(_, key, value)
+    vim.o[key] = value
+    if opts_info[key] == nil then
+      print(string.format('set.%s is not a valid option.', key))
+      return
+    end
+    local scope = opts_info[key]['scope']
+    if scope == "win" then
+      vim.wo[key] = value
+    elseif scope == "buf" then
+      vim.bo[key] = value
+    end
+  end,
+})
 
