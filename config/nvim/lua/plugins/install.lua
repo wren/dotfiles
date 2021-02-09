@@ -130,7 +130,12 @@ local plugins = {
 
   -- More control over what motions apply to (like word separators)
   'wellle/targets.vim',
-  'chaoren/vim-wordmotion',
+
+  {
+    'chaoren/vim-wordmotion',
+    config = function() require 'plugins.wordmotion' end,
+  },
+
 
   -- Navigate windows in vim and tmux with the same keys
   {
@@ -186,6 +191,10 @@ local plugins = {
   {
     'fatih/vim-go',
     config = function() require 'plugins.golang' end,
+  },
+  {
+    'elzr/vim-json',
+    config = function() g.vim_json_syntax_conceal = 0 end,
   },
 
   ----- Coding -----
