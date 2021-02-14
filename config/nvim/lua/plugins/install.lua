@@ -270,7 +270,13 @@ local plugins = {
   },
 
   ----- Writing -----
-  -- {'iamcco/markdown-preview.nvim', run = vim.fn['mkdp#util#install']},
+  {
+    'iamcco/markdown-preview.nvim',
+    -- run = vim.fn['mkdp#util#install'],
+    run = 'cd app && yarn install',
+    config = function() require 'plugins.markdown-preview' end,
+  },
+
 }
 
 require('packer').startup {plugins, config = config_overrides}
