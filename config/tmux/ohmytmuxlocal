@@ -30,10 +30,6 @@ tmux_conf_new_session_prompt=false
 # RGB 24-bit color support (tmux >= 2.2) [true|false]
 tmux_conf_theme_24b_color=false
 
-# window style
-tmux_conf_theme_window_fg='default'
-tmux_conf_theme_window_bg='default'
-
 # highlight focused pane (tmux >= 2.1) [true|false]
 tmux_conf_theme_highlight_focused_pane=false
 
