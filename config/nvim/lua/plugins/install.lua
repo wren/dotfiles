@@ -217,9 +217,6 @@ local plugins = {
     config = function() require 'plugins.indentline' end
   },
 
-  -- LSP support for tags
-  -- 'liuchengxu/vista.vim',
-
   -- Parens matching
   -- 'luochen1990/rainbow',
   'andymass/vim-matchup',
@@ -236,21 +233,31 @@ local plugins = {
     config = function() require 'plugins.dasht' end,
   },
 
-  -- Completion engine
-  -- Causes startup lag. Worth keeping?
-  -- {'ycm-core/YouCompleteMe', run = './install.py --all' },
-
+  -- Completion & LSP
   {
-    'neovim/nvim-lsp',
-    -- requires = {
-    --   'anott03/nvim-lspinstall' -- linux only :(
-    -- },
-    config = function()
-      require 'plugins.nvimlsp'
-    end,
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- 'anott03/nvim-lspinstall', -- linux only :(
+      'onsails/lspkind-nvim',
+    },
+    config = function() require 'plugins.nvim-lspconfig' end,
   },
 
-  -- Operations on matching charcs (e.g. parens, brackets, etc)
+  {
+    'nvim-lua/completion-nvim',
+    config = function() require 'plugins.completion-nvim' end,
+  },
+
+  {
+    'mfussenegger/nvim-dap',
+    config = function() require 'plugins.dap' end,
+    requires = {
+      'mfussenegger/nvim-dap-python',
+      'nvim-treesitter/nvim-treesitter',
+    }
+  },
+
+  -- Operations on matching chars (e.g. parens, brackets, etc)
   'machakann/vim-sandwich',
 
   -- Multiple cursors
