@@ -234,11 +234,15 @@ local plugins = {
   },
 
   -- Completion & LSP
+
   {
     'neovim/nvim-lspconfig',
+    run = [[
+      npm install -g typescript-language-server
+    ]],
     requires = {
-      -- 'anott03/nvim-lspinstall', -- linux only :(
       'onsails/lspkind-nvim',
+      'mattn/vim-lsp-settings',
     },
     config = function() require 'plugins.nvim-lspconfig' end,
   },
