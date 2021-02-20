@@ -17,22 +17,22 @@ local on_attach = function(client, bufnr)
   map('n', 'K',         '<Cmd>lua vim.lsp.buf.hover()<CR>',                                      opts)
   map('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>',                             opts)
   map('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>',                             opts)
-  map('n', '<localleader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',                       opts)
-  map('n', '<localleader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',                    opts)
-  map('n', '<localleader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  map('n', '<localleader>D',  '<cmd>lua vim.lsp.buf.type_definition()<CR>',                            opts)
-  map('n', '<localleader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',                                     opts)
+  map('n', ';wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',                       opts)
+  map('n', ';wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',                    opts)
+  map('n', ';wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  map('n', ';D',  '<cmd>lua vim.lsp.buf.type_definition()<CR>',                            opts)
+  map('n', ';rn', '<cmd>lua vim.lsp.buf.rename()<CR>',                                     opts)
   map('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>',                                 opts)
-  map('n', '<localleader>e',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
+  map('n', ';e',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
   map('n', '[d',        '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',                           opts)
   map('n', ']d',        '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',                           opts)
-  map('n', '<localleader>q',  '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
+  map('n', ';q',  '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    map("n", "<localleader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    map("n", ";f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    map("n", "<localleader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    map("n", ";f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
