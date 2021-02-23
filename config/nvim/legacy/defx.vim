@@ -78,7 +78,6 @@ function! s:defx_mappings() abort
   setlocal signcolumn=no
   setlocal norelativenumber
   setlocal nonumber
-  :IndentLinesDisable
 
   nnoremap <silent><buffer><expr> <C-\>    defx#do_action('quit')
   nnoremap <silent><buffer><expr> <CR>     <SID>defx_toggle_tree()
