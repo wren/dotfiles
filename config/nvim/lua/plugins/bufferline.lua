@@ -1,5 +1,12 @@
 -- Init --
-require'bufferline'.setup{}
+
+require'bufferline'.setup{
+  options = {
+    view = "multiwindow"
+  }
+}
+
+-- All options
 -- require'bufferline'.setup{
 --   options = {
 --     view = "multiwindow" | "default",

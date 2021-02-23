@@ -66,10 +66,13 @@ local plugins = {
   -- 'tadaa/vimade',
 
   ----- Tab management -----
-
   {
     'akinsho/nvim-bufferline.lua',
-    config = function() require 'plugins.bufferline' end
+    config = function() require 'plugins.bufferline' end,
+  },
+  {
+    'qpkorr/vim-bufkill', -- buffer delete while preserving windows
+    config = function() require 'plugins.bufkill' end,
   },
 
   ----- File explorer -----
