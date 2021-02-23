@@ -41,12 +41,10 @@ map('v', '<c-l>', ':nohlsearch<CR>', {silent = true})
 -- Write buffer (save)
 map('n', '<leader>w', ':w<CR>')
 map('n', '<leader>q', '<c-w>c')
-map('n', '<leader>Q', ':BufferClose<CR>')
 map('n', 'QQ', ':qa<CR>')
 
 map('i', '<C-S>', '<esc>:w<CR>a', {noremap = false})
 map('i', '<C-Q>', '<esc>:wq<CR>', {noremap = false})
-map('n', '<C-x><C-x>', ':Bdelete!<CR>')
 
 -- make delete management delete management
 map('n', 'd', '"_d')
