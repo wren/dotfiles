@@ -56,23 +56,6 @@ map('x', 'D', '"_D')
 map('v', 'p', '"_dp')
 map('v', 'P', '"_dP')
 
---buffer operation
-map('n', '<leader>bk', ':BufferCloseAllButCurrent<CR>')
--- map('n', '<leader>bd', ':bdelete<CR>')
-map('n', '<leader>bd', ':BufferClose<CR>')
-map('n', '<C-x>', ':BufferClose<CR>')
-map('n', '<C-x><C-x>', ':BufferClose!<CR>')
-
--- Currently handled by wintab
-map('n', '[b', ':BufferPrevious<cr>', {noremap = false})
-map('n', ']b', ':BufferNext<cr>', {noremap = false})
-map('n', '<A-,>', ':BufferPrevious<CR>', {silent = true})
-map('n', '<A-.>', ':BufferNext<CR>', {silent = true})
-map('n', '<A-<>', ':BufferMovePrevious<CR>', {silent = true})
-map('n', '<A->>', ':BufferMoveNext<CR>', {silent = true})
-map('n', '[B', ':BufferMovePrevious<CR>')
-map('n', ']B', ':BufferMoveNext<CR>')
-
 --navigate window
 map('n', '<m-L>', 'zL')
 map('n', '<m-H>', 'zH')
