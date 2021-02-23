@@ -4,7 +4,7 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 gl.short_line_list = {'defx', 'LuaTree', 'vista'}
 
 local colors = {
-  bg = '#1A1A1A',
+  bg = '#121212',
   line_bg = '#353644',
   inactive_bg = '#333333',
   fg = '#8FBCBB',
@@ -19,7 +19,7 @@ local colors = {
   magenta = '#c678dd',
   blue = '#51afef',
   red = '#ec5f67',
-  grey = '#171717',
+  grey = '#121212',
   white = '#AAB098',
 }
 
@@ -37,7 +37,7 @@ local function filename_with_color()
   if modified then
     filename_color = colors.yellow
   end
-  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color)
+  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color..' guibg='..colors.line_bg)
   local filename = fileinfo.get_current_file_name()
   if is_help then
     filename = 'HELP - ' .. fn.expand('%:t:r')
@@ -182,8 +182,8 @@ gls.left = {
         update_mode_color()
         return ' ' .. mode_info[vim.fn.mode()].name .. ' '
       end,
-      highlight = {colors.red,colors.line_bg,'bold'},
-      separator_highlight = {colors.line_bg,colors.line_bg,'bold'},
+      highlight = { colors.red, colors.line_bg },
+      separator_highlight = { colors.line_bg, colors.line_bg },
     }
   },
 
@@ -192,7 +192,7 @@ gls.left = {
       icon = '  ',
       provider = 'FileIcon',
       condition = buffer_not_empty,
-      highlight = { fileinfo.get_file_icon_color, colors.line_bg, 'bold' },
+      highlight = { fileinfo.get_file_icon_color, colors.line_bg },
     }
   },
 
@@ -235,17 +235,19 @@ gls.left = {
 
   {
     DiagnosticError = {
+      separator = ' |  ',
+      separator_highlight = {colors.line_bg,colors.line_bg},
       provider = 'DiagnosticError',
       icon = '  ',
-      highlight = {colors.red,colors.bg}
+      highlight = {colors.red,colors.line_bg}
     }
   },
 
   {
     DiagnosticWarn = {
       provider = 'DiagnosticWarn',
-      icon = '     ',
-      highlight = {colors.blue,colors.bg},
+      icon = '  ',
+      highlight = {colors.yellow,colors.line_bg},
     }
   },
 
