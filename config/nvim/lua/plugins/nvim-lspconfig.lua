@@ -12,21 +12,21 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { noremap = true, silent = true }
-  map('n', 'gD',        '<Cmd>lua vim.lsp.buf.declaration()<CR>',                                opts)
-  map('n', 'gd',        '<Cmd>lua vim.lsp.buf.definition()<CR>',                                 opts)
-  map('n', 'K',         '<Cmd>lua vim.lsp.buf.hover()<CR>',                                      opts)
-  map('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>',                             opts)
-  map('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>',                             opts)
-  map('n', ';wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',                       opts)
-  map('n', ';wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',                    opts)
-  map('n', ';wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  map('n', ';D',  '<cmd>lua vim.lsp.buf.type_definition()<CR>',                            opts)
-  map('n', ';rn', '<cmd>lua vim.lsp.buf.rename()<CR>',                                     opts)
-  map('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>',                                 opts)
-  map('n', ';e',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
-  map('n', '[d',        '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',                           opts)
-  map('n', ']d',        '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',                           opts)
-  map('n', ';q',  '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
+  map('n', 'gD',    '<Cmd>lua vim.lsp.buf.declaration()<CR>',                                opts)
+  map('n', 'gd',    '<Cmd>lua vim.lsp.buf.definition()<CR>',                                 opts)
+  map('n', 'K',     '<Cmd>lua vim.lsp.buf.hover()<CR>',                                      opts)
+  map('n', 'gi',    '<cmd>lua vim.lsp.buf.implementation()<CR>',                             opts)
+  map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',                             opts)
+  map('n', ';wa',   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',                       opts)
+  map('n', ';wr',   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',                    opts)
+  map('n', ';wl',   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  map('n', ';D',    '<cmd>lua vim.lsp.buf.type_definition()<CR>',                            opts)
+  map('n', ';rn',   '<cmd>lua vim.lsp.buf.rename()<CR>',                                     opts)
+  map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>',                                 opts)
+  map('n', ';e',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
+  map('n', '[d',    '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',                           opts)
+  map('n', ']d',    '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',                           opts)
+  map('n', ';q',    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -50,40 +50,46 @@ end
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = {
-  "tsserver",             -- js
-  "jedi_language_server", -- python
-  "pyright",              -- python
-  "bashls",               -- shell
+  "tsserver",               -- js
+  -- "jedi_language_server",   -- python
+  "pyright",                -- python
+  "pyls",                   -- python
+  "bashls",                 -- shell
 }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+nvim_lsp.pyright.setup{
+  cmd = { "pyright-langserver", "--stdio" },
+  root_dir = nvim_lsp.util.root_pattern('.git');
+}
+
 
 -- commented options are defaults
 local prefix = '   '
 require('lspkind').init({
-    with_text = true,
-    symbol_map = {
-      Text        = prefix .. '',
-      Method      = prefix .. 'ƒ',
-      Function    = prefix .. '',
-      Constructor = prefix .. '',
-      Variable    = prefix .. '',
-      Class       = prefix .. '',
-      Interface   = prefix .. 'ﰮ',
-      Module      = prefix .. '',
-      Property    = prefix .. '',
-      Unit        = prefix .. '',
-      Value       = prefix .. '',
-      Enum        = prefix .. '了',
-      Keyword     = prefix .. '',
-      Snippet     = prefix .. '﬌',
-      Color       = prefix .. '',
-      File        = prefix .. '',
-      Folder      = prefix .. '',
-      EnumMember  = prefix .. '',
-      Constant    = prefix .. '',
-      Struct      = prefix .. ''
-    },
+  with_text = true,
+  symbol_map = {
+    Text        = prefix .. '',
+    Method      = prefix .. 'ƒ',
+    Function    = prefix .. '',
+    Constructor = prefix .. '',
+    Variable    = prefix .. '',
+    Class       = prefix .. '',
+    Interface   = prefix .. 'ﰮ',
+    Module      = prefix .. '',
+    Property    = prefix .. '',
+    Unit        = prefix .. '',
+    Value       = prefix .. '',
+    Enum        = prefix .. '了',
+    Keyword     = prefix .. '',
+    Snippet     = prefix .. '﬌',
+    Color       = prefix .. '',
+    File        = prefix .. '',
+    Folder      = prefix .. '',
+    EnumMember  = prefix .. '',
+    Constant    = prefix .. '',
+    Struct      = prefix .. ''
+  },
 })
 

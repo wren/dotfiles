@@ -240,7 +240,8 @@ local plugins = {
       npm install -g typescript-language-server
     ]],
     requires = {
-      'onsails/lspkind-nvim',
+      'onsails/lspkind-nvim', -- icons
+      'prabirshrestha/vim-lsp',
       'mattn/vim-lsp-settings',
     },
     config = function() require 'plugins.nvim-lspconfig' end,
