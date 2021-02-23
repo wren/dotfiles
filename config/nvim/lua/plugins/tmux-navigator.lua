@@ -1,3 +1,4 @@
+g.tmux_navigator_no_mappings = 1
 -- Keymap --
 opts = { silent = true }
 map('n', '<a-h>', ':TmuxNavigateLeft<cr>', opts)
