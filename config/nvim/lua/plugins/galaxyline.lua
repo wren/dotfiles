@@ -4,23 +4,24 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 gl.short_line_list = {'defx', 'LuaTree', 'vista'}
 
 local colors = {
-  bg = '#121212',
-  line_bg = '#353644',
+  bg          = '#121212',
+  line_bg     = '#353644',
   inactive_bg = '#333333',
-  fg = '#8FBCBB',
-  fg_green = '#65a380',
+  fg          = '#8FBCBB',
+  fg_green    = '#65a380',
 
-  yellow = '#fabd2f',
-  cyan = '#008080',
-  darkblue = '#ff0000',
-  green = '#98C379',
-  orange = '#FF8800',
-  purple = '#542F98',
-  magenta = '#c678dd',
-  blue = '#51afef',
-  red = '#ec5f67',
-  grey = '#121212',
-  white = '#AAB098',
+  yellow      = '#fabd2f',
+  cyan        = '#008080',
+  darkblue    = '#ff0000',
+  green       = '#98C379',
+  orange      = '#FF8800',
+  purple      = '#542F98',
+  magenta     = '#c678dd',
+  blue        = '#51afef',
+  red         = '#ec5f67',
+  grey        = '#121212',
+  darkgrey    = '#1a1a1a',
+  white       = '#AAB098',
 }
 
 local function buffer_not_empty()
@@ -163,7 +164,7 @@ end
 local non_mod_spacer = {
   NonMod = {
     provider = function() return '    ' end,
-    highlight = { colors.red, colors.red },
+    highlight = { colors.darkgrey, colors.darkgrey },
     condition = buffer_is_not_modifiable
   }
 }
