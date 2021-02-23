@@ -20,8 +20,10 @@ map('c', '<C-h>', '<BS>')
 map('c', '<C-t>', '<C-R>=expand("%:p:h") . "/" <CR>')
 
 -- Insert newlines without leaving normal mode
-map('n', '<CR>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>')
-map('n', '<S-CR>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>')
+function keymap_modifiable_only()
+  cmd 'nnoremap <buffer><cr> :set paste<CR>m`o<Esc>``:set nopaste<CR>'
+  cmd 'nnoremap <buffer><s-cr> :set paste<CR>m`O<Esc>``:set nopaste<CR>'
+end
 
 -- Comment/uncomment a line
 map('n', '<A-/>', 'gcc', {noremap = false})

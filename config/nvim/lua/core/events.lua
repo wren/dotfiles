@@ -29,8 +29,11 @@ nvim_create_augroups({
   -- ¯\_(ツ)_/¯
   who_knows = {
     [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]]
-  }
+  },
 
+  modifiable_only_keymap = {
+    'BufReadPre * lua if vim.bo.modifiable then keymap_modifiable_only() end'
+  },
   -- better syntax highlight performance with large files
   -- syntax_many_lines = {
   --   [[Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif]]
