@@ -74,15 +74,14 @@ local plugins = {
 
   ----- File explorer -----
 
-  -- {'Shougo/defx.nvim', run = function() vim.cmd [[UpdateRemotePlugins]] end },
-  -- 'kristijanhusak/defx-git',
-  -- 'kristijanhusak/defx-icons',
-
   {
-    'ms-jpq/chadtree', 
-    branch = 'chad',
-    run = 'python -m chadtree deps',
-    config = function() require 'plugins.chadtree' end,
+    'Shougo/defx.nvim',
+    run = function() cmd [[UpdateRemotePlugins]] end,
+    config = function() require 'plugins.defx' end,
+    requires = {
+      'kristijanhusak/defx-git',
+      'kristijanhusak/defx-icons',
+    }
   },
 
   ----- Misc -----
