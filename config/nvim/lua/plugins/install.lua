@@ -216,7 +216,9 @@ local plugins = {
   -- Display thin vertical lines at each indentation level
   {
     'Yggdroot/indentLine',
-    config = function() require 'plugins.indentline' end
+    -- 'lukas-reineke/indent-blankline.nvim',
+    -- branch = 'lua',
+    config = function() require 'plugins.indentline' end,
   },
 
   -- Parens matching
