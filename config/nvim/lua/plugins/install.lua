@@ -238,7 +238,6 @@ local plugins = {
   },
 
   -- Completion & LSP
-
   {
     'neovim/nvim-lspconfig',
     run = [[
@@ -246,25 +245,31 @@ local plugins = {
     ]],
     requires = {
       'onsails/lspkind-nvim', -- icons
-      'prabirshrestha/vim-lsp',
-      'mattn/vim-lsp-settings',
+      -- {
+      -- 'mattn/vim-lsp-settings', -- auto-install lsp servers
+      -- requires = 'prabirshrestha/vim-lsp',
+      -- }
     },
     config = function() require 'plugins.nvim-lspconfig' end,
   },
-
   {
     'nvim-lua/completion-nvim',
     config = function() require 'plugins.completion-nvim' end,
   },
 
-  {
-    'mfussenegger/nvim-dap',
-    config = function() require 'plugins.dap' end,
-    requires = {
-      'mfussenegger/nvim-dap-python',
-      'nvim-treesitter/nvim-treesitter',
-    }
-  },
+  -- {
+  --   'dense-analysis/ale',
+  --   config = function() require 'plugins.ale' end,
+  -- },
+
+  -- {
+  --   'mfussenegger/nvim-dap',
+  --   config = function() require 'plugins.dap' end,
+  --   requires = {
+  --     'mfussenegger/nvim-dap-python',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   }
+  -- },
 
   -- Operations on matching chars (e.g. parens, brackets, etc)
   'machakann/vim-sandwich',
