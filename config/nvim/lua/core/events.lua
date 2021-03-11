@@ -32,7 +32,7 @@ nvim_create_augroups({
   },
 
   modifiable_only_keymap = {
-    'BufReadPre * lua if vim.bo.modifiable then keymap_modifiable_only() end'
+    'BufModifiedSet * lua if vim.bo.modifiable then keymap_modifiable_only() end'
   },
   -- better syntax highlight performance with large files
   -- syntax_many_lines = {
