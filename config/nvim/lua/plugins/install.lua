@@ -29,7 +29,10 @@ local plugins = {
 
   -- Enhance terminal compatibility (especially w/ tmux)
   -- 'wincent/terminus',
-
+  {
+    'rmagatti/auto-session',
+    config = function() require 'plugins.auto-session' end,
+  },
   ----- Search -----
 
   -- Better search with
