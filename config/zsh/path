@@ -9,6 +9,9 @@ path=(
   ${N_PREFIX}/bin
   /usr/local/share/npm/bin
 
+  # also ruby for some reason
+  /usr/local/opt/ruby/bin
+
   # then Homebrew comes next
   /usr/local/bin
   /usr/local/sbin
