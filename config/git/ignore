@@ -33,6 +33,7 @@
 .vim/*
 node_modules/**
 Session.vim
+.envrc
 
 ###########################
 # Other Source Management #

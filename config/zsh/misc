@@ -28,3 +28,6 @@ export PIPX_DEFAULT_PYTHON="$PYENV_ROOT/shims/python"
 BACKUPS_CONFIG="$XDG_CONFIG_HOME/backups/config.yaml"
 export RESTIC_PASSWORD_COMMAND="yq e .restic.passphrase '$BACKUPS_CONFIG'"
 export RESTIC_REPOSITORY="$(yq e .restic.repo "$BACKUPS_CONFIG" | sed "s!^~!$HOME!")"
+
+# direnv
+eval "$(direnv hook zsh)"
