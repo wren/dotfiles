@@ -184,6 +184,16 @@ local plugins = {
   -- Git commit message editing
   'rhysd/committia.vim',
 
+  -- Auto-close brackets, parens, etc
+  {
+    'Raimondi/delimitMate',
+  },
+
+  {
+    'Konfekt/FastFold',
+    config = function() require 'plugins.fastfold' end,
+  },
+
   ----- Languages and syntax -----
   'honza/dockerfile.vim',
   'junegunn/vim-emoji',
