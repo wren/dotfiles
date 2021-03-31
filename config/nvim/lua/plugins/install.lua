@@ -203,6 +203,7 @@ local plugins = {
   'cespare/vim-toml',
   'tpope/vim-cucumber',
   'tmux-plugins/vim-tmux',
+  'wren/jrnl.vim',
   {
     'fatih/vim-go',
     config = function() require 'plugins.golang' end,
