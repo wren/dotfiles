@@ -1,3 +1,5 @@
-g.blamer_enabled = 0
-g.blamer_delay = 500
-g.blamer_prefix = '  '
+g.gitblame_enabled = 1
+g.gitblame_date_format = '%r'
+
+-- Available options: <author>, <committer>, <date>, <committer-date>, <summary>, <sha>
+g.gitblame_message_template = ' <author> (<date>) • <sha>'

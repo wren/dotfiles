@@ -165,7 +165,7 @@ local plugins = {
 
   -- Inline git blame while you type
   {
-    'apzelos/blamer.nvim',
+    'f-person/git-blame.nvim',
     config = function() require 'plugins.blamer' end,
   },
 
