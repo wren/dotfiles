@@ -51,6 +51,9 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # https://python-poetry.org/docs/configuration/
 export POETRY_CACHE_DIR="$XDG_CACHE_HOME/poetry"
 
+# Ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgrep.config"
+
 # secrethub
 export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
 
