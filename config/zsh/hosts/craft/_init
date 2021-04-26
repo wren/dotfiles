@@ -1,0 +1,3 @@
+if [[ $(hostname) == wrencraft.(lan|local) ]]; then
+  extra_hosts+=(craft)
+fi

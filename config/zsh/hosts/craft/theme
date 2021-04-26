@@ -1,0 +1,2 @@
+# Color of the prompt
+typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=032
