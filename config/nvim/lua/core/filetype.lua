@@ -18,5 +18,6 @@ nvim_define_filetypes({
   { '*/*config/git/*'             , 'gitconfig' },
   { '*/*ssh/configs/*'            , 'sshconfig' },
   { '*/*config/tmux/*'            , 'tmux'      },
+  { '*.config'                    , 'gitconfig' },
   { 'jrnl*.{jrnl,md}'             , 'jrnl'      },
 })

@@ -19,6 +19,8 @@ call defx#custom#column('icons', {
 
 " Keymap
 nnoremap <silent><leader>eo :Defx<cr>
+" nnoremap <silent><leader>ef :Defx `escape(expand('%:p:h'), ' :')` -search=`expand('%:p')`<cr>
+nnoremap <silent><leader>ef :Defx -search=`expand('%:p')`<cr>
 
 "
 " Events
