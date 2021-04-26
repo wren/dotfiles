@@ -98,7 +98,9 @@ $cmd -f -R -d "${LCONFL}" "${RCONFL}" \
      -c ":set noro" \
      -c ":nmap <leader>D :tabe $REMOTE<CR>:vert diffs $BASE<CR>:vert diffs $LOCAL<CR>:winc t<CR>:tabe $MERGED<CR>:tabfir<CR>" \
      -c ":nmap <leader>gh ]czz" \
-     -c ":nmap <leader>gl :diffget<CR>]czz"
+     -c ":nmap <leader>gl :diffget<CR>]czz" \
+     -c ":nmap <leader>ga :cq<CR>" \
+     -c ":nmap <leader>gq :cq<CR>"
 
 EC=$?
 
