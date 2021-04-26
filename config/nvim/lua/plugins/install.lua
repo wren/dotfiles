@@ -182,7 +182,10 @@ local plugins = {
   },
 
   -- Git commit message editing
-  'rhysd/committia.vim',
+  {
+    'rhysd/committia.vim',
+    config = function() require 'plugins.committia' end,
+  },
 
   -- Auto-close brackets, parens, etc
   {
