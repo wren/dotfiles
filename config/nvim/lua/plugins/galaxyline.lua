@@ -4,10 +4,10 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 gl.short_line_list = {'defx', 'LuaTree', 'vista'}
 
 local colors = {
-  bg          = '#121212',
-  line_bg     = '#353644',
+  bg          = '#353644',
   inactive_bg = '#333333',
   fg          = '#8FBCBB',
+  fg_dim      = '#5C8A89',
   fg_green    = '#65a380',
 
   yellow      = '#fabd2f',
@@ -38,7 +38,7 @@ local function filename_with_color()
   if modified then
     filename_color = colors.yellow
   end
-  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color..' guibg='..colors.line_bg)
+  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color..' guibg='..colors.bg)
   local filename = fileinfo.get_current_file_name()
   if is_help then
     filename = 'HELP - ' .. fn.expand('%:t:r')
@@ -144,13 +144,9 @@ local function update_mode_color()
   end
 end
 
-
 local function checkwidth()
   local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
+  return squeeze_width > 40
 end
 
 local function buffer_is_modifiable()
@@ -183,8 +179,6 @@ gls.left = {
         update_mode_color()
         return ' ' .. mode_info[vim.fn.mode()].name .. ' '
       end,
-      highlight = { colors.red, colors.line_bg },
-      separator_highlight = { colors.line_bg, colors.line_bg },
     }
   },
 
@@ -193,17 +187,23 @@ gls.left = {
       icon = '  ',
       provider = 'FileIcon',
       condition = buffer_not_empty,
-      highlight = { fileinfo.get_file_icon_color, colors.line_bg },
+      highlight = { fileinfo.get_file_icon_color, colors.bg },
+    }
+  },
+
+  {
+    PathName = {
+      provider = function() return vim.call('expand', '%:~:.:h') .. '/' end,
+      condition = buffer_not_empty,
+      highlight = { colors.fg_dim, colors.bg },
     }
   },
 
   {
     FileName = {
       provider = filename_with_color,
-      separator = ' ',
       condition = buffer_not_empty,
-      highlight = { colors.fg, colors.line_bg, 'bold' },
-      separator_highlight = { colors.fg, colors.line_bg, 'bold' },
+      highlight = { colors.fg, colors.bg, 'bold' },
     }
   },
 
@@ -212,7 +212,7 @@ gls.left = {
       provider = 'DiffAdd',
       condition = checkwidth,
       icon = ' ',
-      highlight = {colors.green,colors.line_bg},
+      highlight = { colors.green, colors.bg },
     }
   },
 
@@ -221,7 +221,7 @@ gls.left = {
       provider = 'DiffModified',
       condition = checkwidth,
       icon = ' ',
-      highlight = {colors.yellow,colors.line_bg},
+      highlight = { colors.yellow, colors.bg },
     }
   },
 
@@ -230,35 +230,14 @@ gls.left = {
       provider = 'DiffRemove',
       condition = checkwidth,
       icon = ' ',
-      highlight = {colors.red,colors.line_bg},
+      highlight = { colors.red, colors.bg },
     }
   },
-
-  {
-    DiagnosticError = {
-      separator = ' |  ',
-      separator_highlight = {colors.line_bg,colors.line_bg},
-      provider = 'DiagnosticError',
-      icon = '  ',
-      highlight = {colors.red,colors.line_bg}
-    }
-  },
-
-  {
-    DiagnosticWarn = {
-      provider = 'DiagnosticWarn',
-      icon = '  ',
-      highlight = {colors.yellow,colors.line_bg},
-    }
-  },
-
-  {
-    Space = {
-      provider = function() return ' ' end,
-      highlight = {colors.line_bg,colors.line_bg}
-    }
- },
 }
+
+
+-- gls.mid = {
+-- }
 
 ----------------
 -- Right side --
@@ -266,55 +245,74 @@ gls.left = {
 
 gls.right = {
   {
+    DiagnosticError = {
+      provider = 'DiagnosticError',
+      icon = '  ',
+      highlight = { colors.red, colors.bg },
+      separator_highlight = { colors.fg, colors.bg },
+    }
+  },
+
+  {
+    DiagnosticWarn = {
+      provider = 'DiagnosticWarn',
+      icon = '  ',
+      highlight = { colors.yellow, colors.bg },
+      separator_highlight = { colors.fg, colors.bg },
+    }
+  },
+  {
     FileTypeName = {
       provider = 'FileTypeName',
       condition = buffer_is_modifiable,
+      icon = ' ',
       separator = ' ',
-      separator_highlight = {colors.bg,colors.line_bg},
-      highlight = {colors.fg,colors.line_bg,'bold'},
+      highlight = { colors.fg, colors.bg },
+      separator_highlight = { colors.fg, colors.bg },
     }
   },
 
   {
     FileSize = {
       provider = 'FileSize',
-      condition = buffer_is_modifiable,
+      condition = function() return buffer_is_modifiable() and checkwidth() end,
       separator = ' ',
-      icon = ' ',
-      separator_highlight = {colors.blue,colors.line_bg},
-      highlight = {colors.fg,colors.line_bg},
+      icon = ' ',
+      separator_highlight = { colors.blue, colors.bg },
+      highlight = { colors.fg, colors.bg },
     }
   },
 
   {
     FileFormat = {
       provider = function()
-        return fileinfo.get_file_encode():gsub("%s+", "")..'['..fileinfo.get_file_format()..']'
+        return fileinfo.get_file_encode():gsub("%s+", "") .. ' '
+        -- return fileinfo.get_file_encode():gsub("%s+", "")..'['..fileinfo.get_file_format()..']'
       end,
-      condition = buffer_is_modifiable,
+      condition = function() return buffer_is_modifiable() and checkwidth() end,
       separator = ' ',
-      separator_highlight = {colors.fg,colors.line_bg},
-      highlight = {colors.fg,colors.line_bg},
+      separator_highlight = {colors.fg,colors.bg},
+      highlight = {colors.fg,colors.bg},
     },
   },
 
-  {
-    Percent = {
-      provider = 'LinePercent',
-      condition = buffer_is_modifiable,
-      separator = ' ',
-      separator_highlight = {colors.blue,colors.line_bg},
-      highlight = {colors.bg,colors.red},
-    }
-  },
+  -- {
+  --   Percent = {
+  --     provider = 'LinePercent',
+  --     condition = function() return buffer_is_modifiable() and checkwidth() end,
+  --     separator = ' ',
+  --     separator_highlight = {colors.blue,colors.bg},
+  --     highlight = {colors.bg,colors.red},
+  --   }
+  -- },
 
   {
     LineColumn = {
       provider = 'LineColumn',
       condition = buffer_is_modifiable,
-      separator = '☰ ',
-      separator_highlight = {colors.blue,colors.line_bg},
-      highlight = {colors.fg,colors.line_bg,'bold'},
+      separator = ' ☰ ',
+      separator_highlight = { colors.blue, colors.bg },
+      highlight = { colors.fg, colors.bg },
     },
   },
 
@@ -323,7 +321,7 @@ gls.right = {
       separator = ' ',
       condition = buffer_is_modifiable,
       provider = function() return '' end,
-      highlight = {colors.fg,colors.line_bg,'bold'},
+      highlight = {colors.fg,colors.bg,'bold'},
     },
   },
 
@@ -355,6 +353,14 @@ gls.short_line_left = {
       condition = buffer_not_empty,
       highlight = { fileinfo.get_file_icon_color, colors.inactive_bg },
     },
+  },
+
+  {
+    PathName = {
+      provider = function() return vim.call('expand', '%:~:.:h') .. '/' end,
+      condition = buffer_not_empty,
+      highlight = { colors.fg_dim, colors.bg },
+    }
   },
 
   {
