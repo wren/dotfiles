@@ -207,6 +207,7 @@ local plugins = {
   'tpope/vim-cucumber',
   'tmux-plugins/vim-tmux',
   'wren/jrnl.vim',
+  'jparise/vim-graphql',
   {
     'fatih/vim-go',
     config = function() require 'plugins.golang' end,
