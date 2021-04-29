@@ -30,10 +30,10 @@ local on_attach = function(client, bufnr)
   map('n', ';D',    '<cmd>lua vim.lsp.buf.type_definition()<CR>',                            opts)
   map('n', ';rn',   '<cmd>lua vim.lsp.buf.rename()<CR>',                                     opts)
   map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>',                                 opts)
-  map('n', ';e',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
   map('n', '[d',    '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',                           opts)
   map('n', ']d',    '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',                           opts)
-  map('n', ';q',    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
+  map('n', ';ds',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',               opts)
+  map('n', ';dq',    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',                         opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -99,7 +99,7 @@ require('lspkind').init({
 })
 
 
-vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
+vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
 vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
 vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
@@ -109,10 +109,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
    -- Enable underline, use default values
    underline = true,
    -- Enable virtual text only on Warning or above, override spacing to 2
-   virtual_text = {
-     spacing = 2,
-     severity_limit = "Warning",
-   },
+   virtual_text = false,
+   -- virtual_text = {
+   --   spacing = 2,
+   --   severity_limit = "Warning",
+   -- },
  }
 )
 
