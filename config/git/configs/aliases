@@ -88,6 +88,16 @@
   sur = submodule update --recursive
   suri = submodule update --recursive --init
 
+  # worktrees
+  w = worktree
+  wa = worktree add
+  wls = worktree list
+  wl = worktree lock
+  wmv = worktree move
+  wpr = worktree prune
+  wrm = worktree remove
+  wul = worktree unlock
+
   # workflow
   brn = "!git config branch.$(git symbolic-ref HEAD|sed 's!refs/heads/!!').note"
   brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"

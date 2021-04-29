@@ -13,8 +13,8 @@
 [mergetool]
   keepBackup = false
 
-[diff "image"]
-  command = git-image-diff
+# [diff "image"]
+#   command = git-image-diff
 
 [pager]
   dfi = false
