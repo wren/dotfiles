@@ -24,22 +24,19 @@ local plugins = {
   },
 
   ----- Session/view management -----
-  -- 'vim-scripts/restore_view.vim',
-  -- 'tpope/vim-obsession',
 
   -- Enhance terminal compatibility (especially w/ tmux)
+  -- @todo what does this actually do?
   -- 'wincent/terminus',
+
   {
     'rmagatti/auto-session',
     config = function() require 'plugins.auto-session' end,
   },
-  ----- Search -----
 
+  ----- Search -----
   -- Better search with
-  {
-    'junegunn/vim-oblique',
-    requires = 'junegunn/vim-pseudocl'
-  },
+  'junegunn/vim-slash',
 
   ----- Visual -----
   -- Theme(s)
@@ -49,7 +46,7 @@ local plugins = {
   -- Creates groups for themes that don't support LSP yet
   'folke/lsp-colors.nvim',
 
-  -- not stable yet, but promising (May 2021)
+  -- not stable yet, but promising
   -- {
   --   'nvim-treesitter/nvim-treesitter',
   --   run = ':TSUpdate',
@@ -76,9 +73,7 @@ local plugins = {
   },
 
   -- Fade text in inactive windows (while preserving syntax)
-  -- Causes vimenter autocommand lag
-  -- Worth keeping?
-  -- 'tadaa/vimade',
+  'tadaa/vimade',
 
   ----- Tab management -----
   {
@@ -103,15 +98,9 @@ local plugins = {
   },
 
   ----- Misc -----
-
   {
     'junegunn/vim-easy-align',
     config = function() require 'plugins.easyalign' end,
-  },
-
-  {
-    'godlygeek/tabular', -- Text alignment
-    config = function() require 'plugins.tabular' end,
   },
 
   {
@@ -120,8 +109,8 @@ local plugins = {
   },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
-  'dstein64/vim-startuptime',
-  -- 'tweekmonster/startuptime.vim',
+  -- 'dstein64/vim-startuptime', -- hanging on use, maybe get rid of?
+  'tweekmonster/startuptime.vim',
 
   ----- Navigation -----
 
@@ -145,14 +134,10 @@ local plugins = {
     'easymotion/vim-easymotion',
   },
 
-  -- More control over what motions apply to (like word separators)
-  'wellle/targets.vim',
-
   {
     'chaoren/vim-wordmotion',
     config = function() require 'plugins.wordmotion' end,
   },
-
 
   -- Navigate windows in vim and tmux with the same keys
   {
@@ -200,9 +185,9 @@ local plugins = {
   },
 
   -- Auto-close brackets, parens, etc
-  {
-    'Raimondi/delimitMate',
-  },
+    -- 'Raimondi/delimitMate', --  kinda janky
+    -- 'cohama/lexima.vim', -- super janky
+    'jiangmiao/auto-pairs',
 
   {
     'Konfekt/FastFold',
@@ -251,15 +236,12 @@ local plugins = {
   },
 
   -- Parens matching
-  -- 'luochen1990/rainbow',
   'andymass/vim-matchup',
 
   -- Support editorconfig files in projects
   'editorconfig/editorconfig-vim',
 
-  -- Show function signature
-  -- 'Shougo/echodoc.vim',
-
+  -- @todo is LSP a viable replacement for this?
   -- Search documentation (also works offline)
   {
     'sunaku/vim-dasht',
@@ -291,6 +273,7 @@ local plugins = {
   --   config = function() require 'plugins.ale' end,
   -- },
 
+  -- @todo set this up
   -- {
   --   'mfussenegger/nvim-dap',
   --   config = function() require 'plugins.dap' end,
@@ -306,6 +289,7 @@ local plugins = {
   -- Multiple cursors
   -- 'mg979/vim-visual-multi',
 
+  -- Highlights custom words on the fly independent of search
   {
     'lfv89/vim-interestingwords',
     config = function() require 'plugins.interestingwords' end,
@@ -318,6 +302,9 @@ local plugins = {
     'jkramer/vim-checkbox',
     config = function() require 'plugins.checkbox' end,
   },
+
+  -- Automagically format markdown tables as you type
+  'dhruvasagar/vim-table-mode',
 
   ----- Writing -----
   {
