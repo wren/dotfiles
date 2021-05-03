@@ -80,8 +80,12 @@ map('n', ']t', ':tabnext<CR>')
 map('n', 'Y', 'y$')
 
 -- settings for resize splitted window
-map('n', '<leader>[', ':vertical resize -3<CR>', {noremap = false})
-map('n', '<C-w>]', ':vertical resize +3<CR>', {noremap = false})
+map('n', '<leader>H', ':vertical resize -3<CR>', { noremap = false })
+map('n', '<leader>L', ':vertical resize +3<CR>', { noremap = false })
+
+-- splitting windows (these match the tmux shortcuts)
+map('n', '<leader>\\', ':vsplit<CR>', { noremap = false })
+map('n', '<leader>-', ':split<CR>', { noremap = false })
 
 -- Escape from terminal windows even if suspended
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
@@ -89,6 +93,7 @@ map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 -- Remove spaces at the end of lines
 map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>]], {silent = true})
 
+-- @todo translate to lua
 -- Improve scroll, credits: https://github.com/Shougo
 -- n <expr> zz (winline() == (winheight(0)+1) / 2) ?
 -- 	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
@@ -100,12 +105,12 @@ map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$/
 --  <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 -- @todo translate to lua
--- cmd [[
--- map <LocalLeader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
--- \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
--- \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
--- ]]
+cmd [[
+map <LocalLeader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+]]
 
 -- Disable some keymappings that don't do anything useful, and get in the way
 map('n', 'q:', '')
+map('n', 'q/', '')
+map('n', 'q?', '')
 map('n', 'Q', '')

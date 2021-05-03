@@ -80,11 +80,11 @@ set.wildmenu = true
 -- set.winhighlight = 'Normal:Normal,NormalNC:InactiveWindow'
 
 -- Set 7 lines to the cursor - when moving vertically using j/k
-cmd 'set so=6'
+set.scrolloff = 6
+set.sidescrolloff = 10
 
-set.conceallevel = 3
-
-set.concealcursor = 'n'
+set.conceallevel = 2
+set.concealcursor = 'c'
 
 -- Vim Directories --
 ---------------------
