@@ -241,6 +241,12 @@ local plugins = {
     config = function() require 'plugins.caw' end,
   },
 
+  -- Tree view of code in file
+  {
+    'simrat39/symbols-outline.nvim',
+    setup = function() require 'plugins.symbols-outline' end,
+  },
+
   -- Auto formatting files by syntax
   {
     'sbdchd/neoformat',
@@ -262,10 +268,10 @@ local plugins = {
 
   -- @todo is LSP a viable replacement for this?
   -- Search documentation (also works offline)
-  {
-    'sunaku/vim-dasht',
-    config = function() require 'plugins.dasht' end,
-  },
+  -- {
+  --   'sunaku/vim-dasht',
+  --   config = function() require 'plugins.dasht' end,
+  -- },
 
   -- Completion & LSP
   {
@@ -286,11 +292,17 @@ local plugins = {
     'nvim-lua/completion-nvim',
     config = function() require 'plugins.completion-nvim' end,
   },
+  {
+    'folke/lsp-trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require 'plugins.lsp-trouble' end,
+  },
 
-  -- {
-  --   'dense-analysis/ale',
-  --   config = function() require 'plugins.ale' end,
-  -- },
+  {
+    'glepnir/lspsaga.nvim',
+    requires = 'neovim/nvim-lspconfig',
+    config = function() require 'plugins.lspsaga' end,
+  },
 
   -- @todo set this up
   -- {
