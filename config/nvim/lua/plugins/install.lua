@@ -315,10 +315,16 @@ local plugins = {
   -- },
 
   -- Operations on matching chars (e.g. parens, brackets, etc)
-  'machakann/vim-sandwich',
+  {
+    'machakann/vim-sandwich',
+    config = function() require 'plugins.sandwich' end,
+  },
 
   -- Multiple cursors
-  -- 'mg979/vim-visual-multi',
+  {
+    'mg979/vim-visual-multi',
+    setup = function() require 'plugins.visual-multi' end,
+  },
 
   -- Highlights custom words on the fly independent of search
   {
