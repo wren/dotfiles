@@ -42,7 +42,19 @@ local plugins = {
   },
 
   ----- Visual -----
+  -- Theme(s)
   'joshdick/onedark.vim',
+  'marko-cerovac/material.nvim',
+
+  -- Creates groups for themes that don't support LSP yet
+  'folke/lsp-colors.nvim',
+
+  -- not stable yet, but promising (May 2021)
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  --   config = function() require 'plugins.treesitter' end,
+  -- },
 
   -- Highlights CSS colors inline
   {
