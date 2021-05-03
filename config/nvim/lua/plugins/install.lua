@@ -245,9 +245,8 @@ local plugins = {
 
   -- Display thin vertical lines at each indentation level
   {
-    'Yggdroot/indentLine',
-    -- 'lukas-reineke/indent-blankline.nvim',
-    -- branch = 'lua',
+    'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua',
     config = function() require 'plugins.indentline' end,
   },
 
