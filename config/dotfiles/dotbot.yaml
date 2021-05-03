@@ -22,12 +22,17 @@
     ~/.config/:
         glob: true
         path: config/*
+        exclude:
+          - '*/*_encrypted'
+          - '*/*.encrypted.yaml'
     ~/.local/bin/:
         glob: true
         path: bin/*
     ~/.ssh/:
         glob: true
         path: config/ssh/*
+        exclude:
+          - '*/*/*_encrypted'
 
     # Alfred
     ~/Library/ApplicationSupport/Alfred/prefs.json:
