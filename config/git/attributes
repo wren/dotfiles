@@ -6,6 +6,7 @@
 *.bmp   diff=image
 *.docx  diff=pandoc
 *       eol=lf
+*       text=auto
 
 # LFS
 *.psd   filter=lfs diff=lfs merge=lfs -text
