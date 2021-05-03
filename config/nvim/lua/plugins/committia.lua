@@ -1,3 +1,5 @@
-cmd [[let g:committia#git#diff_cmd = 'df']]
-g.committia_diff_window_opencmd = 'botright vsplit | terminal'
+-- @todo can this work with a terminal buffer? this would let us use
+-- diff-so-fancy which would be 😚👌
+-- cmd [[let g:committia#git#diff_cmd = 'df']]
+-- g.committia_diff_window_opencmd = 'botright vsplit | terminal'
 -- g.["committia#git#diff_cmd"] = 'diff'
