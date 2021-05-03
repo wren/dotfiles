@@ -87,13 +87,32 @@ local plugins = {
 
   ----- File explorer -----
 
+  -- {
+  --   'Shougo/defx.nvim',
+  --   run = function() cmd [[UpdateRemotePlugins]] end,
+  --   config = function() require 'plugins.defx' end,
+  --   requires = {
+  --     'kristijanhusak/defx-git',
+  --     'kristijanhusak/defx-icons',
+  --   }
+  -- },
+
+  -- Trying nerdtree for a while
   {
-    'Shougo/defx.nvim',
-    run = function() cmd [[UpdateRemotePlugins]] end,
-    config = function() require 'plugins.defx' end,
-    requires = {
-      'kristijanhusak/defx-git',
-      'kristijanhusak/defx-icons',
+    'preservim/nerdtree',
+    cmd = {
+      'NERDTree',
+      'NERDTree',
+      'NERDTreeCWD',
+      'NERDTreeClose',
+      'NERDTreeFind',
+      'NERDTreeFocus',
+      'NERDTreeFromBookmark',
+      'NERDTreeMirror',
+      'NERDTreeRefreshRoot',
+      'NERDTreeToggle',
+      'NERDTreeToggleVCS',
+      'NERDTreeVCS',
     }
   },
 
