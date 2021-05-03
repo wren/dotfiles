@@ -9,6 +9,8 @@
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
+# vim checkhealth said to add this line
+set-option -sa terminal-overrides ',xterm-256color:RGB'
 
 # -- windows & pane creation ---------------------------------------------------
 
