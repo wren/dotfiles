@@ -38,7 +38,7 @@ local function filename_with_color()
   if modified then
     filename_color = colors.yellow
   end
-  vim.api.nvim_command('hi GalaxyFileName guifg='..filename_color..' guibg='..colors.bg)
+  cmd('hi GalaxyFileName guifg='..filename_color..' guibg='..colors.bg)
   local filename = fileinfo.get_current_file_name()
   if is_help then
     filename = 'HELP - ' .. fn.expand('%:t:r')
@@ -140,7 +140,7 @@ local function update_mode_color()
     "EndSpaceSeparator",
   }
   for _, highlightGroup in ipairs(modes) do
-    vim.api.nvim_command('hi '..highlightGroup..' guifg=#212122 guibg='..mode_info[vim.fn.mode()].color)
+    cmd('hi '..highlightGroup..' guifg=#212122 guibg='..mode_info[vim.fn.mode()].color)
   end
 end
 
