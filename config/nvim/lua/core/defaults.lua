@@ -28,8 +28,8 @@ g.loaded_zip = 1
 g.loaded_zipPlugin = 1
 
 -- Get rid of some default mappings --
-map('n', ' ', '')
-map('x', ' ', '')
+map('n', '<space>', '')
+map('x', '<space>', '')
 map('n', ',', '')
 map('x', ',', '')
 map('n', ';', '')

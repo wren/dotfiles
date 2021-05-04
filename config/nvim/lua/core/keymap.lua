@@ -63,12 +63,17 @@ map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 map('v', 'j', 'gj')
 map('v', 'k', 'gk')
-map('n', 'H', '^')
-map('n', 'L', '$')
-map('v', 'H', '^')
-map('v', 'L', '$')
 
---tabline operation
+-- Shortcuts for start/end of line
+map('n', 'H', '^')
+map('v', 'H', '^')
+map('o', 'H', '^')
+
+map('n', 'L', '$')
+map('v', 'L', '$')
+map('o', 'L', '$')
+
+--tab operation
 map('n', '<leader>tn', ':tabnew<cr>')
 map('n', '<leader>te', ':tabedit')
 map('n', '<leader>tc', ':tabclose<cr>')
