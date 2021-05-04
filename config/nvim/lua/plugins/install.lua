@@ -1,5 +1,5 @@
 
-local compile_path = vim.fn.stdpath('data') .. '/packer'
+local compile_path = fn.stdpath('data') .. '/packer'
 vim.cmd('set rtp+=' .. compile_path)
 
 local config_overrides = {
@@ -169,7 +169,7 @@ local plugins = {
     'junegunn/fzf.vim',
     requires = {
       'junegunn/fzf',
-      run = vim.fn['fzf#install']
+      run = fn['fzf#install']
     },
     config = function() require 'plugins.fzf' end
   },
@@ -346,7 +346,7 @@ local plugins = {
   ----- Writing -----
   {
     'iamcco/markdown-preview.nvim',
-    -- run = vim.fn['mkdp#util#install'],
+    -- run = fn['mkdp#util#install'],
     run = 'cd app && yarn install',
     config = function() require 'plugins.markdown-preview' end,
   },

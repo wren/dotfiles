@@ -18,7 +18,7 @@ local dap = require('dap')
 --     -- see: https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
 --     program = "${file}",
 --     pythonPath = function()
---       local cwd = vim.fn.getcwd()
+--       local cwd = fn.getcwd()
 --       local python = os.getenv('VIRTUAL_ENV')
 --       if python == nil then
 --         local f = assert(io.popen('which python', 'r'))

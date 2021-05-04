@@ -25,7 +25,7 @@ local colors = {
 }
 
 local function buffer_not_empty()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+  if fn.empty(fn.expand('%:t')) ~= 1 then
     return true
   end
   return false
@@ -140,12 +140,12 @@ local function update_mode_color()
     "EndSpaceSeparator",
   }
   for _, highlightGroup in ipairs(modes) do
-    cmd('hi '..highlightGroup..' guifg=#212122 guibg='..mode_info[vim.fn.mode()].color)
+    cmd('hi '..highlightGroup..' guifg=#212122 guibg='..mode_info[fn.mode()].color)
   end
 end
 
 local function checkwidth()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
+  local squeeze_width  = fn.winwidth(0) / 2
   return squeeze_width > 40
 end
 
@@ -177,7 +177,7 @@ gls.left = {
       condition = buffer_is_modifiable,
       provider = function()
         update_mode_color()
-        return ' ' .. mode_info[vim.fn.mode()].name .. ' '
+        return ' ' .. mode_info[fn.mode()].name .. ' '
       end,
     }
   },
