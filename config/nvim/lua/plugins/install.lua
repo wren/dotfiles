@@ -73,7 +73,10 @@ local plugins = {
   },
 
   -- Fade text in inactive windows (while preserving syntax)
-  'tadaa/vimade',
+  {
+    'tadaa/vimade',
+    config = function() require 'plugins.vimade' end,
+  },
 
   ----- Tab management -----
   {
@@ -128,7 +131,6 @@ local plugins = {
   },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
-  -- 'dstein64/vim-startuptime', -- hanging on use, maybe get rid of?
   'tweekmonster/startuptime.vim',
 
   ----- Navigation -----
@@ -261,7 +263,10 @@ local plugins = {
   },
 
   -- Parens matching
-  'andymass/vim-matchup',
+  {
+    'andymass/vim-matchup',
+    config = function() require 'plugins.matchup' end,
+  },
 
   -- Support editorconfig files in projects
   'editorconfig/editorconfig-vim',
@@ -350,7 +355,6 @@ local plugins = {
     run = 'cd app && yarn install',
     config = function() require 'plugins.markdown-preview' end,
   },
-
 }
 
 require('packer').startup {plugins, config = config_overrides}

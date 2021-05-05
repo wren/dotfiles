@@ -17,7 +17,6 @@ nvim_create_augroups({
   },
 
   -- change directory when a dir (not a file) is opened
-  -- @todo this causes a bug with non-modifiable buffers (lots of red text). Fix it or find an alternative.
   cd_if_directory = { 'BufEnter * lua cd_if_open_directory()' },
 
   -- turn off cursorline when window isn't active
@@ -26,17 +25,22 @@ nvim_create_augroups({
     'WinLeave,InsertEnter * set nocursorline'
   },
 
-  -- ¯\_(ツ)_/¯
-  who_knows = {
-    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]]
+  -- put the cursor back on the last know position when opening a file
+  last_known_cursor_position = {
+    [[ BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif ]]
   },
 
+  -- set keymap for bindings that don't work on unmodifiable buffers (e.g. help)
   modifiable_only_keymap = {
     'BufReadPost,BufModifiedSet * lua if vim.bo.modifiable then keymap_modifiable_only() end'
   },
+
   -- better syntax highlight performance with large files
   -- syntax_many_lines = {
   --   [[Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif]]
   -- },
 
+  delete_empty_buffers = {
+    'BufWinLeave * silent lua delete_unused_buffer()'
+  },
 })

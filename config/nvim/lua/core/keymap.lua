@@ -46,7 +46,7 @@ map('n', 'QQ', ':qa<CR>')
 map('i', '<C-S>', '<esc>:w<CR>a', {noremap = false})
 map('i', '<C-Q>', '<esc>:wq<CR>', {noremap = false})
 
--- make delete management delete management
+-- make delete make sense
 map('n', 'd', '"_d')
 map('n', 'D', '"_D')
 map('x', 'd', '"_d')
@@ -98,21 +98,7 @@ map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 -- Remove spaces at the end of lines
 map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>]], {silent = true})
 
--- @todo translate to lua
--- Improve scroll, credits: https://github.com/Shougo
--- n <expr> zz (winline() == (winheight(0)+1) / 2) ?
--- 	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
---  <expr> <C-f> max([winheight(0) - 2, 1])
--- 	\ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
---  <expr> <C-b> max([winheight(0) - 2, 1])
--- 	\ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
---  <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
---  <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
-
--- @todo translate to lua
-cmd [[
-map <LocalLeader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-]]
+map('n', '<LocalLeader>s', '<cmd>lua highlight_group()<CR>')
 
 -- Disable some keymappings that don't do anything useful, and get in the way
 map('n', 'q:', '')

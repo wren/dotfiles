@@ -1,5 +1,5 @@
 
--- @todo update this
+-- @todo update this to lua
 --- Keymap ---
 cmd [[
 function! InitCaw() abort

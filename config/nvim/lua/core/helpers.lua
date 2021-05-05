@@ -1,16 +1,15 @@
-
 ----- Helpers -----
-api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
+api, cmd, fn, g, call = vim.api, vim.cmd, vim.fn, vim.g, vim.call
 
--- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua --
+-- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua
 function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-function is_dir(path)
-  return os.execute('[[ -d "' .. path .. '" ]]') == 0
+  if options.buffer then
+    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
+  else
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  end
 end
 
 function is_empty(s)
@@ -23,9 +22,6 @@ function nvim_create_augroups(definitions)
     cmd('augroup '..group_name)
     cmd('autocmd!')
     for _, def in ipairs(definition) do
-      -- if type(def) == 'table' and type(def[#def]) == 'function' then
-      -- 	def[#def] = lua_callback(def[#def])
-      -- end
       local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
       cmd(command)
     end
@@ -47,21 +43,11 @@ end
 function nvim_define_filetypes(definitions)
   cmd('augroup filetypedetect')
   for _, def in ipairs(definitions) do
-    -- autocmd BufNewFile,BufRead *.jrnl setfiletype jrnl
+    -- Example: autocmd BufNewFile,BufRead *.jrnl setfiletype jrnl
     local command = table.concat(vim.tbl_flatten{'autocmd BufNewFile,BufRead', def[1], 'setfiletype', def[2]}, ' ')
     cmd(command)
   end
   cmd('augroup END')
-end
-
-function cd_if_open_directory()
-  local ft = vim.bo.filetype
-  local full_path = vim.call('expand', '%:p')
-  if is_dir(full_path) then
-    cmd('cd ' .. full_path)
-    cmd('bdelete')
-    -- cmd(':RestoreSession ' .. full_path)
-  end
 end
 
 -- Allows us to use vim's escape codes with much less verbosity
