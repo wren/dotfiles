@@ -52,7 +52,7 @@ set.completefunc = 'emoji#complete'
 set.completeopt = 'longest,menu'
 cmd [[set complete+=k]]        -- add dictionary entries to completion
 set.list = true
-cmd([[set listchars=nbsp:+,trail:·,extends:→,precedes:←,eol:\ ,tab:├─,trail:·]])
+cmd [[set listchars=nbsp:+,trail:·,extends:→,precedes:←,eol:\ ,tab:├─,trail:·]]
 
 set.ignorecase = true           -- Search ignoring case
 set.smartcase = true            -- Keep case when searching with *

@@ -38,7 +38,7 @@ map('x', ';', '')
 
 -- @todo still need this?
 -- Ensure data directories
--- for _, dir in ipairs({'undo', 'backup', 'session', 'spell'}) do
+-- for _, dir in ipairs({'undo', 'backup', 'sessions', 'spell'}) do
 --   local my_dir = DATA_PATH .. '/' .. dir
 --   if not is_dir(my_dir) then
 --     os.execute('mkdir ' .. my_dir)
