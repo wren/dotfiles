@@ -5,6 +5,7 @@ color_local_branch=3
 color_remote_branch=14
 
 zparseopts -D a=all
+zparseopts -D d=debug
 
 format=(
   'branch_name=%(refname:short)'
@@ -19,16 +20,32 @@ format=(
 
 search_pattern=(
   "refs/heads/*${2}*/*${1}*"
+  "refs/heads/*${2}*/*${1}*/*"
 )
 # Show all branches (include remote)?
-[[ -n $all ]] && search_pattern+=("refs/remotes/*${2}*/*${1}*")
-
+if [[ -n $all ]]; then
+  search_pattern+=(
+    "refs/remotes/*${2}*/*${1}*"
+    "refs/remotes/*${2}*/*${1}*/*"
+  )
+fi
 
 make_report() {
-  git for-each-ref --shell --format="${(j: && :)format}" --sort='refname:rstrip=2' --sort='refname:rstrip=-2' $search_pattern | \
+  git for-each-ref                \
+    --shell                       \
+    --format="${(j: && :)format}" \
+    --sort='refname:rstrip=2'     \
+    --sort='refname:rstrip=-2'    \
+    --ignore-case                 \
+    $search_pattern |             \
   while read git_info; do
     git_info=${git_info//\'\'\'/\'\'}
     eval $git_info
+
+    if [[ -n $debug ]];then
+      printf '\n---\n%s\n---\n' "$git_info"
+      continue
+    fi
 
     branch_type=${branch_type#refs/}
     branch_name=${branch_name#(heads|remotes)/}
@@ -92,10 +109,13 @@ sort_report() {
   done
 }
 
-if command -v /usr/local/opt/util-linux/bin/column >/dev/null; then
-  # preserves empty lines which looks nicer
-  column -ts'|' <(sort_report "$@") --table-empty-lines
+local cmd_flag=''
+# preserves empty lines which looks nicer
+command -v /usr/local/opt/util-linux/bin/column >/dev/null && cmd_flag='--table-empty-lines'
+
+if [[ -n $debug ]];then
+  make_report "$@"
 else
-  column -ts'|' <(sort_report "$@")
+  column -ts'|' <(sort_report "$@") $cmd_flag
 fi
 
