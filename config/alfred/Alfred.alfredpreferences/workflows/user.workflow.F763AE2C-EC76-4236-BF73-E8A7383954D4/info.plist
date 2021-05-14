@@ -68,7 +68,7 @@
 			<dict>
 				<key>paths</key>
 				<array>
-					<string>/Applications/Alacritty.app</string>
+					<string>/Applications/kitty.app</string>
 				</array>
 				<key>toggle</key>
 				<true/>
