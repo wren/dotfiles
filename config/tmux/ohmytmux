@@ -18,6 +18,7 @@ bind e new-window -n "~/.config/tmux/ohmytmuxlocal" "sh -c '\${EDITOR:-vim} ~/.c
 
 # reload configuration
 bind r source-file ~/.config/tmux/ohmytmux \; display '~/.config/tmux/ohmytmux sourced'
+bind M-c attach -c "#{pane_current_path}"\; display 'Path changed to current directory #{pane_current_path}'
 
 
 # -- display -------------------------------------------------------------------
