@@ -7,7 +7,11 @@ local config_overrides = {
   display = {
     -- non_interactive = true, -- If true, disable display windows for all operations
     open_cmd = '165vnew [packer]', -- An optional command to open a window for packer's display
-  }
+  },
+  -- profile = {
+  --   enable = true,
+  --   threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
+  -- }
 }
 
 local plugins = {
@@ -20,7 +24,7 @@ local plugins = {
   ----- Statusline -----
   {
     'glepnir/galaxyline.nvim',
-    config = function() require 'plugins.galaxyline' end,
+    config = "require 'plugins.galaxyline'",
   },
 
   ----- Session/view management -----
@@ -31,7 +35,7 @@ local plugins = {
 
   {
     'rmagatti/auto-session',
-    config = function() require 'plugins.auto-session' end,
+    config = "require 'plugins.auto-session'",
   },
 
   ----- Search -----
@@ -40,7 +44,6 @@ local plugins = {
 
   ----- Visual -----
   -- Theme(s)
-  'joshdick/onedark.vim',
   'marko-cerovac/material.nvim',
 
   -- Creates groups for themes that don't support LSP yet
@@ -50,18 +53,21 @@ local plugins = {
   -- {
   --   'nvim-treesitter/nvim-treesitter',
   --   run = ':TSUpdate',
-  --   config = function() require 'plugins.treesitter' end,
+  --   config = "require 'plugins.treesitter'",
   -- },
 
   -- Highlights CSS colors inline
   {
     'RRethy/vim-hexokinase',
-    config = function() require 'plugins.hexokinase' end,
+    config = "require 'plugins.hexokinase'",
     run = 'make hexokinase',
   },
 
   -- Highlight area being copied
-  'machakann/vim-highlightedyank',
+  {
+    'machakann/vim-highlightedyank',
+    opt = true,
+  },
 
   -- Nice icons for filetypes and more
   'kyazdani42/nvim-web-devicons',
@@ -69,23 +75,24 @@ local plugins = {
   -- Smooth/fast scrolling with j/k keys
   {
     'rhysd/accelerated-jk',
-    config = function() require 'plugins.accelerated-jk' end,
+    config = "require 'plugins.accelerated-jk'",
   },
 
   -- Fade text in inactive windows (while preserving syntax)
   {
     'tadaa/vimade',
-    config = function() require 'plugins.vimade' end,
+    config = "require 'plugins.vimade'",
   },
 
   ----- Tab management -----
   {
     'akinsho/nvim-bufferline.lua',
-    config = function() require 'plugins.bufferline' end,
+    config = "require 'plugins.bufferline'",
   },
   {
     'qpkorr/vim-bufkill', -- buffer delete while preserving windows
-    config = function() require 'plugins.bufkill' end,
+    opt = true,
+    config = "require 'plugins.bufkill'",
   },
 
   ----- File explorer -----
@@ -122,12 +129,12 @@ local plugins = {
   ----- Misc -----
   {
     'junegunn/vim-easy-align',
-    config = function() require 'plugins.easyalign' end,
+    config = "require 'plugins.easyalign'",
   },
 
   {
     'yuttie/comfortable-motion.vim',
-    config = function() require 'plugins.comfortable-motion' end,
+    config = "require 'plugins.comfortable-motion'",
   },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
@@ -138,7 +145,7 @@ local plugins = {
   -- Undo tree visualization
   {
     'simnalamburt/vim-mundo',
-    config = function() require 'plugins.mundo' end,
+    config = "require 'plugins.mundo'",
   },
 
   -- Better repeating with period command
@@ -147,23 +154,24 @@ local plugins = {
   -- Pop-up cheatsheet for keyboard commands
   {
     'folke/which-key.nvim',
-    config = function() require 'plugins.which-key' end,
+    config = "require 'plugins.which-key'",
   },
 
   -- Visual overlay to jump cursor to any part of screen
   {
     'easymotion/vim-easymotion',
+    setup = function() require 'plugins.easymotion' end,
   },
 
   {
     'chaoren/vim-wordmotion',
-    config = function() require 'plugins.wordmotion' end,
+    config = "require 'plugins.wordmotion'",
   },
 
   -- Navigate windows in vim and tmux with the same keys
   {
     'christoomey/vim-tmux-navigator',
-    config = function() require 'plugins.tmux-navigator' end,
+    config = "require 'plugins.tmux-navigator'",
   },
 
   -- Fantastic fuzzy finder
@@ -173,7 +181,7 @@ local plugins = {
       'junegunn/fzf',
       run = fn['fzf#install']
     },
-    config = function() require 'plugins.fzf' end
+    config = "require 'plugins.fzf'"
   },
 
   ----- Versioning -----
@@ -184,25 +192,25 @@ local plugins = {
   -- Inline git blame while you type
   {
     'f-person/git-blame.nvim',
-    config = function() require 'plugins.blamer' end,
+    config = "require 'plugins.blamer'",
   },
 
   -- Git integration
   {
     'chemzqm/vim-easygit',
-    config = function() require 'plugins.easygit' end,
+    config = "require 'plugins.easygit'",
   },
 
   -- Status markers in gutter
   {
     'airblade/vim-gitgutter',
-    config = function() require 'plugins.gitgutter' end,
+    config = "require 'plugins.gitgutter'",
   },
 
   -- Git commit message editing
   {
     'rhysd/committia.vim',
-    config = function() require 'plugins.committia' end,
+    config = "require 'plugins.committia'",
   },
 
   -- Auto-close brackets, parens, etc
@@ -212,7 +220,7 @@ local plugins = {
 
   {
     'Konfekt/FastFold',
-    config = function() require 'plugins.fastfold' end,
+    config = "require 'plugins.fastfold'",
   },
 
   ----- Languages and syntax -----
@@ -228,7 +236,7 @@ local plugins = {
   'jparise/vim-graphql',
   {
     'fatih/vim-go',
-    config = function() require 'plugins.golang' end,
+    config = "require 'plugins.golang'",
   },
   {
     'elzr/vim-json',
@@ -240,7 +248,7 @@ local plugins = {
   -- Commenting
   {
     'tyru/caw.vim',
-    config = function() require 'plugins.caw' end,
+    config = "require 'plugins.caw'",
   },
 
   -- Tree view of code in file
@@ -252,20 +260,20 @@ local plugins = {
   -- Auto formatting files by syntax
   {
     'sbdchd/neoformat',
-    config = function() require 'plugins.neoformat' end,
+    config = "require 'plugins.neoformat'",
   },
 
   -- Display thin vertical lines at each indentation level
   {
     'lukas-reineke/indent-blankline.nvim',
     branch = 'lua',
-    config = function() require 'plugins.indentline' end,
+    config = "require 'plugins.indentline'",
   },
 
   -- Parens matching
   {
     'andymass/vim-matchup',
-    config = function() require 'plugins.matchup' end,
+    config = "require 'plugins.matchup'",
   },
 
   -- Support editorconfig files in projects
@@ -275,15 +283,14 @@ local plugins = {
   -- Search documentation (also works offline)
   -- {
   --   'sunaku/vim-dasht',
-  --   config = function() require 'plugins.dasht' end,
+  --   config = "require 'plugins.dasht'",
   -- },
 
   -- Completion & LSP
   {
+    opt = true,
     'neovim/nvim-lspconfig',
-    run = [[
-      npm install -g typescript-language-server
-    ]],
+    run = 'npm install -g typescript-language-server',
     requires = {
       'onsails/lspkind-nvim', -- icons
       -- {
@@ -291,28 +298,30 @@ local plugins = {
       -- requires = 'prabirshrestha/vim-lsp',
       -- }
     },
-    config = function() require 'plugins.nvim-lspconfig' end,
+    config = "require 'plugins.nvim-lspconfig'",
   },
   {
     'nvim-lua/completion-nvim',
-    config = function() require 'plugins.completion-nvim' end,
+    config = "require 'plugins.completion-nvim'",
   },
   {
     'folke/lsp-trouble.nvim',
+    opt = true,
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require 'plugins.lsp-trouble' end,
+    config = "require 'plugins.lsp-trouble'",
   },
 
   {
     'glepnir/lspsaga.nvim',
+    opt = true,
     requires = 'neovim/nvim-lspconfig',
-    config = function() require 'plugins.lspsaga' end,
+    config = "require 'plugins.lspsaga'",
   },
 
   -- @todo set this up
   -- {
   --   'mfussenegger/nvim-dap',
-  --   config = function() require 'plugins.dap' end,
+  --   config = "require 'plugins.dap'",
   --   requires = {
   --     'mfussenegger/nvim-dap-python',
   --     'nvim-treesitter/nvim-treesitter',
@@ -322,7 +331,7 @@ local plugins = {
   -- Operations on matching chars (e.g. parens, brackets, etc)
   {
     'machakann/vim-sandwich',
-    config = function() require 'plugins.sandwich' end,
+    config = "require 'plugins.sandwich'",
   },
 
   -- Multiple cursors
@@ -334,7 +343,7 @@ local plugins = {
   -- Highlights custom words on the fly independent of search
   {
     'lfv89/vim-interestingwords',
-    config = function() require 'plugins.interestingwords' end,
+    config = "require 'plugins.interestingwords'",
   },
 
   ---- Productivity -----
@@ -342,7 +351,7 @@ local plugins = {
   -- Toggle markdown checkboxes
   {
     'jkramer/vim-checkbox',
-    config = function() require 'plugins.checkbox' end,
+    config = "require 'plugins.checkbox'",
   },
 
   -- Automagically format markdown tables as you type
@@ -353,12 +362,9 @@ local plugins = {
     'iamcco/markdown-preview.nvim',
     -- run = fn['mkdp#util#install'],
     run = 'cd app && yarn install',
-    config = function() require 'plugins.markdown-preview' end,
+    config = "require 'plugins.markdown-preview'",
   },
 }
 
 require('packer').startup {plugins, config = config_overrides}
-
--- After loading plugins --
-require 'plugins.easymotion'
 
