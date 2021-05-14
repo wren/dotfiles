@@ -1,4 +1,4 @@
-g.gitblame_enabled = 1
+g.gitblame_enabled = 0
 g.gitblame_date_format = '%r'
 
 -- Available options: <author>, <committer>, <date>, <committer-date>, <summary>, <sha>

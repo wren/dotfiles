@@ -4,14 +4,14 @@ vim.cmd('set rtp+=' .. compile_path)
 
 local config_overrides = {
   compile_path = compile_path .. '/plugin/packer_compiled.vim',
+  auto_clean = true,
   display = {
     -- non_interactive = true, -- If true, disable display windows for all operations
-    open_cmd = '165vnew [packer]', -- An optional command to open a window for packer's display
+    -- open_cmd = '165vnew [packer]', -- An optional command to open a window for packer's display
   },
-  -- profile = {
-  --   enable = true,
-  --   threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
-  -- }
+  profile = {
+    enable = true,
+  }
 }
 
 local plugins = {
@@ -44,7 +44,9 @@ local plugins = {
 
   ----- Visual -----
   -- Theme(s)
-  'marko-cerovac/material.nvim',
+  {
+    'marko-cerovac/material.nvim',
+  },
 
   -- Creates groups for themes that don't support LSP yet
   'folke/lsp-colors.nvim',
@@ -66,11 +68,13 @@ local plugins = {
   -- Highlight area being copied
   {
     'machakann/vim-highlightedyank',
-    opt = true,
+    keys = { 'y', 'Y' },
   },
 
   -- Nice icons for filetypes and more
-  'kyazdani42/nvim-web-devicons',
+  {
+    'kyazdani42/nvim-web-devicons',
+  },
 
   -- Smooth/fast scrolling with j/k keys
   {
@@ -86,30 +90,32 @@ local plugins = {
 
   ----- Tab management -----
   {
+    disable = true,
     'akinsho/nvim-bufferline.lua',
     config = "require 'plugins.bufferline'",
   },
+
   {
+    disable = true,
     'qpkorr/vim-bufkill', -- buffer delete while preserving windows
     opt = true,
     config = "require 'plugins.bufkill'",
   },
 
-  ----- File explorer -----
+  {
+    'romgrk/barbar.nvim',
+    opt = true,
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = "require 'plugins.barbar'"
+  },
 
-  -- {
-  --   'Shougo/defx.nvim',
-  --   run = function() cmd [[UpdateRemotePlugins]] end,
-  --   config = function() require 'plugins.defx' end,
-  --   requires = {
-  --     'kristijanhusak/defx-git',
-  --     'kristijanhusak/defx-icons',
-  --   }
-  -- },
+
+  ----- File explorer -----
 
   -- Trying nerdtree for a while
   {
     'preservim/nerdtree',
+    opt = true,
     cmd = {
       'NERDTree',
       'NERDTree',
@@ -123,7 +129,27 @@ local plugins = {
       'NERDTreeToggle',
       'NERDTreeToggleVCS',
       'NERDTreeVCS',
-    }
+    },
+  },
+  {
+    'tiagofumo/vim-nerdtree-syntax-highlight',
+    requires = 'preservim/nerdtree',
+    opt = true,
+  },
+  {
+    'scrooloose/nerdtree-project-plugin',
+    requires = 'preservim/nerdtree',
+    opt = true,
+  },
+  {
+    'PhilRunninger/nerdtree-buffer-ops',
+    requires = 'preservim/nerdtree',
+    opt = true,
+  },
+  {
+    'PhilRunninger/nerdtree-visual-selection',
+    requires = 'preservim/nerdtree',
+    opt = true,
   },
 
   ----- Misc -----
@@ -146,6 +172,11 @@ local plugins = {
   {
     'simnalamburt/vim-mundo',
     config = "require 'plugins.mundo'",
+    cmd = {
+      'MundoHide',
+      'MundoShow',
+      'MundoToggle',
+    },
   },
 
   -- Better repeating with period command
@@ -160,12 +191,16 @@ local plugins = {
   -- Visual overlay to jump cursor to any part of screen
   {
     'easymotion/vim-easymotion',
-    setup = function() require 'plugins.easymotion' end,
+    opt = true,
+    setup = "require 'plugins.easymotion'",
+    keys = { 'f', 'F' }
   },
 
   {
     'chaoren/vim-wordmotion',
     config = "require 'plugins.wordmotion'",
+    opt = true,
+    keys = { 'w', 'W', 'e', 'b', 'B', 'H', 'L' }
   },
 
   -- Navigate windows in vim and tmux with the same keys
@@ -177,21 +212,27 @@ local plugins = {
   -- Fantastic fuzzy finder
   {
     'junegunn/fzf.vim',
+    opt = true,
     requires = {
       'junegunn/fzf',
       run = fn['fzf#install']
     },
-    config = "require 'plugins.fzf'"
+    config = "require 'plugins.fzf'",
+    keys = { '<c-p>', '<leader>f' }
   },
 
   ----- Versioning -----
 
   -- Git integration
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    opt = true,
+  },
 
   -- Inline git blame while you type
   {
     'f-person/git-blame.nvim',
+    opt = true,
     config = "require 'plugins.blamer'",
   },
 
@@ -205,6 +246,7 @@ local plugins = {
   {
     'airblade/vim-gitgutter',
     config = "require 'plugins.gitgutter'",
+    opt = true,
   },
 
   -- Git commit message editing
@@ -237,10 +279,11 @@ local plugins = {
   {
     'fatih/vim-go',
     config = "require 'plugins.golang'",
+    ft = { 'go', 'godoc' }
   },
   {
     'elzr/vim-json',
-    config = function() g.vim_json_syntax_conceal = 0 end,
+    config = 'g.vim_json_syntax_conceal = 0',
   },
 
   ----- Coding -----
@@ -248,13 +291,19 @@ local plugins = {
   -- Commenting
   {
     'tyru/caw.vim',
+    opt = true,
     config = "require 'plugins.caw'",
+    keys = {
+       'gc',
+       '<M-/>',
+    },
   },
 
   -- Tree view of code in file
   {
     'simrat39/symbols-outline.nvim',
-    setup = function() require 'plugins.symbols-outline' end,
+    setup = "require 'plugins.symbols-outline'",
+    opt = true,
   },
 
   -- Auto formatting files by syntax
@@ -266,6 +315,7 @@ local plugins = {
   -- Display thin vertical lines at each indentation level
   {
     'lukas-reineke/indent-blankline.nvim',
+    opt = true,
     branch = 'lua',
     config = "require 'plugins.indentline'",
   },
@@ -273,6 +323,7 @@ local plugins = {
   -- Parens matching
   {
     'andymass/vim-matchup',
+    opt = true,
     config = "require 'plugins.matchup'",
   },
 
@@ -332,12 +383,14 @@ local plugins = {
   {
     'machakann/vim-sandwich',
     config = "require 'plugins.sandwich'",
+    opt = true,
   },
 
   -- Multiple cursors
   {
     'mg979/vim-visual-multi',
-    setup = function() require 'plugins.visual-multi' end,
+    setup = "require 'plugins.visual-multi'",
+    opt = true,
   },
 
   -- Highlights custom words on the fly independent of search
@@ -355,7 +408,10 @@ local plugins = {
   },
 
   -- Automagically format markdown tables as you type
-  'dhruvasagar/vim-table-mode',
+  {
+    'dhruvasagar/vim-table-mode',
+    opt = true,
+  },
 
   ----- Writing -----
   {
