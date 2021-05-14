@@ -6,8 +6,7 @@ local config_overrides = {
   compile_path = compile_path .. '/plugin/packer_compiled.vim',
   auto_clean = true,
   display = {
-    -- non_interactive = true, -- If true, disable display windows for all operations
-    -- open_cmd = '165vnew [packer]', -- An optional command to open a window for packer's display
+    open_cmd = '165vnew [packer]', 
   },
   profile = {
     enable = true,
@@ -100,11 +99,11 @@ local plugins = {
     'qpkorr/vim-bufkill', -- buffer delete while preserving windows
     opt = true,
     config = "require 'plugins.bufkill'",
+    event = 'CursorMoved',
   },
-
   {
+    -- replaces bufferline and bufkill
     'romgrk/barbar.nvim',
-    opt = true,
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = "require 'plugins.barbar'"
   },
@@ -115,7 +114,7 @@ local plugins = {
   -- Trying nerdtree for a while
   {
     'preservim/nerdtree',
-    opt = true,
+    event = 'CursorMoved',
     cmd = {
       'NERDTree',
       'NERDTree',
@@ -191,16 +190,14 @@ local plugins = {
   -- Visual overlay to jump cursor to any part of screen
   {
     'easymotion/vim-easymotion',
-    opt = true,
     setup = "require 'plugins.easymotion'",
-    keys = { 'f', 'F' }
+    event = 'CursorMoved',
   },
 
   {
     'chaoren/vim-wordmotion',
     config = "require 'plugins.wordmotion'",
-    opt = true,
-    keys = { 'w', 'W', 'e', 'b', 'B', 'H', 'L' }
+    event = 'CursorMoved',
   },
 
   -- Navigate windows in vim and tmux with the same keys
@@ -212,13 +209,13 @@ local plugins = {
   -- Fantastic fuzzy finder
   {
     'junegunn/fzf.vim',
-    opt = true,
     requires = {
       'junegunn/fzf',
       run = fn['fzf#install']
     },
     config = "require 'plugins.fzf'",
-    keys = { '<c-p>', '<leader>f' }
+    event = 'CursorMoved',
+    keys = { '<c-p>' }
   },
 
   ----- Versioning -----
@@ -291,12 +288,8 @@ local plugins = {
   -- Commenting
   {
     'tyru/caw.vim',
-    opt = true,
     config = "require 'plugins.caw'",
-    keys = {
-       'gc',
-       '<M-/>',
-    },
+    event = 'CursorMoved',
   },
 
   -- Tree view of code in file
