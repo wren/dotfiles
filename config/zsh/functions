@@ -212,19 +212,23 @@ function ap {
 
 # Use FZF to attach/switch a tmux session
 function ta {
-  session="$(t ls -F '#{session_name} #{?session_attached,  ,}|  #{session_alerts}|#{t:session_activity}|' \
+  session="$(tmux ls -F '#{session_name} #{?session_attached,  ,}|  #{session_alerts}|#{t:session_activity}|' 2>/dev/null \
     | perl -pe 's/\d#,?//g' \
     | column -ts'|' \
     | fzf --query="$1" --select-1 --exit-0 \
     | perl -pe 's/^(.*?)\s{3,}.*$/$1/')"
 
-  [[ -z $session ]] && echo "No sessions" && return
-
-  if [[ -z $TMUX ]]; then
-    tmux attach -t "$session"
-  else
-    tmux switch -t "$session"
+  if [[ -z $session ]]; then
+    echo "No sessions (tmux is not running)."
+    echo 'Running `tmux new`'
+    tmux new
+    return
   fi
+
+  local action='attach'
+  [[ -n $TMUX ]] && action='switch' # already in a tmux session
+
+  tmux $action -t "$session"
 }
 
 # Uses fuzzy finder to show background jobs, and foregrounds selection
