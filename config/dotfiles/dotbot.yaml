@@ -179,6 +179,12 @@
     stdout: false
     stderr: true
 
+- git:
+    '~/.local/share/tmux/plugins/tpm':
+       description: Tmux plugin manager
+       url: https://github.com/tmux-plugins/tpm
+       method: clone-or-pull
+
 - link:
     # Neovim
     ~/.local/share/nvim/spell/custom.en.utf-8.add: data/dictionaries/custom.en.dict
