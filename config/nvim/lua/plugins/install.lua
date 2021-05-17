@@ -229,8 +229,11 @@ local plugins = {
   -- Inline git blame while you type
   {
     'f-person/git-blame.nvim',
-    opt = true,
+    -- opt = true,
     config = "require 'plugins.blamer'",
+    -- cmd = {
+    --   'GitBlameEnable'
+    -- },
   },
 
   -- Git integration
@@ -335,6 +338,13 @@ local plugins = {
     opt = true,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
+    ft = {
+      'javascript',
+      'javascriptreact',
+      'typescript',
+      'typescriptreact',
+      'typescriptcommon',
+    },
     requires = {
       'onsails/lspkind-nvim', -- icons
       -- {
@@ -376,7 +386,7 @@ local plugins = {
   {
     'machakann/vim-sandwich',
     config = "require 'plugins.sandwich'",
-    opt = true,
+    keys = { 'ys', 'yS', 'cs', 'ds' }
   },
 
   -- Multiple cursors

@@ -9,6 +9,22 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
+# --- ASDF --- #
+# Default ~/.asdfrc
+# Defaults to ~/.asdfrc as described above. Can be set to any location.
+ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
+# ASDF_DEFAULT_TOOL_VERSIONS_FILENAME - The filename of the file storing the tool names and versions. Defaults to .tool-versions. Can be any valid filename. Typically you should not override the default value unless you know you want asdf to ignore .tool-versions files.
+
+# ASDF_DIR - Defaults to ~/.asdf - Location of the asdf scripts. If you install
+# asdf to some other directory, set this to that directory. For example, if you
+# are installing via the AUR, you should set this to /opt/asdf-vm.
+# ASDF_DIR=""
+
+# ASDF_DATA_DIR - Defaults to ~/.asdf - Location where asdf install plugins,
+# shims and installs. Can be set to any location before sourcing asdf.sh or
+# asdf.fish mentioned in the section above.
+ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+
 # --- AWS CLI --- #
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 # Caveats:
@@ -59,6 +75,9 @@ export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
 
 # tmux
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
+export TMUX_OHMYTMUX_CONFIG=""
+export TMUX_OHMYTMUX_CONFIG_LOCAL=""
+
 
 # zplug
 export ZPLUG_HOME="$XDG_DATA_HOME/zplug"
