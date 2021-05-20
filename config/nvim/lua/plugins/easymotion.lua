@@ -7,5 +7,5 @@ g.EasyMotion_smartcase = 1
 g.EasyMotion_use_smartsign_us = 1
 
 -- Keymap --
-map('n', 'f', '<Plug>(easymotion-w)', { noremap = true })
-map('n', 'F', '<Plug>(easymotion-b)', { noremap = true })
+map('n', 'f', '<Plug>(easymotion-w)', { noremap = false })
+map('n', 'F', '<Plug>(easymotion-b)', { noremap = false })

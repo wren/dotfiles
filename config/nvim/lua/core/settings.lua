@@ -133,3 +133,7 @@ end
 
 -- Markdown fenced syntax highlighting
 g.markdown_fenced_languages = { 'html', 'bash=sh', 'css', 'javascript', 'js=javascript', 'go' }
+
+if fn.has('termguicolors') == 1 then
+  set.termguicolors = true
+end

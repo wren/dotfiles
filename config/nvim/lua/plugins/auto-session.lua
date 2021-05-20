@@ -15,7 +15,6 @@ require('auto-session').setup{
   -- {pre_delete}: executes before a session is deleted
   -- {post_delete}: executes after a session is deleted
   pre_save_cmds = {
-    "tabdo NERDTreeClose",
     "tabdo SymbolsOutlineClose",
   }
 }
