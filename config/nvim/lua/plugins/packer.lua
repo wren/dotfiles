@@ -124,11 +124,8 @@ local plugins = {
   ----- File explorer -----
 
   -- Trying nerdtree for a while
-
   {
-    'tiagofumo/vim-nerdtree-syntax-highlight',
-  },
-  {
+    disable = true,
     'preservim/nerdtree',
     config = get_config('nerdtree'),
     cmd = {
@@ -145,6 +142,11 @@ local plugins = {
       'NERDTreeToggleVCS',
       'NERDTreeVCS',
     },
+  },
+
+  {
+    'kyazdani42/nvim-tree.lua',
+    config = get_config('nvim-tree'),
   },
 
   ----- Misc -----
