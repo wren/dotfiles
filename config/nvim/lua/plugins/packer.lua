@@ -391,7 +391,6 @@ local plugins = {
 
   -- Multiple cursors
   {
-    disabled = true,
     'mg979/vim-visual-multi',
     setup = get_config('visual-multi'),
   },
