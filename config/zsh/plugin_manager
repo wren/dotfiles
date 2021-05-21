@@ -1,17 +1,13 @@
 # Initialize plugin manager
-zplug_file="/usr/local/opt/zplug/init.zsh"
-if [[ -r $zplug_file ]]; then
-  source "$zplug_file"
-  if ! zplug check --verbose; then
-    # Install if there are plugins that haven't been installed
-    printf "Install? [y/N]: "
-    if read -q; then
-      echo; zplug install
-    fi
-  fi
-  zplug load
-  # @see https://github.com/zplug/zplug/issues/322
-  # [[ -r $_zplug_lock ]] && rm -f $_zplug_lock && setopt -o monitor
-else
-  echo 'Install zsh plugin manager with `brew install zplug`'
-fi
+# zinit_file="/usr/local/opt/zinit/zinit.zsh"
+# if [[ -r $zinit_file ]]; then
+#   source "$zinit_file"
+#   source "$HOME/.config/zsh/plugins"
+# else
+#   echo 'Install zsh plugin manager with `brew install zinit`'
+# fi
+# 
+
+# @todo make this less dynamic (compiling is faster)
+# Maybe? sheldon is pretty fast already. Maybe this isn't necessary?
+eval "$(sheldon source)"

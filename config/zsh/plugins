@@ -1,15 +1,14 @@
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-# zplug 'robbyrussell/oh-my-zsh', use:'oh-my-zsh.sh'
-zplug 'zsh-users/zsh-completions'
-zplug 'plugins/pyenv', from:oh-my-zsh
-zplug 'romkatv/powerlevel10k', as:theme, depth:1
-zplug 'zsh-users/zsh-autosuggestions' # fish-ish
-zplug 'wfxr/forgit'
-zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'zsh-users/zsh-history-substring-search', defer:1
-zplug 'softmoth/zsh-vim-mode', at:main, defer:2
-zplug 'kutsan/zsh-system-clipboard', defer:3
-zplug 'aloxaf/fzf-tab', defer:3
-# zplug 'plugins/vi-mode', from:oh-my-zsh
-
+# -- Plugins -- #
+# zinit snippet 'OMZ::lib/clipboard.zsh'
+# zinit snippet 'OMZ::plugins/asdf/asdf.plugin.zsh'
+# zinit snippet 'OMZ::plugins/pyenv/pyenv.plugin.zsh'
+# 
+# zinit load 'zsh-users/zsh-completions/zsh-completions.plugin.zsh'
+# zinit load 'romkatv/powerlevel10k'
+# zinit load 'zsh-users/zsh-autosuggestions' # fish-ish
+# zinit load 'wfxr/forgit'
+# zinit load 'zsh-users/zsh-syntax-highlighting'
+# zinit load 'zsh-users/zsh-history-substring-search'
+# zinit load 'softmoth/zsh-vim-mode'
+# zinit load 'kutsan/zsh-system-clipboard'
+# zinit load 'aloxaf/fzf-tab'

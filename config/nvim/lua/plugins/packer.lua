@@ -82,7 +82,6 @@ local plugins = {
   -- Highlight area being copied
   {
     'machakann/vim-highlightedyank',
-    keys = { 'y', 'Y' },
   },
 
   -- Nice icons for filetypes and more

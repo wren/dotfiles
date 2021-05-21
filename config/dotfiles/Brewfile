@@ -1,4 +1,6 @@
+brew "asdf" # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "aspell" # Spell checker with better logic than ispell
+brew "automake" # Tool for generating GNU Standards-compliant Makefiles
 brew "awscli" # Official Amazon AWS command-line interface
 brew "bash" # Bourne-Again SHell, a UNIX command interpreter
 brew "bash-completion", link: false # Programmable completion for Bash 3.2
@@ -58,7 +60,9 @@ brew "qmk/qmk/qmk" # Quantum Mechanical Keyboard (QMK) Firmware
 brew "rename" # Perl-powered file rename script with many helpful built-ins
 brew "ripgrep" # Search tool like grep and The Silver Searcher
 brew "rsync" # Utility that provides fast incremental file transfer
+brew "ruby" # Powerful, clean, object-oriented scripting language
 brew "secrethub/tools/secrethub-cli" # Command-line interface for SecretHub
+brew "sheldon" # Fast, configurable, shell plugin manager
 brew "shellcheck" # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt" # Autoformat shell script source code
 brew "showkey" # Simple keystroke visualizer
@@ -66,7 +70,7 @@ brew "sops" # Editor of encrypted files
 brew "sox" # SOund eXchange: universal sound sample translator
 brew "tag" # Manipulate and query tags on macOS files
 brew "terraform@0.13" # Tool to build, change, and version infrastructure
-brew "tmux" # Terminal multiplexer
+brew "tmux", args: ["HEAD"] # Terminal multiplexer
 brew "trash" # CLI tool that moves files or folder to the trash
 brew "util-linux" # Collection of Linux utilities
 brew "webkit2png" # Create screenshots of webpages from the terminal
@@ -112,13 +116,15 @@ cask "qview"
 cask "sequel-pro" # MySQL/MariaDB database management platform
 cask "signal" # Instant messaging application focusing on security
 cask "slack" # Team communication and collaboration software
+cask "sourcetree" # Graphical client for Git version control
 cask "spectacle" # Move and resize windows with ease
 cask "steam" # Video game digital distribution service
 cask "the-archive-browser"
 cask "the-unarchiver" # Unpacks archive files
+cask "transmission" # Open-source BitTorrent client
 cask "vlc" # Multimedia player
 cask "webpquicklook"
 cask "zoom" # Video communication and virtual meeting platform
-cask "zsa-wally"
+cask "zsa-wally" # Flash tool for ZSA keyboards
 mas "Skitch", id: 425955336
 mas "Xcode", id: 497799835

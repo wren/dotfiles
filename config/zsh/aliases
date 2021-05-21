@@ -6,6 +6,7 @@ alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
 # alias rm="rm -rv"
+alias plist-to-xml='plutil -convert xml1'
 alias rm='echo ''Don''''t use `rm`. Use `trash` (or `\\rm` if you must).''; false'
 alias tr='trash -v'
 alias top='bpytop'
@@ -57,7 +58,6 @@ alias d.start='eval $(docker-machine env default)'
 ############
 alias b='brew'
 alias bp='bat -p'
-alias c='brew cask'
 alias f='fd -HI'
 alias gr='rg --color=auto -iP'
 alias speedtest='speed-test --verbose'
@@ -65,11 +65,9 @@ alias p='ipython'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias v='nvim'
 alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
-# alias n='f(){ v note:"$(echo $@)"; }; f'
 alias j='jrnl'
 alias je='jrnl --edit'
 alias jn='jrnl --edit notes'
-alias rb='rdiff-backup'
 alias t='tmux'
 alias wh='which -a'
 alias dasht-search='func() { dasht-query-line $@ | perl -0777 -pe ''s/name = (.*?)\ntype = (.*?)\nfrom = (.*?)\nurl = (.*?)\n/ $4 | $1 | $3 | $3\n\n/g'' | column -ts''|'' | fzf --no-sort --with-nth=2.. --bind ''enter:execute(w3m {1})+accept''; }; func'

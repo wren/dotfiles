@@ -12,7 +12,7 @@ export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 # --- ASDF --- #
 # Default ~/.asdfrc
 # Defaults to ~/.asdfrc as described above. Can be set to any location.
-ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 # ASDF_DEFAULT_TOOL_VERSIONS_FILENAME - The filename of the file storing the tool names and versions. Defaults to .tool-versions. Can be any valid filename. Typically you should not override the default value unless you know you want asdf to ignore .tool-versions files.
 
 # ASDF_DIR - Defaults to ~/.asdf - Location of the asdf scripts. If you install
@@ -23,7 +23,7 @@ ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 # ASDF_DATA_DIR - Defaults to ~/.asdf - Location where asdf install plugins,
 # shims and installs. Can be set to any location before sourcing asdf.sh or
 # asdf.fish mentioned in the section above.
-ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 
 # --- AWS CLI --- #
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
@@ -38,6 +38,9 @@ export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
 # --- Bat --- #
 # https://github.com/sharkdp/bat#configuration-file
 export BAT_CONFIG_PATH="$XDG_CONFIG_HOME/bat/bat.config"
+
+# Direnv
+export DIRENV_CONFIG="$XDG_CONFIG_HOME/direnv"
 
 # Docker (https://docs.docker.com/engine/reference/commandline/cli/)
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
@@ -87,3 +90,15 @@ export ZPLUG_LOADFILE="$ZDOTDIR/plugins"
 # ZSH
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
+
+# zinit
+declare -A ZINIT
+export ZINIT=(
+  [BIN_DIR]="$XDG_BIN_HOME"
+  [HOME_DIR]="$XDG_DATA_HOME/zinit"
+  [PLUGINS_DIR]="$XDG_DATA_HOME/zinit/plugins"
+  [COMPLETIONS_DIR]="$XDG_DATA_HOME/zinit/completions"
+  [SNIPPETS_DIR]="$XDG_DATA_HOME/zinit/snippets"
+  [MUTE_WARNINGS]=1
+)

@@ -4,16 +4,15 @@ function cd_if_open_directory()
   local full_path = fn.expand('%:p')
   if fn.isdirectory(full_path) == 1 then
     cmd(string.format('cd %s', fn.fnameescape(full_path)))
-    cmd('bdelete')
   end
 end
 
--- delete an unnamed, unmodified, empty buffer
+-- delete an unnamed, unmodified, empty buffer (including directory buffers)
 function delete_unused_buffer(my_bufnr)
-  if fn.bufname() == ""
-     and not vim.bo.modified
-     and fn.line('$') == 1
-     and fn.getline(1) == ''
+  if (fn.bufname() == "" or vim.bo[0].buftype == "")
+    and not vim.bo.modified
+    and fn.line('$') == 1
+    and fn.getline(1) == ''
   then
     local my_bufnr = fn.bufnr()
     -- this needs to have a slight delay or we'll get

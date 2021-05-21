@@ -9,6 +9,17 @@ if [[ -z "$ZDOTDIR" ]]; then
   fi
 fi
 
+# Get login banner, if it exists
+[[ -r "$ZDOTDIR/sig" ]] && source "$ZDOTDIR/sig"
+if type -a sig &>/dev/null; then
+  sig
+fi
+
+# Enable Powerlevel10k instant prompt.
+# NOTE: Anything requiring user input (prompts, etc), should go before this.
+instant_prompt="$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
+[[ -r $instant_prompt ]] && source "$instant_prompt"
+
 # these files are loaded in this order
 my_dotfiles=(
   xdg
@@ -20,7 +31,6 @@ my_dotfiles=(
   theme
   aliases
   functions
-  sig
   misc
   completion
   extra
@@ -30,9 +40,5 @@ my_dotfiles=(
 for my_file in $my_dotfiles; do
   [[ -r "$ZDOTDIR/$my_file" ]] && source "$ZDOTDIR/$my_file"
 done
-
-if type -a sig &>/dev/null; then
-  sig
-fi
 
 export DOTFILES_LOADED=1

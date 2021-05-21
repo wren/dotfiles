@@ -30,8 +30,8 @@ export RESTIC_PASSWORD_COMMAND="yq e .restic.passphrase '$BACKUPS_CONFIG'"
 export RESTIC_REPOSITORY="$(yq e .restic.repo "$BACKUPS_CONFIG" | sed "s!^~!$HOME!")"
 
 # direnv
+export DIRENV_LOG_FORMAT=''
 eval "$(direnv hook zsh)"
-
 
 # forgit
 # FORGIT_FZF_DEFAULT_OPTS

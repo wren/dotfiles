@@ -64,7 +64,7 @@ make_report() {
     branch_name=${branch_name#$branch_status}
     branch_color_str="%F{$output_color}"
     if [[ -z $push && $branch_type = 'heads' ]]; then
-      branch_name+=' %F{#DB615E}%f'
+      branch_name+=' %F{#DB615E}%f'
     else
       tracking=${tracking//behind /"%F{red}"}
       tracking=${tracking//ahead /"%F{112}"}

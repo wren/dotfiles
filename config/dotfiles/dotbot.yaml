@@ -41,11 +41,9 @@
         path: config/spectacle/shortcuts.json
 
     # Special cases
-    ~/Library/Preferences/com.mowglii.ItsycalApp.plist:
-        path: config/itsycal/com.mowglii.ItsycalApp.plist
     ~/Library/Preferences/:
         glob: true
-        path: config/macos/*.plist
+        path: 'config/macos/*.plist'
 
 - shell:
     - description: Checking superuser access
