@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-source "${ZPLUG_REPOS}/wfxr/forgit/forgit.plugin.zsh"
+source "${XDG_DATA_HOME}/sheldon/repos/github.com/wfxr/forgit/forgit.plugin.zsh"
 
 cmd="$1"
 shift

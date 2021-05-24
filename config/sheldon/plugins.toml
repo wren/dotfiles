@@ -42,6 +42,11 @@ github = 'zsh-users/zsh-autosuggestions'
 [plugins.forgit]
 github = 'wfxr/forgit'
 
+[plugins.forgit-config]
+inline = '''
+FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+'''
+
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
 
