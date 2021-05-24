@@ -1,6 +1,0 @@
-# These areas tend to have a lot of personal
-# info. Probably best to keep out of the repo.
-# You can `git add --force` if you really want.
-config/hub
-config/simplenote
-
