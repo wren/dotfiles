@@ -58,8 +58,7 @@ local plugins = {
   -- Theme(s)
   {
     'marko-cerovac/material.nvim',
-    setup = get_config('material'),
-    config = "require'material'.set()"
+    config = get_config('material'),
   },
 
   -- Creates groups for themes that don't support LSP yet
@@ -309,16 +308,22 @@ local plugins = {
   -- Display thin vertical lines at each indentation level
   {
     'lukas-reineke/indent-blankline.nvim',
-    opt = true,
     branch = 'lua',
-    config = get_config('indentline'),
+    setup = get_config('indentline'),
+    ft = {
+      'lua',            'python', 'javascript',
+      'javscriptreact', 'sh',     'zsh',
+      'bash',           'toml',   'yaml',
+      'gitconfig',      'git',    'html',
+      'css',            'scss',   'sass',
+    },
   },
 
   -- Parens matching
   {
     'andymass/vim-matchup',
-    opt = true,
     config = get_config('matchup'),
+    event = 'CursorMoved',
   },
 
   -- Support editorconfig files in projects
@@ -349,7 +354,6 @@ local plugins = {
       'zsh',
     },
     requires = {
-      'onsails/lspkind-nvim', -- icons
       -- {
       -- 'mattn/vim-lsp-settings', -- auto-install lsp servers
       -- requires = 'prabirshrestha/vim-lsp',
@@ -363,8 +367,18 @@ local plugins = {
   },
   {
     'folke/lsp-trouble.nvim',
-    opt = true,
     config = get_config('lsp-trouble'),
+    cmd = {
+      'LspTrouble',
+      'LspTroubleClose',
+      'LspTroubleDocumentOpen',
+      'LspTroubleDocumentToggle',
+      'LspTroubleOpen',
+      'LspTroubleRefresh',
+      'LspTroubleToggle',
+      'LspTroubleWorkspaceOpen',
+      'LspTroubleWorkspaceToggle',
+    },
   },
 
   {
@@ -373,6 +387,9 @@ local plugins = {
     config = get_config('lspsaga'),
   },
 
+  {
+    'onsails/lspkind-nvim', -- lsp icons
+  },
   -- @todo set this up
   -- {
   --   'mfussenegger/nvim-dap',

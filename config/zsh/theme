@@ -1,6 +1,11 @@
 # See built-in p10k themes for more options/examples
 # https://github.com/romkatv/powerlevel10k/tree/master/config
 
+# Enable Powerlevel10k instant prompt.
+# NOTE: Anything requiring user input (prompts, etc), should go before this.
+instant_prompt="$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
+[[ -r $instant_prompt ]] && source "$instant_prompt"
+
 # Temporarily change options.
 'builtin' 'local' '-a' 'p10k_config_opts'
 [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
@@ -272,8 +277,8 @@
 
         remote_logo=''
         case $VCS_STATUS_REMOTE_URL in
-          *github.com:*) remote_logo='';;
-          *bitbucket.org:*) remote_logo='';;
+          *github.com*) remote_logo='';;
+          *bitbucket.org*) remote_logo='';;
         esac
 
         res+="${remote_logo} "

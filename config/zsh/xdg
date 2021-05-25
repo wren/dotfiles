@@ -11,7 +11,6 @@ export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
 # --- ASDF --- #
 # Default ~/.asdfrc
-# Defaults to ~/.asdfrc as described above. Can be set to any location.
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 # ASDF_DEFAULT_TOOL_VERSIONS_FILENAME - The filename of the file storing the tool names and versions. Defaults to .tool-versions. Can be any valid filename. Typically you should not override the default value unless you know you want asdf to ignore .tool-versions files.
 

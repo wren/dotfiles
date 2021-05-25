@@ -21,7 +21,7 @@ function delete_unused_buffer(my_bufnr)
       if api.nvim_buf_is_loaded(my_bufnr) then
         cmd(string.format('bdelete %s', my_bufnr))
       end
-    end, 100)
+    end, 10)
   end
 end
 

@@ -43,11 +43,6 @@ path=(
   # default path
   $path
 
-  # other things that need special linking
-  /usr/local/opt/postgresql@11/bin
-  /usr/local/opt/terraform@0.13/bin
-
-
   # fzf (fuzzy file completion)
   /usr/local/opt/fzf/bin
 )

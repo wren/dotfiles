@@ -15,14 +15,11 @@ if type -a sig &>/dev/null; then
   sig
 fi
 
-# Enable Powerlevel10k instant prompt.
-# NOTE: Anything requiring user input (prompts, etc), should go before this.
-instant_prompt="$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
-[[ -r $instant_prompt ]] && source "$instant_prompt"
-
 # these files are loaded in this order
 my_dotfiles=(
   xdg
+  motd
+  prompt
   plugin_manager
   shell_config
   env

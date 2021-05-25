@@ -1,8 +1,7 @@
 # Added by Krypton
+
 Host *
-	IdentityAgent ~/.kr/krd-agent.sock
-	ProxyCommand /usr/local/bin/krssh %h %p
-	IdentityFile ~/.ssh/id_krypton
+  IdentityFile ~/.ssh/id_ed25519
 
 Include configs/*
 

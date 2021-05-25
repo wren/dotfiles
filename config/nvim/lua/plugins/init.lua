@@ -20,5 +20,6 @@ if fn.empty(fn.glob(packer_directory)) > 0 then
 end
 
 -- Events
-vim.cmd [[ autocmd BufWritePost plugins/packer.lua packadd packer.nvim | PackerCompile ]]
+-- vim.cmd [[ autocmd BufWritePost plugins/packer.lua packadd packer.nvim | PackerCompile ]]
+
 

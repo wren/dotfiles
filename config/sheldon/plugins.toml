@@ -39,6 +39,14 @@ github = 'zsh-users/zsh-completions'
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
 
+[plugins.zsh-autosuggestions-config]
+inline = '''
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+'''
+
 [plugins.forgit]
 github = 'wfxr/forgit'
 

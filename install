@@ -7,9 +7,9 @@ export DOTFILES_SECRETHUB_SERVICE_ACCT="6db543002ab93b3e"
 DOTFILES_REPO="https://github.com/wren/dotfiles.git"
 DOTBOT_REPO="https://github.com/wren/dotfiles-dotbot.git"
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="${0:A:h}"
 DOTBOT_CONFIG="$DOTFILES_DIR/config/dotfiles/dotbot.yaml"
-DOTBOT_DIR="$HOME/.cache/dotbot"
+DOTBOT_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotbot"
 DOTBOT_PLUGINS_DIR="$DOTBOT_DIR/plugins"
 DOTBOT_BIN="$DOTBOT_DIR/dotbot/bin/dotbot"
 

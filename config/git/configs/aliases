@@ -123,3 +123,4 @@
   au = update-index --assume-unchanged
   nau = update-index --no-assume-unchanged
   cl = clean
+  root = rev-parse --show-toplevel

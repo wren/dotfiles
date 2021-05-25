@@ -1,3 +1,40 @@
+-- Config --
+g.bufferline = {
+  -- Enable animations
+  animation = true,
+
+  -- Enable auto-hiding the tab bar when there is a single buffer
+  auto_hide = true,
+
+  -- Enable current/total tabpages indicator (top right corner)
+  tabpages = true,
+
+  -- Enable close button
+  closable = true,
+
+  -- Enables mouse support
+  --   left-click: go to buffer
+  --   middle-click: delete buffer
+  clickable = true,
+
+  -- Enable icons (true|'numbers'|'both')
+  icons = true,
+
+  -- Sets the icon's highlight group (or false for devicons default color)
+  icon_custom_colors = false,
+
+  -- Configure icons on the bufferline.
+  icon_separator_active = '▎',
+  icon_separator_inactive = '▎',
+  icon_close_tab = '',
+  icon_close_tab_modified = '●',
+
+  -- Sets the maximum padding width with which to surround each tab.
+  maximum_padding = 5,
+
+  -- Sets the maximum buffer name length.
+  maximum_length = 32,
+}
 
 -- Keymap --
 -- These commands will navigate through buffers in order regardless of which mode you are using
