@@ -1,6 +1,4 @@
 # --- MISC COMPLETIONS --- #
-autoload -U bashcompinit
-bashcompinit
 
 # @TODO: Fix these for zsh
 # # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
@@ -18,10 +16,13 @@ bashcompinit
 # homebrew
 if command -v brew &>/dev/null; then
   FPATH=/usr/local/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit -d "$ZSH_COMPDUMP"
-  compinit -d "$ZSH_COMPDUMP"
 fi
+
+autoload -Uz compinit -d "$ZSH_COMPDUMP"
+compinit -d "$ZSH_COMPDUMP"
+
+# autoload -U bashcompinit -d "$ZSH_COMPDUMP-bash"
+# bashcompinit -d "$ZSH_COMPDUMP-bash"
 
 # pipx
 { register-python-argcomplete && eval "$(register-python-argcomplete pipx)" } &>/dev/null

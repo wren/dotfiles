@@ -19,8 +19,15 @@ path = 'path=( $path "{{ dir }}" )'
 
 [plugins]
 
+[plugins.asdf]
+github = "asdf-vm/asdf.git"
+
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
+
+[plugins.spack]
+github = "spack/spack"
+use = [ "setup-env.sh" ]
 
 [plugins.ohmyzsh]
 github = 'ohmyzsh/ohmyzsh'
