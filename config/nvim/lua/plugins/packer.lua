@@ -161,6 +161,11 @@ local plugins = {
   -- Vim startuptime analysis (use with nvim +StartupTime)
   'tweekmonster/startuptime.vim',
 
+  {
+    'AndrewRadev/bufferize.vim',
+    cmd = { 'Bufferize', 'BufferizeTimer' }
+  },
+
   ----- Navigation -----
 
   -- Undo tree visualization
