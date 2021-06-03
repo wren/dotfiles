@@ -8,6 +8,15 @@
 	<true/>
 	<key>fastAppendSeparator</key>
 	<integer>1</integer>
+	<key>hotkey</key>
+	<dict>
+		<key>key</key>
+		<integer>8</integer>
+		<key>mod</key>
+		<integer>1310720</integer>
+		<key>string</key>
+		<string>C</string>
+	</dict>
 	<key>limit</key>
 	<integer>4</integer>
 	<key>persistFor</key>
