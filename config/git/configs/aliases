@@ -103,6 +103,7 @@
   brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
   brs = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
   dmb = delete-merged-branches
+  smb = show-merged-branches
   prg = "!f(){ gh pr checkout ${1:-0} && git br -m ${2:-pr-$1-$(git current-branch)} && git brs 'PRs for Review'; }; f"
   pro = "!f(){ hub pull-request -o \"$@\" && git brs 'PR Opened'; }; f"
   todo = "!rg -in '@todo'"
