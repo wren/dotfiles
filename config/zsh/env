@@ -37,7 +37,3 @@ export GPG_TTY=$(tty)
 export LESS_TERMCAP_md="$ORANGE"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-# Required to get rid of deprecation warning until pyenv updates
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYTHON_CONFIGURE_OPTS="--enable-framework"

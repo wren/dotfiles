@@ -21,6 +21,7 @@ path = 'path=( $path "{{ dir }}" )'
 
 [plugins.asdf]
 github = "asdf-vm/asdf.git"
+use = ['asdf.sh', 'completions/asdf.bash']
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"

@@ -52,7 +52,7 @@ map('x', '<space>', '')
 g.loaded_python_provider = 0
 
 -- Add python 3 to path, and tell neovim to use it by default
-local python_venv = CACHE_PATH .. '/pyenv/versions/neovim3/bin'
+local python_venv = CACHE_PATH .. '/python-virtual-envs/neovim/bin'
 if fn.isdirectory(python_venv) then
   g.python3_host_prog = python_venv .. '/python'
   cmd(string.format('let $PATH = "%s:" . $PATH', python_venv))

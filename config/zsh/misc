@@ -22,8 +22,8 @@ fzf-history-widget() {
   return $ret
 }
 
-# Make pipx use pyenv
-export PIPX_DEFAULT_PYTHON="$PYENV_ROOT/shims/python"
+# Make pipx use asdf
+export PIPX_DEFAULT_PYTHON="$ASDF_DATA_DIR/shims/python"
 
 BACKUPS_CONFIG="$XDG_CONFIG_HOME/backups/config.yaml"
 export RESTIC_PASSWORD_COMMAND="yq e .restic.passphrase '$BACKUPS_CONFIG'"
@@ -32,3 +32,7 @@ export RESTIC_REPOSITORY="$(yq e .restic.repo "$BACKUPS_CONFIG" | sed "s!^~!$HOM
 # direnv
 export DIRENV_LOG_FORMAT=''
 eval "$(direnv hook zsh)"
+
+
+# Python virtual envs
+export PYTHON_VENVS_DIR="$XDG_CACHE_HOME/python-virtual-envs"
