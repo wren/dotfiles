@@ -27,7 +27,7 @@
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
-	<true/>
+	<false/>
 	<key>name</key>
 	<string>Terminal Hotkey</string>
 	<key>objects</key>
@@ -68,7 +68,7 @@
 			<dict>
 				<key>paths</key>
 				<array>
-					<string>/Applications/kitty.app</string>
+					<string>~/Applications/kitty/kitty/launcher/kitty.app</string>
 				</array>
 				<key>toggle</key>
 				<true/>
