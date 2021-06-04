@@ -1,7 +1,7 @@
 
 -- Use space as leader and ; as secondary-leader --
 g.mapleader = ' '
-g.maplocalleader = ';'
+g.maplocalleader = '\\'
 
 -- Set main config directory as parent directory --
 CACHE_PATH = fn.fnamemodify(fn.stdpath('cache'), ':h')
@@ -30,10 +30,10 @@ g.loaded_zipPlugin = 1
 -- Get rid of some default mappings --
 map('n', '<space>', '')
 map('x', '<space>', '')
-map('n', ',', '')
-map('x', ',', '')
-map('n', ';', '')
-map('x', ';', '')
+-- map('n', ',', '')
+-- map('x', ',', '')
+-- map('n', ';', '')
+-- map('x', ';', '')
 
 
 -- @todo still need this?
