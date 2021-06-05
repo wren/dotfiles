@@ -1,5 +1,8 @@
-# This is the default signature (if a host-specific one isn't given)
-function sig {
+# Message of the day
+if kitty +kitten icat --detect-support --detection-timeout=.05 &>/dev/null; then
+  kitty +kitten icat --align=left "${ZDOTDIR}/motd.png"
+else
+
 lolcat -f <<'EOM'
                        __,---,
          .---.        /__|o\  )       .-"-.      .----.""".
@@ -12,4 +15,5 @@ lolcat -f <<'EOM'
            |              |||           |              '|'
                            |
 EOM
-}
+
+fi
