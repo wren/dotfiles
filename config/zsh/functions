@@ -211,16 +211,19 @@ function ap {
 }
 
 # Use FZF to attach/switch a tmux session
-function ta {
-  session="$(tmux ls -F '#{session_name} #{?session_attached,  ,}|  #{session_alerts}|#{t:session_activity}|' 2>/dev/null \
+function ta_list {
+  tmux ls -F '#{session_name} #{?session_attached,  '$'\uf902'',}|  #{session_alerts}|#{t:session_activity}|' 2>/dev/null \
     | perl -pe 's/\d#,?//g' \
     | column -ts'|' \
     | fzf --query="$1" --select-1 --exit-0 \
-    | perl -pe 's/^(.*?)\s{3,}.*$/$1/')"
+    | perl -pe 's/^(.*?)\s{3,}.*$/$1/'
+}
+function ta {
+  session="$(ta_list)"
 
   if [[ -z $session ]]; then
     echo "No sessions (tmux is not running)."
-    echo 'Running `tmux new`'
+    echo 'Running `tmux new-session`'
     tmux new
     return
   fi
