@@ -26,3 +26,8 @@ setopt AUTO_LIST
 setopt AUTO_CD                  # try to cd to entries that aren't valid commands
 setopt RC_QUOTES                # Allow escaping quotes in strings by doubling i.e.' foo ''bar'' baz' (good for aliases)
 setopt globdots                 # Included files/dirs that start with dots (e.g. .config) in globbing and completion
+
+# Completion
+autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
+autoload -Uz bashcompinit && bashcompinit -d "$ZSH_COMPDUMP-bash"
+

@@ -1,16 +1,14 @@
 # dissallow dupes on the path
 typeset -U path
+typeset -U fpath
 
 path=(
   # our local shenanigans get priority
   ~/.local/bin
 
-  # node.js to the front(ish) of the line
+  # Version manager(s) near the front of the line
   ${N_PREFIX}/bin
   /usr/local/share/npm/bin
-
-  # also ruby for some reason
-  /usr/local/opt/ruby/bin
 
   # then Homebrew comes next
   /usr/local/bin
@@ -36,10 +34,6 @@ path=(
   # ugh, Poetry doesn't let us change config path
   ~/.local/share/poetry/bin
 
-  # also Ruby, I guess
-  /usr/local/lib/ruby/gems/2.7.0/bin
-  /usr/local/opt/ruby/bin
-
   # default path
   $path
 
@@ -47,3 +41,11 @@ path=(
   /usr/local/opt/fzf/bin
 )
 
+fpath=(
+
+  # homebrew
+  /usr/local/share/zsh/site-functions
+
+  #default fpath
+  $fpath
+)

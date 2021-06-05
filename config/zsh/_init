@@ -4,11 +4,11 @@ my_dotfiles=(
   xdg
   motd
   prompt
-  plugin_manager
   shell_config
+  path
+  plugin_manager
   env
   vim
-  path
   theme
   aliases
   functions
