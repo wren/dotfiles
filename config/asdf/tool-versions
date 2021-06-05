@@ -1,3 +1,5 @@
 python 3.9.5
 ruby 3.0.1
 bat 0.18.1
+direnv 2.28.0
+fzf 0.27.2
