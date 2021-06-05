@@ -14,8 +14,9 @@ shell = "zsh"
 
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-PATH = 'export PATH="$PATH:{{ dir }}"'
 path = 'path=( $path "{{ dir }}" )'
+back-path = 'path=( "{{ dir }}" $path )'
+noop = ':'
 
 [plugins]
 
@@ -25,10 +26,6 @@ use = ['asdf.sh', 'completions/asdf.bash']
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
-
-[plugins.spack]
-github = "spack/spack"
-use = [ "setup-env.sh" ]
 
 [plugins.ohmyzsh]
 github = 'ohmyzsh/ohmyzsh'
