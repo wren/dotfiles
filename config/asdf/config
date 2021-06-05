@@ -1,0 +1,18 @@
+
+# @see: https://asdf-vm.com/#/core-configuration?id=homeasdfrc
+
+# Support other version managers' files? (yes|NO)
+# e.g. .ruby-version, .python-version, etc
+legacy_version_file = yes
+
+# When upgrading, install non-stable releases? (yes|NO)
+use_release_candidates = no
+
+# Keep install files (like source or binary) forever? (yes|NO)
+# These are normally deleted after the install
+always_keep_download = no
+
+# How often to check for updates (e.g. `asdf plugin add <name>`)
+# In minutes. Default 60
+plugin_repository_last_check_duration = 60
+
