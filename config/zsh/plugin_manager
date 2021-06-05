@@ -1,13 +1,7 @@
 # Initialize plugin manager
-# zinit_file="/usr/local/opt/zinit/zinit.zsh"
-# if [[ -r $zinit_file ]]; then
-#   source "$zinit_file"
-#   source "$HOME/.config/zsh/plugins"
-# else
-#   echo 'Install zsh plugin manager with `brew install zinit`'
-# fi
-# 
 
 # @todo make this less dynamic (compiling is faster)
 # Maybe? sheldon is pretty fast already. Maybe this isn't necessary?
-eval "$(sheldon source)"
+if command -v sheldon &>/dev/null; then
+  eval "$(sheldon --quiet source)"
+fi
