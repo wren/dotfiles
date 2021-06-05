@@ -26,11 +26,13 @@ g.fzf_colors = {
 -- ripgrep
 if fn.executable('rg') == 1 then
   local rg_default_opts = {
+    '--no-config',
     '--files',
-    ' --hidden',
-    ' --follow',
+    '--hidden',
+    '--follow',
   }
   local rg_search_opts = {
+    '--no-config',
     '--column',
     '--line-number',
     '--no-heading',
@@ -47,6 +49,7 @@ if fn.executable('rg') == 1 then
     '--glob "!**/node_modules/*"',
     '--glob "!**/__pycache__/*"',
     '--glob "!*.lock"',
+    '--glob "!**/Alfred.alfredpreferences/*"',
   }
 
   local my_opts = ''

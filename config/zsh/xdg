@@ -65,6 +65,7 @@ export POETRY_VIRTUALENVS_PATH="${XDG_CACHE_HOME}/python-virtual-envs"
 
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgrep.config"
+export RIPGREP_CONFIG_DIR="$XDG_CONFIG_HOME/ripgrep/"
 
 # secrethub
 export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
