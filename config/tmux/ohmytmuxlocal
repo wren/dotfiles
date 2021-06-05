@@ -24,13 +24,13 @@ tmux_conf_new_pane_retain_current_path=true
 tmux_conf_new_pane_reconnect_ssh=false
 
 # prompt for session name when creating a new session [true|FALSE]
-tmux_conf_new_session_prompt=false
+tmux_conf_new_session_prompt=true
 
 
 # -- display -------------------------------------------------------------------
 
 # RGB 24-bit color support (tmux >= 2.2) [true|false]
-tmux_conf_theme_24b_color=false
+tmux_conf_theme_24b_color=true
 
 # highlight focused pane (tmux >= 2.1) [true|false]
 tmux_conf_theme_highlight_focused_pane=false
@@ -138,11 +138,12 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' \ue795 #S '
 
-WEATHER='#(curl -s 'wttr.in/Seattle?format="%%l:+%%c++%%t+%%w&period=60"' 2>/dev/null)'
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}| '"$WEATHER"'|#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} | #{username}#{root}@#{hostname} '
+# WEATHER='#(curl -s 'wttr.in/Seattle?format="%%l:+%%c++%%t+%%w&period=60"' 2>/dev/null)'
+# tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}| '"$WEATHER"'|#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} | #{username}#{root}@#{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}|#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
+tmux_conf_theme_status_left_fg='#141414,#e4e4e4,#e4e4e4'  # black, white , white
 tmux_conf_theme_status_left_bg='#f7e987,#ff00af,#00afff'  # yellow, pink, white blue
 tmux_conf_theme_status_left_attr='bold,none,none'
 
