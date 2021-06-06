@@ -100,7 +100,7 @@
                         ]
                     },
                     {
-                        "description": "Hyper Terminal",
+                        "description": "Hyper Tmux Shortcut",
                         "manipulators": [
                             {
                                 "from": {
