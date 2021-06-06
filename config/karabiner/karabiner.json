@@ -232,6 +232,7 @@
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
+                      "right_shift",
                       "right_control",
                       "right_option",
                       "left_control"
@@ -251,6 +252,7 @@
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
+                      "right_shift",
                       "right_control",
                       "right_option",
                       "left_control"
@@ -266,9 +268,10 @@
               },
               {
                 "from": {
-                  "key_code": ",",
+                  "key_code": "comma",
                   "modifiers": {
                     "mandatory": [
+                      "right_shift",
                       "right_control",
                       "right_option",
                       "left_control"
@@ -288,9 +291,10 @@
               },
               {
                 "from": {
-                  "key_code": ".",
+                  "key_code": "period",
                   "modifiers": {
                     "mandatory": [
+                      "right_shift",
                       "right_control",
                       "right_option",
                       "left_control"
