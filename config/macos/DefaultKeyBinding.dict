@@ -1,0 +1,28 @@
+/*
+More info about how this file works:
+- http://www.hcs.harvard.edu/~jrus/Site/cocoa-text.html
+- https://www.osmondpcb.com/kb.html
+- http://xahlee.info/kbd/osx_keybinding_action_code.html
+*/
+{
+  /*
+  Line format:
+    "keycode" = "action:";
+    "keycode" = ( "actionOne:", "actionTwo:", "actionThree:" );
+
+  Modifiers for keycode:
+    @ -> cmd
+    ^ -> ctrl
+    ~ -> alt
+    $ -> shift
+  */
+
+  /* use ctrl as alt with arrow keys for text nav */
+  "^\UF703" = "moveWordForward:";
+  "^$\UF703" = "moveWordRightAndModifySelection:";
+
+  "^\UF702" = "moveWordBackward:";
+  "^$\UF702" = "moveWordLeftAndModifySelection:";
+
+  "^\U007F" = "deleteWordBackward:";
+}
