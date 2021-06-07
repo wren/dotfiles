@@ -1228,9 +1228,12 @@ instant_prompt="$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
 
   ###############################[ you_have_mail: mail status ]###############################
+
+  # typeset -g POWERLEVEL9K_YOU_HAVE_MAIL_PREFIX=' '
+  # typeset -g POWERLEVEL9K_YOU_HAVE_MAIL_SUFFIX=' '
   function prompt_you_have_mail() {
-    mail -e && p10k segment -f 'cyan' -i ''
-    [[ -f ~/mbox ]] && p10k segment -f 'grey' -i ''
+    mail -e && p10k segment -f 'cyan' -i ' '
+    [[ -f ~/mbox ]] && p10k segment -f 'grey' -i ' '
   }
 
   function prompt_login_banner() {
