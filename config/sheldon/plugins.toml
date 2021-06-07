@@ -12,22 +12,24 @@
 
 shell = "zsh"
 
-[templates]
+[ templates ]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 path = 'path=( $path "{{ dir }}" )'
-back-path = 'path=( "{{ dir }}" $path )'
+path-bin = 'path=( $path "{{ dir }}/bin" )'
+front-path = 'path=( "{{ dir }}" $path )'
+front-path-bin = 'path=( $path "{{ dir }}/bin" )'
 noop = ':'
 
-[plugins]
+[ plugins ]
 
-[plugins.asdf]
+[ plugins.asdf ]
 github = "asdf-vm/asdf.git"
-use = ['asdf.sh', 'completions/asdf.bash']
+use = [ 'asdf.sh', 'completions/asdf.bash' ]
 
-[plugins.zsh-defer]
+[ plugins.zsh-defer ]
 github = "romkatv/zsh-defer"
 
-[plugins.ohmyzsh]
+[ plugins.ohmyzsh ]
 github = 'ohmyzsh/ohmyzsh'
 use = [
   'plugins/asdf/*.zsh',
@@ -35,16 +37,16 @@ use = [
   'lib/clipboard.zsh',
 ]
 
-[plugins.powerlevel10k]
+[ plugins.powerlevel10k ]
 github = 'romkatv/powerlevel10k'
 
-[plugins.zsh-completions]
+[ plugins.zsh-completions ]
 github = 'zsh-users/zsh-completions'
 
-[plugins.zsh-autosuggestions]
+[ plugins.zsh-autosuggestions ]
 github = 'zsh-users/zsh-autosuggestions'
 
-[plugins.zsh-autosuggestions-config]
+[ plugins.zsh-autosuggestions-config ]
 inline = '''
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -52,33 +54,37 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 '''
 
-[plugins.forgit]
+[ plugins.forgit ]
 github = 'wfxr/forgit'
 
-[plugins.forgit-config]
+[ plugins.forgit-config ]
 inline = '''
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
 '''
 
-[plugins.zsh-syntax-highlighting]
+[ plugins.zsh-syntax-highlighting ]
 github = "zsh-users/zsh-syntax-highlighting"
 
-[plugins.zsh-history-substring-search]
+[ plugins.zsh-history-substring-search ]
 github = 'zsh-users/zsh-history-substring-search'
 
-[plugins.zsh-vim-mode]
+[ plugins.zsh-vim-mode ]
 github = 'softmoth/zsh-vim-mode'
 
-[plugins.zsh-vim-mode-config]
+[ plugins.zsh-vim-mode-config ]
 inline = '''
 vim-mode-bindkey vicmd -- beginning-of-line H
 vim-mode-bindkey vicmd -- end-of-line       L
 vim-mode-bindkey vicmd -- run-help          K
 '''
 
-[plugins.zsh-system-clipboard]
+[  plugins.zsh-system-clipboard  ]
 github = 'kutsan/zsh-system-clipboard'
 
-[plugins.fzf-tab]
+[  plugins.fzf  ]
+github = 'junegunn/fzf'
+apply = [ 'path-bin', 'source' ]
+
+[ plugins.fzf-tab ]
 github = 'aloxaf/fzf-tab'
 apply = ["defer"]
