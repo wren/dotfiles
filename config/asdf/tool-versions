@@ -15,5 +15,5 @@ ripgrep 12.1.1
 ruby 3.0.1
 shellcheck 0.7.2
 sops 3.7.1
-tmux 3.2
+tmux master
 yq 4.0.0

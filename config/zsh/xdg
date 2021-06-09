@@ -72,9 +72,6 @@ export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
 
 # tmux
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
-export TMUX_OHMYTMUX_CONFIG=""
-export TMUX_OHMYTMUX_CONFIG_LOCAL=""
-
 
 # zplug
 export ZPLUG_HOME="$XDG_DATA_HOME/zplug"

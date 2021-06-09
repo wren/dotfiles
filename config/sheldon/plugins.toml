@@ -18,6 +18,7 @@ path = 'path=( $path "{{ dir }}" )'
 path-bin = 'path=( $path "{{ dir }}/bin" )'
 front-path = 'path=( "{{ dir }}" $path )'
 front-path-bin = 'path=( $path "{{ dir }}/bin" )'
+direnv-ohmytmux = 'export TMUX_OHMYTMUX_CONFIG_DIR="{{ dir }}"'
 noop = ':'
 
 [ plugins ]
@@ -109,3 +110,8 @@ fzf-history-widget() {
   return $ret
 }
 '''
+
+[ plugins.ohmytmux ]
+github = 'wren/.tmux'
+use = [ '.tmux.conf' ]
+apply = [ 'direnv-ohmytmux' ]
