@@ -69,6 +69,7 @@
 				<key>paths</key>
 				<array>
 					<string>~/Applications/kitty/kitty/launcher/kitty.app</string>
+					<string>/Applications/kitty.app</string>
 				</array>
 				<key>toggle</key>
 				<true/>
