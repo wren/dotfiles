@@ -68,7 +68,6 @@ cask "google-chrome" # Web browser
 cask "google-trends"
 cask "itsycal" # Menu bar calendar
 cask "karabiner-elements" # Keyboard customizer
-cask "kitty" # GPU-based terminal emulator
 cask "logitech-camera-settings" # Provides access to camera controls
 cask "loopback" # Cable-free audio router
 cask "obs" # Open-source software for live streaming and screen recording

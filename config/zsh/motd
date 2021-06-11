@@ -1,7 +1,4 @@
 # Message of the day
-if kitty +kitten icat --detect-support --detection-timeout=.05 &>/dev/null; then
-  kitty +kitten icat --align=left "${ZDOTDIR}/motd.png"
-else
 
 lolcat -f <<'EOM'
                        __,---,
@@ -15,5 +12,3 @@ lolcat -f <<'EOM'
            |              |||           |              '|'
                            |
 EOM
-
-fi
