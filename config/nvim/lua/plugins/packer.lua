@@ -370,6 +370,7 @@ local plugins = {
     'nvim-lua/completion-nvim',
     config = get_config('completion-nvim'),
   },
+
   {
     'folke/lsp-trouble.nvim',
     config = get_config('lsp-trouble'),
@@ -388,7 +389,6 @@ local plugins = {
 
   {
     'glepnir/lspsaga.nvim',
-    opt = true,
     config = get_config('lspsaga'),
   },
 
