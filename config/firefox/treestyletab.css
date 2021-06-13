@@ -1,3 +1,7 @@
+#background {
+  background-color: #141414;
+}
+
 :root.simulate-svg-context-fill tab-item:not(.collapsed) tab-twisty::before {
   mask-size: 80%;
 }
@@ -38,12 +42,11 @@ tab-item[data-child-ids] {
 
 /* Close buttons on tabs. */
 .tab .closebox {
-  /* visibility: collapse; */
-  /* background-color: #637A87; */
+  visibility: collapse;
+  background-color: #637A87;
 }
 .tab:hover .closebox {
-  /* visibility: collapse; */
-  /* background-color: #7E93A0; */
+  visibility: visible;
 }
 tab-item tab-closebox {
   margin-bottom: var(--tab-closebox-negative-offset);
@@ -127,7 +130,9 @@ tab-item tab-closebox {
   background-color: #292929 !important;
 }
 .tab.active {
-  background-color: #475862;
+  /* background-color: #475862; */
+  background-color: #FFFFFF;
+
 }
 .tab.active:hover {
   background-color: #637A87 !important;
