@@ -148,6 +148,26 @@
             ]
           },
           {
+            "description": "Lily58 needs exactly one more key",
+            "manipulators": [
+              {
+                "from": {
+                  "simultaneous": [
+                      { "key_code": "4" },
+                      { "key_code": "5" }
+                  ],
+                  "modifiers": {
+                      "optional": ["any"]
+                  }
+                },
+                "to": [
+                  { "key_code": "6" }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "Hyper Nav",
             "manipulators": [
               {
