@@ -1,13 +1,7 @@
+# : << EOF
 # Adapted from: https://github.com/gpakosz/.tmux
 
 # -- navigation ----------------------------------------------------------------
-
-# if you're running tmux within iTerm2
-#   - and tmux is 1.9 or 1.9a
-#   - and iTerm2 is configured to let option key act as +Esc
-#   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
-# then uncomment the following line to make Meta + arrow keys mapping work
-#set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
 # vim checkhealth said to add this line
 set-option -sa terminal-overrides ',xterm-256color:RGB'
@@ -31,6 +25,27 @@ tmux_conf_new_session_prompt=true
 
 # RGB 24-bit color support (tmux >= 2.2) [true|false]
 tmux_conf_theme_24b_color=true
+
+
+# default theme
+tmux_conf_theme_colour_1="#080808"    # dark gray
+tmux_conf_theme_colour_2="#303030"    # gray
+tmux_conf_theme_colour_3="#8a8a8a"    # light gray
+tmux_conf_theme_colour_4="#00afff"    # light blue
+tmux_conf_theme_colour_5="#ffff00"    # yellow
+tmux_conf_theme_colour_6="#080808"    # dark gray
+tmux_conf_theme_colour_7="#e4e4e4"    # white
+tmux_conf_theme_colour_8="#080808"    # dark gray
+tmux_conf_theme_colour_9="#ffff00"    # yellow
+tmux_conf_theme_colour_10="#ff00af"   # pink
+tmux_conf_theme_colour_11="#5fff00"   # green
+tmux_conf_theme_colour_12="#8a8a8a"   # light gray
+tmux_conf_theme_colour_13="#e4e4e4"   # white
+tmux_conf_theme_colour_14="#080808"   # dark gray
+tmux_conf_theme_colour_15="#080808"   # dark gray
+tmux_conf_theme_colour_16="#d70000"   # red
+tmux_conf_theme_colour_17="#e4e4e4"   # white
+
 
 # highlight focused pane (tmux >= 2.1) [true|false]
 tmux_conf_theme_highlight_focused_pane=false
@@ -140,38 +155,38 @@ tmux_conf_theme_status_left=' \ue795 #S '
 
 # WEATHER='#(curl -s 'wttr.in/Seattle?format="%%l:+%%c++%%t+%%w&period=60"' 2>/dev/null)'
 # tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}| '"$WEATHER"'|#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} | #{username}#{root}@#{hostname} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}|#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} '
+tmux_conf_theme_status_right='#{?prefix, #{prefix},}#{pairing}#{synchronized}| #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}#{?battery_bar, #{battery_bar},} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#141414,#e4e4e4,#e4e4e4'  # black, white , white
-tmux_conf_theme_status_left_bg='#f7e987,#ff00af,#00afff'  # yellow, pink, white blue
+tmux_conf_theme_status_left_fg='#141414,#e4e4e4,#e4e4e4'
+tmux_conf_theme_status_left_bg='#f7e987,#ff00af,#00afff'
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#000000,#aaaaaa,#6c71c4,#6c71c4,#6c71c4' # light gray, white, black
-tmux_conf_theme_status_right_bg='#ffffff,#080808,#080808,#080808,#080808' # dark gray, red, white
-tmux_conf_theme_status_right_attr='bold,none,none,none,bold'
+tmux_conf_theme_status_right_fg='#ffffff,#6c71c4'
+tmux_conf_theme_status_right_bg='#080808,#080808'
+tmux_conf_theme_status_right_attr='none,bold'
 
 # pairing indicator
-tmux_conf_theme_pairing=' 履 '          # U+1F453
+tmux_conf_theme_pairing='  '
 tmux_conf_theme_pairing_fg='#d75f87'
 tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
 # prefix indicator
-tmux_conf_theme_prefix='   '
+tmux_conf_theme_prefix=''
 tmux_conf_theme_prefix_fg='none'
 tmux_conf_theme_prefix_bg='none'
-tmux_conf_theme_prefix_attr='none'
+tmux_conf_theme_prefix_attr='bold'
 
 # root indicator
-tmux_conf_theme_root='!'
+tmux_conf_theme_root=''
 tmux_conf_theme_root_fg='none'
 tmux_conf_theme_root_bg='none'
 tmux_conf_theme_root_attr='bold,blink'
 
 # synchronized indicator
-tmux_conf_theme_synchronized='🔒'     # U+1F512
+tmux_conf_theme_synchronized=''
 tmux_conf_theme_synchronized_fg='none'
 tmux_conf_theme_synchronized_bg='none'
 tmux_conf_theme_synchronized_attr='none'
@@ -181,19 +196,17 @@ tmux_conf_battery_bar_symbol_full=''
 tmux_conf_battery_bar_symbol_empty='\u00a0' #nbsp
 
 # battery bar length (in number of symbols) ['auto', an int]
-tmux_conf_battery_bar_length='auto'
+tmux_conf_battery_bar_length=10
 
 #' battery bar palette [GRADIENT|heat|'color_full_fg,color_empty_fg,color_bg']
 tmux_conf_battery_bar_palette='gradient'
-# tmux_conf_battery_bar_palette='#d70000,#e4e4e4,#000000'   # red, white, black
 
 # battery hbar palette [GRADIENT|heat|'color_low,color_half,color_full']
-tmux_conf_battery_hbar_palette='gradient'
-# tmux_conf_battery_hbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
+# tmux_conf_battery_hbar_palette='heat'
+tmux_conf_battery_hbar_palette='heat'
 
 # battery vbar palette [GRADIENT|heat|'color_low,color_half,color_full']
 tmux_conf_battery_vbar_palette='gradient'
-# tmux_conf_battery_vbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
 
 # symbols used to indicate whether battery is charging or discharging
 tmux_conf_battery_status_charging='\uf584'
@@ -204,3 +217,14 @@ tmux_conf_battery_status_discharging='\uf578'
 tmux_conf_theme_clock_color='#00afff'  # light blue
 tmux_conf_theme_clock_style='12'
 
+
+# -- tpm -----------------------------------------------------------------------
+
+# by default, launching tmux will update tpm and all plugins [TRUE|false]
+tmux_conf_update_plugins_on_launch=false
+
+# by default, reloading the configuration will update tpm and all plugins [TRUE|false]
+tmux_conf_update_plugins_on_reload=false
+
+# ⚠️ do not remove the following line
+# EOF
