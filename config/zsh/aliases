@@ -74,5 +74,5 @@ alias 7zx.tar.gz='func() { 7z x -tgzip -so $@ | 7z x -si -ttar; }; func'
 ###########################
 ###  Project Management ###
 ###########################
-alias jp='jrnl --config-override journals.project "$(git root || echo ".")/project-notes.jrnl" project'
-
+alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
+alias jpe='jp --edit'
