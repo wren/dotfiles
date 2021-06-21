@@ -3,7 +3,8 @@
 namespace Workflow\Tools;
 
 use Workflow\CalculateAnything as CalculateAnything;
-use Olifolkerd\Convertor\Convertor;
+
+//use Olifolkerd\Convertor\Convertor;
 
 /**
  * Units conversion
@@ -86,10 +87,17 @@ class Units extends CalculateAnything implements CalculatorInterface
                 'kl',
                 'm3',
                 'pt',
+                'uspt',
+                'ukpt',
                 'gal',
                 'qt',
+                'usqt',
+                'ukqt',
                 'ft3',
                 'in3',
+                'floz',
+                'usgal',
+                'ukgal',
             ],
             'weight' => [
                 'kg',
@@ -223,7 +231,7 @@ class Units extends CalculateAnything implements CalculatorInterface
             'mods' => [
                 'cmd' => [
                     'valid' => true,
-                    'arg' => $result['value'],
+                    'arg' => $this->cleanupNumber($result['value']),
                     'subtitle' => $this->lang['cmd'],
                 ],
                 'alt' => [
@@ -262,11 +270,14 @@ class Units extends CalculateAnything implements CalculatorInterface
 
         if ($from == 'year' && $to == 'month') {
             $converted = $amount * 12;
+        } elseif ($from == 'month' && $to == 'year') {
+            $converted = $amount / 12;
         } else {
             $conversion_error = false;
             try {
-                $convert = new Convertor($amount, $from);
-                $converted = $convert->to($to);
+                require_once dirname(__DIR__, 1) . '/lib/units/Convertor.php';
+                $convert = new \Convertor($amount, $from);
+                $converted = $convert->to($to, 2, true);
             } catch (\Throwable $th) {
                 $conversion_error = $th->getMessage();
             }
@@ -284,14 +295,23 @@ class Units extends CalculateAnything implements CalculatorInterface
         // Before displaying the result
         // Convert some units to readable human form
         if ($from_type == 'time') {
-            $time_human_units = ['seconds', 'years', 'months', 'weeks', 'days', 'hours', 'minutes', 'milliseconds'];
             if ($converted > 1) {
-                $to  = str_replace(
-                    ['s', 'year', 'month', 'week', 'day', 'hr', 'min', 'ms'],
-                    $time_human_units,
-                    $to
-                );
+                $human_readable = [
+                    'ms' => 'milliseconds',
+                    's' => 'seconds',
+                    'min' => 'minutes',
+                    'hr' => 'hours',
+                    'day' => 'days',
+                    'week' => 'weeks',
+                    'month' => 'months',
+                    'year' => 'years',
+                ];
+
+                if (isset($human_readable[$to])) {
+                    $to = $human_readable[$to];
+                }
             }
+
             $strings = $this->getTranslation('time');
             if (is_array($strings) && isset($strings[$to])) {
                 $to = $strings[$to];
@@ -303,7 +323,7 @@ class Units extends CalculateAnything implements CalculatorInterface
         $resultUnit = $this->standardUnit($to);
 
         return [
-            'formatted' => $resultValue . $resultUnit,
+            'formatted' => $resultValue .' ' . $resultUnit,
             'value' => $resultValue
         ];
     }
@@ -318,6 +338,7 @@ class Units extends CalculateAnything implements CalculatorInterface
      */
     private function extractQueryData($query)
     {
+        $matches = [];
         $query = str_replace(',', '', $query);
         $stopwords = $this->getStopWordsString($this->stop_words);
 
@@ -328,9 +349,9 @@ class Units extends CalculateAnything implements CalculatorInterface
         }
 
         $total_match = count($matches);
-        $amount = getVar($matches, 1, '');
-        $from = $this->getCorrectunit(getVar($matches, 2));
-        $to = $this->getCorrectunit(getVar($matches, $total_match - 1));
+        $amount = \Alfred\getArgument($matches, 1, '');
+        $from = $this->getCorrectunit(\Alfred\getArgument($matches, 2));
+        $to = $this->getCorrectunit(\Alfred\getArgument($matches, $total_match - 1));
 
         if (empty($from) || empty($to)) {
             return false;
@@ -427,7 +448,7 @@ class Units extends CalculateAnything implements CalculatorInterface
     {
         $unit = trim($val);
         $unit = preg_replace('!\s+!', ' ', $unit);
-        if (endsWith($unit, '2')) {
+        if ($this->unitEndsWith($unit, '2')) {
             $unit = str_replace('2', '**2', $unit);
         }
 
@@ -449,8 +470,11 @@ class Units extends CalculateAnything implements CalculatorInterface
         if (empty($val)) {
             return false;
         }
+        if ($this->isValidUnit($val)) {
+            return $this->cleanupUnit($val);
+        }
 
-        $val = mb_strtolower($val);
+        //$val = mb_strtolower($val);
         $val = $this->keywordTranslation($val, $this->keywords);
 
         if (!$this->isValidUnit($val)) {
@@ -464,6 +488,17 @@ class Units extends CalculateAnything implements CalculatorInterface
     private function standardUnit($unit)
     {
         return str_replace('**', '', $unit);
+    }
+
+
+    public function unitEndsWith(string $haystack, string $needle, bool $case = true): bool
+    {
+        $expectedPosition = strlen($haystack) - strlen($needle);
+        if ($case) {
+            return strrpos($haystack, $needle, 0) === $expectedPosition;
+        }
+
+        return strripos($haystack, $needle, 0) === $expectedPosition;
     }
 
 
@@ -484,17 +519,16 @@ class Units extends CalculateAnything implements CalculatorInterface
             $type_name = (isset($translation[$type]) ? $translation[$type] : $type);
 
             foreach ($value as $val) {
-                $unit = $val;
                 $unit_name = (isset($translation[$val]) ? $translation[$val] : $val);
 
                 $list[] = [
                     'title' => "$unit_name = $val",
-                    'subtitle' => $key,
                     'subtitle' => sprintf($translation['belongs_to'], $val, $type_name),
+                    'arg' => $val,
                     'match' => $val . '  ' . $unit_name,
                     'autocomplete' => $unit_name,
-                    'arg' => $val,
                     'valid' => true,
+                    'variables' => ['action' => 'clipboard'],
                     'mods' => [
                         'cmd' => [
                             'valid' => true,

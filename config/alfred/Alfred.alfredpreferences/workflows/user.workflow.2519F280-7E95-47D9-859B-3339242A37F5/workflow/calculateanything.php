@@ -2,13 +2,14 @@
 
 namespace Workflow;
 
-use \Workflow\Tools\Percentage;
-use \Workflow\Tools\Cryptocurrency;
-use \Workflow\Tools\Currency;
-use \Workflow\Tools\PXEmRem;
-use \Workflow\Tools\Units;
-use \Workflow\Tools\Vat;
-use \Workflow\Tools\Time;
+use Workflow\Tools\Percentage;
+use Workflow\Tools\Cryptocurrency;
+use Workflow\Tools\Currency;
+use Workflow\Tools\PXEmRem;
+use Workflow\Tools\Units;
+use Workflow\Tools\Vat;
+use Workflow\Tools\Time;
+use Workflow\Tools\DataStorage;
 
 class CalculateAnything
 {
@@ -20,7 +21,9 @@ class CalculateAnything
     protected static $pxemremCalculator;
     protected static $unitsCalculator;
     protected static $vatCalculator;
+    protected static $dataStorageCalculator;
     protected static $settings;
+    protected static $updater;
     protected static $_query;
 
     /**
@@ -28,9 +31,9 @@ class CalculateAnything
      */
     public function __construct($query = '')
     {
-        self::$translations = getTranslation();
-        self::$langKeywords = getExtraKeywords();
-        self::$settings = getSettings();
+        self::$settings = \Alfred\getVariables();
+        self::$translations = \Alfred\getTranslation();
+        self::$langKeywords = $this->getExtraKeywords();
         self::$_query = $query;
     }
 
@@ -56,16 +59,31 @@ class CalculateAnything
         self::$cryptocurrencyCalculator = new Cryptocurrency($query);
         self::$pxemremCalculator = new PXEmRem($query);
         self::$unitsCalculator = new Units($query);
+        self::$vatCalculator = new Vat($query);
+        self::$dataStorageCalculator = new DataStorage($query);
 
         // Process query
         $processed = $this->processByType();
 
-        if (!empty($processed)) {
-            workflowUpdater();
+        if ($processed) {
+            $migrate_settings = $this->shouldMigrateSettings();
+
+            if ($migrate_settings) {
+                $processed = $this->migrateSettingsOutput();
+                return $processed;
+            }
+
+            if (!$migrate_settings) {
+                $update_available = $this->checkForUpdatesOutput();
+                if ($update_available) {
+                    $processed[] = $update_available;
+                }
+            }
         }
 
         return $processed;
     }
+
 
     /**
      * Process the query
@@ -83,6 +101,8 @@ class CalculateAnything
         $currency = self::$currencyCalculator;
         $pxemrem = self::$pxemremCalculator;
         $units = self::$unitsCalculator;
+        $vat = self::$vatCalculator;
+        $datastorage = self::$dataStorageCalculator;
         $processed = [];
 
         if ($units->shouldProcess($lenght)) {
@@ -95,6 +115,14 @@ class CalculateAnything
 
         if ($pxemrem->shouldProcess($lenght)) {
             return $pxemrem->processQuery();
+        }
+
+        if ($vat->shouldProcess($lenght)) {
+            return $vat->processQuery();
+        }
+
+        if ($datastorage->shouldProcess($lenght)) {
+            return $datastorage->processQuery();
         }
 
         if ($cryptocurrency->shouldProcess($lenght)) {
@@ -110,17 +138,17 @@ class CalculateAnything
 
 
     /**
-     * Process VAt
+     * Process Vat
      * handle vat calculations
      *
      * @return array|bool
      */
     public function processVat()
     {
-        $vatCalculator = new Vat(self::$_query);
-        $data = $vatCalculator->processQuery();
-
-        return $data;
+        $query = preg_replace('/[^\\d.]+/', '', self::$_query);
+        $vatCalculator = new Vat($query);
+        $data = $vatCalculator->getVatOf($query);
+        return $vatCalculator->output($data);
     }
 
     /**
@@ -174,6 +202,117 @@ class CalculateAnything
 
 
     /**
+     * Set updater instance
+     *
+     * @param array $options
+     * @return void
+     */
+    public function setUpdater($options = [])
+    {
+        $update_data = [
+            'plist_url' => 'https://raw.githubusercontent.com/biati-digital/alfred-calculate-anything/master/info.plist',
+            'workflow_url' => 'https://github.com/biati-digital/alfred-calculate-anything/releases/latest/download/Calculate.Anything.alfredworkflow',
+            'alfred_notifications' => 'notifier',
+            'check_interval' => 86400 * 15, // check every 15 days
+        ];
+
+        $update_data = (!empty($options) ? array_merge($update_data, $options) : $update_data);
+        self::$updater = \Alfred\workflowUpdater($update_data);
+    }
+
+    /**
+     * Download for workflow updates
+     *
+     * @return void
+     */
+    public function getUpdater()
+    {
+        if (!self::$updater) {
+            $this->setUpdater();
+        }
+
+        return self::$updater;
+    }
+
+
+    /**
+     * Check for workflow updates
+     *
+     * @return bool
+     */
+    public function checkForUpdates($force = null, $custom_last_check = null)
+    {
+        if (!self::$updater) {
+            $this->setUpdater();
+        }
+
+        return self::$updater->checkForUpdates($force, $custom_last_check);
+    }
+
+
+    /**
+     * Check for updates when the worflow is used
+     * Updates are checked once every 15 days
+     * so it will compare the current date with
+     * the last check and exit if no need to check for updates
+     * if a check is performed, it will return an array
+     * stating the new version number, current version
+     * and the new time the check was performed
+     *
+     * @return mixed
+     */
+    private function checkForUpdatesOutput()
+    {
+        $last_update_check = $this->getSetting('last_update_check', null);
+        $force_check = false;
+
+        if (!$last_update_check) {
+            $force_check = true;
+            $last_update_check = time();
+            \Alfred\setVariable('last_update_check', $last_update_check);
+        }
+
+        $update_cached = \Alfred\getVariable('update_available', null);
+        $show_update_message = false;
+
+        $output = [
+            'title' => $this->getText('update_available'),
+            'subtitle' => $this->getText('update_available_subtitle'),
+            'valid' => true,
+            'arg' => 'update',
+            'icon' => ['path' => 'assets/update.png'],
+            'variables' => [
+                'action' => 'update',
+            ],
+        ];
+
+        if (!empty($update_cached)) {
+            $local_version = \Alfred\getVariable('alfred_workflow_version', null);
+            if (version_compare($update_cached, $local_version) > 0) {
+                return $output;
+            }
+
+            \Alfred\removeVariable('update_available');
+            return;
+        }
+
+        $update_check = $this->checkForUpdates($force_check, $last_update_check);
+
+        if ($update_check) {
+            if (!empty($update_check['performed_check'])) {
+                \Alfred\setVariable('last_update_check', $update_check['performed_check']);
+            }
+            if (!empty($update_check['update_available'])) {
+                \Alfred\setVariable('update_available', $update_check['new_version']);
+                return $output;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
      * Translations
      * get workflow translations
      *
@@ -203,7 +342,7 @@ class CalculateAnything
 
     /**
      * Keywords
-     * returns an array of jeywords
+     * returns an array of keywords
      * that are used for natual language queries
      * this keywords is an array of key value pairs
      * the key is the keyword and the value is
@@ -302,8 +441,132 @@ class CalculateAnything
      */
     public function getSetting($name, $default = '')
     {
-        return getSetting($name, $default, $this->getSettings());
+        $settings = $this->getSettings();
+        if (isset($settings[$name])) {
+            return $settings[$name];
+        }
+
+        if ($default) {
+            return $default;
+        }
+
+        return null;
     }
+
+    /**
+     * Check if should Migrate old settings
+     * from settings file to
+     * workflow variables
+     *
+     * @return bool
+     */
+    private function shouldMigrateSettings()
+    {
+        $settings_migrated = \Alfred\getVariable('settings_migrated');
+        if ($settings_migrated) {
+            return false;
+        }
+
+        $settings_file = \Alfred\getDataPath('settings.json');
+        $settings = \Alfred\readFile($settings_file, 'json');
+        if (empty($settings)) {
+            \Alfred\setVariable('settings_migrated', 'true');
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Migrate settings output
+     * firts we return a simple message explaining that
+     * settings must be migrated, then set the variable
+     * start_config_upgrade to true and rerun, this way alfred shows the
+     * message and reruns, on the second run checks if start_config_upgrade
+     * is true and initialize the migration, on done it will rerun again
+     * with a small delay so the new variables are already available
+     * in Alfred. and process the query correctly
+     *
+     * @return array
+     */
+    private function migrateSettingsOutput()
+    {
+        $output = [];
+        $output['rerun'] = 0.1;
+        $output['variables'] = [
+            'start_config_upgrade' => true,
+        ];
+        $output[] = [
+             'title' => 'Migrating settings, please wait a few seconds...',
+             'subtitle' => 'This process will only happen once.',
+             'valid' => false,
+             'arg' => '',
+             'icon' => ['path' => 'assets/update.png']
+         ];
+
+        if (\Alfred\getVariable('start_config_upgrade')) {
+            $this->migrateSettings();
+            $output = [];
+            $output['rerun'] = 0.5;
+            $output['variables'] = [
+                'start_config_upgrade' => false,
+            ];
+            $output[] = [
+                 'title' => 'Migrating settings, please wait a few seconds...',
+                 'subtitle' => 'This process will only happen once.',
+                 'valid' => false,
+                 'arg' => '',
+                 'icon' => ['path' => 'assets/update.png']
+             ];
+            return $output;
+        }
+
+        return $output;
+    }
+
+
+    /**
+     * Migrate old settings
+     * migrate from settings file to
+     * workflow variables
+     *
+     * @return bool
+     */
+    public function migrateSettings()
+    {
+        $settings_file = \Alfred\getDataPath('settings.json');
+        $backup_settings_file = \Alfred\getDataPath('settings-backup.json');
+        $settings = \Alfred\readFile($settings_file, 'json');
+        $new_settings = $settings;
+
+        if (empty($settings)) {
+            \Alfred\setVariable('settings_migrated', 'true');
+            return true;
+        }
+
+        if (!file_exists($backup_settings_file)) {
+            \Alfred\writeFile($backup_settings_file, $settings);
+        }
+
+        foreach ($settings as $key => $val) {
+            $name = $key;
+            if ($key == 'timezones') {
+                $name = 'time_format';
+            }
+
+            \Alfred\setVariable($name, $val, false);
+            unset($new_settings[$name]);
+            if ($key == 'timezones' && isset($new_settings['timezones'])) {
+                unset($new_settings['timezones']);
+            }
+            \Alfred\writeFile($settings_file, $new_settings);
+        }
+        return true;
+    }
+
+
+
 
     /**
      * Esaape words
@@ -319,6 +582,77 @@ class CalculateAnything
         $key = str_replace('/', '\/', $key);
         $key = str_replace('.', '\.', $key);
         return $key;
+    }
+
+
+    /**
+     * Get extra keywords
+     * keywords are a list of words in natural language
+     * that teh user can use in the workflow, for example
+     * a keywords can be bitcoins and it will be converted to BTC
+     * or the keywods kilograms will be converted to kg
+     * that way natural language can be used on queries
+     *
+     * @param string $key
+     * @param string $lang
+     * @return array
+     */
+    public function getExtraKeywords($key = '', $lang = '')
+    {
+        $default_lang = 'en_EN';
+        $lang = (empty($lang) ? \Alfred\getVariable('language', $default_lang) : $lang);
+        $file = \Alfred\getTranslationsPath($lang . '-keys.php');
+
+        if (file_exists($file)) {
+            $translations = include $file;
+
+            // Return default lang if translation error
+            if (!is_array($translations) || empty($translations)) {
+                return getExtraKeywords($key, $default_lang);
+            }
+
+            // If language is different
+            // from english, also load the en keys
+            // so they are global
+            if ($lang !== $default_lang) {
+                $translations = $this->mergeWithBaseKeywords($translations);
+            }
+
+            if (empty($key)) {
+                return $translations;
+            }
+
+            if (isset($translations[$key])) {
+                return $translations[$key];
+            }
+
+            return false;
+        }
+
+        return $this->getExtraKeywords($key, $default_lang);
+    }
+
+
+    public function mergeWithBaseKeywords($keywords)
+    {
+        $en_keys = include \Alfred\getTranslationsPath('en_EN-keys.php');
+        foreach ($en_keys as $key => $value) {
+            if (!isset($keywords[$key])) {
+                $keywords[$key] = $value;
+                continue;
+            }
+
+            foreach ($value as $k => $v) {
+                if (isset($keywords[$key][$k]) && is_array($keywords[$key][$k])) {
+                    $mul = array_merge($keywords[$key][$k], $v);
+                    $keywords[$key][$k] = array_unique($mul);
+                } elseif (!isset($keywords[$key][$k])) {
+                    $keywords[$key][$k] = $v;
+                }
+            }
+        }
+
+        return $keywords;
     }
 
     /**
@@ -341,13 +675,18 @@ class CalculateAnything
      * @param boolean $unit
      * @return array
      */
-    public function keywordTranslation($word = false, $keywordsArray)
+    public function keywordTranslation($word = false, &$keywordsArray)
     {
         $val = mb_strtolower($word, 'UTF-8');
         $keywords = $keywordsArray;
 
         if (!$val) {
             return $keywords;
+        }
+
+        // IF there's an exact match
+        if (isset($keywordsArray[$val])) {
+            return $keywordsArray[$val];
         }
 
         foreach ($keywords as $key => $value) {
@@ -376,12 +715,15 @@ class CalculateAnything
      */
     public function cacheConversion($id, $from, $to, $value)
     {
-        $dir = getDataPath('cache/' . $id);
-        createDir($dir);
+        $dir = \Alfred\getDataPath('cache/' . $id);
+        \Alfred\createDir($dir);
 
         $file = $dir . '/' . $from . '-' . $to . '.txt';
+        $file = str_replace(' ', '\ ', $file);
+        $command = "echo \"{$value}\" >> {$file}";
+        shell_exec("{$command}");
 
-        file_put_contents($file, $value);
+        return true;
     }
 
 
@@ -396,14 +738,14 @@ class CalculateAnything
      */
     public function getCachedConversion($id, $from, $to, $cache_seconds)
     {
-        $cache_dir = getDataPath('cache');
+        $cache_dir = \Alfred\getDataPath('cache');
 
-        createDir($cache_dir);
+        \Alfred\createDir($cache_dir);
 
-        $dir = getDataPath('cache/' . $id);
+        $dir = \Alfred\getDataPath('cache/' . $id);
         $file = $dir . '/' . $from . '-' . $to . '.txt';
 
-        createDir($dir);
+        \Alfred\createDir($dir);
 
         if (!file_exists($file)) {
             return false;
@@ -440,6 +782,7 @@ class CalculateAnything
      * Format number
      * handle number format for the multiple
      * converters and their specific rules
+     * TODO: Remove single decimal when is 0 for example 100c f = 212.0 f
      *
      * @param int $number
      * @param int $decimals
@@ -477,14 +820,21 @@ class CalculateAnything
             // If string has 2 or more decimals make some cleanup
             if (count($string) >= 2) {
                 $decimals = 2;
+                $start_cero = 0;
 
                 foreach ($string as $order => $value) {
                     $prev = (isset($string[$order - 1]) ? $string[$order - 1] : '');
+
+                    if ($value == '0' && $prev == '0' && $count == 2) {
+                        $count = 0;
+                        break;
+                    }
+
                     if ($value == '0') {
                         $count += 1;
                         continue;
                     }
-                    // if ($value !== '0' && $prev !== '0') {
+
                     if ($value !== '0' && $prev !== '0') {
                         $count += 1;
                         $end_digit = $value;
