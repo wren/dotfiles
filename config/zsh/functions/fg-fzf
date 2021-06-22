@@ -1,0 +1,23 @@
+
+# Uses fuzzy finder to show background jobs, and foregrounds selection
+if [[ -z $(jobs) ]]; then
+  echo 'No jobs'
+  return 1
+fi
+
+job="$(
+  jobs -l | \
+  sed -E 's/stopped\s+//i' | \
+  fzf --ansi --no-sort --height=10 --layout=reverse --bind="ctrl-x:execute: echo {} | \
+  awk -F '  +' '{print \$2}' | \
+  xargs -I % echo '%'"
+)"
+
+# TODO: some checking
+if [[ -z $job ]]; then
+  # probably canceled
+  echo 'No job selected'
+  return
+fi
+
+fg "%$(echo $job | awk -F '  +' '{print $1}' | tr -d "[]+-")"

@@ -1,0 +1,12 @@
+cmd='cat'
+if command -v lolcat &>/dev/null; then
+  cmd='lolcat'
+fi
+
+$cmd <<'EOM'
+ ALL .-. DONE
+    /'v'\
+   (/   \)
+ >==="="===<
+     |_|
+EOM

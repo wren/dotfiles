@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+function ssh-info-host {
+  printf '\n%s\n\n' "$(sed -ne "/${1:- }/,/^$/p" ~/.ssh/configs/*)"
+}
+
+function ssh-info-name {
+  perl -ne 'print "$1\n" if /Hostname (.*?'$1'.*?)(?: |$)/' ~/.ssh/configs/*
+}
+
+function ssh-info-clear {
+  local reset_style="\e[0m"
+  local error_style="${reset_style}\e[31m"
+  local hosts_file="$HOME/.ssh/known_hosts"
+  SSH_HOST=$(ssh-info-name $1)
+
+  if [[ -z $SSH_HOST ]]; then
+    printf "${error_style}ERROR:${reset_style} "
+    printf "Your value (%s) didn't return any hosts from ~/.ssh/config\n" "$1"
+    return 1
+  elif [[ $(echo $SSH_HOST | wc -l) -ne 1 ]]; then
+    printf "${error_style}ERROR:${reset_style} "
+    printf "There are %s matches for '%s' (%s) in %s\n" \
+      "$HOSTCOUNT" "$1" "$SSH_HOST" "$hosts_file"
+    return 1
+  fi
+
+  if ! grep -qi "$SSH_HOST" "$hosts_file"; then
+    printf "${error_style}ERROR:${reset_style} "
+    printf "host %s was not found in %s\n" "$SSH_HOST" "$hosts_file"
+    return 1
+  fi
+
+  perl -ne "print unless /^[^ ]*?$1[^ ]*? /" -i "$hosts_file"
+
+  if grep -qi "$SSH_HOST" "$hosts_file"; then
+    printf "${error_style}ERROR:${reset_style} "
+    printf "%s\n  %s%s%s\n\n%s\n  " \
+    printf 'I tried to delete the entry, but something went wrong.\n'
+    printf 'Here are the grep results from the file:'
+    grep -i "$SSH_HOST" $hosts_file
+    return 1
+  fi
+
+  printf 'Successfully removed "%s" (%s) from known hosts!\n' "$1" "$SSH_HOST"
+}
+
+function ssh-info {
+  local cmd=$1
+  shift
+
+  if [[ -z "$cmd" ]]; then
+    printf "${error_style}ERROR:${reset_style} Please provide a value to search for\n"
+    return 1
+  fi
+
+  case "$cmd" in
+    host ) ssh-info-host "$@" ;;
+    name ) ssh-info-name "$@" ;;
+    clear ) ssh-info-clear "$@" ;;
+    * ) echo "$(basename $0): '$cmd' isn't a valid command" && return 1 ;;
+  esac
+}
+
+ssh-info "$@"

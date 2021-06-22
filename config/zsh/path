@@ -43,6 +43,8 @@ path=(
 
 fpath=(
 
+  "$ZDOTDIR/functions"
+
   # homebrew
   /usr/local/share/zsh/site-functions
 
