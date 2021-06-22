@@ -26,7 +26,6 @@ brew "luarocks" # Package manager for the Lua programming language
 brew "micro" # Modern and intuitive terminal-based text editor
 brew "moreutils" # Collection of tools that nobody wrote when UNIX was young
 brew "nmap" # Port scanning utility for large networks
-brew "openssh" # OpenBSD freely-licensed SSH connectivity tools
 brew "p7zip" # 7-Zip (high compression file archiver) implementation
 brew "pandoc" # Swiss-army knife of markup format conversion
 brew "pipx" # Execute binaries from Python packages in isolated environments
