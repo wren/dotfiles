@@ -1,13 +1,11 @@
+# Aliases and one-liners
 
-##############
-### System ###
-##############
+#--- System ---#
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
-alias cdp='func(){ mkdir -p "$@"; cd "$@"; }; func'
-# alias rm="rm -rv"
-alias rm='trash -v'
+cdp(){ mkdir -p "$@"; cd "$@"; }
+alias rm='trash -v' # or: rm="rm -rv"
 alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
 alias l='exa --time-style=long-iso --color=always --icons -la'
@@ -20,10 +18,8 @@ alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killa
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
-alias lg='func(){ exa --color=always -la $2 | rg --color=always -i $1; }; func'
+lg(){ exa --color=always -la $2 | rg --color=always -i $1; }
 alias rmds='fd -HI .DS_Store --type file --exec sh -c ''echo "{}" && rm "{}"'' '
-alias wifi.reboot='m wifi:disable && sleep 3 && m wifi:enable'
-alias history.dedupe="awk 'NR==FNR && !/^#/{lines[\$0]=FNR;next} lines[\$0]==FNR' \"$HISTFILE\" \"$HISTFILE\" > \"\$HISTFILE.compressed\" && mv \"\$HISTFILE.compressed\" \"\$HISTFILE\""
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
@@ -31,19 +27,17 @@ alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias ........='cd ../../../../../../..' # eight is enough
 
-###########
-### Git ###
-###########
+#--- Git ---#
 alias g='git'
 alias gar="git ls-files -z -d | xargs -0 git rm"
 alias gblame="git ls-files | grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' | xargs -n1 git blame --line | grep -E '^author '|sort|uniq -c|sort -nr"
-alias dsf='diff-so-fancy'
-alias df='func(){ diff -r -u "$@" | diff-so-fancy | less --tabs=4 -RFX; }; func'
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 
-##############
-### Docker ###
-##############
+#--- Diff ---#
+alias dsf='diff-so-fancy'
+df(){ diff -r -u "$@" | diff-so-fancy | less --tabs=4 -RFX; }
+
+#--- Docker ---#
 alias d='docker'
 alias dc='docker-compose'
 alias dm='docker-machine'
@@ -54,28 +48,24 @@ alias d.stop.containers='docker stop $(docker ps -aq)'
 alias d.start='eval $(docker-machine env default)'
 alias d.exec='func{docker exec -it "$1";}; func'
 
-############
-### Apps ###
-############
-alias br='brew'
+#--- Apps ---#
+alias 7zx.tar.gz='func() { 7z x -tgzip -so $@ | 7z x -si -ttar; }; func'
 alias bp='bat -p'
+alias br='brew'
 alias f='fd -H'
-alias speedtest='speed-test --verbose'
-alias py='python'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-alias v='nvim'
-alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
 alias j='jrnl'
 alias je='jrnl --edit'
 alias jn='jrnl --edit notes'
+alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
+alias py='python'
+alias speedtest='speed-test --verbose'
 alias t='tmux'
 alias ta='tmux-attach-fzf'
+alias v='nvim'
 alias wh='which -a'
-alias dasht-search='func() { dasht-query-line $@ | perl -0777 -pe ''s/name = (.*?)\ntype = (.*?)\nfrom = (.*?)\nurl = (.*?)\n/ $4 | $1 | $3 | $3\n\n/g'' | column -ts''|'' | fzf --no-sort --with-nth=2.. --bind ''enter:execute(w3m {1})+accept''; }; func'
-alias 7zx.tar.gz='func() { 7z x -tgzip -so $@ | 7z x -si -ttar; }; func'
+dasht-search() { dasht-query-line $@ | perl -0777 -pe ''s/name = (.*?)\ntype = (.*?)\nfrom = (.*?)\nurl = (.*?)\n/ $4 | $1 | $3 | $3\n\n/g'' | column -ts''|'' | fzf --no-sort --with-nth=2.. --bind ''enter:execute(w3m {1})+accept''; }
 
-###########################
-###  Project Management ###
-###########################
+#--- Project Management ---#
 alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
 alias jpe='jp --edit'
