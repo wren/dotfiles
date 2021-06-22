@@ -5,13 +5,14 @@
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
+alias cdp='func(){ mkdir -p "$@"; cd "$@"; }; func'
 # alias rm="rm -rv"
-alias plist-to-xml='plutil -convert xml1'
 alias rm='trash -v'
+alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
 alias l='exa --time-style=long-iso --color=always --icons -la'
 alias ll='exa --time-style=long-iso --color=always --icons -laa'
-alias ls='l || ls'
+alias ls='l || \ls'
 alias lt='l --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" | less --RAW-CONTROL-CHARS --quit-if-one-screen --no-init'
 alias ssh.init='eval `ssh-agent`;ssh-add'
 alias ssh.copy='ssh-copy-id'
@@ -51,15 +52,16 @@ alias d.rmall.containers='docker rm $(docker ps -a -q)'
 alias d.rmall.images='docker rmi $(docker images -q)'
 alias d.stop.containers='docker stop $(docker ps -aq)'
 alias d.start='eval $(docker-machine env default)'
+alias d.exec='func{docker exec -it "$1";}; func'
 
 ############
 ### Apps ###
 ############
-alias b='brew'
+alias br='brew'
 alias bp='bat -p'
-alias f='fd -HI'
+alias f='fd -H'
 alias speedtest='speed-test --verbose'
-alias p='ipython'
+alias py='python'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias v='nvim'
 alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
