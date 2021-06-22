@@ -1,6 +1,7 @@
-# Added by Krypton
 
 Host *
+  UseKeychain yes
+  AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519
 
 Include configs/*
