@@ -101,18 +101,7 @@ local plugins = {
   },
 
   ----- Tab management -----
-  {
-    disable = true,
-    'akinsho/nvim-bufferline.lua',
-    config = get_config('bufferline'),
-  },
 
-  {
-    disable = true,
-    'qpkorr/vim-bufkill', -- buffer delete while preserving windows
-    config = get_config('bufkill'),
-    event = 'CursorMoved',
-  },
   {
     -- replaces bufferline and bufkill
     'romgrk/barbar.nvim',
@@ -120,28 +109,6 @@ local plugins = {
   },
 
   ----- File explorer -----
-
-  -- Trying nerdtree for a while
-  {
-    disable = true,
-    'preservim/nerdtree',
-    config = get_config('nerdtree'),
-    cmd = {
-      'NERDTree',
-      'NERDTree',
-      'NERDTreeCWD',
-      'NERDTreeClose',
-      'NERDTreeFind',
-      'NERDTreeFocus',
-      'NERDTreeFromBookmark',
-      'NERDTreeMirror',
-      'NERDTreeRefreshRoot',
-      'NERDTreeToggle',
-      'NERDTreeToggleVCS',
-      'NERDTreeVCS',
-    },
-  },
-
   {
     'kyazdani42/nvim-tree.lua',
     config = get_config('nvim-tree'),
