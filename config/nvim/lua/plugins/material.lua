@@ -9,7 +9,7 @@ g.material_borders = false
 -- g.material_disable_background = true -- never enable this
 
 g.material_custom_colors = {
-  bg       = "#141414",
+  bg       = "#121212",
   bg_alt  = "#0F0F0F",
 }
 
