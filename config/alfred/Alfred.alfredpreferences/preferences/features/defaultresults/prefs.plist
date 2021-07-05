@@ -4,7 +4,7 @@
 <dict>
 	<key>fallbacks</key>
 	<array>
-		<string>features.websearch.custom.FE2DBBEB-8529-4C2F-B509-1A23CCE15D2D.fallback</string>
+		<string>features.websearch.google.fallback</string>
 	</array>
 	<key>fallbacksMode</key>
 	<integer>1</integer>
