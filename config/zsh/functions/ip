@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-echo '----- IP INFO -----'
+echo '───── IP INFO ─────'
 
 INTERNAL_IP="$(
   ifconfig | \

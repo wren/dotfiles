@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 function ssh-info-host {
-  printf '\n%s\n\n' "$(sed -ne "/${1:- }/,/^$/p" ~/.ssh/configs/*)"
+  printf '\n%s\n\n' "$(sed -ne "/${1:- }/,/^$/p" ~/.ssh/configs/*)" | bat -lsshd_config --style=plain -p
 }
 
 function ssh-info-name {
@@ -55,9 +55,7 @@ function ssh-info {
   fi
 
   case "$cmd" in
-    host ) ssh-info-host "$@" ;;
-    name ) ssh-info-name "$@" ;;
-    clear ) ssh-info-clear "$@" ;;
+    host|name|clear ) ssh-info-$cmd "$@" ;;
     * ) echo "$(basename $0): '$cmd' isn't a valid command" && return 1 ;;
   esac
 }

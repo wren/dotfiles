@@ -3,7 +3,7 @@
 # Layout assembled by Jonathan Wren <jonathan@nowandwren.com>
 # @see https://youtu.be/SPO7NZ97In4?t=2m16s
 
-cmd='cat'
+local cmd='cat'
 if command -v lolcat &>/dev/null; then
   cmd='lolcat'
 fi

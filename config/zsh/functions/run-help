@@ -1,0 +1,14 @@
+
+local header='\n%F{004}───── _ ─────%f\n'
+
+{
+  print -P ${header://_/TLDR}
+  tldr "$@"
+
+  print -P ${header://_/HELP}
+  "$@" --help || "$@" -h
+
+  print -P ${header://_/MAN}
+  man "$@" | col -bx
+
+} 2>&1 | bat --language=man --theme=default --style=plain

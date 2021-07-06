@@ -1,0 +1,11 @@
+# Run speed benchmark on any (or all) zsh files
+
+# Do all dotfiles if no arg is given
+local files=${1:-$(printf '%s,' $my_dotfiles)_init}
+
+hyperfine 'source $ZDOTDIR/{file}' \
+  --warmup 10 \
+  --shell '/usr/local/bin/zsh' \
+  --ignore-failure \
+  --parameter-list file $files
+

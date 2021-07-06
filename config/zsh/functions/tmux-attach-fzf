@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Use FZF to attach/switch a tmux session
 
 # Get session list
