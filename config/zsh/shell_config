@@ -37,8 +37,3 @@ unalias run-help &> /dev/null
 for file in "$ZDOTDIR"/functions/*; do
   autoload -Uz "$file"
 done
-
-# Completion
-autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
-autoload -Uz bashcompinit && bashcompinit -d "$ZSH_COMPDUMP-bash"
-
