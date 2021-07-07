@@ -70,6 +70,9 @@ export RIPGREP_CONFIG_DIR="$XDG_CONFIG_HOME/ripgrep/"
 # secrethub
 export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
 
+#sheldon
+export SHELDON_CACHE="$XDG_CACHE_HOME/sheldon"
+
 # tmux
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 

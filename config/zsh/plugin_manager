@@ -5,8 +5,16 @@
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 
-# @todo make this less dynamic (compiling is faster)
-# Maybe? sheldon is pretty fast already. Maybe this isn't necessary?
 if command -v sheldon &>/dev/null; then
-  eval "$(sheldon --quiet source)"
+  SHELDON_CACHE_FILE="$SHELDON_CACHE/cached_init.sh"
+  SHELDON_LOCK_FILE="$XDG_DATA_HOME/sheldon/plugins.lock"
+
+  # check if lock file is newer than cache
+  if [[ $SHELDON_LOCK_FILE -nt $SHELDON_CACHE_FILE || ! -f $SHELDON_CACHE_FILE ]]; then
+    # (re)generate cache file
+    rm -f $SHELDON_CACHE_FILE
+    sheldon --quiet source > $SHELDON_CACHE_FILE
+  fi
+
+  source "$SHELDON_CACHE_FILE"
 fi
