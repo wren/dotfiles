@@ -1,14 +1,21 @@
 
 local header='\n%F{004}───── _ ─────%f\n'
+local cmd='less'
+local args=''
+if command -v bat &>/dev/null; then
+  cmd='bat --language=man --theme=default --style=plain'
+fi
 
 {
-  print -P ${header://_/TLDR}
-  tldr "$@"
+  if command -v tldr &>/dev/null; then
+    print -P ${header:s/_/TLDR}
+    tldr "$@"
+  fi
 
-  print -P ${header://_/HELP}
+  print -P ${header:s/_/HELP}
   "$@" --help || "$@" -h
 
-  print -P ${header://_/MAN}
+  print -P ${header:s/_/MAN}
   man "$@" | col -bx
 
-} 2>&1 | bat --language=man --theme=default --style=plain
+} 2>&1 | $=cmd

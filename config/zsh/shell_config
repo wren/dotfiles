@@ -30,6 +30,9 @@ setopt globdots                 # Included files/dirs that start with dots (e.g.
 
 #--- Autoload ---#
 
+# We have our own run-help in functions
+unalias run-help &> /dev/null
+
 # Functions
 for file in "$ZDOTDIR"/functions/*; do
   autoload -Uz "$file"
