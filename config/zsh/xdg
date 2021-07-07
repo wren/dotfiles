@@ -49,8 +49,11 @@ export IPYTHONDIR="$XDG_DATA_HOME/ipython"
 # Python
 export PYTHONHISTORY="$XDG_DATA_HOME/python/history"
 
+# Pylint (http://pylint.pycqa.org/en/latest/faq.html#where-is-the-persistent-data-stored-to-compare-between-successive-runs)
+export PYLINTHOME="$XDG_DATA_HOME/pylint"
+
 # less (https://linux.die.net/man/1/less)
-export LESSHISTFILE="$XDG_DATA_HOME/less/history"
+export LESSKEY="$XDG_CACHE_HOME/less/lesskey"
 
 # npm manager
 export N_PREFIX="$XDG_DATA_HOME/n"
@@ -84,7 +87,6 @@ export ZPLUG_LOADFILE="$ZDOTDIR/plugins"
 # ZSH
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-
 
 # zinit
 declare -A ZINIT

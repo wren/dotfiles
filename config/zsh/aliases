@@ -8,18 +8,19 @@ cdp(){ mkdir -p "$@"; cd "$@"; }
 alias rm='trash -v' # or: rm="rm -rv"
 alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
-alias l='exa --time-style=long-iso --color=always --icons -la'
-alias ll='exa --time-style=long-iso --color=always --icons -laa'
-alias ls='l || \ls'
-alias lt='l --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" | less --RAW-CONTROL-CHARS --quit-if-one-screen --no-init'
+# alias l='exa --time-style=long-iso --color=always --icons -la'
+function l(){ less "${@:-.}"; } # less + bat + batpipe
+alias h='run-help'
+alias ll='exa --time-style=long-iso --color=always --icons -la'
+alias lt='ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" | less'
 alias ssh.init='eval `ssh-agent`;ssh-add'
-alias ssh.copy='ssh-copy-id'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
 lg(){ exa --color=always -la $2 | rg --color=always -i $1; }
-alias rmds='fd -HI .DS_Store --type file --exec sh -c ''echo "{}" && rm "{}"'' '
+rmds(){ fd -HI '^\.DS_Store' "$@" --type file --exec sh -c 'trash -v "{}"'; }
+man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'

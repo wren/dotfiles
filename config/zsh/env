@@ -31,12 +31,7 @@ TEMP_COLORS=(
 export LS_COLORS="$( IFS=':'; echo "${TEMP_COLORS[*]}" )"
 export EXA_COLORS="$LS_COLORS"
 
-export GPG_TTY=$(tty)
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
-
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
