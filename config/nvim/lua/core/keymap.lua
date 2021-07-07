@@ -54,17 +54,13 @@ map('x', 'D', '"_D')
 map('v', 'p', '"_dp')
 map('v', 'P', '"_dP')
 
---navigate window
-map('n', '<m-L>', 'zL')
-map('n', '<m-H>', 'zH')
-
---smart move
+-- smart move
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 map('v', 'j', 'gj')
 map('v', 'k', 'gk')
 
--- Shortcuts for start/end of line
+-- shortcuts for start/end of line
 map('n', 'H', '^')
 map('v', 'H', '^')
 map('o', 'H', '^')
@@ -72,6 +68,9 @@ map('o', 'H', '^')
 map('n', 'L', '$')
 map('v', 'L', '$')
 map('o', 'L', '$')
+
+-- redo
+map('n', 'U', '<c-r>')
 
 --tab operation
 map('n', '<leader>tn', ':tabnew<cr>')
@@ -98,6 +97,7 @@ map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 -- Remove spaces at the end of lines
 map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>]], {silent = true})
 
+-- Get syntax info at cursor
 map('n', '<LocalLeader>s', '<cmd>lua highlight_group()<CR>')
 
 -- Disable some keymappings that don't do anything useful, and get in the way
