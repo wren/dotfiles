@@ -1,24 +1,24 @@
+ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 
 # these files are loaded in this order
 my_dotfiles=(
   xdg
+  path
   motd
   prompt
   shell_config
-  path
+  completion
   plugin_manager
   env
   vim
   theme
   aliases
-  misc
-  completion
   extra
   load_host
 )
 
 for my_file in $my_dotfiles; do
-  [[ -r "$ZDOTDIR/$my_file" ]] && source "$ZDOTDIR/$my_file"
+  source "$ZDOTDIR/$my_file"
 done
 
 export DOTFILES_LOADED=1

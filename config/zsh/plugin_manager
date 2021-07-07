@@ -1,4 +1,9 @@
-# Initialize plugin manager
+# Initialize plugin/package manager(s)
+
+# nix and home-manager
+. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 
 # @todo make this less dynamic (compiling is faster)
 # Maybe? sheldon is pretty fast already. Maybe this isn't necessary?

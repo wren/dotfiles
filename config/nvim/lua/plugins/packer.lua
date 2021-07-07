@@ -241,6 +241,7 @@ local plugins = {
   'tmux-plugins/vim-tmux',
   'wren/jrnl.vim',
   'jparise/vim-graphql',
+  'LnL7/vim-nix',
   {
     'fatih/vim-go',
     config = get_config('golang'),

@@ -66,6 +66,10 @@ alias v='nvim'
 alias wh='which -a'
 dasht-search() { dasht-query-line $@ | perl -0777 -pe ''s/name = (.*?)\ntype = (.*?)\nfrom = (.*?)\nurl = (.*?)\n/ $4 | $1 | $3 | $3\n\n/g'' | column -ts''|'' | fzf --no-sort --with-nth=2.. --bind ''enter:execute(w3m {1})+accept''; }
 
+# nix has obtuse commands
+n.search() { nix-env -qaP --description ".*$@.*"; }
+n.install(){ nix-env -iA "nixpkgs.$@"; }
+
 #--- Project Management ---#
 alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
 alias jpe='jp --edit'
