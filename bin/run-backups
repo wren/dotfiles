@@ -4,6 +4,14 @@
 # https://github.com/wren/dotfiles/blob/main/bin/run-backups
 #
 # See bottom of file for configurable variables.
+#
+# requirements:
+# - curl
+# - grep
+# - restic
+# - sed
+# - tac
+# - yq (go version)
 
 set -Eeo pipefail
 
@@ -114,8 +122,8 @@ get_parent_flag() {
     --host "$HOST" \
     --last \
     | tac \
-    | ggrep -iPm1 "${HOST}\s+${TAGS}\$" \
-    | gsed -r 's/^([0-9a-f]+).*?$/\1/' || echo)"
+    | grep -iPm1 "${HOST}\s+${TAGS}\$" \
+    | sed -r 's/^([0-9a-f]+).*?$/\1/' || echo)"
 
   if [[ -n $parent ]]; then
     printf -- '--parent %s' "$parent"
