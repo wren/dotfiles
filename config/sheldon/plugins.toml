@@ -14,39 +14,60 @@ shell = "zsh"
 
 [ templates ]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-path = 'path=( $path "{{ dir }}" )'
-path-bin = 'path=( $path "{{ dir }}/bin" )'
-front-path = 'path=( "{{ dir }}" $path )'
-front-path-bin = 'path=( $path "{{ dir }}/bin" )'
+path = 'path=( "{{ dir }}" $path )'
+path-bin = 'path=( "{{ dir }}/bin" $path )'
 direnv-ohmytmux = 'export TMUX_OHMYTMUX_CONFIG_DIR="{{ dir }}"'
 noop = ':'
+make = '''
+if ! command -v {{ name }} >/dev/null; then
+  (
+    cd "{{ dir }}"
+    make {{ name }}
+    ln -fs {{ dir }}/{{ name }} ~/.local/bin/
+  ) >/dev/null
+fi
+'''
 
 [ plugins ]
 
-[ plugins.asdf ]
-github = "asdf-vm/asdf.git"
-use = [ 'asdf.sh', 'completions/asdf.bash' ]
-
+# 2-3ms
 [ plugins.zsh-defer ]
 github = "romkatv/zsh-defer"
 
+# 8ms
+# fzf-tab needs to be loaded after compinit, but before plugins which will wrap
+# widgets, such as zsh-autosuggestions or fast-syntax-highlighting!
+[ plugins.fzf-tab ]
+github = 'aloxaf/fzf-tab'
+apply = [ 'defer' ]
+
+# 5-6ms
 [ plugins.ohmyzsh ]
 github = 'ohmyzsh/ohmyzsh'
-use = [
-  'plugins/asdf/*.zsh',
-  'plugins/pyenv/*.zsh',
-  'lib/clipboard.zsh',
-]
+use = [ 'lib/clipboard.zsh' ]
+apply = [ 'defer' ]
 
+# 7-8ms
+# doesn't support defer
 [ plugins.powerlevel10k ]
 github = 'romkatv/powerlevel10k'
 
+# 0-1ms
 [ plugins.zsh-completions ]
 github = 'zsh-users/zsh-completions'
+apply = [ 'defer' ]
 
+# 6ms
 [ plugins.zsh-autosuggestions ]
 github = 'zsh-users/zsh-autosuggestions'
+apply = [ 'defer' ]
 
+# 24ms
+# breaks with defer
+[ plugins.zsh-syntax-highlighting ]
+github = "zsh-users/zsh-syntax-highlighting"
+
+# 0ms
 [ plugins.zsh-autosuggestions-config ]
 inline = '''
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
@@ -55,63 +76,69 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 '''
 
+# 22ms (noop fixes it)
 [ plugins.forgit ]
 github = 'wfxr/forgit'
+apply = ['noop']
 
+# 0ms
 [ plugins.forgit-config ]
 inline = '''
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
 '''
 
-[ plugins.zsh-syntax-highlighting ]
-github = "zsh-users/zsh-syntax-highlighting"
-
+# 11-12ms
 [ plugins.zsh-history-substring-search ]
 github = 'zsh-users/zsh-history-substring-search'
+apply = [ 'defer' ]
 
+# 22ms
 [ plugins.zsh-vim-mode ]
 github = 'softmoth/zsh-vim-mode'
+# defer makes the initial cursor not have the correct style (since it's drawn
+# before this loads). Maybe worth it?
+# apply = [ 'defer' ]
 
+# 0ms
 [ plugins.zsh-vim-mode-config ]
 inline = '''
-vim-mode-bindkey vicmd -- beginning-of-line H
-vim-mode-bindkey vicmd -- end-of-line       L
-vim-mode-bindkey vicmd -- run-help          K
+zsh-defer vim-mode-bindkey vicmd -- beginning-of-line  H
+zsh-defer vim-mode-bindkey vicmd -- end-of-line        L
+zsh-defer vim-mode-bindkey vicmd -- run-help           K
+zsh-defer vim-mode-bindkey vicmd -- fzf-history-widget '/'
 '''
 
+# 12ms
 [  plugins.zsh-system-clipboard  ]
 github = 'kutsan/zsh-system-clipboard'
+apply = [ 'defer' ]
 
-[  plugins.fzf  ]
-github = 'junegunn/fzf'
-apply = [ 'path-bin', 'source' ]
-
-[ plugins.fzf-tab ]
-github = 'aloxaf/fzf-tab'
-apply = ["defer"]
-
-[ plugins.fzf-zsh-widget ]
-inline = '''
-# custom fzf-history widget (dedupes entries)
-fzf-history-widget() {
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
-  selected=( $(fc -rl 1 |
-    sort -k2 -k1rn | uniq -f 1 | sort -r -n |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER}${RBUFFER} +m" $(__fzfcmd)) )
-  local ret=$?
-  if [ -n "$selected" ]; then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
-    fi
-  fi
-  zle reset-prompt
-  return $ret
-}
-'''
-
+# 0ms
 [ plugins.ohmytmux ]
 github = 'wren/.tmux'
 use = [ '.tmux.conf' ]
 apply = [ 'direnv-ohmytmux' ]
+
+[ plugins.asdf-nix ]
+local = '~/.nix-profile/share/asdf-vm/lib'
+use = [ 'asdf.sh' ]
+apply = [ 'defer' ]
+
+[ plugins.fzf-nix ]
+local = '~/.nix-profile/share/fzf'
+use = [ '*.zsh' ]
+apply = [ 'defer' ]
+
+[ plugins.direnv-nix ]
+inline = 'zsh-defer eval "$(direnv hook zsh)"'
+
+[ plugins.lolcat ]
+github = 'jaseg/lolcat'
+apply = [ 'make' ]
+
+[ plugins.bat-extras ]
+github = 'eth-p/bat-extras'
+apply = [ 'path-bin' ]
+
+[ plugins.bat-extras-batpipe ]
+inline = 'zsh-defer eval "$(batpipe)"'
