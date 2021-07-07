@@ -4,18 +4,16 @@ typeset -U fpath
 
 path=(
   # our local shenanigans get priority
-  ~/.local/bin
+  $HOME/.local/bin
 
-  # Version manager(s) near the front of the line
-  ${N_PREFIX}/bin
+  # Version/package manager(s) near the front of the line
+  $N_PREFIX/bin
   /usr/local/share/npm/bin
 
-  # then Homebrew comes next
+  # Homebrew because ugh
   /usr/local/bin
   /usr/local/sbin
   /usr/local/Cellar
-
-  # use coreutils without prefix of g (e.g. ls instead of gls)
   /usr/local/opt/coreutils/libexec/gnubin
   /usr/local/opt/findutils/libexec/gnubin
   /usr/local/opt/gnu-tar/libexec/gnubin
@@ -27,18 +25,8 @@ path=(
   /usr/local/opt/util-linux/bin
   /usr/local/opt/util-linux/sbin
 
-  # use other utils that aren't regularly linked
-  /usr/local/opt/terraform@0.13/bin
-  /usr/local/opt/postgresql@11/bin
-
-  # ugh, Poetry doesn't let us change config path
-  ~/.local/share/poetry/bin
-
   # default path
   $path
-
-  # fzf (fuzzy file completion)
-  /usr/local/opt/fzf/bin
 )
 
 fpath=(
