@@ -27,6 +27,15 @@ if ! command -v {{ name }} >/dev/null; then
   ) >/dev/null
 fi
 '''
+build = '''
+if ! command -v {{ name }} >/dev/null; then
+  (
+    cd "{{dir}}"
+    ./build.sh --manuals
+  ) >/dev/null
+fi
+'''
+lessopen = 'export LESSOPEN="|{{ dir }}/bin/{{name}} %s"'
 
 [ plugins ]
 
@@ -136,9 +145,7 @@ inline = 'zsh-defer eval "$(direnv hook zsh)"'
 github = 'jaseg/lolcat'
 apply = [ 'make' ]
 
-[ plugins.bat-extras ]
+[ plugins.batpipe ]
 github = 'eth-p/bat-extras'
-apply = [ 'path-bin' ]
+apply = [ 'path-bin', 'build', 'lessopen' ]
 
-[ plugins.bat-extras-batpipe ]
-inline = 'zsh-defer eval "$(batpipe)"'
