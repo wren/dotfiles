@@ -52,7 +52,6 @@ alias d.exec='func{docker exec -it "$1";}; func'
 #--- Apps ---#
 alias 7zx.tar.gz='func() { 7z x -tgzip -so $@ | 7z x -si -ttar; }; func'
 alias bp='bat -p'
-alias br='brew'
 alias f='fd -H'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias j='jrnl'

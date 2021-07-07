@@ -168,6 +168,7 @@ instant_prompt="$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
     .perl-version
     .php-version
     .tool-version
+    .tool-versions
     .shorten_folder_marker
     .svn
     .terraform
