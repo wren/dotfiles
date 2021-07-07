@@ -1,6 +1,11 @@
 # Message of the day
 
-lolcat -f <<'EOM'
+local cmd='cat'
+if command -v lolcat &>/dev/null; then
+  cmd='lolcat'
+fi
+
+$cmd <<'EOM'
                        __,---,
          .---.        /__|o\  )       .-"-.      .----.""".
         /   6_6        `-\ / /       / 4 4 \    /____/ (0 )\

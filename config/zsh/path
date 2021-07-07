@@ -42,6 +42,7 @@ path=(
 )
 
 fpath=(
+  $ZDOTDIR/functions
 
   # nix
   $HOME/.nix-profile/share/zsh/site-functions
