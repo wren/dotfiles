@@ -39,8 +39,37 @@
     pkgs.restic
     pkgs.ripgrep
     pkgs.sops
-    pkgs.tmux
+    # pkgs.tmux # outdated
     pkgs.yq-go
+    pkgs.aspell
+    pkgs.awscli2
+    pkgs.coreutils
+    pkgs.diff-so-fancy
+    pkgs.exiftool
+    pkgs.git
+    pkgs.git-extras
+    pkgs.git-filter-repo
+    pkgs.git-lfs
+    pkgs.hyperfine
+    pkgs.micro
+    pkgs.moreutils
+    pkgs.pandoc
+    pkgs.python39Packages.pipx
+    pkgs.prettyping
+    pkgs.rename
+    pkgs.rsync
+    pkgs.sox
+    pkgs.python39Packages.send2trash
+    pkgs.wget2
+    pkgs.youtube-dl-light
+    pkgs.zsh
+    # docker
+    # docker-client
+    pkgs.fira-code
+    pkgs.hack-font
+    pkgs.nerdfonts
+    pkgs.qmk
+    pkgs.gqview
   ];
 
   # Home Manager needs a bit of information about you and the
