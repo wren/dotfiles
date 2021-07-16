@@ -1,0 +1,39 @@
+
+# prepend so we override the default tar viewer
+BATPIPE_VIEWERS=('tar_tree' "${BATPIPE_VIEWERS[@]}")
+
+function viewer_tar_tree_supports() {
+  # What in the flying hell do these even mean?
+  # [file_basename] [file_path] [inner_file_path]
+  # "inner_file_path" is apparently a path after an archive name (e.g. archive.tar.zst/some/file.txt)
+  # printf 'batpipe tar_tree supports:\nfile_basename: %s\nfile_path: %s\ninner_file_path: %s\n\n' "$1" "$2" "$3"
+  command -v tar &> /dev/null     || return 1
+  command -v rg &> /dev/null      || return 1
+  [[ "$1" =~ \.tar\..{1,3}$ ]]      || return 1
+  return 0
+}
+
+function viewer_tar_tree_process() {
+  if [[ -n "$2" ]]; then
+    batpipe_header    "Viewing contents of file in archive: %{PATH}%s/%s" "$1" "$2"
+    tar -xaf "$1" -O "$2" | bat --file-name="$1/$2"
+  else
+    batpipe_header    "Viewing contents of archive: %{PATH}%s" "$1"
+    batpipe_subheader "To view a file inside, append a path to the file name (e.g. archive.tar.zst/some/file.txt)."
+
+    tar -tf "$1" |
+
+    # don't display every file inside of .git dir (too noisy)
+    rg -v '\.git/.+$' |
+
+    # bad dirs
+    rg '/(__pycache__|node_modules|dist|build|.tmp|tmp)/' --passthru --colors 'match:bg:red' |
+
+    # bad files
+    rg '[^/]*\.(pyc|7z|tar\.gz)$' --passthru --colors 'match:none' --colors 'match:fg:red' |
+
+    # format as tree if command is available
+    if command -v as-tree >/dev/null; then as-tree --color always; else cat; fi
+  fi
+}
+

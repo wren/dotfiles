@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+# less + bat + batpipe
+
+if tty &>/dev/null; then
+  # normal usage
+  less ${@:-.}
+else
+  # being piped to
+  if [[ -z $@ ]]; then
+    bat
+  else
+    bat --language $=@
+  fi
+fi

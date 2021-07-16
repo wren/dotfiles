@@ -4,6 +4,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # config = {
+  #   allowUnfree = true;
+  #   allowBroken = false;
+  #   allowInsecure = false;
+  #   allowUnsupportedSystem = false;
+  # };
+
   nixpkgs.overlays = [
     (self: super: {
       cairo = super.cairo.overrideAttrs(oa: rec {
@@ -13,6 +20,7 @@
       });
     })
   ];
+
 
   # Packages to install
   home.packages = [
@@ -52,7 +60,6 @@
     pkgs.git-lfs
     pkgs.hyperfine
     pkgs.micro
-    pkgs.moreutils
     pkgs.pandoc
     pkgs.python39Packages.pipx
     pkgs.prettyping
@@ -63,13 +70,19 @@
     pkgs.wget2
     pkgs.youtube-dl-light
     pkgs.zsh
-    # docker
-    # docker-client
+    # pkgs.docker
+    # pkgs.docker-client
     pkgs.fira-code
-    pkgs.hack-font
-    pkgs.nerdfonts
+    # pkgs.nerdfonts # this has every font and is huge (>2G)
     pkgs.qmk
     pkgs.gqview
+    pkgs.pv
+    pkgs.less
+    pkgs.zstd
+    pkgs.parallel
+    # pkgs.moreutils #conflicts with parallel
+    pkgs.vivid
+    pkgs.as-tree
   ];
 
   # Home Manager needs a bit of information about you and the

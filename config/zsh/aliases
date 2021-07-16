@@ -8,9 +8,8 @@ cdp(){ mkdir -p "$@"; cd "$@"; }
 alias rm='trash -v' # or: rm="rm -rv"
 alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
-# alias l='exa --time-style=long-iso --color=always --icons -la'
-function l(){ less "${@:-.}"; } # less + bat + batpipe
 alias h='run-help'
+alias l='less-with-pipe'
 alias ll='exa --time-style=long-iso --color=always --icons -la'
 alias lt='ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" | less'
 alias ssh.init='eval `ssh-agent`;ssh-add'

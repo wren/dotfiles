@@ -6,7 +6,7 @@
 # Larger (allow 32⁴ entries) and cleaner history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
-HISTORY_IGNORE="(ls|l|ll|pwd|jobs|fg|jfg)"
+HISTORY_IGNORE="(ls|ls *|l|l *|ll| ll*|lt|lt *|wh *|pwd|jobs|fg|jfg|* --version)"
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
