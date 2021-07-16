@@ -4,8 +4,7 @@
 color_local_branch=3
 color_remote_branch=14
 
-zparseopts -D a=all
-zparseopts -D d=debug
+zparseopts -D -E -F a=all d=debug -debug=debug
 
 format=(
   'branch_name=%(refname:short)'
