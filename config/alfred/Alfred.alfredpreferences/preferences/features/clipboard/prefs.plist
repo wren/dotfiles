@@ -4,12 +4,12 @@
 <dict>
 	<key>autoPaste</key>
 	<false/>
-	<key>fastAppend</key>
+	<key>fastAppendBackToClipboard</key>
 	<true/>
 	<key>fastAppendPlaySound</key>
 	<false/>
 	<key>fastAppendSeparator</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>hotkey</key>
 	<dict>
 		<key>key</key>
