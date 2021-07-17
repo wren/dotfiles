@@ -10,26 +10,12 @@ export EDITOR="$VISUAL"
 
 # Color options for ls
 export CLICOLOR=true
-export LSCOLORS='gxfxcxdxbxegedabagacad' #`man ls` to see options
+# @see `man ls`
+export LSCOLORS='gxfxcxdxbxegedabagacad'
 
 # @see https://the.exa.website/docs/colour-themes
-TEMP_COLORS=(
-  "uu=38;5;242"
-  "un=38;5;212"
-  "da=38;5;250"
-  "ur=38;5;3;1"
-  "uw=38;5;5;1"
-  "ux=38;5;1;1"
-  "ue=38;5;1;1"
-  "gr=38;5;249"
-  "gw=38;5;249"
-  "gx=38;5;249"
-  "tr=38;5;249"
-  "tw=38;5;249"
-  "tx=38;5;249"
-)
-export LS_COLORS="$( IFS=':'; echo "${TEMP_COLORS[*]}" )"
-export EXA_COLORS="$LS_COLORS"
+export LS_COLORS="$(vivid generate jellybeans)"
+export EXA_COLORS=$LS_COLORS
 
 export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
 
