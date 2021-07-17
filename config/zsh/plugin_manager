@@ -1,8 +1,8 @@
 # Initialize plugin/package manager(s)
 
 # nix and home-manager
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 
 if command -v sheldon &>/dev/null; then

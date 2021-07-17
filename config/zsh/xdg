@@ -61,6 +61,10 @@ export N_PREFIX="$XDG_DATA_HOME/n"
 # npm
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
+# gnu parallel
+# https://git.savannah.gnu.org/cgit/parallel.git/commit/?id=685018f532f4e2d24b84eb28d5de3d759f0d1af1
+export PARALLEL_HOME="${XDG_CONFIG_HOME}/parallel"
+
 # Poetry
 # https://python-poetry.org/docs/configuration/
 export POETRY_CACHE_DIR="$XDG_CACHE_HOME/poetry"
