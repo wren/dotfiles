@@ -4,7 +4,7 @@ g.bufferline = {
   animation = true,
 
   -- Enable auto-hiding the tab bar when there is a single buffer
-  auto_hide = true,
+  auto_hide = false,
 
   -- Enable current/total tabpages indicator (top right corner)
   tabpages = true,
