@@ -13,28 +13,41 @@
 shell = "zsh"
 
 [ templates ]
-defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+noop = ':'
+defer = { each = true, value = 'zsh-defer source "{{ file }}"' }
 path = 'path=( "{{ dir }}" $path )'
 path-bin = 'path=( "{{ dir }}/bin" $path )'
+
 direnv-ohmytmux = 'export TMUX_OHMYTMUX_CONFIG_DIR="{{ dir }}"'
-noop = ':'
+
+cmd-exists = '''
+if command -v {{ name }} >/dev/null; then
+  export SHELDON_CMD_EXISTS_${(U):-{{name}}}='true'
+fi
+'''
+clean-cmd-exists = 'unset SHELDON_CMD_EXISTS_${(U):-{{name}}}'
+
 make = '''
-if ! command -v {{ name }} >/dev/null; then
-  (
-    cd "{{ dir }}"
-    make {{ name }}
-    ln -fs {{ dir }}/{{ name }} ~/.local/bin/
-  ) >/dev/null
+[[ -n SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
+  cd "{{ dir }}"
+  make {{ name }}
+) >/dev/null
+'''
+
+build.each = true
+build.value = '''
+[[ -n SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
+  cd "{{dir}}"
+  ./{{ file }}
+) >/dev/null
+'''
+
+symlink-bin = '''
+if [[ ! -e ~/.local/bin/{{ name }} && -e {{ dir }}/{{ name }} ]]; then
+  ln -fs {{ dir }}/{{ name }} ~/.local/bin/
 fi
 '''
-build = '''
-if ! command -v {{ name }} >/dev/null; then
-  (
-    cd "{{dir}}"
-    ./build.sh --manuals
-  ) >/dev/null
-fi
-'''
+
 lessopen = 'export LESSOPEN="|{{ dir }}/bin/{{name}} %s"'
 
 [ plugins ]
@@ -51,10 +64,25 @@ github = 'aloxaf/fzf-tab'
 apply = [ 'defer' ]
 
 # 5-6ms
-[ plugins.ohmyzsh ]
-github = 'ohmyzsh/ohmyzsh'
-use = [ 'lib/clipboard.zsh' ]
-apply = [ 'defer' ]
+# [ plugins.ohmyzsh ]
+# github = 'ohmyzsh/ohmyzsh'
+# use = [ 'lib/clipboard.zsh' ]
+# apply = [ 'defer' ]
+
+[ plugins.prezto-modules ]
+inline = '''
+  zstyle :prezto:load pmodule \
+    editor \
+    terminal
+
+  zstyle :prezto:module:editor key-bindings vi
+  zstyle :prezto:module:editor dot-expansion yes
+'''
+
+# defer breaks this (terminal crashes on any keystroke)
+[ plugins.prezto ]
+github = 'sorin-ionescu/prezto'
+use = [ '/init.zsh' ]
 
 # 7-8ms
 # doesn't support defer
@@ -101,6 +129,20 @@ FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{})
 github = 'zsh-users/zsh-history-substring-search'
 apply = [ 'defer' ]
 
+[ plugins.zsh-vim-mode-config-before ]
+inline = '''
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+bindkey -v
+
+VIM_MODE_ESC_PREFIXED_WANTED='^?^Hfg' # Default: '^?^Hbdf.g'
+
+# Change cursor styling
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_VIINS="blinking bar"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+'''
+
 # 22ms
 [ plugins.zsh-vim-mode ]
 github = 'softmoth/zsh-vim-mode'
@@ -108,19 +150,36 @@ github = 'softmoth/zsh-vim-mode'
 # before this loads). Maybe worth it?
 # apply = [ 'defer' ]
 
-# 0ms
-[ plugins.zsh-vim-mode-config ]
-inline = '''
-zsh-defer vim-mode-bindkey vicmd -- beginning-of-line  H
-zsh-defer vim-mode-bindkey vicmd -- end-of-line        L
-zsh-defer vim-mode-bindkey vicmd -- run-help           K
-zsh-defer vim-mode-bindkey vicmd -- fzf-history-widget '/'
-'''
-
 # 12ms
 [  plugins.zsh-system-clipboard  ]
 github = 'kutsan/zsh-system-clipboard'
-apply = [ 'defer' ]
+# apply = [ 'defer' ]
+
+# 0ms
+[ plugins.zsh-vim-mode-config-after ]
+inline = '''
+# This isn't provided by the plugin, so we roll our own
+function zsh-system-clipboard-vicmd-vi-yank-eol() {
+  zle vi-yank-eol
+  printf '%s' "$CUTBUFFER" | pbcopy
+}
+zle -N zsh-system-clipboard-vicmd-vi-yank-eol
+
+# Bindings that start with esc are non-sensical in
+# vim mode, so we get rid of them
+bindkey -rpM viins '^[^['
+
+vim-mode-bindkey vicmd -- beginning-of-line  H
+vim-mode-bindkey vicmd -- end-of-line        L
+vim-mode-bindkey vicmd -- run-help           K
+vim-mode-bindkey vicmd -- fzf-history-widget '/'
+vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
+
+# unbind the system clipboard widgets from delete, so
+# deleting actually deletes
+vim-mode-bindkey vicmd -- vi-kill-eol        D
+vim-mode-bindkey vicmd -- vi-delete          d
+'''
 
 # 0ms
 [ plugins.ohmytmux ]
@@ -139,13 +198,19 @@ use = [ '*.zsh' ]
 apply = [ 'defer' ]
 
 [ plugins.direnv-nix ]
-inline = 'zsh-defer eval "$(direnv hook zsh)"'
+inline = 'eval "$(direnv hook zsh)"'
 
 [ plugins.lolcat ]
 github = 'jaseg/lolcat'
-apply = [ 'make' ]
+apply = [ 'cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin' ]
 
 [ plugins.batpipe ]
 github = 'eth-p/bat-extras'
-apply = [ 'path-bin', 'build', 'lessopen' ]
-
+use = [ '/build.sh' ]
+apply = [
+  'cmd-exists',
+  'build',
+  'clean-cmd-exists',
+  'lessopen',
+  'path-bin',
+]
