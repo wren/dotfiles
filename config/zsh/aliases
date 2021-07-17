@@ -1,31 +1,30 @@
-# Aliases and one-liners
+# One-liners of various flavors (aliases, functions, etc)
+
+#--- Directories ---#
+hash -d Archive=~/Projects/Archived
+hash -d Projects=~/Projects/Active
+hash -d Dotfiles=~/Dotfiles
 
 #--- System ---#
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
-cdp(){ mkdir -p "$@"; cd "$@"; }
+function cdp(){ mkdir -p "$@"; cd "$@"; }
 alias rm='trash -v' # or: rm="rm -rv"
 alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
 alias h='run-help'
 alias l='less-with-pipe'
 alias ll='exa --time-style=long-iso --color=always --icons -la'
-alias lt='ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" | less'
+function lg(){ exa --color=always -la $2 | rg --color=always -i $1; }
+function lt(){ ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences" $@ | less; }
 alias ssh.init='eval `ssh-agent`;ssh-add'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
-lg(){ exa --color=always -la $2 | rg --color=always -i $1; }
-rmds(){ fd -HI '^\.DS_Store' "$@" --type file --exec sh -c 'trash -v "{}"'; }
-man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-alias .......='cd ../../../../../..'
-alias ........='cd ../../../../../../..' # eight is enough
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
+function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 
 #--- Git ---#
 alias g='git'
@@ -35,7 +34,7 @@ alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 
 #--- Diff ---#
 alias dsf='diff-so-fancy'
-df(){ diff -r -u "$@" | diff-so-fancy | less --tabs=4 -RFX; }
+function df(){ diff -r -u $@ | diff-so-fancy | less --tabs=4 -RFX; }
 
 #--- Docker ---#
 alias d='docker'
@@ -46,21 +45,20 @@ alias d.rmall.containers='docker rm $(docker ps -a -q)'
 alias d.rmall.images='docker rmi $(docker images -q)'
 alias d.stop.containers='docker stop $(docker ps -aq)'
 alias d.start='eval $(docker-machine env default)'
-alias d.exec='func{docker exec -it "$1";}; func'
+alias d.exec='func{docker exec -it "$@";}; func'
 
 #--- Apps ---#
-alias 7zx.tar.gz='func() { 7z x -tgzip -so $@ | 7z x -si -ttar; }; func'
-alias bp='bat -p'
-alias f='fd -H'
-alias ff='fd -HI'
-alias fp='printf ''%s\n'' "${path[@]}" | rg --context=999'
-alias fe='env | rg -v ''^PATH='' | rg'
-alias fa='alias | rg'
+alias f='fd -H' # find including hidden
+alias ff='fd -HI' # find all
+alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path
+alias fe='env | rg -v ''^PATH='' | rg' # find in env
+alias fa='alias | rg' # find an alias
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias j='jrnl'
 alias je='jrnl --edit'
-alias jn='jrnl --edit notes'
-alias poetry.shell='. "$(dirname $(poetry run which python))/activate"'
+alias jn='jrnl notes'
+alias jne='jrnl notes --edit'
+alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
 
 alias py='python'
 alias speedtest='speed-test --verbose'
@@ -68,11 +66,12 @@ alias t='tmux'
 alias ta='tmux-attach-fzf'
 alias v='nvim'
 alias wh='which -a'
-dasht-search() { dasht-query-line $@ | perl -0777 -pe ''s/name = (.*?)\ntype = (.*?)\nfrom = (.*?)\nurl = (.*?)\n/ $4 | $1 | $3 | $3\n\n/g'' | column -ts''|'' | fzf --no-sort --with-nth=2.. --bind ''enter:execute(w3m {1})+accept''; }
+alias pack='pretty-packer pack'
+alias unpack='pretty-packer unpack'
 
 # nix has obtuse commands
-n.search() { nix-env -qaP --description ".*$@.*"; }
-n.install(){ nix-env -iA "nixpkgs.$@"; }
+function n.search() { nix-env -qaP --description ".*$@.*"; }
+function n.install(){ nix-env -iA "nixpkgs.$@"; }
 
 #--- Project Management ---#
 alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
