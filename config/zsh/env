@@ -3,9 +3,9 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 # Micro is here as the default, because it's user more
-# user-friendly for the general user. All the vim-related
-# settings are in their own file.
-export VISUAL=micro
+# user-friendly for non-vim users (y'know, normal
+# people that don't hate themselves).
+export VISUAL=${VISUAL:-micro}
 export EDITOR="$VISUAL"
 
 # Color options for ls
