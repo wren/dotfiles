@@ -13,6 +13,7 @@ if command -v sheldon &>/dev/null; then
   if [[ $SHELDON_LOCK_FILE -nt $SHELDON_CACHE_FILE || ! -f $SHELDON_CACHE_FILE ]]; then
     # (re)generate cache file
     rm -f $SHELDON_CACHE_FILE
+    mkdir -vp "$(dirname $SHELDON_CACHE_FILE)"
     sheldon --quiet source > $SHELDON_CACHE_FILE
   fi
 
