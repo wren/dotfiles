@@ -83,6 +83,7 @@
     # pkgs.moreutils #conflicts with parallel
     pkgs.vivid
     pkgs.as-tree
+    pkgs.vivid
   ];
 
   # Home Manager needs a bit of information about you and the
