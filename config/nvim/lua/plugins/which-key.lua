@@ -70,6 +70,8 @@ which_key.register({
   ["<localleader>"] = {
     name = "local leader",
     t = { "Toggle checkbox" },
+    ["<space>"] = "Delete trailing spaces",
+    s = "Show styling group"
   }
 })
 
