@@ -8,6 +8,7 @@ end
 local config = {
   compile_path = fn.stdpath('data') .. '/packer/plugin/packer_compiled.vim',
   auto_clean = true,
+  max_jobs = 20,
   display = {
     open_cmd = "enew",
   },
