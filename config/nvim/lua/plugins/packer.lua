@@ -282,7 +282,6 @@ local plugins = {
   -- Display thin vertical lines at each indentation level
   {
     'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua',
     setup = get_config('indentline'),
     ft = {
       'lua',            'python', 'javascript',
@@ -419,6 +418,7 @@ local plugins = {
   },
 
   {
+    disable = true,
     'glacambre/firenvim',
     run = function() fn['firenvim#install'](0) end,
     config = get_config('firenvim'),
