@@ -311,7 +311,6 @@ local plugins = {
 
   -- Completion & LSP
   {
-    opt = true,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
     ft = {
@@ -333,6 +332,10 @@ local plugins = {
       -- }
     },
     config = get_config('nvim-lspconfig'),
+  },
+  {
+    'kabouzeid/nvim-lspinstall',
+    config = get_config('nvim-lspinstall'),
   },
   {
     'nvim-lua/completion-nvim',

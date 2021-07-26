@@ -55,65 +55,85 @@ local on_attach = function(client, bufnr)
 end
 
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
-local servers = {
-  "tsserver",               -- js
-  "pyright",                -- python
-  "bashls",                 -- shell
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+   vim.lsp.diagnostic.on_publish_diagnostics, {
+     -- Enable underline, use default values
+     underline = true,
+     -- Enable virtual text only on Warning or above, override spacing to 2
+     virtual_text = false,
+     -- virtual_text = {
+     --   spacing = 2,
+     --   severity_limit = "Warning",
+     -- },
+   }
+  )
+
+-- Configure lua language server for neovim development
+local lua_settings = {
+  Lua = {
+    runtime = {
+      -- LuaJIT in the case of Neovim
+      version = 'LuaJIT',
+      path = vim.split(package.path, ';'),
+    },
+    diagnostics = {
+      -- Get the language server to recognize the `vim` global
+      globals = {'vim'},
+    },
+    workspace = {
+      -- Make the server aware of Neovim runtime files
+      library = {
+        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+      },
+    },
+  }
 }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    autostart = true,
+
+-- config that activates keymaps and enables snippet support
+local function make_config()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  return {
+    -- enable snippet support
+    capabilities = capabilities,
+    -- map buffer local keybindings when the language server attaches
     on_attach = on_attach,
   }
 end
 
+-- lsp-install
+local function setup_servers()
+  require'lspinstall'.setup()
 
--- commented options are defaults
-local prefix = '   '
-require('lspkind').init({
-  with_text = true,
-  symbol_map = {
-    Text        = prefix .. '',
-    Method      = prefix .. 'ƒ',
-    Function    = prefix .. '',
-    Constructor = prefix .. '',
-    Variable    = prefix .. '',
-    Class       = prefix .. '',
-    Interface   = prefix .. 'ﰮ',
-    Module      = prefix .. '',
-    Property    = prefix .. '',
-    Unit        = prefix .. '',
-    Value       = prefix .. '',
-    Enum        = prefix .. '了',
-    Keyword     = prefix .. '',
-    Snippet     = prefix .. '﬌',
-    Color       = prefix .. '',
-    File        = prefix .. '',
-    Folder      = prefix .. '',
-    EnumMember  = prefix .. '',
-    Constant    = prefix .. '',
-    Struct      = prefix .. ''
-  },
-})
+  -- get all installed servers
+  local servers = require'lspinstall'.installed_servers()
+  -- ... and add manually installed servers
+  table.insert(servers, "clangd")
+  table.insert(servers, "sourcekit")
 
+  for _, server in pairs(servers) do
+    local config = make_config()
 
-fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
-fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
-fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
-fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+    -- language specific config
+    if server == "lua" then
+      config.settings = lua_settings
+    end
+    if server == "sourcekit" then
+      config.filetypes = {"swift", "objective-c", "objective-cpp"}; -- we don't want c and cpp!
+    end
+    if server == "clangd" then
+      config.filetypes = {"c", "cpp"}; -- we don't want objective-c and objective-cpp!
+    end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
- vim.lsp.diagnostic.on_publish_diagnostics, {
-   -- Enable underline, use default values
-   underline = true,
-   -- Enable virtual text only on Warning or above, override spacing to 2
-   virtual_text = false,
-   -- virtual_text = {
-   --   spacing = 2,
-   --   severity_limit = "Warning",
-   -- },
- }
-)
+    require'lspconfig'[server].setup(config)
+  end
+end
 
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
