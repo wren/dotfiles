@@ -51,7 +51,7 @@ alias d.exec='func{docker exec -it "$@";}; func'
 alias f='fd -H' # find including hidden
 alias ff='fd -HI' # find all
 alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path
-alias fe='env | rg -v ''^PATH='' | rg' # find in env
+alias fe='env | rg -v ''^(PATH|(LS|EXA)_?COLORS)='' | rg' # find in env
 alias fa='alias | rg' # find an alias
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
@@ -78,6 +78,9 @@ alias v='nvim'
 alias wh='which -a'
 alias pack='pretty-packer pack'
 alias unpack='pretty-packer unpack'
+alias enc='age --recipient $SOPS_AGE_RECIPIENTS --encrypt'
+alias dec='age --identity $SOPS_AGE_KEY_FILE --decrypt'
+
 
 # nix has obtuse commands
 function n.search() { nix-env -qaP --description ".*$@.*"; }

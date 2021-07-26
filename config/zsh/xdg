@@ -40,6 +40,9 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # GPG (https://www.gnupg.org/documentation/manuals/gnupg/GPG-Configuration-Options.html)
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
+# hub (github cli)
+export HUB_CONFIG="$XDG_CONFIG_HOME/hub/config.yaml"
+
 # Pyenv (https://github.com/pyenv/pyenv/issues/139)
 export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
 
