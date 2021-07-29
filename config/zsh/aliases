@@ -54,11 +54,21 @@ alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path
 alias fe='env | rg -v ''^PATH='' | rg' # find in env
 alias fa='alias | rg' # find an alias
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
+alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
+
+# jrnl
 alias j='jrnl'
 alias je='jrnl --edit'
+alias js='jrnl --short'
 alias jn='jrnl notes'
 alias jne='jrnl notes --edit'
-alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
+alias jns='jrnl notes --short'
+alias jt='jrnl todo'
+alias jte='jrnl todo --edit'
+alias jts='jrnl todo --short'
+alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
+alias jpe='jp --edit'
+alias jps='jp --short'
 
 alias py='python'
 alias speedtest='speed-test --verbose'
@@ -72,7 +82,3 @@ alias unpack='pretty-packer unpack'
 # nix has obtuse commands
 function n.search() { nix-env -qaP --description ".*$@.*"; }
 function n.install(){ nix-env -iA "nixpkgs.$@"; }
-
-#--- Project Management ---#
-alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
-alias jpe='jp --edit'
