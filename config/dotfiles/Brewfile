@@ -10,13 +10,11 @@ cask "discord" # Voice and text chat software
 cask "farrago" # Audio playback
 cask "fission" # Audio editor
 cask "flux" # Screen color temperature controller
-cask "gitup" # Git interface focused on visual interaction
 cask "google-backup-and-sync"
 cask "google-chrome" # Web browser
 cask "google-trends"
 cask "itsycal" # Menu bar calendar
 cask "karabiner-elements" # Keyboard customizer
-cask "logitech-camera-settings" # Provides access to camera controls
 cask "loopback" # Cable-free audio router
 cask "obs" # Open-source software for live streaming and screen recording
 cask "pandora" # Desktop client for the Pandora web radio service
@@ -29,13 +27,10 @@ cask "sequel-pro" # MySQL/MariaDB database management platform
 cask "signal" # Instant messaging application focusing on security
 cask "skitch" # Screen capture tool with mark up and sharing features
 cask "slack" # Team communication and collaboration software
-cask "sourcetree" # Graphical client for Git version control
 cask "spectacle" # Move and resize windows with ease
 cask "steam" # Video game digital distribution service
-cask "tableplus" # Native GUI tool for relational databases
 cask "the-archive-browser"
 cask "the-unarchiver" # Unpacks archive files
-cask "transmission" # Open-source BitTorrent client
 cask "webpquicklook"
 cask "zoom" # Video communication and virtual meeting platform
 cask "zsa-wally" # Flash tool for ZSA keyboards
