@@ -1,18 +1,25 @@
 brew "sheldon" # Fast, configurable, shell plugin manager
 brew "showkey" # Simple keystroke visualizer
 brew "tag" # Manipulate and query tags on macOS files
-# brew "trash" # CLI tool that moves files or folder to the trash
+brew "tmux", args: ["HEAD"] # Terminal multiplexer
+cask "1password" # Password manager that keeps all passwords secure behind one password
 cask "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
 cask "alfred" # Application launcher and productivity software
 cask "audio-hijack" # Records audio from any application
 cask "cyberduck" # Server and cloud storage browser
 cask "discord" # Voice and text chat software
+cask "docker" # App to build and share containerized applications and microservices
 cask "farrago" # Audio playback
+cask "firefox" # Web browser
 cask "fission" # Audio editor
 cask "flux" # Screen color temperature controller
-cask "google-backup-and-sync"
+cask "font-fira-code"
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "google-backup-and-sync" # Back up and sync files with Google Drive
 cask "google-chrome" # Web browser
 cask "google-trends"
+cask "iterm2" # Terminal emulator as alternative to Apple's Terminal app
 cask "itsycal" # Menu bar calendar
 cask "karabiner-elements" # Keyboard customizer
 cask "loopback" # Cable-free audio router
@@ -31,6 +38,7 @@ cask "spectacle" # Move and resize windows with ease
 cask "steam" # Video game digital distribution service
 cask "the-archive-browser"
 cask "the-unarchiver" # Unpacks archive files
+cask "vlc" # Multimedia player
 cask "webpquicklook"
 cask "zoom" # Video communication and virtual meeting platform
 cask "zsa-wally" # Flash tool for ZSA keyboards
