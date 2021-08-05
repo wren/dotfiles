@@ -85,7 +85,7 @@
   # submodules
   sb = submodule
   sbst = submodule status
-  sur = submodule update --recursive
+  sur = submodule update --recursive --remote
   suri = submodule update --recursive --init
 
   # worktrees
