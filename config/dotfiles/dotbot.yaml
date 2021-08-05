@@ -15,7 +15,6 @@
     - '~'
 
 - create:
-    - ~/.local/share/gnupg
     - ~/Library/KeyBindings
 
 - link:

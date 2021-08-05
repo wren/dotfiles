@@ -2,8 +2,6 @@
 set -e
 
 # Config Options
-export DOTFILES_GPG_KEY="B5C5503F193E8ADE58FB0B643CB59A7906ADEEF8"
-export DOTFILES_SECRETHUB_SERVICE_ACCT="6db543002ab93b3e"
 DOTFILES_REPO="https://github.com/wren/dotfiles.git"
 DOTBOT_REPO="https://github.com/wren/dotfiles-dotbot.git"
 
@@ -21,8 +19,7 @@ fi
 
 # Make sure dotbot is updated
 cd "$DOTBOT_DIR"
-# git pull origin main
-git submodule update --init --recursive >/dev/null
+git submodule update --init --recursive --remote >/dev/null
 
 # Prep dotfiles dir
 export DOTFILES_DIR

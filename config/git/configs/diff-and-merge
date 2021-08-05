@@ -29,6 +29,9 @@
   textconv=pandoc --to=markdown
   prompt = false
 
+[diff "sops"]
+  textconv = "sops -d"
+
 [interactive]
   diffFilter = diff-so-fancy --patch
 

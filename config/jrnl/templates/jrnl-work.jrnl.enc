@@ -1,0 +1,20 @@
+{
+	"data": "ENC[AES256_GCM,data:XxbGIKee5oqthLEzqiZn4yW+KDaSOpXaDoy91d77qBRvKdVeEFCYlWfzP2MP9Bam/NhvsH5lpT1M/4vX9IbZu6zIRidEjNhKBaGWljmMHBTpnycXiZ569lv/k3DDLYThKtLxhbcyRhdUftOtNEgiR7ZrSL3xoKo5txZEMRrock30JxIYBdq4S8gv4fS+p86wWRfx/CUsGHDovyaDom9smyC7R4WUockpV47DzzxI8Gx1NQIVEFy+2/Ah9ghLU9zmxRDcw2hs9mHWCPbVWJ4xhdzl2wefzoYKEPst+bCEST1HrjO2TBchC40IbB7ExPQFO9yd1S06O5SAFZmhRDuL9SNx62y33oKX3Z04QsH5qn4tWxzLJUim8ubaHYh3bMwLThHwya90jvLpQf/EsEXzF4CNd68/OdHpq3WipCF32xr+4FNs4P6pYWYj7oPBUeDRD9wzC1lJEynkphE62OSOjsJXNLzuBFo/rNb65KMKR0YllGGFtf5NQourMKdNjRr0XJo/kqi7aDl/L8kfwUwsD5sclSoRd+wPBzoqx+uka+wRsNl9NlYeWJ19BlP7+YbGuyGsxD/IoYZBCBbKscaZIgEBO9bYNI7+h0UdJVoqlwp6ddRbAHZEFEBEGxreMRa/RHtH4lWyrEPjj1wGZLkyAHx7VRORjo7lsAksnJbLHS/bJRBIJdOd9OS5DUpVo2J/KeywPUFh4bNJCGJglHKnvnYZuJhs73h0mSHiscrqpJ5ymyYqZBbQ0H5yeOe2c7QmbJk2iN6d9x6Ly5Ldp3Z9ybxPJKT5CzH9JhO4Pdgk0TgDGlYY8Yihw/duwKRAM1/PyKNwutNpF9jiv0VOoFS6ikVLZy1kr3Kz5tM+eM52INEH3CVfd1klvPOR2Oo97FQmw2gbIPnp3sgCKdsG,iv:f12m3brnxXnBC/30dEpvD75SmgtkkiKQGxDPWfbrZTM=,tag:GXd19GIdXOF2L+hd0/Ihaw==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": [
+			{
+				"recipient": "age1p637gyvk0c0adn9jl3m6u3j2tlym395jkvj0hlpnyxd0pgq7wf3q0xepfw",
+				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQNmxqeFBVaEhsamJMcVFx\nOG9KS3FMbmR1WnY3RVllSEV6R0VWUGUzd0FJCjQ3cnUzMi9NVGJkNGJqaTRsY1gx\ndFBUdXBhQmtYUHVVWmFGN2hDYVoxMDAKLS0tIHExWFRBN0YrNWovN2tBVkphdkoz\nZzBRaVFwem5uSS9qTk1yRkcyOU80ZWsK0IfAu+pKyem3eQA4946lYbNfvo7VeCiE\nBRJHG2bGkY40+IuFjkAHte3TI9uNl6/OIUXJQUxI2r7moladAwbulQ==\n-----END AGE ENCRYPTED FILE-----\n"
+			}
+		],
+		"lastmodified": "2021-08-03T22:55:56Z",
+		"mac": "ENC[AES256_GCM,data:Bdr038KeEVHO5uurbftuHmCNbUTXtEFeS1qYRuzsJRTzGwTDwEE8U4W5QN2BX6erT12iXOyw0hXnfZLIZNiYVPVGTFdtvBhaHYmKmmGxcWABr5Yvb5/lKpli3naWSnvBOJnNRcub4rBwiqu7kTFKAdL9fxTMp+uJszbqlr0Lqc8=,iv:wu4TesVwZig907t8sDLSTIJmQ3FFMhb7cuVxBVC42k4=,tag:5mW6jSesFbn89e/fi8Et7w==,type:str]",
+		"pgp": null,
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.7.1"
+	}
+}
