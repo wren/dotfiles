@@ -84,6 +84,12 @@
     pkgs.vivid
     pkgs.as-tree
     pkgs.vivid
+    pkgs.git-annex
+    pkgs.hub
+    pkgs.minisign
+    pkgs.nodejs
+    pkgs.rclone
+    pkgs.alacritty
   ];
 
   # Home Manager needs a bit of information about you and the
