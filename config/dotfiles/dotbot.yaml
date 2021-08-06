@@ -36,14 +36,6 @@
     ~/Library/Application Support/Spectacle/Shortcuts.json:
         path: config/spectacle/shortcuts.json
 
-    # Special cases
-    ~/Library/Preferences/:
-        glob: true
-        path: 'config/macos/*.plist'
-
-    ~/Library/KeyBindings/DefaultKeyBinding.dict:
-      path: 'config/macos/DefaultKeyBinding.dict'
-
 - shell:
     - description: Checking superuser access
       command: |-
@@ -231,11 +223,6 @@
     #   command: >-
     #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
 
-    - description: Setting MacOS preferences
-      command: |-
-        if [[ ! $DOTFILES_LOADED ]]; then
-          zsh ./config/dotfiles/macos.sh
-        fi
 
     - description: Decrypt encrypted directories & files
       command: |-

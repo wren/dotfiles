@@ -1,0 +1,16 @@
+
+- link:
+    ~/Library/Preferences/:
+        glob: true
+        path: '*.plist'
+
+    ~/Library/KeyBindings/DefaultKeyBinding.dict:
+        path: 'DefaultKeyBinding.dict'
+
+
+- shell:
+    - description: Setting MacOS preferences
+      command: |-
+        if [[ ! $DOTFILES_LOADED ]]; then
+          zsh ./macos.sh
+        fi
