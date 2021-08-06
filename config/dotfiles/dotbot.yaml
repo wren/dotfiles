@@ -25,14 +25,10 @@
         exclude:
           - '*/*.enc'
           - '*/*.enc.yaml'
+          - '*/zsh'
     ~/.local/bin/:
         glob: true
         path: bin/*
-    ~/.ssh/:
-        glob: true
-        path: config/ssh/*
-        exclude:
-          - '*/*/*.enc'
 
     # Alfred
     ~/Library/ApplicationSupport/Alfred/prefs.json:
@@ -62,15 +58,6 @@
         # Keep sudo going in background for duration of the script
         # see: https://gist.github.com/cowboy/3118588
         while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-    - description: Zsh setup
-      command: |-
-        if [[ -z "$ZDOTDIR" ]]; then
-          printf "\n\nInstall dotfiles to /etc/zshenv (requires sudo)? [y/N]: "
-          if read; then
-            sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zshenv"
-          fi
-        fi
 
     - description: Checking Nix config
       command: echo '@todo implement this step'

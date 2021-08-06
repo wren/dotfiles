@@ -1,0 +1,13 @@
+- create:
+    - ~/.ssh
+    - ~/.ssh/configs
+
+- link:
+    ~/.ssh/config: config
+    ~/.ssh/configs:
+        glob: true
+        force: true
+        path: 'configs/**'
+        exclude:
+            - 'configs/**.enc'
+
