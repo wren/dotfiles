@@ -9,6 +9,10 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
+# --- age --- #
+# https://github.com/FiloSottile/age
+export AGE_KEY_FILE="$XDG_CONFIG_HOME/age/keys.txt"
+
 # --- ASDF --- #
 # Default ~/.asdfrc
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
@@ -80,8 +84,11 @@ export RIPGREP_CONFIG_DIR="$XDG_CONFIG_HOME/ripgrep/"
 # secrethub
 export SECRETHUB_CONFIG_DIR="$XDG_CONFIG_HOME/secrethub"
 
-#sheldon
+# sheldon
 export SHELDON_CACHE="$XDG_CACHE_HOME/sheldon"
+
+# sops
+export SOPS_AGE_KEY_FILE="${SOPS_AGE_KEY_FILE:-$AGE_KEY_FILE}"
 
 # tmux
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
