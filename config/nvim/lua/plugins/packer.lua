@@ -335,7 +335,6 @@ local plugins = {
   },
   {
     'kabouzeid/nvim-lspinstall',
-    config = get_config('nvim-lspinstall'),
   },
   {
     'nvim-lua/completion-nvim',
