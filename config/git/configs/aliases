@@ -77,6 +77,8 @@
 
   # stashes
   s = stash
+  sm = stash -m
+  sa = stash apply
   sd = stash drop
   sp = stash pop
   ss = forgit stash-show
