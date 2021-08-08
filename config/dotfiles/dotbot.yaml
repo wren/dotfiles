@@ -207,6 +207,7 @@
           exit 1
         fi
         printf 'Decrypting dotfiles key to %s...\n' $SOPS_AGE_KEY_FILE
+        mkdir -pv "$( dirname $SOPS_AGE_KEY_FILE )"
         age -d  <(printf %s $KEY_PROBABLY) >> $SOPS_AGE_KEY_FILE || exit 1
         chmod 400 $SOPS_AGE_KEY_FILE
 

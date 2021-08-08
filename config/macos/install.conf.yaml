@@ -1,6 +1,7 @@
 
 - link:
     ~/Library/Preferences/:
+        force: true
         glob: true
         path: '*.plist'
 
