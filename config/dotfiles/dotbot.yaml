@@ -236,8 +236,8 @@
         decrypt_script='
           OLD_DIR="{//}"
           OLD_FILE="{/}"
-          NEW_DIR="${OLD_DIR//[_.]encrypted}"
-          NEW_FILE="${OLD_FILE//[_.]encrypted}"
+          NEW_DIR="${OLD_DIR//[_.]enc}"
+          NEW_FILE="${OLD_FILE//[_.]enc}"
           OLD_PATH="${OLD_DIR}/${OLD_FILE}"
           NEW_PATH="${NEW_DIR}/${NEW_FILE}"
 
@@ -251,11 +251,11 @@
         '
 
         # Decrypt files in folders
-        for dir in $(fd -HI -t d '[\._]encrypted'); do
+        for dir in $(fd -HI -t d '[\._]enc'); do
           fd -HI -t f . $dir -x zsh -c $decrypt_script
         done
         # Decrypt individual files
-        fd -HI -t f '[\._]encrypted' -x zsh -c $decrypt_script
+        fd -HI -t f '[\._]enc' -x zsh -c $decrypt_script
 
     - description: Installing software licenses
       command: |-
