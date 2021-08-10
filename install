@@ -15,10 +15,12 @@ DOTBOT_BIN="$DOTBOT_DIR/dotbot/bin/dotbot"
 if ! git -C $DOTBOT_DIR rev-parse; then
   mkdir -p $DOTBOT_DIR
   git clone $DOTBOT_REPO $DOTBOT_DIR
-  # Make sure dotbot is updated
-  cd $DOTBOT_DIR
-  git submodule update --init --recursive --remote
 fi
+
+# Make sure dotbot is same version across machines
+cd $DOTBOT_DIR
+git pull --force origin main
+git submodule update --init --recursive
 
 # Prep dotfiles dir
 export DOTFILES_DIR
