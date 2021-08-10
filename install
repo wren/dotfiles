@@ -43,6 +43,7 @@ print -P "%F{004}───── $DOTBOT_CONFIG ─────%f"
 ${=CMD} -d $DOTFILES_DIR -c $DOTBOT_CONFIG "$@" || true
 
 # Then run any individual ones from various directories
+set +e # if any steps fail, then the remaining steps should still happen
 for file in $(find . -name 'install.conf.yaml'); do
   print -P "\n\n%F{004}───── $file ─────%f"
   ${=CMD} -d $(dirname $file) -c $file "$@"
