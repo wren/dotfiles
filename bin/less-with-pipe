@@ -3,7 +3,7 @@
 
 if tty &>/dev/null; then
   # normal usage
-  less ${@:-.}
+  less -F ${@:-.}
 else
   # being piped to
   if [[ -z $@ ]]; then

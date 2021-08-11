@@ -1,5 +1,5 @@
 [core]
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less -F
 
 [mergetool "diffconflicts"]
   cmd = diffconflicts nvim \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
@@ -19,8 +19,8 @@
 [pager]
   dfi = false
   dfp = false
-  diff = diff-so-fancy | less --tabs=4 -RFX
-  show = diff-so-fancy | less --tabs=4 -RFX
+  diff = diff-so-fancy | less -F
+  show = diff-so-fancy | less -F
 
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -
