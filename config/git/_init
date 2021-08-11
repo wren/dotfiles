@@ -1,0 +1,12 @@
+[include]
+  path = user
+  path = aliases
+  path = color
+  path = core
+  path = diff-and-merge
+  path = format
+  path = lfs
+
+  # .local overrides anything in above files
+  path = .local
+

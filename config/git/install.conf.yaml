@@ -1,0 +1,12 @@
+- create:
+    - ~/.config/git
+
+- link:
+    ~/.config/git/config: _init
+    ~/.config/git:
+        force: true
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
+          - _init

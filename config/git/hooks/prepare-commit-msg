@@ -2,8 +2,8 @@
 
 # A hook to insert a Jira ticket number from the current branch name into a commit message.
 
-# Note: This hook will insert the entire branch name if it the Jira ticket regex doesn't match
-# anything. This is done to be backwards compatible with the hold version of this hook that would
+# Note: This hook will insert the entire branch name if the Jira ticket regex doesn't match
+# anything. This is done to be backwards compatible with the old version of this hook that would
 # always insert the full branch name.
 #
 # @see https://git-scm.com/docs/githooks#_prepare_commit_msg

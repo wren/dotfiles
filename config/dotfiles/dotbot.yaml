@@ -26,6 +26,7 @@
           - '*/*.enc'
           - '*/*.enc.yaml'
           - '*/zsh'
+          - '*/git'
     ~/.local/bin/:
         glob: true
         path: bin/*

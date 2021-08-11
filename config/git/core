@@ -1,0 +1,42 @@
+[init]
+  defaultBranch = main
+
+[receive]
+  denyCurrentBranch = ignore
+
+[core]
+  autocrlf = input
+  whitespace = -blank-at-eof
+
+  # These are the default locations, but we set them
+  # here to be more explicit for older versions of git
+  excludesfile = ~/.config/git/ignore
+  attributesFile = ~/.config/git/attributes
+
+[log]
+  date = local
+
+[receive]
+  denyCurrentBranch = ignore
+
+[push]
+  default = upstream
+
+[pull]
+  rebase = true
+
+[fetch]
+  prune = true
+
+[mailmap]
+  file = mailmap
+
+
+[advice]
+  commitBeforeMerge  = false
+  detachedHead       = false
+  implicitIdentity   = false
+  pushNonFastForward = false
+  resolveConflict    = false
+  statusHints        = false
+
