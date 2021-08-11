@@ -9,6 +9,7 @@ nvim_define_filetypes({
   { '.jscsrc'                     , 'json'      },
   { '.babelrc'                    , 'json'      },
   { '.watchmanconfig'             , 'json'      },
+  { '*.yaml,*.yml'                , 'yaml'      },
   { '.flowconfig'                 , 'ini'       },
   { '*.html,*.htm,*.gohtml,*.tpl' , 'html'      },
   { 'Tmuxfile,tmux/config'        , 'tmux'      },
