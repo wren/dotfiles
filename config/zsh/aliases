@@ -34,7 +34,8 @@ alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 
 #--- Diff ---#
 alias dsf='diff-so-fancy'
-function df(){ diff -r -u $@ | diff-so-fancy | less --tabs=4 -RFX; }
+function df(){ diff -ru $@ | diff-so-fancy | less -F; }
+compdef _files df
 
 #--- Docker ---#
 alias d='docker'
