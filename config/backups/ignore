@@ -17,6 +17,7 @@
 .localized
 .DS_Store
 .DS_Store?
+.orderedPictures.plist
 ._*
 *~
 .Spotlight-V100
