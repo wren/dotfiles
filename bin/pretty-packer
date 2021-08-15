@@ -35,7 +35,7 @@ pack() {
     # directories need tar first
     # get rid of trailing slash if present
     filename="${filename%/}.tar"
-    tar -cf $filename $original
+    /usr/bin/tar -cf $filename $original
     args+=( --rm )
   fi
 
@@ -107,7 +107,7 @@ get_timestamp() {
   case $filename in
     *.tar )
       # get most recent modified date in archive
-      tar tvf $filename \
+      /usr/bin/tar tvf $filename \
       | grep -oP '\d{4}([- :]\d\d){4}(?=.*[^/]$)' | tr -d -- '- :' \
       | sort -r \
       | head -1
@@ -146,7 +146,7 @@ unpack() {
 
   if [[ $filename =~ \.tar$ ]]; then
     # was a directory, needs untar
-    tar xaf $filename && rm $filename
+    /usr/bin/tar xaf $filename && rm $filename
   fi
 }
 
