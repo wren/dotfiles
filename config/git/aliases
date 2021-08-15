@@ -33,7 +33,7 @@
   # diff
   df = diff --color
   dfc = diff --cached --color
-  dfp = --no-pager diff --no-color
+  dfp = !git --no-pager diff --no-color
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color
