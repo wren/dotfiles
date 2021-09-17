@@ -5,7 +5,7 @@ local files=${1:-$(printf '%s,' $my_dotfiles)_init}
 
 hyperfine 'source $ZDOTDIR/{file}' \
   --warmup 10 \
-  --shell '/usr/local/bin/zsh' \
+  --shell $SHELL \
   --ignore-failure \
   --parameter-list file $files
 
