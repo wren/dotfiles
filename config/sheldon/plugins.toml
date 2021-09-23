@@ -19,7 +19,7 @@ fi
 clean-cmd-exists = 'unset SHELDON_CMD_EXISTS_${(U):-{{name}}}'
 
 make = '''
-[[ -n SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
+[[ -z SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
   cd "{{ dir }}"
   make {{ name }}
 ) >/dev/null
