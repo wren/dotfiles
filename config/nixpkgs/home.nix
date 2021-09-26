@@ -38,7 +38,6 @@
     pkgs.gnugrep
     pkgs.gnused
     pkgs.jq
-    pkgs.jrnl
     pkgs.python39
     pkgs.python39Packages.pip
     pkgs.python39Packages.pipx
