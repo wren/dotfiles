@@ -1772,7 +1772,7 @@ Made with love by https://www.biati.digital</string>
 		<key>language</key>
 		<string></string>
 		<key>last_update_check</key>
-		<string>1625330397</string>
+		<string>1632765597</string>
 		<key>settings_migrated</key>
 		<string>true</string>
 		<key>time_format</key>
@@ -1785,14 +1785,14 @@ Made with love by https://www.biati.digital</string>
 	<key>variablesdontexport</key>
 	<array>
 		<string>time_zone</string>
-		<string>vat_percentage</string>
+		<string>settings_migrated</string>
 		<string>base_currency</string>
 		<string>language</string>
 		<string>time_format</string>
 		<string>last_update_check</string>
 		<string>coinmarket_apikey</string>
 		<string>fixer_apikey</string>
-		<string>settings_migrated</string>
+		<string>vat_percentage</string>
 	</array>
 	<key>version</key>
 	<string>3.0.2</string>
