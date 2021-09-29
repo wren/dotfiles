@@ -23,6 +23,14 @@ local config = {
 }
 
 local plugins = {
+  ----- Temp plugins -----
+  {
+    -- Can remove once this PR is merged & released:
+    -- https://github.com/neovim/neovim/pull/15436
+    opt = false,
+    'lewis6991/impatient.nvim',
+  },
+
   ----- Plugin management -----
   {
     'wbthomason/packer.nvim',
