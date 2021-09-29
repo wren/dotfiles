@@ -57,15 +57,25 @@ local plugins = {
   {
     'rmagatti/auto-session',
     config = get_config('auto-session'),
+    event = 'BufEnter',
+    keys = {
+      '<leader>ss',
+      '<leader>sr',
+      '<leader>sd',
+    },
   },
 
   ----- Search -----
   -- Better search with
-  'junegunn/vim-slash',
+  {
+    'junegunn/vim-slash',
+    keys = '/',
+  },
 
   ----- Visual -----
   -- Theme(s)
   {
+    opt = false,
     'marko-cerovac/material.nvim',
     config = get_config('material'),
   },
@@ -84,16 +94,19 @@ local plugins = {
   {
     'RRethy/vim-hexokinase',
     run = 'make hexokinase',
-    config = get_config('hexokinase'),
+    setup = get_config('hexokinase'),
+    event = 'BufEnter',
   },
 
   -- Highlight area being copied
   {
     'machakann/vim-highlightedyank',
+    event = 'TextYankPost',
   },
 
   -- Nice icons for filetypes and more
   {
+    opt = false,
     'kyazdani42/nvim-web-devicons',
   },
 
@@ -107,6 +120,11 @@ local plugins = {
   {
     'tadaa/vimade',
     config = get_config('vimade'),
+    event = {
+      'WinEnter',
+      'BufEnter',
+      'WinLeave',
+    },
   },
 
   ----- Tab management -----
@@ -115,18 +133,38 @@ local plugins = {
     -- replaces bufferline and bufkill
     'romgrk/barbar.nvim',
     config = get_config('barbar'),
+    event = 'VimEnter',
   },
 
   ----- File explorer -----
   {
     'kyazdani42/nvim-tree.lua',
     config = get_config('nvim-tree'),
+    cmd = {
+      'NvimTreeToggle',
+      'NvimTreeRefresh',
+      'NvimTreeFindFile',
+      'NvimTreeOpen',
+      'NvimTreeClose',
+      'NvimTreeFocus',
+    },
+    keys = {
+      '<leader>eo',
+      '<leader>ef',
+    },
   },
 
   ----- Misc -----
   {
     'junegunn/vim-easy-align',
     config = get_config('easyalign'),
+    ft = {
+      'markdown',
+      'jrnl',
+    },
+    keys = {
+      '<leader>ga',
+    },
   },
 
   {
@@ -135,11 +173,20 @@ local plugins = {
   },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
-  'tweekmonster/startuptime.vim',
+  {
+    'tweekmonster/startuptime.vim',
+    cmd = {
+      'StartupTime',
+    },
+  },
 
   {
     'AndrewRadev/bufferize.vim',
-    cmd = { 'Bufferize', 'BufferizeTimer' }
+    cmd = {
+      'Bufferize',
+      'BufferizeTimer',
+      'BufferizeSystem',
+    }
   },
 
   ----- Navigation -----
@@ -156,10 +203,14 @@ local plugins = {
   },
 
   -- Better repeating with period command
-  'tpope/vim-repeat',
+  {
+    'tpope/vim-repeat',
+    keys = '.',
+  },
 
   -- Pop-up cheatsheet for keyboard commands
   {
+    opt = false,
     'folke/which-key.nvim',
     config = get_config('which-key'),
   },
@@ -168,6 +219,7 @@ local plugins = {
   {
     'easymotion/vim-easymotion',
     config = get_config('easymotion'),
+    event = 'BufEnter',
   },
 
   {
@@ -178,6 +230,7 @@ local plugins = {
 
   -- Navigate windows in vim and tmux with the same keys
   {
+    opt = false,
     'christoomey/vim-tmux-navigator',
     config = get_config('tmux-navigator'),
   },
@@ -185,11 +238,41 @@ local plugins = {
   -- Fantastic fuzzy finder
   {
     'junegunn/fzf.vim',
+    config = get_config('fzf'),
     requires = {
       'junegunn/fzf',
-      run = fn['fzf#install']
+      run = fn['fzf#install'],
     },
-    config = get_config('fzf'),
+    cmd = {
+      'Files',
+      'GFiles',
+      'GFiles?',
+      'Buffers',
+      'Colors',
+      'Ag',
+      'Rg',
+      'Lines',
+      'BLines',
+      'Tags',
+      'BTags',
+      'Marks',
+      'Windows',
+      'Locate',
+      'History',
+      'History:',
+      'History/',
+      'Snippets',
+      'Commits',
+      'BCommits',
+      'Commands',
+      'Maps',
+      'Helptags',
+      'Filetypes',
+    },
+    keys = {
+      '<c-p>',
+      '<leader>f',
+    },
   },
 
   ----- Versioning -----
@@ -227,6 +310,7 @@ local plugins = {
   {
     'rhysd/committia.vim',
     config = get_config('committia'),
+    ft = 'gitcommit',
   },
 
   -- Auto-close brackets, parens, etc
@@ -235,8 +319,8 @@ local plugins = {
     'jiangmiao/auto-pairs',
 
   {
-    'Konfekt/FastFold',
-    config = get_config('fastfold'),
+    opt = false,
+    'AndrewRadev/splitjoin.vim',
   },
 
   ----- Languages and syntax -----
@@ -278,13 +362,16 @@ local plugins = {
       'SymbolsOutlineOpen',
       'SymbolsOutlineClose',
     }
-
   },
 
   -- Auto formatting files by syntax
   {
     'sbdchd/neoformat',
     config = get_config('neoformat'),
+    keys = {
+      '<localleader>f',
+    },
+    cmd = 'Neoformat',
   },
 
   -- Display thin vertical lines at each indentation level
@@ -319,6 +406,7 @@ local plugins = {
 
   -- Completion & LSP
   {
+    disable = true,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
     ft = {
@@ -341,15 +429,21 @@ local plugins = {
     },
     config = get_config('nvim-lspconfig'),
   },
+
   {
+    disable = true,
     'kabouzeid/nvim-lspinstall',
   },
+
   {
+    -- lua-based auto-completion for lsp
+    disable = true,
     'nvim-lua/completion-nvim',
     config = get_config('completion-nvim'),
   },
 
   {
+    disable = true,
     'folke/lsp-trouble.nvim',
     config = get_config('lsp-trouble'),
     cmd = {
@@ -366,19 +460,22 @@ local plugins = {
   },
 
   {
+    disable = true,
     'glepnir/lspsaga.nvim',
     config = get_config('lspsaga'),
   },
 
   {
+    disable = true,
     'onsails/lspkind-nvim', -- lsp icons
   },
+
   -- @todo set this up
+  -- DAP (Debug Adapter Protocol)
   -- {
   --   'mfussenegger/nvim-dap',
   --   config = get_config('dap'),
   --   requires = {
-  --     'mfussenegger/nvim-dap-python',
   --     'nvim-treesitter/nvim-treesitter',
   --   }
   -- },
@@ -394,12 +491,23 @@ local plugins = {
   {
     'mg979/vim-visual-multi',
     setup = get_config('visual-multi'),
+    keys = {
+      '<c-m-j>',
+      '<c-m-k>',
+      '<c-n>',
+    },
   },
 
   -- Highlights custom words on the fly independent of search
   {
     'lfv89/vim-interestingwords',
     config = get_config('interestingwords'),
+    keys = {
+      '<leader>*',
+      '<leader><c-L>',
+      '<leader>n',
+      '<leader>N',
+    },
   },
 
   ---- Productivity -----
@@ -408,12 +516,19 @@ local plugins = {
   {
     'jkramer/vim-checkbox',
     config = get_config('checkbox'),
+    ft = {
+      'markdown',
+      'jrnl',
+    },
   },
 
   -- Automagically format markdown tables as you type
   {
     'dhruvasagar/vim-table-mode',
-    ft = { 'markdown', 'jrnl' }
+    ft = {
+      'markdown',
+      'jrnl',
+    },
   },
 
   ----- Writing -----
@@ -422,6 +537,10 @@ local plugins = {
     -- run = fn['mkdp#util#install'],
     run = 'cd app && yarn install',
     config = get_config('markdown-preview'),
+    ft = {
+      'markdown',
+      'jrnl',
+    },
   },
 
   {
