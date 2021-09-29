@@ -6,7 +6,7 @@ end
 
 -- Config ---
 local config = {
-  compile_path = fn.stdpath('data') .. '/packer/plugin/packer_compiled.vim',
+  compile_path = fn.stdpath('data') .. '/site/lua/packer_compiled.lua',
   auto_clean = true,
   max_jobs = 20,
   display = {

@@ -1,10 +1,12 @@
 
 -- Bootstrap plugin manager
-cmd('set rtp+=' .. fn.stdpath('data') .. '/packer')
-local packer_directory = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local packer_status, lfs = pcall(require, 'packer_compiled')
 
-if fn.empty(fn.glob(packer_directory)) > 0 then
+if(not packer_status) then
   print('Downloading and installing plugins...')
+
+  local packer_directory = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+
   fn.mkdir(packer_directory, 'p')
   local out = fn.system({
     'git',
@@ -18,8 +20,4 @@ if fn.empty(fn.glob(packer_directory)) > 0 then
   local packer = require'plugins.packer'
   packer.sync()
 end
-
--- Events
--- vim.cmd [[ autocmd BufWritePost plugins/packer.lua packadd packer.nvim | PackerCompile ]]
-
 
