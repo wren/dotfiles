@@ -328,25 +328,10 @@ local plugins = {
   },
 
   ----- Languages and syntax -----
-  'honza/dockerfile.vim',
-  'junegunn/vim-emoji',
-  'Vimjas/vim-python-pep8-indent',
-  'vim-python/python-syntax',
-  'neoclide/vim-jsx-improve',
-  'cespare/vim-toml',
-  'tpope/vim-cucumber',
-  'tmux-plugins/vim-tmux',
-  'wren/jrnl.vim',
-  'jparise/vim-graphql',
-  'LnL7/vim-nix',
   {
-    'fatih/vim-go',
-    config = get_config('golang'),
-    ft = { 'go', 'godoc' }
-  },
-  {
-    'elzr/vim-json',
-    config = 'g.vim_json_syntax_conceal = 0',
+    -- remove once treesitter is ready
+    'sheerun/vim-polyglot',
+    event = 'BufEnter',
   },
 
   ----- Coding -----
