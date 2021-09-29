@@ -294,15 +294,17 @@ local plugins = {
   },
 
   -- Git integration
-  {
-    'chemzqm/vim-easygit',
-    config = get_config('easygit'),
-  },
 
   -- Status markers in gutter
   {
-    'airblade/vim-gitgutter',
-    config = get_config('gitgutter'),
+    opt = false,
+    'nvim-lua/plenary.nvim',
+  },
+
+  {
+    'lewis6991/gitsigns.nvim',
+    event = 'BufWinEnter',
+    config = get_config('gitsigns'),
   },
 
   -- Git commit message editing
