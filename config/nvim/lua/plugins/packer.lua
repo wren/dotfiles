@@ -87,6 +87,7 @@ local plugins = {
     opt = false,
     'marko-cerovac/material.nvim',
     config = get_config('material'),
+    requires = 'folke/lsp-colors.nvim', -- Creates groups for themes that don't support LSP yet
   },
 
   -- Creates groups for themes that don't support LSP yet
