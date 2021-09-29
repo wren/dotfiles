@@ -90,16 +90,6 @@ local plugins = {
     requires = 'folke/lsp-colors.nvim', -- Creates groups for themes that don't support LSP yet
   },
 
-  -- Creates groups for themes that don't support LSP yet
-  'folke/lsp-colors.nvim',
-
-  -- not stable yet, but promising
-  -- {
-  --   'nvim-treesitter/nvim-treesitter',
-  --   run = ':TSUpdate',
-    --   config = get_config('plugins.treesitter'),
-  -- },
-
   -- Highlights CSS colors inline
   {
     'RRethy/vim-hexokinase',
@@ -288,10 +278,6 @@ local plugins = {
   ----- Versioning -----
 
   -- Git integration
-  {
-    disable = true,
-    'tpope/vim-fugitive',
-  },
 
   -- Inline git blame while you type
   {
@@ -324,10 +310,13 @@ local plugins = {
   },
 
   -- Auto-close brackets, parens, etc
+  {
     -- 'Raimondi/delimitMate', --  kinda janky
     -- 'cohama/lexima.vim', -- super janky
-    'jiangmiao/auto-pairs',
+    'jiangmiao/auto-pairs', -- still janky, but less so
+  },
 
+  -- Split/Join oneline/multiline statements
   {
     opt = false,
     'AndrewRadev/splitjoin.vim',
@@ -405,7 +394,9 @@ local plugins = {
   },
 
   -- Support editorconfig files in projects
-  'editorconfig/editorconfig-vim',
+  {
+    'editorconfig/editorconfig-vim',
+  },
 
   -- @todo is LSP a viable replacement for this?
   -- Search documentation (also works offline)
@@ -554,6 +545,8 @@ local plugins = {
   },
 
   {
+    -- this sounds nice, but had lots of stability problems
+    -- maybe we don't need this anymore?
     disable = true,
     'glacambre/firenvim',
     run = function() fn['firenvim#install'](0) end,
