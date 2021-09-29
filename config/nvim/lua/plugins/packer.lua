@@ -74,6 +74,14 @@ local plugins = {
   },
 
   ----- Visual -----
+  -- Startup
+
+  {
+    opt = false,
+    'goolord/alpha-nvim',
+    config = get_config('dashboard'),
+  },
+
   -- Theme(s)
   {
     opt = false,
