@@ -1,9 +1,13 @@
 require('auto-session').setup{
   auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
   auto_session_enabled = true,
-  -- auto_save_enabled = true, -- enable just save
-  -- auto_restore_enabled = true, -- enable just restore
-  -- auto_session_suppress_dirs = nil, -- directories to ignore
+
+  -- only save automatically
+  auto_save_enabled = true,
+  auto_restore_enabled = false,
+
+  -- dirs to ignore
+  -- auto_session_suppress_dirs = nil,
 
   -- Hooks
   -- Can be added to config as: {hook_name}_cmds
@@ -14,9 +18,9 @@ require('auto-session').setup{
   -- {post_restore}: executes after a session is restored
   -- {pre_delete}: executes before a session is deleted
   -- {post_delete}: executes after a session is deleted
-  pre_save_cmds = {
-    "tabdo SymbolsOutlineClose",
-  }
+  --pre_save_cmds = {
+    --"tabdo SymbolsOutlineClose",
+  --}
 }
 
 -- Keymap
