@@ -9,18 +9,24 @@ local config = {
   compile_path = fn.stdpath('data') .. '/site/lua/packer_compiled.lua',
   auto_clean = true,
   max_jobs = 20,
+  auto_reload_compiled = false,
+  opt_default = true,
   display = {
     open_cmd = "enew",
   },
   profile = {
     enable = false,
-  }
+  },
+  --git ={
+    --default_url_format = 'git@github.com:%s.git',
+  --},
 }
 
 local plugins = {
   ----- Plugin management -----
   {
     'wbthomason/packer.nvim',
+    config = get_config('packer'),
     cmd = {
       'PackerClean',
       'PackerCompile',
@@ -31,7 +37,6 @@ local plugins = {
       'PackerSync',
       'PackerUpdate',
     },
-    config = get_config('packer'),
   },
 
   ----- Statusline -----
