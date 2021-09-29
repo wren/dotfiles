@@ -1,5 +1,5 @@
 ----- Helpers -----
-api, cmd, fn, g, call = vim.api, vim.cmd, vim.fn, vim.g, vim.call
+set, api, cmd, fn, g, call = vim.opt, vim.api, vim.cmd, vim.fn, vim.g, vim.call
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua
 function map(mode, lhs, rhs, opts)
@@ -65,7 +65,7 @@ end
 -- from: https://www.reddit.com/r/neovim/comments/l6a8z8/is_it_just_me_or_some_options_dont_work_in_lua_yet/
 -- @todo: Remove when https://github.com/neovim/neovim/pull/13479 lands
 local opts_info = vim.api.nvim_get_all_options_info()
-set = setmetatable({}, {
+set_old = setmetatable({}, {
   __index = vim.o,
   __newindex = function(_, key, value)
     vim.o[key] = value
