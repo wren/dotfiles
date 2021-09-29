@@ -25,6 +25,13 @@ nvim_create_augroups({
     'WinLeave,InsertEnter * set nocursorline'
   },
 
+  -- add SignColumnNC syntax group for inactive windows
+  {
+    'WinEnter,BufWinEnter * set winhighlight=Normal:Normal,SignColumn:SignColumn',
+    'WinLeave,BufWinLeave * set winhighlight=Normal:NormalNC,SignColumn:SignColumnNC'
+  },
+
+
   -- put the cursor back on the last know position when opening a file
   last_known_cursor_position = {
     [[ BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif ]]
