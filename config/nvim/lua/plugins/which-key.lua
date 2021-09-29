@@ -44,11 +44,19 @@ local ignore = "which_key_ignore"
 which_key.register({
   ["<leader>!"] = ignore,
   ["<leader>["] = ignore,
+  ["<leader><space>"] = ignore,
   ["<leader>"] = {
     w = { "Write file" },
     q = { "Quit window/tab/split" },
-    ["<C-L>"] = { "Clear highlights" },
+    ["<C-L>"] = ignore,
     ["*"] = { "Highlight <word>" },
+    h = {
+      name = '+History',
+        l = { "Git Blame" },
+        c = { "Commands" },
+        f = { "Files" },
+        ['/']= { "Search" },
+    },
     f = {
       name = "+Find",
       b = { "Buffers" },
@@ -59,12 +67,6 @@ which_key.register({
       s = { "Color schemes" },
       t = { "Filetypes" },
       w = { "Find <word> (in cwd)" },
-      h = {
-        name = "+History",
-        c = { "Commands" },
-        f = { "Files" },
-        s = { "Search" },
-      }
     },
   },
   ["<localleader>"] = {
