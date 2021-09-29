@@ -49,8 +49,9 @@ local plugins = {
 
   ----- Statusline -----
   {
-    'glepnir/galaxyline.nvim',
-    config = get_config('galaxyline'),
+    opt = false,
+    'hoob3rt/lualine.nvim',
+    config = get_config('lualine'),
   },
 
   ----- Session/view management -----
