@@ -114,6 +114,7 @@ local plugins = {
   {
     'rhysd/accelerated-jk',
     config = get_config('accelerated-jk'),
+    keys = { 'j', 'k' }
   },
 
   -- Fade text in inactive windows (while preserving syntax)
