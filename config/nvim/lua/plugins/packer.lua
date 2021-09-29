@@ -110,12 +110,19 @@ local plugins = {
     'kyazdani42/nvim-web-devicons',
   },
 
-  -- Smooth/fast scrolling with j/k keys
+  -- Smooth/fast scrolling
   {
     'rhysd/accelerated-jk',
     config = get_config('accelerated-jk'),
     keys = { 'j', 'k' }
   },
+
+  {
+    'karb94/neoscroll.nvim',
+    keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+    config = get_config('neoscroll'),
+  },
+
 
   -- Fade text in inactive windows (while preserving syntax)
   {
@@ -166,11 +173,6 @@ local plugins = {
     keys = {
       '<leader>ga',
     },
-  },
-
-  {
-    'yuttie/comfortable-motion.vim',
-    config = get_config('comfortable-motion'),
   },
 
   -- Vim startuptime analysis (use with nvim +StartupTime)
