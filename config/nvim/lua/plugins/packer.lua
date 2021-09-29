@@ -54,11 +54,6 @@ local plugins = {
   },
 
   ----- Session/view management -----
-
-  -- Enhance terminal compatibility (especially w/ tmux)
-  -- @todo what does this actually do?
-  -- 'wincent/terminus',
-
   {
     'rmagatti/auto-session',
     config = get_config('auto-session'),
