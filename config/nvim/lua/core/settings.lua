@@ -103,7 +103,7 @@ local WORDS_DICT = DATA_PATH .. '/spell/words.en.utf-8.add'
 set.spell = false
 set.spellfile = CUSTOM_DICT
 set.spelllang = 'en'
--- set.spelllang='en,es' -- something keeps going wrong with this
+-- set.spelllang='en,es' -- @todo something keeps going wrong with this
 cmd('set dictionary+=%s' .. WORDS_DICT)
 cmd('set dictionary+=%s' .. CUSTOM_DICT)
 
