@@ -26,8 +26,12 @@
 
     - description: Checking Node environment
       command: |-
-        if [[ command -v node &> /dev/null ]]; then
-
+        if ! command -v node &> /dev/null; then
+          echo "Node not installed"
+          exit 1
+        fi
+        if ! npm list --depth 1 --global neovim > /dev/null 2>&1; then
+          npm install -g neovim
         fi
 
     # - description: Downloading Spanish dictionary for Neovim
