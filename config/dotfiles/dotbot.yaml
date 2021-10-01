@@ -27,6 +27,7 @@
           - '*/*.enc.yaml'
           - '*/zsh'
           - '*/git'
+          - '*/nvim'
     ~/.local/bin/:
         glob: true
         path: bin/*
@@ -214,17 +215,6 @@
 
         fi
 
-    - description: Setting up Neovim Python environment
-      command: |-
-        PYTHON_VENVS_DIR=${PYTHON_VENVS_DIR:-$XDG_CACHE_HOME/python-virtual-envs}
-        if [[ ! -d "$PYTHON_VENVS_DIR/neovim" ]]; then
-          ~/.nix-profile/bin/python -m venv "$PYTHON_VENVS_DIR/neovim"
-        fi
-
-    # - description: Downloading Spanish dictionary for Neovim
-    #   command: >-
-    #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
-
 
     - description: Decrypt encrypted directories & files
       command: |-
@@ -269,7 +259,3 @@
     stdout: false
     stderr: true
 
-- link:
-    # Neovim
-    ~/.local/share/nvim/spell/custom.en.utf-8.add: data/dictionaries/custom.en.dict
-    ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words

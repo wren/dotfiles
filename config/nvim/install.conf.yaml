@@ -1,0 +1,36 @@
+- create:
+    - ~/.config/nvim
+
+- link:
+    ~/.config/nvim:
+        force: true
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
+          - dictionaries
+
+        ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/custom.en.dict
+        ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
+
+- shell:
+    - description: Checking Python environment
+      command: |-
+        PYTHON_VENVS_DIR=${PYTHON_VENVS_DIR:-$XDG_CACHE_HOME/python-virtual-envs}
+        if [[ ! -d "$PYTHON_VENVS_DIR/neovim" ]]; then
+            python -m venv "$PYTHON_VENVS_DIR/neovim"
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim
+        else
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim
+        fi
+
+    - description: Checking Node environment
+      command: |-
+        if [[ command -v node &> /dev/null ]]; then
+
+        fi
+
+    # - description: Downloading Spanish dictionary for Neovim
+    #   command: >-
+    #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
+
