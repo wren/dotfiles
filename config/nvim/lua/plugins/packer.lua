@@ -4,6 +4,25 @@ local get_config = function(name)
   return string.format('require "plugins.%s"', name)
 end
 
+local lsp_filetypes = {
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact',
+  'typescriptcommon',
+  'python',
+  'go',
+  'sh',
+  'bash',
+  'zsh',
+  'lua',
+}
+
+local jrnl_filetypes = {
+  'markdown',
+  'jrnl',
+}
+
 -- Config ---
 local config = {
   compile_path = fn.stdpath('data') .. '/site/lua/packer_compiled.lua',
@@ -397,46 +416,30 @@ local plugins = {
 
   -- Completion & LSP
   {
-    disable = true,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
-    ft = {
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-      'typescriptcommon',
-      'python',
-      'go',
-      'sh',
-      'bash',
-      'zsh',
-    },
-    requires = {
-      -- {
-      -- 'mattn/vim-lsp-settings', -- auto-install lsp servers
-      -- requires = 'prabirshrestha/vim-lsp',
-      -- }
-    },
     config = get_config('nvim-lspconfig'),
+    ft = lsp_filetypes,
   },
 
   {
-    disable = true,
     'kabouzeid/nvim-lspinstall',
+    config = get_config('lspinstall'),
+    ft = lsp_filetypes,
   },
 
   {
     -- lua-based auto-completion for lsp
+    -- might not need this
     disable = true,
     'nvim-lua/completion-nvim',
     config = get_config('completion-nvim'),
   },
 
   {
-    disable = true,
     'folke/lsp-trouble.nvim',
     config = get_config('lsp-trouble'),
+    ft = lsp_filetypes,
     cmd = {
       'LspTrouble',
       'LspTroubleClose',
@@ -454,6 +457,7 @@ local plugins = {
     disable = true,
     'glepnir/lspsaga.nvim',
     config = get_config('lspsaga'),
+    ft = lsp_filetypes,
   },
 
   {
