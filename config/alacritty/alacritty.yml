@@ -267,48 +267,51 @@ key_bindings:
   - { key: Comma,      mods: Shift|Control, chars: "\x1b,"        }
 
   # Control + Shift technically doesn't exist in terminals, so we map them here manually
-  # - { key: Space,      mods: Control|Shift, chars: "\x1b[32;5u"   } # default to vi mode
-  - { key: Apostrophe, mods: Control|Shift, chars: "\x1b[39;5u"   }
-  # - { key: Comma,      mods: Control|Shift, chars: "\x1b[44;5u"   }
-  - { key: Minus,      mods: Control|Shift, chars: "\x1b[45;5u"   }
-  # - { key: Period,     mods: Control|Shift, chars: "\x1b[46;5u"   }
-  - { key: Slash,      mods: Control|Shift, chars: "\x1b[47;5u"   }
-  - { key: Key0,       mods: Control|Shift, chars: "\x1b[48;5u"   }
-  - { key: Key1,       mods: Control|Shift, chars: "\x1b[49;5u"   }
-  - { key: Key2,       mods: Control|Shift, chars: "\x1b[50;5u"   }
-  - { key: Key3,       mods: Control|Shift, chars: "\x1b[51;5u"   }
-  - { key: Key4,       mods: Control|Shift, chars: "\x1b[52;5u"   }
-  - { key: Key5,       mods: Control|Shift, chars: "\x1b[53;5u"   }
-  - { key: Key6,       mods: Control|Shift, chars: "\x1b[54;5u"   }
-  - { key: Key7,       mods: Control|Shift, chars: "\x1b[55;5u"   }
-  - { key: Key8,       mods: Control|Shift, chars: "\x1b[56;5u"   }
-  - { key: Key9,       mods: Control|Shift, chars: "\x1b[57;5u"   }
-  - { key: Semicolon,  mods: Control|Shift, chars: "\x1b[59;5u"   }
-  - { key: Equals,     mods: Control|Shift, chars: "\x1b[61;5u"   }
-  - { key: A,          mods: Control|Shift, chars: "\x1b[65;5u"   }
-  - { key: B,          mods: Control|Shift, chars: "\x1b[66;5u"   }
-  - { key: C,          mods: Control|Shift, chars: "\x1b[67;5u"   }
-  - { key: D,          mods: Control|Shift, chars: "\x1b[68;5u"   }
-  - { key: E,          mods: Control|Shift, chars: "\x1b[69;5u"   }
-  - { key: F,          mods: Control|Shift, chars: "\x1b[70;5u"   }
-  - { key: G,          mods: Control|Shift, chars: "\x1b[71;5u"   }
-    # - { key: H,          mods: Control|Shift, chars: "\x1b[72;5u"   }
-  - { key: I,          mods: Control|Shift, chars: "\x1b[73;5u"   }
-  # - { key: J,          mods: Control|Shift, chars: "\x1b[74;5u"   }
-  # - { key: K,          mods: Control|Shift, chars: "\x1b[75;5u"   }
-  # - { key: L,          mods: Control|Shift, chars: "\x1b[76;5u"   }
-  - { key: M,          mods: Control|Shift, chars: "\x1b[77;5u"   }
-  - { key: N,          mods: Control|Shift, chars: "\x1b[78;5u"   }
-  - { key: O,          mods: Control|Shift, chars: "\x1b[79;5u"   }
-  - { key: P,          mods: Control|Shift, chars: "\x1b[80;5u"   }
-  - { key: Q,          mods: Control|Shift, chars: "\x1b[81;5u"   }
-  - { key: R,          mods: Control|Shift, chars: "\x1b[82;5u"   }
-  - { key: S,          mods: Control|Shift, chars: "\x1b[83;5u"   }
-  - { key: T,          mods: Control|Shift, chars: "\x1b[84;5u"   }
-  - { key: U,          mods: Control|Shift, chars: "\x1b[85;5u"   }
-  - { key: V,          mods: Control|Shift, chars: "\x1b[86;5u"   }
-  - { key: W,          mods: Control|Shift, chars: "\x1b[87;5u"   }
-  - { key: X,          mods: Control|Shift, chars: "\x1b[88;5u"   }
-  - { key: Y,          mods: Control|Shift, chars: "\x1b[89;5u"   }
-  - { key: Z,          mods: Control|Shift, chars: "\x1b[90;5u"   }
-  - { key: Backslash,  mods: Control|Shift, chars: "\x1b[92;5u"   }
+  - { key: Space,      mods: Control|Shift, chars: "\x1b[27;6;32~"   } # default to vi mode
+  - { key: Apostrophe, mods: Control|Shift, chars: "\x1b[27;6;39~"   }
+  # - { key: Comma,      mods: Control|Shift, chars: "\x1b[27;6;44~"   }
+  - { key: Minus,      mods: Control|Shift, chars: "\x1b[27;6;45~"   }
+  # - { key: Period,     mods: Control|Shift, chars: "\x1b[27;6;46~"   }
+  - { key: Slash,      mods: Control|Shift, chars: "\x1b[27;6;47~"   }
+  - { key: Key0,       mods: Control|Shift, chars: "\x1b[27;6;48~"   }
+  - { key: Key1,       mods: Control|Shift, chars: "\x1b[27;6;49~"   }
+  - { key: Key2,       mods: Control|Shift, chars: "\x1b[27;6;50~"   }
+  - { key: Key3,       mods: Control|Shift, chars: "\x1b[27;6;51~"   }
+  - { key: Key4,       mods: Control|Shift, chars: "\x1b[27;6;52~"   }
+  - { key: Key5,       mods: Control|Shift, chars: "\x1b[27;6;53~"   }
+  - { key: Key6,       mods: Control|Shift, chars: "\x1b[27;6;54~"   }
+  - { key: Key7,       mods: Control|Shift, chars: "\x1b[27;6;55~"   }
+  - { key: Key8,       mods: Control|Shift, chars: "\x1b[27;6;56~"   }
+  - { key: Key9,       mods: Control|Shift, chars: "\x1b[27;6;57~"   }
+  - { key: Semicolon,  mods: Control|Shift, chars: "\x1b[27;6;59~"   }
+  - { key: Equals,     mods: Control|Shift, chars: "\x1b[27;6;61~"   }
+  - { key: A,          mods: Control|Shift, chars: "\x1b[27;6;65~"   }
+  - { key: B,          mods: Control|Shift, chars: "\x1b[27;6;66~"   }
+  - { key: C,          mods: Control|Shift, chars: "\x1b[27;6;67~"   }
+  - { key: D,          mods: Control|Shift, chars: "\x1b[27;6;68~"   }
+  - { key: E,          mods: Control|Shift, chars: "\x1b[27;6;69~"   }
+  - { key: F,          mods: Control|Shift, chars: "\x1b[27;6;70~"   }
+  - { key: G,          mods: Control|Shift, chars: "\x1b[27;6;71~"   }
+  # - { key: H,          mods: Control|Shift, chars: "\x1b[27;6;72~"   }
+  - { key: I,          mods: Control|Shift, chars: "\x1b[27;6;73~"   }
+  # - { key: J,          mods: Control|Shift, chars: "\x1b[27;6;74~"   }
+  # - { key: K,          mods: Control|Shift, chars: "\x1b[27;6;75~"   }
+  # - { key: L,          mods: Control|Shift, chars: "\x1b[27;6;76~"   }
+  - { key: M,          mods: Control|Shift, chars: "\x1b[27;6;77~"   }
+  - { key: N,          mods: Control|Shift, chars: "\x1b[27;6;78~"   }
+  - { key: O,          mods: Control|Shift, chars: "\x1b[27;6;79~"   }
+  - { key: P,          mods: Control|Shift, chars: "\x1b[27;6;80~"   }
+  - { key: Q,          mods: Control|Shift, chars: "\x1b[27;6;81~"   }
+  - { key: R,          mods: Control|Shift, chars: "\x1b[27;6;82~"   }
+  - { key: S,          mods: Control|Shift, chars: "\x1b[27;6;83~"   }
+  - { key: T,          mods: Control|Shift, chars: "\x1b[27;6;84~"   }
+  - { key: U,          mods: Control|Shift, chars: "\x1b[27;6;85~"   }
+  - { key: V,          mods: Control|Shift, chars: "\x1b[27;6;86~"   }
+  - { key: W,          mods: Control|Shift, chars: "\x1b[27;6;87~"   }
+  - { key: X,          mods: Control|Shift, chars: "\x1b[27;6;88~"   }
+  - { key: Y,          mods: Control|Shift, chars: "\x1b[27;6;89~"   }
+  - { key: Z,          mods: Control|Shift, chars: "\x1b[27;6;90~"   }
+  - { key: Backslash,  mods: Control|Shift, chars: "\x1b[27;6;92~"   }
+
+  - { key: W,          mods: Control,       chars: "\x1b[27;5;119~"  }
+
