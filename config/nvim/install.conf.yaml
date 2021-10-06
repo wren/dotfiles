@@ -1,17 +1,82 @@
+- defaults:
+    link:
+        relink: true
+        ignore-missing: true
+        force: true
+        create: true
+        quiet: true
+        glob: true
+    shell:
+        stdin: false
+        stdout: true
+        stderr: true
+        quiet: true
+
 - create:
     - ~/.config/nvim
 
 - link:
     ~/.config/nvim:
-        force: true
-        glob: true
         path: '*'
         exclude:
           - install.conf.yaml
           - dictionaries
+    ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/custom.en.dict
+    ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
 
-        ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/custom.en.dict
-        ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
+- shell:
+    - description: Checking Neovim installation
+      command: |-
+        latest=$(curl -fLso /dev/null -w %{url_effective} https://github.com/neovim/neovim/releases/latest)
+        latest_version=${latest##*/}
+        if command -v nvim &> /dev/null; then
+          installed_version="$(nvim --version | head -1)"
+          if [[ "NVIM $latest_version" != $installed_version ]]; then
+            echo "Neovim upgrade available!"
+            echo "Installed: $installed_version"
+            echo "Latest:    NVIM $latest_version"
+          fi
+          exit 0
+        fi
+        echo "Installing nvim ${latest_version}..."
+        my_dir="$(mktemp -d)"
+        cd $my_dir
+        my_file='nvim-macos.tar.gz'
+        my_url="https://github.com/neovim/neovim/releases/download/${latest_version}/${my_file}"
+
+        curl -fLsO $my_url
+        shasum --check <(curl -Ls ${my_url}.sha256sum)
+        tar xzf $my_file
+
+        my_target='/usr/local/share/nvim'
+        [[ -d $my_target ]] && rm -vrf $my_target
+
+        mv -v nvim-osx64 /usr/local/share/nvim
+        rm -vrf $my_dir
+
+    - description: Checking/Upgrading Neovim nightly
+      command: |-
+        set -e
+        my_dir="$(mktemp -d)"
+        cd $my_dir
+        my_file='nvim-macos.tar.gz'
+        my_url="https://github.com/neovim/neovim/releases/download/nightly/${my_file}"
+
+        echo "Downloading ${my_url}..."
+        curl -fLsO $my_url
+        shasum --check <(curl -Ls ${my_url}.sha256sum)
+        tar xzf $my_file
+
+        my_target=/usr/local/share/nvim-nightly
+        [[ -d $my_target ]] && rm -vrf $my_target
+
+        mv -v nvim-osx64 /usr/local/share/nvim-nightly
+        rm -vrf $my_dir
+
+- link:
+    /usr/local/bin/nvim-nightly: /usr/local/share/nvim-nightly/bin/nvim
+    /usr/local/bin/nvim: /usr/local/share/nvim/bin/nvim
+
 
 - shell:
     - description: Checking Python environment
@@ -21,7 +86,7 @@
             python -m venv "$PYTHON_VENVS_DIR/neovim"
             "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim
         else
-            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim | perl -ne 'print if not m/^Requirement already/'
         fi
 
     - description: Checking Node environment
