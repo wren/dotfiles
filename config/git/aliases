@@ -107,8 +107,8 @@
   dmb = delete-merged-branches
   smb = show-merged-branches
   prg = "!f(){ gh pr checkout ${1:-0} && git br -m ${2:-pr-$1-$(git current-branch)} && git brs 'PRs for Review'; }; f"
-  pro = "!f(){ hub pull-request -o \"$@\" && git brs 'PR Opened'; }; f"
-  todo = "!rg -in '@todo'"
+  pro = "!f(){ gh pr create --title \"${@:-PR Title Goes Here}\" --web && git brs 'PR Opened'; }; f"
+  todo = "!rg -i '@todo'"
 
   # fzf integration
   lgf = forgit log
