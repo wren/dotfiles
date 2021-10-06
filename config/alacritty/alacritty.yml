@@ -19,11 +19,11 @@ window:
 
   # Window padding in px (requires restart)
   padding:
-    x: 5
-    y: 5
+    x: 8
+    y: 0
 
   # Spread additional padding evenly around the terminal content
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Window decorations
   #   full: Borders and title bar
