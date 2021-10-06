@@ -113,8 +113,8 @@ local cmd_flag=''
 command -v /usr/local/opt/util-linux/bin/column >/dev/null && cmd_flag='--table-empty-lines'
 
 if [[ -n $debug ]];then
-  make_report "$@"
+  make_report "$@" | less
 else
-  column -ts'|' <(sort_report "$@") $cmd_flag
+  column -ts'|' <(sort_report "$@") $cmd_flag | less
 fi
 
