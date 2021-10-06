@@ -8,6 +8,7 @@ path=(
 
   # Version/package manager(s) near the front of the line
   $N_PREFIX/bin
+  $HOME/.local/share/npm/bin
   /usr/local/share/npm/bin
 
   # Homebrew because ugh
