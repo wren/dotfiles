@@ -27,6 +27,7 @@ require('material').setup({
     eob_lines = true,
   },
   custom_highlights = {
+    -- ExampleClass = { fg = '#fff', bg = '#fff', style = 'bold, sp = 'underline' },
     IndentlineOne     = { fg = '#2D3439', bg = nil },
     IndentlineTwo     = { fg = '#4F5B64', bg = nil },
     Normal            = { bg = custom.bg },
