@@ -160,7 +160,12 @@ local plugins = {
     -- replaces bufferline and bufkill
     'romgrk/barbar.nvim',
     config = get_config('barbar'),
-    event = 'VimEnter',
+    event = {
+      'BufEnter',
+      'CursorMoved',
+      'BufAdd',
+      'BufWinEnter',
+    }
   },
 
   ----- File explorer -----
@@ -185,10 +190,7 @@ local plugins = {
   {
     'junegunn/vim-easy-align',
     config = get_config('easyalign'),
-    ft = {
-      'markdown',
-      'jrnl',
-    },
+    ft = jrnl_filetypes,
     keys = {
       '<leader>ga',
     },
@@ -202,6 +204,7 @@ local plugins = {
     },
   },
 
+  -- Put output from commands into a buffer
   {
     'AndrewRadev/bufferize.vim',
     cmd = {
@@ -350,6 +353,11 @@ local plugins = {
   {
     -- remove once treesitter is ready
     'sheerun/vim-polyglot',
+    event = 'BufEnter',
+  },
+
+  {
+    'wren/jrnl.vim',
     event = 'BufEnter',
   },
 
@@ -511,19 +519,13 @@ local plugins = {
   {
     'jkramer/vim-checkbox',
     config = get_config('checkbox'),
-    ft = {
-      'markdown',
-      'jrnl',
-    },
+    ft = jrnl_filetypes
   },
 
   -- Automagically format markdown tables as you type
   {
     'dhruvasagar/vim-table-mode',
-    ft = {
-      'markdown',
-      'jrnl',
-    },
+    ft = jrnl_filetypes
   },
 
   ----- Writing -----
@@ -532,11 +534,9 @@ local plugins = {
     -- run = fn['mkdp#util#install'],
     run = 'cd app && yarn install',
     config = get_config('markdown-preview'),
-    ft = {
-      'markdown',
-      'jrnl',
-    },
+    ft = jrnl_filetypes
   },
+
 
   {
     -- this sounds nice, but had lots of stability problems

@@ -55,20 +55,17 @@ map('n', '<a-.>', ':BufferNext<CR>', opts)
 map('n', '<a-<>', ':BufferMovePrevious<CR>', opts)
 map('n', '<a->>', ':BufferMoveNext<CR>', opts)
 
--- Close/Wipeout buffer
+-- Close/Wipeout buffer commands
 map('n', '<leader>bd', ':BufferClose<CR>', opts)
 map('n', '<leader>bw', ':BufferWipeout<CR>', opts)
-
+map('n', '<leader>bda', ':BufferCloseAllButCurrent<CR>', opts)
+map('n', '<leader>bdh', ':BufferCloseBuffersLeft<CR>', opts)
+map('n', '<leader>bdl', ':BufferCloseBuffersRight<CR>', opts)
 map('n', '<c-x>', ':BufferClose<CR>', opts)
 map('n', '<c-s-x>', ':bdelete<CR>', opts)
 
--- Close commands
-map('n', '<leader>ba', ':BufferCloseAllButCurrent<CR>', opts)
-map('n', '<leader>bah', ':BufferCloseBuffersLeft<CR>', opts)
-map('n', '<leader>bal', ':BufferCloseBuffersRight<CR>', opts)
-
 -- Magic buffer-picking mode
-map('n', '<leader>bap', ':BufferPick<CR>', opts)
+map('n', '<leader>bp', ':BufferPick<CR>', opts)
 
 -- Sort automatically by...
 map('n', '<leader>bo', ':BufferOrderByDirectory<CR>', opts)
