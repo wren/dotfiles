@@ -28,7 +28,7 @@
     pkgs.age
     pkgs.asdf-vm
     pkgs.bat
-    pkgs.neovim
+    # pkgs.neovim
     # pkgs.act
     pkgs.direnv
     pkgs.exa

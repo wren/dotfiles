@@ -2,7 +2,7 @@ brew "moreutils" # Collection of tools that nobody wrote when UNIX was young
 brew "sheldon" # Fast, configurable, shell plugin manager
 brew "showkey" # Simple keystroke visualizer
 brew "tag" # Manipulate and query tags on macOS files
-brew "tmux", args: ["HEAD"] # Terminal multiplexer
+brew "tmux" # Terminal multiplexer
 brew "trash" # CLI tool that moves files or folder to the trash
 brew "util-linux" # Collection of Linux utilities
 cask "1password" # Password manager that keeps all passwords secure behind one password
@@ -39,6 +39,7 @@ cask "skitch" # Screen capture tool with mark up and sharing features
 cask "slack" # Team communication and collaboration software
 cask "spectacle" # Move and resize windows with ease
 cask "steam" # Video game digital distribution service
+cask "sublime-merge" # Git client
 cask "the-archive-browser"
 cask "the-unarchiver" # Unpacks archive files
 cask "vlc" # Multimedia player
