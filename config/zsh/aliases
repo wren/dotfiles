@@ -84,12 +84,16 @@ alias py='python'
 alias speedtest='speed-test --verbose'
 alias t='tmux'
 alias ta='tmux-attach-fzf'
+alias tk='tmux kill-server'
+alias tn='tmux new'
 alias v=$(command -v nvim-nightly &>/dev/null && echo 'nvim-nightly' || echo 'nvim')
 alias wh='which -a'
 alias pack='pretty-packer pack'
 alias unpack='pretty-packer unpack'
-alias enc='age --recipient $SOPS_AGE_RECIPIENTS --encrypt'
-alias dec='age --identity $SOPS_AGE_KEY_FILE --decrypt'
+alias encrypt='age --recipient $SOPS_AGE_RECIPIENTS --encrypt'
+alias decrypt='age --identity $SOPS_AGE_KEY_FILE --decrypt'
+alias enc='encrypt'
+alias dec='decrypt'
 
 
 # nix has obtuse commands
