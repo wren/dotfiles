@@ -15,7 +15,7 @@
 window:
 
   # Startup Mode ( windowed | maximized | fullscreen | simplefullscreen (mac only) )
-  startup_mode: windowed
+  startup_mode: maximized
 
   # Window padding in px (requires restart)
   padding:
