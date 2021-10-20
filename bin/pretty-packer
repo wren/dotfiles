@@ -108,7 +108,8 @@ get_timestamp() {
     *.tar )
       # get most recent modified date in archive
       /usr/bin/tar tvf $filename \
-      | grep -oP '\d{4}([- :]\d\d){4}(?=.*[^/]$)' | tr -d -- '- :' \
+      | cut --complement -c1-37,50-999 \
+      | xargs -I{} date +"%Y%m%d%H%M" -d "{}" \
       | sort -r \
       | head -1
       ;;
@@ -146,7 +147,7 @@ unpack() {
 
   if [[ $filename =~ \.tar$ ]]; then
     # was a directory, needs untar
-    /usr/bin/tar xaf $filename && rm $filename
+    /usr/bin/tar xf $filename && rm $filename
   fi
 }
 
