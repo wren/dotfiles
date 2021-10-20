@@ -61,6 +61,7 @@
   plm = pull --no-rebase
   plsm = "!git print-header 'Pull' && git plm && git print-header 'Push' && git push"
   ps = push
+  psf = push -f
   rem = remote -v
   print-header = "!p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p"
 
