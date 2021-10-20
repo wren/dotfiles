@@ -353,12 +353,12 @@ local plugins = {
   {
     -- remove once treesitter is ready
     'sheerun/vim-polyglot',
-    event = 'BufEnter',
+    -- event = 'BufEnter',
   },
 
   {
+    opt = false,
     'wren/jrnl.vim',
-    event = 'BufEnter',
   },
 
   ----- Coding -----
@@ -424,16 +424,16 @@ local plugins = {
 
   -- Completion & LSP
   {
+    opt = false,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
     config = get_config('nvim-lspconfig'),
-    ft = lsp_filetypes,
   },
 
   {
+    opt = false,
     'kabouzeid/nvim-lspinstall',
     config = get_config('lspinstall'),
-    ft = lsp_filetypes,
   },
 
   {
