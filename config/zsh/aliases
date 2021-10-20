@@ -58,18 +58,27 @@ alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulato
 alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
 
 # jrnl
-alias j='jrnl'
-alias je='jrnl --edit'
-alias js='jrnl --short'
+alias j='jrnl notes'
 alias jn='jrnl notes'
-alias jne='jrnl notes --edit'
-alias jns='jrnl notes --short'
-alias jt='jrnl todo'
-alias jte='jrnl todo --edit'
-alias jts='jrnl todo --short'
-alias jp='jrnl --config-override journals.project "$(git root 2>/dev/null || echo ".")/project-notes.jrnl" project'
+alias je='jn --edit'
+alias js='jn --short'
+function t() { jn "$@" '#todo +inbox'; }
+alias jt='jn +todo'
+alias jte='je +todo ^todo'
+alias jts='js +todo ^todo'
+function jp() {
+  my_root="$(git root 2>/dev/null || echo ".")"
+  my_template_file="${my_root}/notes-template.jrnl"
+
+  jrnl \
+    --co journal "${my_root}/project-notes.jrnl" \
+    $([[ -f $my_template_file ]] && echo "--co template '$my_template_file'") \
+    "$@"
+}
 alias jpe='jp --edit'
 alias jps='jp --short'
+alias j.business='jn --co template ~/Dotfiles/config/jrnl/templates/business-times.jrnl'
+alias j.hwt='jn --co template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
 
 alias py='python'
 alias speedtest='speed-test --verbose'
