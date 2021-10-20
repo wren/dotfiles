@@ -1,23 +1,5 @@
--- emacs-like emacs
-map('n', '<C-w>', '<esc>diwa')
-map('i', '<C-h>', '<BS>')
-map('i', '<C-d>', '<Del>')
-map('i', '<C-k>', '<ESC>d$a')
-map('i', '<C-u>', '<C-G>u<C-U>')
-map('i', '<C-b>', '<Left>')
-map('i', '<C-f>', '<Right>')
-map('i', '<C-a>', '<Home>')
-
 -- command line alias
 map('c', 'w!!', 'w !sudo tee % >/dev/null')
-map('c', '<C-p>', '<Up>')
-map('c', '<C-b>', '<Left>')
-map('c', '<C-f>', '<Right>')
-map('c', '<C-a>', '<Home>')
-map('c', '<C-e>', '<End>')
-map('c', '<C-d>', '<Del>')
-map('c', '<C-h>', '<BS>')
-map('c', '<C-t>', '<C-R>=expand("%:p:h") . "/" <CR>')
 
 -- Insert newlines without leaving normal mode
 function keymap_modifiable_only()
@@ -43,8 +25,9 @@ map('n', '<leader>w', ':w<CR>')
 map('n', '<leader>q', '<c-w>c')
 map('n', 'QQ', ':qa<CR>')
 
-map('i', '<C-S>', '<esc>:w<CR>a', {noremap = false})
-map('i', '<C-Q>', '<esc>:wq<CR>', {noremap = false})
+map('n', '<c-s>', ':w<CR>')
+map('i', '<C-s>', '<esc>:w<CR>a', {noremap = false})
+map('i', '<C-q>', '<esc>:wq<CR>', {noremap = false})
 
 -- make delete make sense
 map('n', 'd', '"_d')

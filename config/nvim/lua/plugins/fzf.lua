@@ -2,9 +2,9 @@
 cmd 'set rtp+=/usr/local/opt/fzf'
 
 g.fzf_action = {
-  ['ctrl-t'] = 'tab split',
-  ['ctrl-x'] = 'split',
-  ['ctrl-v'] = 'vsplit'
+  ['alt-t'] = 'tab split',
+  ['alt-x'] = 'split',
+  ['alt-v'] = 'vsplit'
 }
 
 g.fzf_colors = {
