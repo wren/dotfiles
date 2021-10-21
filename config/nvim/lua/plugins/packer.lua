@@ -104,9 +104,8 @@ local plugins = {
   -- Theme(s)
   {
     opt = false,
-    'marko-cerovac/material.nvim',
-    config = get_config('material'),
-    requires = 'folke/lsp-colors.nvim', -- Creates groups for themes that don't support LSP yet
+    'EdenEast/nightfox.nvim',
+    config = get_config('nightfox'),
   },
 
   -- Highlights CSS colors inline
@@ -329,13 +328,6 @@ local plugins = {
     config = get_config('gitsigns'),
   },
 
-  -- Git commit message editing
-  {
-    'rhysd/committia.vim',
-    config = get_config('committia'),
-    ft = 'gitcommit',
-  },
-
   -- Auto-close brackets, parens, etc
   {
     -- 'Raimondi/delimitMate', --  kinda janky
@@ -351,9 +343,9 @@ local plugins = {
 
   ----- Languages and syntax -----
   {
-    -- remove once treesitter is ready
-    'sheerun/vim-polyglot',
-    -- event = 'BufEnter',
+    opt = false,
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
   },
 
   {
@@ -431,9 +423,18 @@ local plugins = {
   },
 
   {
-    opt = false,
-    'kabouzeid/nvim-lspinstall',
-    config = get_config('lspinstall'),
+    'williamboman/nvim-lsp-installer',
+    config = get_config('lsp-installer'),
+    ft = lsp_filetypes,
+    cmd = {
+      'LspInfo',
+      'LspInstall',
+      'LspInstallInfo',
+      'LspInstallLog ',
+    },
+    requires = {
+      'neovim/nvim-lspconfig',
+    }
   },
 
   {
@@ -462,8 +463,8 @@ local plugins = {
   },
 
   {
-    disable = true,
-    'glepnir/lspsaga.nvim',
+    disable = false,
+    'tami5/lspsaga.nvim',
     config = get_config('lspsaga'),
     ft = lsp_filetypes,
   },
