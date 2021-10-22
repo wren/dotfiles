@@ -3,7 +3,7 @@ g.vimade = {
   normalncid = '',
   basefg = '',
   basebg = '',
-  fadelevel = 0.5,
+  fadelevel = 0.6,
   colbufsize = 15,  -- 15 is the default for gui vim, 5 is the default for terminals and gvim
   rowbufsize = 15,  -- 15 is the default for gui vim, 0 is the default for terminals and gvim
   checkinterval = 100,  -- 100 is the default for gui vim, 500 is the default for terminals and neovim
@@ -21,7 +21,7 @@ g.vimade = {
   enablebasegroups = 0,
 
   -- EXPERIMENTAL FEATURE - 0 is the default, enables support for treesitter highlights
-  enabletreesitter  = 0,
+  enabletreesitter  = 1,
 
   basegroups = {
     'Folded',
