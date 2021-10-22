@@ -5,12 +5,10 @@ local custom = {
   chrome = '#323232',
 }
 
--- This function set the configuration of nightfox. If a value is not passed in the setup function
--- it will be taken from the default configuration above
 nightfox.setup({
   fox = "nightfox",
-  transparent = true,
-  alt_nc = custom.bg_inactive,
+  transparent = false,
+  -- alt_nc = custom.bg_inactive,
   styles = {
     -- Style that is applied to variables: see `highlight-args` for options
     comments = "NONE",
@@ -30,10 +28,10 @@ nightfox.setup({
     IndentlineOne     = { fg = '#2D3439', bg = "NONE" },
     IndentlineTwo     = { fg = '#4F5B64', bg = "NONE" },
     -- Normal            = { bg = custom.bg },
-    NormalNC          = { bg = custom.bg_inactive },
+    -- NormalNC          = { bg = custom.bg_inactive },
     SignColumn        = { bg = "NONE" },
     -- SignColumnNC      = { bg = custom.bg_inactive },
-    VertSplit         = { fg = custom.chrome , bg = custom.chrome },
+    -- VertSplit         = { fg = custom.chrome , bg = custom.chrome },
     SignifySignAdd    = { fg = "${green}", bg = "NONE" },
     SignifySignDelete = { fg = "${red}", bg   = "NONE" },
     SignifySignChange = { fg = "${blue}", bg  = "NONE" },
