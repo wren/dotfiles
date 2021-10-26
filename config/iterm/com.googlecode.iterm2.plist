@@ -1815,7 +1815,7 @@
 			<key>Background Image Is Tiled</key>
 			<true/>
 			<key>Background Image Location</key>
-			<string>~/Dotfiles/config/iterm/bg_terminal.png</string>
+			<string>/Users/jonathan/Dotfiles/config/iterm/bg_terminal.png</string>
 			<key>Background Image Mode</key>
 			<integer>1</integer>
 			<key>Badge Color</key>
