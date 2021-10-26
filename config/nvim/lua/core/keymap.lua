@@ -81,7 +81,7 @@ map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>]], {silent = true})
 
 -- Get syntax info at cursor
-map('n', '<LocalLeader>s', '<cmd>lua highlight_group()<CR>')
+map('n', '<Leader>cs', '<cmd>lua highlight_group()<CR>')
 
 -- Disable some keymappings that don't do anything useful, and get in the way
 map('n', 'q:', '')
