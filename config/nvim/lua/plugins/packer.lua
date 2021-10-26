@@ -420,17 +420,6 @@ local plugins = {
     'folke/lsp-trouble.nvim',
     config = get_config('lsp-trouble'),
     ft = lsp_filetypes,
-    cmd = {
-      'LspTrouble',
-      'LspTroubleClose',
-      'LspTroubleDocumentOpen',
-      'LspTroubleDocumentToggle',
-      'LspTroubleOpen',
-      'LspTroubleRefresh',
-      'LspTroubleToggle',
-      'LspTroubleWorkspaceOpen',
-      'LspTroubleWorkspaceToggle',
-    },
   },
 
   {
