@@ -4,7 +4,8 @@
 color_local_branch=3
 color_remote_branch=14
 
-zparseopts -D -E -F a=all d=debug -debug=debug
+zparseopts -D a=all
+zparseopts -D d=debug
 
 format=(
   'branch_name=%(refname:short)'
@@ -84,8 +85,7 @@ make_report() {
     fi
 
     # output the thing
-    short_subject="$(echo ${subject} | head -c $(( $COLUMNS - 120 )) )"
-    print -P "${branch_type}|${branch_status}|${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%f|%F{141}${short_subject}%f|%F{247}by ${author}%f"
+    print -P "${branch_type}|${branch_status}|%f%b${start_str}${branch_color_str} ${branch_name} $tracking|%f%k %F{255}${date_committed}%F{141}|${subject}|%F{247}by ${author}%f"
   done
 }
 
@@ -113,8 +113,8 @@ local cmd_flag=''
 command -v /usr/local/opt/util-linux/bin/column >/dev/null && cmd_flag='--table-empty-lines'
 
 if [[ -n $debug ]];then
-  make_report "$@" | less
+  make_report "$@"
 else
-  column -ts'|' <(sort_report "$@") $cmd_flag | less
+  column -ts'|' --table-truncate=3,4 <(sort_report "$@") $cmd_flag
 fi
 
