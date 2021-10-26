@@ -57,6 +57,7 @@
     pkgs.git-extras
     pkgs.git-filter-repo
     pkgs.git-lfs
+    pkgs.go
     pkgs.hyperfine
     pkgs.micro
     pkgs.pandoc
