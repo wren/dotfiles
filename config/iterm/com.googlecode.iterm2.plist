@@ -1844,7 +1844,7 @@
 			<key>Badge Top Margin</key>
 			<real>10</real>
 			<key>Blend</key>
-			<real>1</real>
+			<real>0.69999999999999996</real>
 			<key>Blink Allowed</key>
 			<true/>
 			<key>Blinking Cursor</key>
