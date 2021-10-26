@@ -67,7 +67,15 @@
         my_url="https://github.com/neovim/neovim/releases/download/nightly/${my_file}"
 
         echo "Downloading ${my_url}..."
-        curl -fLsO $my_url
+        if ! curl -fLsO $my_url; then
+          my_status="$(curl -s -o /dev/null -w "%{http_code}" $my_url)"
+          if [[ $my_status == '404' ]]; then
+            echo "Neovim nightly not found (404)"
+            echo "Don't worry, this happens sometimes."
+            echo "See: https://github.com/neovim/neovim/issues/15709"
+            exit 0
+          fi
+        fi
         shasum --check <(curl -Ls ${my_url}.sha256sum)
         tar xzf $my_file
 
@@ -86,6 +94,8 @@
     - description: Checking Python environment
       command: |-
         PYTHON_VENVS_DIR=${PYTHON_VENVS_DIR:-$XDG_CACHE_HOME/python-virtual-envs}
+        "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pip | perl -ne 'print if not m/^Requirement already/'
+
         if [[ ! -d "$PYTHON_VENVS_DIR/neovim" ]]; then
             python -m venv "$PYTHON_VENVS_DIR/neovim"
             "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim
