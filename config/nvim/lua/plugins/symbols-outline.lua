@@ -49,3 +49,8 @@ g.symbols_outline = {
   }
 }
 
+
+-- Keymap --
+local silent = { silent = true }
+map('n', '<localleader>so', ':SymbolsOutline<CR>', silent)
+

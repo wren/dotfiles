@@ -37,3 +37,8 @@ saga.init_lsp_saga {
   border_style = "single", -- "single" "double" "round" "plus"
   rename_prompt_prefix = '➤',
 }
+
+-- Keymap --
+local silent = { silent = true }
+map('n', '<localleader>dl', ':Lspsaga show_line_diagnostics<CR>', silent)
+

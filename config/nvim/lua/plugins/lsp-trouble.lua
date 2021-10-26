@@ -31,5 +31,12 @@ require("trouble").setup {
     hint = "", -- or maybe ﯦ ?
     information = ""
   },
-  use_lsp_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+  use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 }
+
+-- Keymap --
+local silent = { silent = true }
+map('n', '<localleader>do', ':LspTroubleToggle<CR>', silent)
+map('n', '<localleader>db', ':LspTroubleDocumentToggle<CR>', silent)
+map('n', '<localleader>dp', ':LspTroubleWorkspaceToggle<CR>', silent)
+

@@ -463,7 +463,6 @@ local plugins = {
   },
 
   {
-    disable = false,
     'tami5/lspsaga.nvim',
     config = get_config('lspsaga'),
     ft = lsp_filetypes,
