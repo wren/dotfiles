@@ -71,7 +71,7 @@ function jp() {
   my_template_file="${my_root}/notes-template.jrnl"
 
   jrnl \
-    --co journal "${my_root}/project-notes.jrnl" \
+    --co journals.default "${my_root}/project-notes.jrnl" \
     $([[ -f $my_template_file ]] && echo "--co template '$my_template_file'") \
     "$@"
 }
