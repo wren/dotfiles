@@ -68,7 +68,6 @@ local config = {
   extensions = {
     'quickfix',
     'nvim-tree',
-    'fzf',
   }
 }
 

@@ -15,9 +15,9 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( 'e', '  New file' , ':ene <BAR> startinsert <CR>'),
-    dashboard.button( 'f', '  Find file in project', ':Files<CR>'),
-    dashboard.button( 'r', '  Recent files'   , ':History<CR>'),
+    dashboard.button( 'e', '  New file' , ':enew<CR>'),
+    dashboard.button( 'p', '  Find file in project', ':Telescope git_files<CR>'),
+    dashboard.button( 'r', '  Recent files'   , ':Telescope oldfiles<CR>'),
     dashboard.button( 's', '  Restore session'   , ':RestoreSession<CR>'),
     dashboard.button( ',', '  Settings' , ':e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR>'),
     dashboard.button( 'q', '  Quit', ':qa<CR>'),

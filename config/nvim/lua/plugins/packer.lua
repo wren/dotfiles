@@ -259,44 +259,15 @@ local plugins = {
     config = get_config('tmux-navigator'),
   },
 
-  -- Fantastic fuzzy finder
+
+  -- Fantastic fuzzy finder --
   {
-    'junegunn/fzf.vim',
-    config = get_config('fzf'),
+    opt = false,
+    'nvim-telescope/telescope.nvim',
     requires = {
-      'junegunn/fzf',
-      run = fn['fzf#install'],
+      'nvim-lua/plenary.nvim',
     },
-    cmd = {
-      'Files',
-      'GFiles',
-      'GFiles?',
-      'Buffers',
-      'Colors',
-      'Ag',
-      'Rg',
-      'Lines',
-      'BLines',
-      'Tags',
-      'BTags',
-      'Marks',
-      'Windows',
-      'Locate',
-      'History',
-      'History:',
-      'History/',
-      'Snippets',
-      'Commits',
-      'BCommits',
-      'Commands',
-      'Maps',
-      'Helptags',
-      'Filetypes',
-    },
-    keys = {
-      '<c-p>',
-      '<leader>f',
-    },
+    config = get_config('telescope'),
   },
 
   ----- Versioning -----
