@@ -1381,6 +1381,8 @@
 	<true/>
 	<key>DimOnlyText</key>
 	<true/>
+	<key>DisableCustomBoxDrawing</key>
+	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
 	<key>DisableTmuxWindowPositionRestoration</key>
@@ -1531,7 +1533,7 @@
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
-	<true/>
+	<false/>
 	<key>HotkeyAutoHides</key>
 	<true/>
 	<key>HotkeyChar</key>
@@ -1541,7 +1543,7 @@
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>1048848</integer>
+	<integer>1048576</integer>
 	<key>IRMemory</key>
 	<integer>99</integer>
 	<key>JobName</key>
@@ -1962,6 +1964,8 @@
 			<integer>0</integer>
 			<key>Initial Text</key>
 			<string></string>
+			<key>Initial Use Transparency</key>
+			<false/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -2035,7 +2039,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCodeNerdFontComplete-Regular 18</string>
+			<string>FiraCodeNerdFontComplete-Light 18</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Option Key Sends</key>
@@ -2094,7 +2098,7 @@
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Send New Output Alert</key>
-			<true/>
+			<false/>
 			<key>Send Session Ended Alert</key>
 			<false/>
 			<key>Set Local Environment Vars</key>
@@ -2102,7 +2106,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Status Bar</key>
-			<false/>
+			<true/>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
@@ -2213,13 +2217,13 @@
 						<key>Alpha Component</key>
 						<real>1</real>
 						<key>Blue Component</key>
-						<real>0.25490197539329529</real>
+						<real>0.070588238537311554</real>
 						<key>Color Space</key>
 						<string>sRGB</string>
 						<key>Green Component</key>
-						<real>0.22745098173618317</real>
+						<real>0.070588238537311554</real>
 						<key>Red Component</key>
-						<real>0.22745098173618317</real>
+						<real>0.070588238537311554</real>
 					</dict>
 					<key>default text color</key>
 					<dict>
@@ -2235,7 +2239,7 @@
 						<real>0.9197540283203125</real>
 					</dict>
 					<key>font</key>
-					<string>FiraCodeNerdFontComplete-Light 18</string>
+					<string>FiraCodeNerdFontComplete-Light 7</string>
 					<key>remove empty components</key>
 					<true/>
 					<key>separator color 2</key>
@@ -2256,168 +2260,19 @@
 				<array>
 					<dict>
 						<key>class</key>
-						<string>iTermStatusBarSwiftyStringComponent</string>
-						<key>configuration</key>
-						<dict>
-							<key>knobs</key>
-							<dict>
-								<key>base: compression resistance</key>
-								<real>1</real>
-								<key>base: priority</key>
-								<real>10</real>
-								<key>expression</key>
-								<string>\(tmuxStatusLeft)</string>
-								<key>maxwidth</key>
-								<real>350</real>
-								<key>minwidth</key>
-								<real>0.0</real>
-								<key>shared background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.70588237047195435</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.49411764740943909</real>
-									<key>Red Component</key>
-									<real>0.23921568691730499</real>
-								</dict>
-							</dict>
-							<key>layout advanced configuration dictionary value</key>
-							<dict>
-								<key>algorithm</key>
-								<integer>1</integer>
-								<key>auto-rainbow style</key>
-								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.25490197539329529</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.22745098173618317</real>
-									<key>Red Component</key>
-									<real>0.22745098173618317</real>
-								</dict>
-								<key>default text color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.9197540283203125</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.9197540283203125</real>
-									<key>Red Component</key>
-									<real>0.9197540283203125</real>
-								</dict>
-								<key>font</key>
-								<string>FiraCodeNerdFontComplete-Light 18</string>
-								<key>remove empty components</key>
-								<true/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.80548095703125</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.80548095703125</real>
-									<key>Red Component</key>
-									<real>0.80548095703125</real>
-								</dict>
-							</dict>
-						</dict>
-					</dict>
-					<dict>
-						<key>class</key>
 						<string>iTermStatusBarSpringComponent</string>
 						<key>configuration</key>
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>iTermStatusBarSpringComponentSizeMultipleKey</key>
-								<integer>1</integer>
-							</dict>
-							<key>layout advanced configuration dictionary value</key>
-							<dict>
-								<key>algorithm</key>
-								<integer>1</integer>
-								<key>auto-rainbow style</key>
-								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.25490197539329529</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.22745098173618317</real>
-									<key>Red Component</key>
-									<real>0.22745098173618317</real>
-								</dict>
-								<key>default text color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.9197540283203125</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.9197540283203125</real>
-									<key>Red Component</key>
-									<real>0.9197540283203125</real>
-								</dict>
-								<key>font</key>
-								<string>FiraCodeNerdFontComplete-Light 18</string>
-								<key>remove empty components</key>
-								<true/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.80548095703125</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.80548095703125</real>
-									<key>Red Component</key>
-									<real>0.80548095703125</real>
-								</dict>
-							</dict>
-						</dict>
-					</dict>
-					<dict>
-						<key>class</key>
-						<string>iTermStatusBarClockComponent</string>
-						<key>configuration</key>
-						<dict>
-							<key>knobs</key>
-							<dict>
 								<key>base: compression resistance</key>
-								<real>1</real>
+								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
-								<key>format</key>
-								<string>EEE, MMM d '|' h:mm:ss a</string>
-								<key>localize</key>
+								<key>iTermStatusBarSpringComponentSizeMultipleKey</key>
 								<integer>1</integer>
-								<key>maxwidth</key>
-								<real>280</real>
-								<key>minwidth</key>
-								<real>280</real>
+								<key>iTermStatusBarSpringComponentSpringConstantKey</key>
+								<real>0.01</real>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
@@ -2430,13 +2285,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.25490197539329529</real>
+									<real>0.070588238537311554</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.22745098173618317</real>
+									<real>0.070588238537311554</real>
 									<key>Red Component</key>
-									<real>0.22745098173618317</real>
+									<real>0.070588238537311554</real>
 								</dict>
 								<key>default text color</key>
 								<dict>
@@ -2452,7 +2307,7 @@
 									<real>0.9197540283203125</real>
 								</dict>
 								<key>font</key>
-								<string>FiraCodeNerdFontComplete-Light 18</string>
+								<string>FiraCodeNerdFontComplete-Light 7</string>
 								<key>remove empty components</key>
 								<true/>
 								<key>separator color 2</key>
@@ -2528,9 +2383,9 @@
 			<key>Use Cursor Guide</key>
 			<false/>
 			<key>Use Custom Tab Title</key>
-			<true/>
+			<false/>
 			<key>Use Custom Window Title</key>
-			<true/>
+			<false/>
 			<key>Use HFS Plus Mapping</key>
 			<false/>
 			<key>Use Italic Font</key>
@@ -2544,7 +2399,7 @@
 			<key>Use libtickit protocol</key>
 			<true/>
 			<key>Vertical Spacing</key>
-			<real>1.2</real>
+			<real>1</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -2562,7 +2417,7 @@
 	<key>OpenBookmark</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
-	<false/>
+	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
 	<key>OptimumTabWidth</key>
@@ -2679,7 +2534,7 @@
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.32861578525641028</real>
 	<key>StatusBarHeight</key>
-	<real>32</real>
+	<real>10</real>
 	<key>StatusBarIcon</key>
 	<false/>
 	<key>StatusBarPosition</key>
@@ -2736,7 +2591,7 @@
 	<key>UseLionStyleFullscreen</key>
 	<true/>
 	<key>UseTmuxStatusBar</key>
-	<false/>
+	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WebKitDefaultFontSize</key>
@@ -2751,6 +2606,8 @@
 	<integer>0</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>disableMetalWhenUnplugged</key>
+	<false/>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findMode_iTerm</key>
