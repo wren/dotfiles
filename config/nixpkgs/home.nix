@@ -53,7 +53,6 @@
     pkgs.coreutils
     pkgs.diff-so-fancy
     pkgs.exiftool
-    pkgs.git
     pkgs.git-extras
     pkgs.git-filter-repo
     pkgs.git-lfs
