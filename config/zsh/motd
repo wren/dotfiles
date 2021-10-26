@@ -5,6 +5,7 @@ if command -v lolcat &>/dev/null; then
   cmd='lolcat'
 fi
 
+clear
 $cmd <<'EOM'
                        __,---,
          .---.        /__|o\  )       .-"-.      .----.""".
