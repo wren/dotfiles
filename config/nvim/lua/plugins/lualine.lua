@@ -28,20 +28,19 @@ local conditions = {
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
+        return true
       end
     end
     return false
   end,
-
 }
 
 -- Config
 local config = {
   options = {
     -- Disable sections and component separators
-    component_separators = "",
-    section_separators = "",
+    component_separators = '',
+    section_separators = '',
     theme = 'nightfox'
   },
   sections = {
@@ -90,11 +89,13 @@ end
 ins_left {
   function ()
     local is_modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
+    local pwd = cmd'pwd'
     local filename = fn.expand('%')
     local fg = colors.fg
-    local bg = colors.bg_alt
+    local bg = colors.bg_float
     local gui = 'NONE'
 
+    filename = './' .. filename:gsub(pwd, '')
     if is_modified then
       fg = colors.yellow
       filename = filename .. ' '
@@ -140,10 +141,15 @@ ins_right {
 
 ins_right {
   -- Lsp server name .
-  conditions.lsp_status,
-  icon = '',
+  function()
+    if conditions.lsp_status() then
+      return ''
+    end
+    return ''
+  end,
   color = { fg = colors.white },
-  condition = function() return not conditions.lsp_status() == false end,
+  -- don't know why this condition doesn't work, but the above does
+  -- condition = conditions.lsp_status
 }
 
 -- Add components to right sections
