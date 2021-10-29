@@ -1,8 +1,11 @@
 local nightfox = require('nightfox')
+local none = 'NONE'
 local custom = {
-  bg = '#141414',
-  bg_inactive = '#212121',
-  chrome = '#323232',
+  grey_darkest = '#141414',
+  grey_dark = '#212121',
+  -- chrome = '#323232',
+  grey_mid = '#2D3439',
+  grey_light = '#4F5B64',
 }
 
 nightfox.setup({
@@ -11,11 +14,11 @@ nightfox.setup({
   alt_nc = custom.bg_inactive,
   styles = {
     -- Style that is applied to variables: see `highlight-args` for options
-    comments = 'NONE',
-    functions = 'NONE',
-    keywords = 'NONE',
-    strings = 'NONE',
-    variables = 'NONE',
+    comments = none,
+    functions = none,
+    keywords = none,
+    strings = none,
+    variables = none,
   },
   inverse = {
     match_paren = false, -- Enable/Disable inverse highlighting for match parens
@@ -25,24 +28,23 @@ nightfox.setup({
   colors = {
     -- To see defaults run:
     --   :Bufferize lua print(vim.inspect(require('nightfox.colors').load()))`
-    bg = '#121212',
-    bg_alt = '#212121',
-    bg_sidebar = '#212121',
-
+    bg = custom.grey_darkest,
+    bg_alt = custom.grey_dark,
+    bg_sidebar = custom.grey_dark,
   },
   hlgroups = {
     -- ExampleClass = { fg = '#fff', bg = '#fff', style = 'bold, sp = 'underline' },
-    IndentlineOne     = { fg = '#2D3439', bg = 'NONE' },
-    IndentlineTwo     = { fg = '#4F5B64', bg = 'NONE' },
-    Normal            = { bg = 'NONE' },
+    IndentlineOne     = { fg = custom.grey_mid,   bg =  none },
+    IndentlineTwo     = { fg = custom.grey_light, bg =  none },
+    Normal            = { bg = none },
     -- NormalNC          = { bg = custom.bg_inactive },
-    SignColumn        = { bg = 'NONE' },
+    SignColumn        = { bg = none },
     -- SignColumnNC      = { bg = custom.bg_inactive },
     -- VertSplit         = { fg = custom.chrome , bg = custom.chrome },
-    -- SignifySignAdd    = { fg = '${green}', bg = 'NONE' },
-    -- SignifySignDelete = { fg = '${red}', bg   = 'NONE' },
-    -- SignifySignChange = { fg = '${blue}', bg  = 'NONE' },
-    -- SignifySignChangeDelete = { fg = '${orange}', bg  = 'NONE' },
+    SignifySignAdd    = { fg = '${green}', bg = 'NONE' },
+    SignifySignDelete = { fg = '${red}', bg   = 'NONE' },
+    SignifySignChange = { fg = '${blue}', bg  = 'NONE' },
+    SignifySignChangeDelete = { fg = '${orange}', bg  = 'NONE' },
   }
 })
 

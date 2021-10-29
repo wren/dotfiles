@@ -38,10 +38,10 @@ local conditions = {
 -- Config
 local config = {
   options = {
-    -- Disable sections and component separators
+    theme = 'onedark',
     component_separators = '',
-    section_separators = '',
-    theme = 'nightfox'
+    -- component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
   },
   sections = {
     -- these are to remove the defaults
@@ -88,11 +88,15 @@ end
 -- filename with modified status display (color change, bold, pencil icon)
 ins_left {
   function ()
+    if vim.bo.filetype == 'help' then
+      return 'HELP - ' .. fn.expand('%:t:r')
+    end
+
     local is_modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
-    local pwd = cmd'pwd'
+    local pwd = vim.api.nvim_exec('pwd', true)
     local filename = fn.expand('%')
     local fg = colors.fg
-    local bg = colors.bg_float
+    local bg = '#2e323c'
     local gui = 'NONE'
 
     filename = './' .. filename:gsub(pwd, '')

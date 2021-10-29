@@ -69,7 +69,7 @@ local plugins = {
   ----- Statusline -----
   {
     opt = false,
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     config = get_config('lualine'),
   },
 
