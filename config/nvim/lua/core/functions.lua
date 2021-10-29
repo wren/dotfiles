@@ -27,11 +27,12 @@ end
 
 -- show some useful info about highlight groups (for debugging color schemes)
 function highlight_group()
-  ids = fn.synstack(fn.line('.'), fn.col('.'))
+  local ids = fn.synstack(fn.line('.'), fn.col('.'))
+  local result = 'no group found'
   for i, id in ipairs(ids) do
-    current = fn.synIDattr(id, 'name')
-    linked = fn.synIDattr(fn.synIDtrans(id), 'name')
-    icon = ''
+    local current = fn.synIDattr(id, 'name')
+    local linked = fn.synIDattr(fn.synIDtrans(id), 'name')
+    local icon = ''
     if i == #ids then
       icon = ''
     end
@@ -39,6 +40,6 @@ function highlight_group()
     if current ~= linked then
       result = string.format('%s  %s', result, linked)
     end
-    print(result)
   end
+  print(result)
 end
