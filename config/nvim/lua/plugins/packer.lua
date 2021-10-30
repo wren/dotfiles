@@ -447,13 +447,14 @@ local plugins = {
 
   -- @todo set this up
   -- DAP (Debug Adapter Protocol)
-  -- {
-  --   'mfussenegger/nvim-dap',
-  --   config = get_config('dap'),
-  --   requires = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --   }
-  -- },
+  {
+    disable = true,
+    'mfussenegger/nvim-dap',
+    config = get_config('dap'),
+    requires = {
+      'nvim-treesitter/nvim-treesitter',
+    }
+  },
 
   -- Operations on matching chars (e.g. parens, brackets, etc)
   {
