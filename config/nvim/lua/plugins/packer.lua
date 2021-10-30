@@ -241,9 +241,21 @@ local plugins = {
 
   -- Visual overlay to jump cursor to any part of screen
   {
+    disable = true,
     'easymotion/vim-easymotion',
     config = get_config('easymotion'),
     event = 'BufEnter',
+  },
+
+  {
+    opt = false,
+    'justinmk/vim-sneak',
+    config = function()
+      cmd[[
+      map f <Plug>Sneak_s
+      map F <Plug>Sneak_S
+      ]]
+    end,
   },
 
   {
