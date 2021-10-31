@@ -50,6 +50,16 @@ local plugins = {
     'lewis6991/impatient.nvim',
   },
 
+  ----- Global Dependencies -----
+  {
+    'nvim-lua/plenary.nvim',
+    event = 'CursorMoved',
+    module = {
+      'telescope',
+      'gitsigns',
+    }
+  },
+
   ----- Plugin management -----
   {
     'wbthomason/packer.nvim',
@@ -68,25 +78,25 @@ local plugins = {
 
   ----- Statusline -----
   {
-    opt = false,
     'nvim-lualine/lualine.nvim',
     config = get_config('lualine'),
+    event = 'CursorMoved',
   },
 
   ----- Session/view management -----
   {
     'rmagatti/auto-session',
     config = get_config('auto-session'),
-    event = 'BufEnter',
     keys = {
       '<leader>ss',
       '<leader>sr',
       '<leader>sd',
     },
+    event = 'CursorMoved',
   },
 
   ----- Search -----
-  -- Better search with
+  -- Better search with slash
   {
     'junegunn/vim-slash',
     keys = '/',
@@ -113,7 +123,7 @@ local plugins = {
     'RRethy/vim-hexokinase',
     run = 'make hexokinase',
     setup = get_config('hexokinase'),
-    event = 'BufEnter',
+    event = 'CursorMoved',
   },
 
   -- Highlight area being copied
@@ -146,11 +156,7 @@ local plugins = {
   {
     'tadaa/vimade',
     config = get_config('vimade'),
-    event = {
-      'WinEnter',
-      'BufEnter',
-      'WinLeave',
-    },
+    event = 'CursorMoved',
   },
 
   ----- Tab management -----
@@ -159,12 +165,7 @@ local plugins = {
     -- replaces bufferline and bufkill
     'romgrk/barbar.nvim',
     config = get_config('barbar'),
-    event = {
-      'BufEnter',
-      'CursorMoved',
-      'BufAdd',
-      'BufWinEnter',
-    }
+    event = 'CursorMoved',
   },
 
   ----- File explorer -----
@@ -244,7 +245,7 @@ local plugins = {
     disable = true,
     'easymotion/vim-easymotion',
     config = get_config('easymotion'),
-    event = 'BufEnter',
+    event = 'CursorMoved',
   },
 
   {
@@ -266,20 +267,26 @@ local plugins = {
 
   -- Navigate windows in vim and tmux with the same keys
   {
-    opt = false,
     'christoomey/vim-tmux-navigator',
     config = get_config('tmux-navigator'),
+    event = 'CursorMoved'
   },
 
 
   -- Fantastic fuzzy finder --
   {
-    opt = false,
     'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
     config = get_config('telescope'),
+    event = 'CursorMoved',
+    cmd = {
+      'Telescope',
+    },
+  },
+
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    module = 'telescope',
   },
 
   ----- Versioning -----
@@ -301,14 +308,9 @@ local plugins = {
 
   -- Status markers in gutter
   {
-    opt = false,
-    'nvim-lua/plenary.nvim',
-  },
-
-  {
     'lewis6991/gitsigns.nvim',
-    event = 'BufWinEnter',
     config = get_config('gitsigns'),
+    event = 'CursorMoved',
   },
 
   -- Auto-close brackets, parens, etc
@@ -320,20 +322,21 @@ local plugins = {
 
   -- Split/Join oneline/multiline statements
   {
-    opt = false,
     'AndrewRadev/splitjoin.vim',
+    event = 'CursorMoved',
   },
 
   ----- Languages and syntax -----
   {
-    opt = false,
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    event = 'CursorMoved',
   },
 
   {
-    opt = false,
     'wren/jrnl.vim',
+    event = 'CursorMoved',
+    ft = jrnl_filetypes,
   },
 
   ----- Coding -----
@@ -399,25 +402,18 @@ local plugins = {
 
   -- Completion & LSP
   {
-    opt = false,
     'neovim/nvim-lspconfig',
     run = 'npm install -g typescript-language-server',
     config = get_config('nvim-lspconfig'),
+    ft = lsp_filetypes,
+    cmd = 'LspStart',
   },
 
   {
     'williamboman/nvim-lsp-installer',
     config = get_config('lsp-installer'),
     ft = lsp_filetypes,
-    cmd = {
-      'LspInfo',
-      'LspInstall',
-      'LspInstallInfo',
-      'LspInstallLog ',
-    },
-    requires = {
-      'neovim/nvim-lspconfig',
-    }
+    module = 'lspconfig',
   },
 
   {
@@ -431,7 +427,7 @@ local plugins = {
   {
     'folke/lsp-trouble.nvim',
     config = get_config('lsp-trouble'),
-    ft = lsp_filetypes,
+    module = 'lspconfig',
   },
 
   {

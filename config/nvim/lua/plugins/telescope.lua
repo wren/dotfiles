@@ -33,13 +33,22 @@ require('telescope').setup{
   },
   extensions = {
     -- extension_name = { extension_config_key = value }
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
   }
 }
+
+require('telescope').load_extension('fzf')
+
 
 -- Keymap --
 local silent = { silent = true }
 map('n', '<leader>fb', ':Telescope buffers<CR>', silent)
-map('n', '<leader>ft', ':Telescope filetypes<R>', silent)
+map('n', '<leader>ft', ':Telescope filetypes<CR>', silent)
 map('n', '<M-C-p>', ':Telescope buffers<CR>', silent)
 map('n', '<C-p>', ':Telescope git_files<CR>', silent)
 map('n', '<leader>fp', ':Telescope find_files<CR>')
