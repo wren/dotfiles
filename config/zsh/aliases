@@ -63,7 +63,7 @@ alias jn='jrnl notes'
 alias je='jn --edit'
 alias js='jn --short'
 function t() { jn "$@" '#todo +inbox'; }
-alias jt='jn +todo'
+function jt(){ jn "$@" +todo; }
 alias jte='je +todo ^todo'
 alias jts='js +todo ^todo'
 function jp() {
