@@ -38,10 +38,11 @@ local conditions = {
 -- Config
 local config = {
   options = {
-    theme = 'onedark',
+    theme = 'nightfox',
     component_separators = '',
     -- component_separators = {left = '', right = ''},
-    section_separators = {left = '', right = ''},
+    -- section_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
   },
   sections = {
     -- these are to remove the defaults
@@ -96,7 +97,7 @@ ins_left {
     local pwd = vim.api.nvim_exec('pwd', true)
     local filename = fn.expand('%')
     local fg = colors.fg
-    local bg = '#2e323c'
+    local bg = colors.bg_statusline
     local gui = 'NONE'
 
     filename = './' .. filename:gsub(pwd, '')

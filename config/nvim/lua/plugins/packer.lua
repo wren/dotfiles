@@ -154,6 +154,7 @@ local plugins = {
 
   -- Fade text in inactive windows (while preserving syntax)
   {
+    disable = true,
     'tadaa/vimade',
     config = get_config('vimade'),
     event = 'CursorMoved',
