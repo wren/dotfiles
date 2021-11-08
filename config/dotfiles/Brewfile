@@ -5,6 +5,7 @@ brew "tag" # Manipulate and query tags on macOS files
 brew "tmux" # Terminal multiplexer
 brew "trash" # CLI tool that moves files or folder to the trash
 brew "util-linux" # Collection of Linux utilities
+brew "viu" # Simple terminal image viewer written in Rust
 cask "1password" # Password manager that keeps all passwords secure behind one password
 cask "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
 cask "alfred" # Application launcher and productivity software
