@@ -8,15 +8,16 @@ set.autowrite = true
 set.confirm = true
 set.splitbelow = true
 set.splitright = true
-cmd 'set nofixeol'        -- don't secretly add newlines to every file at eof
+set.fixendofline = false  -- don't secretly add newlines to every file at eof
 set.encoding = 'UTF-8'
--- cmd [[scriptencoding UTF-8]]
 set.laststatus = 2
 set.showtabline = 2
 set.showmode = false
 set.statusline = '-'            -- hide file name in statusline
-cmd [[set fillchars+=vert:\|]]  -- add a bar for vertical splits
-cmd [[set fcs=eob:\ ]]          -- hide ~
+set.fillchars:append({
+  vert = ' ', -- add a bar for vertical splits
+  eob = ' ',  -- hide ~ at the end of files
+})
 
 -- History saving
 set.history = 9999
@@ -50,9 +51,17 @@ set.shortmess='aFc'
 set.signcolumn = 'yes'
 set.completefunc = 'emoji#complete'
 set.completeopt = 'longest,menu'
-cmd [[set complete+=k]]        -- add dictionary entries to completion
+set.complete:append('k')  -- add dictionary entries to completion
 set.list = true
-cmd [[set listchars=nbsp:+,trail:·,extends:→,precedes:←,eol:\ ,tab:├─,trail:·]]
+set.listchars:append({
+  nbsp = '+',
+  trail = '·',
+  extends = '→',
+  precedes = '←',
+  eol = ' ',
+  tab = '├─',
+  trail = '·',
+})
 
 set.ignorecase = true           -- Search ignoring case
 set.smartcase = true            -- Keep case when searching with *
@@ -60,12 +69,12 @@ set.infercase = true            -- Adjust case in insert completion mode
 set.incsearch = true            -- Incremental search
 set.hlsearch = true             -- Highlight search results
 set.wrapscan = true             -- Searches wrap around the end of the file
-cmd [[set whichwrap+=<,>,h,l]]  -- Wraps left and right to the next/previous line
+set.whichwrap:append('<,>,h,l') -- showmatch will wait 0.5s or until a char is typed
 set.wrap = false                -- Do not wrap any lines
 set.showmatch = true            -- Jump to matching bracket
-cmd [[set matchpairs+=<:>]]     -- Add HTML brackets to pair matching
+set.matchpairs:append( '<:>' )  -- showmatch will wait 0.5s or until a char is typed
 set.matchtime = 1               -- Tenths of a second to show the matching paren
-cmd [[set cpoptions-=m]]        -- showmatch will wait 0.5s or until a char is typed
+set.cpoptions:remove('m')       -- showmatch will wait 0.5s or until a char is typed
 set.viewoptions='cursor,folds,slash,unix' -- what
 set.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize,globals'
 
@@ -73,7 +82,15 @@ set.foldenable = false
 set.foldlevelstart = 99
 
 set.grepprg=[[rg\ --vimgrep\ $*]]
-cmd [[set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*,*/node_modules/*]]
+set.wildignore:append({
+  '*.so',
+  '*~',
+  '*/.git/*',
+  '*/.svn/*',
+  '*/.DS_Store',
+  '*/tmp/*',
+  '*/node_modules/*',
+})
 set.wildmenu = true
 
 -- Changes style for inactive windows (can be updated in color scheme)
@@ -104,12 +121,11 @@ set.spell = false
 set.spellfile = CUSTOM_DICT
 set.spelllang = 'en'
 -- set.spelllang='en,es' -- @todo something keeps going wrong with this
-cmd('set dictionary+=%s' .. WORDS_DICT)
-cmd('set dictionary+=%s' .. CUSTOM_DICT)
+set.dictionary:append({ WORDS_DICT, CUSTOM_DICT })
 
 -- Copy/pasting stuff
 if fn.has('clipboard') == 1 then
-  cmd 'set clipboard& clipboard+=unnamedplus'
+  set.clipboard:append('unnamedplus')
 end
 
 -- If sudo, disable vim swap/backup/undo/shada/viminfo writing
@@ -127,7 +143,14 @@ end
 -- Secure sensitive information, disable backup files in temp directories
 set.secure = true
 if fn.exists('&backupskip') ~= 0 then
-  cmd 'set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
+  set.backupskip:append({
+    '/tmp/*',
+    '$TMPDIR/*',
+    '$TMP/*',
+    '$TEMP/*',
+    '*/shm/*',
+    '/private/var/*',
+  })
 end
 
 
