@@ -50,7 +50,7 @@ local silent = { silent = true }
 map('n', '<leader>fb', ':Telescope buffers<CR>', silent)
 map('n', '<leader>ft', ':Telescope filetypes<CR>', silent)
 map('n', '<M-C-p>', ':Telescope buffers<CR>', silent)
-map('n', '<C-p>', ':Telescope git_files<CR>', silent)
+map('n', '<C-p>', ':Telescope find_files<CR>', silent)
 map('n', '<leader>fp', ':Telescope find_files<CR>')
 map('n', '<leader>ff', ':Telescope live_grep<CR>')
 map('n', '<leader>fm', ':Telescope keymaps<CR>')
