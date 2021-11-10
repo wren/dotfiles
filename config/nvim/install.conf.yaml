@@ -27,36 +27,42 @@
 - shell:
     - description: Checking Neovim installation
       command: |-
-        latest=$(curl -fLso /dev/null -w %{url_effective} https://github.com/neovim/neovim/releases/latest)
-        latest_version=${latest##*/}
-        my_target='/usr/local/share/nvim'
+        latest_version=$(curl -fLs https://api.github.com/repos/neovim/neovim/releases/latest | jq -r '.name')
+
         if command -v nvim &> /dev/null; then
           installed_version="$(nvim --version | head -1)"
-          if [[ "NVIM $latest_version" != $installed_version ]]; then
+          if [[ "$latest_version" != $installed_version ]]; then
             echo "Neovim upgrade available!"
             echo "Installed: $installed_version"
-            echo "Latest:    NVIM $latest_version"
+            echo "Latest:    $latest_version"
             echo
             echo "To upgrade, run:"
-            echo "  rm '${my_target}'"
+            echo "  rm '/usr/local/bin/nvim'"
             echo "Then try this script again"
           fi
           exit 0
         fi
-        echo "Installing nvim ${latest_version}..."
+        echo "Downloading ${latest_version}..."
         my_dir="$(mktemp -d)"
         cd $my_dir
         my_file='nvim-macos.tar.gz'
-        my_url="https://github.com/neovim/neovim/releases/download/${latest_version}/${my_file}"
+        my_url="https://github.com/neovim/neovim/releases/download/stable/${my_file}"
 
         curl -fLsO $my_url
         shasum --check <(curl -Ls ${my_url}.sha256sum)
         tar xzf $my_file
 
-        [[ -d $my_target ]] && rm -rf $my_target
+        my_target='/usr/local/share/nvim/stable'
+        mkdir -p $my_target
+        my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
 
-        mv -v nvim-osx64 /usr/local/share/nvim
-        rm -rf $my_dir
+        if  [[ -d "${my_target}/${my_version}" ]];  then
+          echo "Already have ${my_version}. Skipping..."
+          exit 0
+        fi
+
+        mv -v nvim-osx64 "${my_target}/${my_version}"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
 
     - description: Checking/Upgrading Neovim nightly
       command: |-
@@ -66,7 +72,7 @@
         my_file='nvim-macos.tar.gz'
         my_url="https://github.com/neovim/neovim/releases/download/nightly/${my_file}"
 
-        echo "Downloading ${my_url}..."
+        echo "Downloading NVIM nightly..."
         if ! curl -fLsO $my_url; then
           my_status="$(curl -s -o /dev/null -w "%{http_code}" $my_url)"
           if [[ $my_status == '404' ]]; then
@@ -79,16 +85,20 @@
         shasum --check <(curl -Ls ${my_url}.sha256sum)
         tar xzf $my_file
 
-        my_target=/usr/local/share/nvim-nightly
-        [[ -d $my_target ]] && rm -rf $my_target
+        my_target=/usr/local/share/nvim/nightly
+        mkdir -p $my_target
 
-        mv -v nvim-osx64 /usr/local/share/nvim-nightly
-        rm -rf $my_dir
+        my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
+        if  [[ -d "${my_target}/${my_version}" ]];  then
+          echo "Already have ${my_version}. Skipping..."
+          exit 0
+        fi
+        mv -v nvim-osx64 "${my_target}/${my_version}"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
 
 - link:
-    /usr/local/bin/nvim-nightly: /usr/local/share/nvim-nightly/bin/nvim
-    /usr/local/bin/nvim: /usr/local/share/nvim/bin/nvim
-
+    /usr/local/bin/nvim-nightly: /usr/local/share/nvim/nightly/latest/bin/nvim
+    /usr/local/bin/nvim: /usr/local/share/nvim/stable/latest/bin/nvim
 
 - shell:
     - description: Checking Python environment
