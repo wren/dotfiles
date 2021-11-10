@@ -5,7 +5,7 @@ nvim_create_augroups({
   disable_temp_meta = {
     {
       'BufNewFile,BufReadPre',
-      '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*',
+      '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,*.noindex/*',
       'setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada='
     }
   },

@@ -150,6 +150,8 @@ if fn.exists('&backupskip') ~= 0 then
     '$TEMP/*',
     '*/shm/*',
     '/private/var/*',
+    '*.nobackup/*',
+    '*.noindex/*',
   })
 end
 
