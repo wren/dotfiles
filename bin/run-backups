@@ -46,7 +46,7 @@ ping_healthcheck() {
 
   # Ping the web service (in the background so script can continue and not wait
   # for a network connection). Don't run this in debug (lots of noise).
-  curl \
+  /usr/bin/curl \
     --fail \
     --silent \
     --retry 3 \
