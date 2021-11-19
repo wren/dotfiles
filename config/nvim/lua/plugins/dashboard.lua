@@ -18,7 +18,7 @@ dashboard.section.buttons.val = {
     dashboard.button( 'e', '  New file' , ':enew<CR>'),
     dashboard.button( 'p', '  Find file in project', ':Telescope git_files<CR>'),
     dashboard.button( 'r', '  Recent files'   , ':Telescope oldfiles<CR>'),
-    dashboard.button( 's', '  Restore session'   , ':RestoreSession<CR>'),
+    dashboard.button( 's', '  Restore session'   , ':silent! RestoreSession<CR>'),
     dashboard.button( ',', '  Settings' , ':e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR>'),
     dashboard.button( 'q', '  Quit', ':qa<CR>'),
 }
