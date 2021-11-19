@@ -60,6 +60,8 @@ nightfox.setup({
     SignifySignDelete = { fg = '${red}', bg   = 'NONE' },
     SignifySignChange = { fg = '${blue}', bg  = 'NONE' },
     SignifySignChangeDelete = { fg = '${orange}', bg  = 'NONE' },
+    LualineFilenameInactive = { fg = custom.grey_dark, bg = custom.grey_mid },
+
     -- MsgArea           = { bg = custom.grey_mid },
   }
 })

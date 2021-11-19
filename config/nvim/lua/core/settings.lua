@@ -13,7 +13,6 @@ set.encoding = 'UTF-8'
 set.laststatus = 2
 set.showtabline = 2
 set.showmode = false
-set.statusline = '-'            -- hide file name in statusline
 set.fillchars:append({
   vert = ' ', -- add a bar for vertical splits
   eob = ' ',  -- hide ~ at the end of files

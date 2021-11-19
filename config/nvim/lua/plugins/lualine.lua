@@ -35,6 +35,97 @@ local conditions = {
   end,
 }
 
+
+local plugins = {
+  mode_inactive = {
+    function() return 'INACTIVE' end,
+    color = 'LualineFilenameInactive'
+  },
+  filename = {
+    function ()
+      if vim.bo.filetype == 'help' then
+        return 'HELP - ' .. fn.expand('%:t:r')
+      end
+
+      local is_modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
+      local pwd = vim.api.nvim_exec('pwd', true)
+      local filename = fn.expand('%')
+      local fg = colors.fg
+      local bg = colors.bg_statusline
+      local gui = 'NONE'
+
+      if not pwd == '' and not pwd == nil then
+        print('pwd: ', pwd)
+        filename = string.gsub(filename, pwd, './')
+      end
+
+      if is_modified then
+        fg = colors.yellow
+        filename = filename .. ' '
+        gui = 'bold'
+      end
+
+      cmd(string.format('hi LualineFilename guifg=%s guibg=%s gui=%s', fg, bg, gui))
+
+      return filename
+    end,
+    color = 'LualineFilename'
+  },
+
+  diagnostics = {
+    'diagnostics',
+    sources = {'nvim_lsp'},
+    color_error = colors.red,
+    color_warn = colors.yellow,
+    color_info = colors.cyan,
+    color_hint = colors.magenta,
+    sections = {'error', 'warn', 'info', 'hint'},
+    symbols = {error = ' ', warn = ' ', info = ' ', hint = 'H'},
+  },
+
+  branch = {
+    'branch',
+    icon = '',
+    condition = conditions.check_git_workspace,
+    color = { fg = colors.orange },
+  },
+
+  diff = {
+    'diff',
+    symbols = {added = ' ', modified = ' ', removed = ' '},
+    color_added = colors.green,
+    color_modified = colors.orange,
+    color_removed = colors.red,
+    condition = conditions.hide_in_width
+  },
+
+  lsp_server = {
+    function()
+      if conditions.lsp_status() then
+        return ''
+      end
+      return ''
+    end,
+    color = { fg = colors.white },
+    -- don't know why this condition doesn't work, but the above does
+    -- condition = conditions.lsp_status
+  },
+
+  -- Add components to right sections
+  filetype = {
+    'bo:filetype',
+    upper = true,
+  },
+
+  encoding = {
+    'o:encoding', -- option component same as &encoding in viml
+    upper = true,
+    condition = conditions.hide_in_width,
+    color = { fg = colors.green }
+  },
+
+}
+
 -- Config
 local config = {
   options = {
@@ -46,128 +137,46 @@ local config = {
   },
   sections = {
     -- these are to remove the defaults
-    lualine_a = {'mode'},
+    lualine_a = {
+      'mode',
+    },
     lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
+    lualine_c = {
+      plugins.filename,
+    },
+    lualine_x = {
+      plugins.branch,
+      plugins.diff,
+      plugins.lsp_server,
+      plugins.filetype,
+      plugins.encoding,
+    },
     lualine_y = {},
-    lualine_z = {},
+    lualine_z = {
+      'progress',
+      'location',
+    },
   },
   inactive_sections = {
     -- these are to remove the defaults
-    lualine_a = {},
-    lualine_v = {},
+    lualine_a = {
+      plugins.mode_inactive
+    },
+    lualine_b = {},
+    lualine_c = {
+      plugins.filename,
+    },
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
   },
   disabled_filetypes = {
-    'help',
+    'HELP',
   },
   extensions = {
     'quickfix',
     'nvim-tree',
   }
-}
-
--- Inserts a component in lualine_c at left section
-local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
-end
-
--- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
-end
-
-local function ins_right_color(component)
-  table.insert(config.sections.lualine_z, component)
-end
-
-
--- filename with modified status display (color change, bold, pencil icon)
-ins_left {
-  function ()
-    if vim.bo.filetype == 'help' then
-      return 'HELP - ' .. fn.expand('%:t:r')
-    end
-
-    local is_modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
-    local pwd = vim.api.nvim_exec('pwd', true)
-    local filename = fn.expand('%')
-    local fg = colors.fg
-    local bg = colors.bg_statusline
-    local gui = 'NONE'
-
-    filename = './' .. filename:gsub(pwd, '')
-    if is_modified then
-      fg = colors.yellow
-      filename = filename .. ' '
-      gui = 'bold'
-    end
-
-    cmd(string.format('hi LualineFilename guifg=%s guibg=%s gui=%s', fg, bg, gui))
-
-    return filename
-  end,
-  color = 'LualineFilename'
-}
-
-ins_left {
-  'diagnostics',
-  sources = {'nvim_lsp'},
-  color_error = colors.red,
-  color_warn = colors.yellow,
-  color_info = colors.cyan,
-  color_hint = colors.magenta,
-  sections = {'error', 'warn', 'info', 'hint'},
-  symbols = {error = ' ', warn = ' ', info = ' ', hint = 'H'},
-}
-
--- margin to make middle section
--- ins_left {function() return '%=' end}
-
-ins_right {
-  'branch',
-  icon = '',
-  condition = conditions.check_git_workspace,
-  color = { fg = colors.orange }
-}
-
-ins_right {
-  'diff',
-  symbols = {added = ' ', modified = ' ', removed = ' '},
-  color_added = colors.green,
-  color_modified = colors.orange,
-  color_removed = colors.red,
-  condition = conditions.hide_in_width
-}
-
-ins_right {
-  -- Lsp server name .
-  function()
-    if conditions.lsp_status() then
-      return ''
-    end
-    return ''
-  end,
-  color = { fg = colors.white },
-  -- don't know why this condition doesn't work, but the above does
-  -- condition = conditions.lsp_status
-}
-
--- Add components to right sections
-ins_right {
-  'bo:filetype',
-  upper = true,
-}
-
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  upper = true,
-  condition = conditions.hide_in_width,
-  color = { fg = colors.green }
 }
 
 -- display character code under cursor
@@ -181,10 +190,6 @@ ins_right {
 --     return '['..(string.byte(char, 1, 2) or 'n/a')..']'
 --   end,
 -- }
-
-
-ins_right_color { 'progress' }
-ins_right_color { 'location' }
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
