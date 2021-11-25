@@ -32,7 +32,7 @@ nvim_create_augroups({
 
   -- set keymap for bindings that don't work on unmodifiable buffers (e.g. help)
   modifiable_only_keymap = {
-    'BufReadPost,BufModifiedSet * lua if vim.bo.modifiable then keymap_modifiable_only() end'
+    'BufReadPost,BufModifiedSet * lua if opt.modifiable:get() then keymap_modifiable_only() end'
   },
 
   -- better syntax highlight performance with large files

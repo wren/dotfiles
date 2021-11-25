@@ -9,25 +9,25 @@ local colors = require('nightfox.colors').load()
 
 local conditions = {
   buffer_is_modified = function()
-    return vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
+    return api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified')
   end,
   buffer_is_not_modified = function()
-    return not vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
+    return not api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified')
   end,
-  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-  hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
+  buffer_not_empty = function() return fn.empty(fn.expand('%:t')) ~= 1 end,
+  hide_in_width = function() return fn.winwidth(0) > 80 end,
   check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
+    local filepath = fn.expand('%:p:h')
+    local gitdir = fn.finddir('.git', filepath .. ';')
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end,
   lsp_status = function()
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
+    local buf_ft = api.nvim_buf_get_option(0, 'filetype')
+    local clients = lsp.get_active_clients()
     if next(clients) == nil then return false end
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+      if filetypes and fn.index(filetypes, buf_ft) ~= -1 then
         return true
       end
     end
@@ -43,21 +43,15 @@ local plugins = {
   },
   filename = {
     function ()
-      if vim.bo.filetype == 'help' then
+      if opt.bo.filetype == 'help' then
         return 'HELP - ' .. fn.expand('%:t:r')
       end
 
-      local is_modified = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'modified')
-      local pwd = vim.api.nvim_exec('pwd', true)
-      local filename = fn.expand('%')
+      local is_modified = api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified')
+      local filename = fn.fnamemodify(fn.expand("%"), ":~:.")
       local fg = colors.fg
       local bg = colors.bg_statusline
       local gui = 'NONE'
-
-      if not pwd == '' and not pwd == nil then
-        print('pwd: ', pwd)
-        filename = string.gsub(filename, pwd, './')
-      end
 
       if is_modified then
         fg = colors.yellow
@@ -183,10 +177,9 @@ local config = {
 -- @todo make this look nice, and maybe add unicode support
 -- ins_right_color {
 --   function()
---     local v = vim.api
---     local win = v.nvim_get_current_win()
---     local col = vim.api.nvim_win_get_cursor(win)[2]
---     local char = vim.api.nvim_get_current_line():sub(col+1,col+1)
+--     local win = api.nvim_get_current_win()
+--     local col = api.nvim_win_get_cursor(win)[2]
+--     local char = api.nvim_get_current_line():sub(col+1,col+1)
 --     return '['..(string.byte(char, 1, 2) or 'n/a')..']'
 --   end,
 -- }

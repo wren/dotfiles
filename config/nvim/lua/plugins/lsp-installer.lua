@@ -54,7 +54,13 @@ lsp_installer.settings {
 
 lsp_installer.on_server_ready(function(server)
 
-  local make_config = require'plugins.nvim-lspconfig'.make_config
+  local status, make_config = pcall(require, 'nvim-lspconfig')
+
+  if not status then
+    cmd 'PackerLoad nvim-lspconfig'
+    make_config = require'nvim-lspconfig'.make_config
+  end
+
   local opts = make_config()
 
   -- (optional) Customize the options passed to the server
@@ -62,7 +68,11 @@ lsp_installer.on_server_ready(function(server)
   --     opts.root_dir = function() ... end
   -- end
 
+  if server.name == "lua" then
+    opts.settings.globals = { "vim", "use" }
+  end
+
   -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
   server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
+  cmd [[ do User LspAttachBuffers ]]
 end)

@@ -1,5 +1,5 @@
 require('auto-session').setup{
-  auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
+  auto_session_root_dir = fn.stdpath('data').."/sessions/",
   auto_session_enabled = true,
 
   -- only save automatically
@@ -27,3 +27,15 @@ require('auto-session').setup{
 map('n', '<leader>ss', ':SaveSession<CR>', silent)
 map('n', '<leader>sr', ':RestoreSession<CR>', silent)
 map('n', '<leader>sd', ':DeleteSession<CR>', silent)
+
+-- Which key --
+local status, wk = pcall(require, 'which-key')
+if(status) then
+  wk.register({
+    ["<leader>s"] = {
+      s = "Save Session" ,
+      r = "Restore Session" ,
+      d = "Delete Session",
+    }
+  })
+end

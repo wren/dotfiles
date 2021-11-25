@@ -70,4 +70,23 @@ map('n', '<leader>bp', ':BufferPick<CR>', opts)
 
 -- Sort automatically by...
 map('n', '<leader>bo', ':BufferOrderByDirectory<CR>', opts)
--- map('n', '<leader>bl', ':BufferOrderByLanguage<CR>', opts)
+map('n', '<leader>bl', ':BufferOrderByLanguage<CR>', opts)
+
+
+-- Which key --
+local status, wk = pcall(require, 'which-key')
+if(status) then
+  wk.register({
+    ["<leader>b"] = {
+      name = "Buffers",
+      d  = "Delete buffer" ,
+      w  = "Wipeout buffer" ,
+      da = "Close all but current",
+      dh = "Close all left",
+      dl = "Close all right",
+      p  = "Pick buffer",
+      o  = "Sort by directory",
+      l  = "Sort by language",
+    }
+  })
+end

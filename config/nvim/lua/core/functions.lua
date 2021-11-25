@@ -9,8 +9,8 @@ end
 
 -- delete an unnamed, unmodified, empty buffer (including directory buffers)
 function delete_unused_buffer(my_bufnr)
-  if (fn.bufname() == "" or vim.bo[0].buftype == "")
-    and not vim.bo.modified
+  if (fn.bufname() == "" and opt.buftype:get() == "")
+    and not opt.modified:get()
     and fn.line('$') == 1
     and fn.getline(1) == ''
   then

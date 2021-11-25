@@ -1,1 +1,1 @@
-set.conceallevel = 0
+opt.conceallevel = 0

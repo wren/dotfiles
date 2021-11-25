@@ -4,7 +4,7 @@
 
 -- Keymap
 g.VM_leader = '<leader>m'
-
+g.VM_theme = 'neon'
 g.VM_default_mappings = 1
 g.VM_mouse_mappings = 1
 g.VM_exit_on_1_cursor_left = 1
@@ -12,15 +12,16 @@ g.VM_exit_on_1_cursor_left = 1
 local function with_leader(binding)
   return string.format('%s%s', g.VM_leader, binding)
 end
+
 -- This erases all maps if done in lua for some reason
 cmd [[ let g:VM_maps = {} ]]
+
 g.VM_maps = {
-  ['Add Cursor Down'] = '<C-M-J>',
-  ['Add Cursor Up'] = '<C-M-K>',
+  ['Add Cursor Down'] = '<S-C-J>',
+  ['Add Cursor Up'] = '<S-C-K>',
   ['Reselect Last'] = with_leader('h'),
   ['Select All'] = with_leader('*'),
 }
-
 
 g.VM_custom_noremaps = {
   ['=='] = '==',

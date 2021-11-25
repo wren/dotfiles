@@ -15,10 +15,14 @@ map('i', '<A-/>', '<esc>gcca', {noremap = false})
 -- Indent/deindent lines, then reselect
 map('v', '<tab>', '>gv')
 map('v', '<s-tab>', '<gv')
+map('v', '>', '>gv')
+map('v', '<', '<gv')
+
+-- Yank, then reselect
+map('v', 'y', 'ygv')
 
 -- Clear search highlights
 map('n', '<c-l>', ':nohlsearch<CR>', {silent = true})
-map('v', '<c-l>', ':nohlsearch<CR>', {silent = true})
 
 -- Write buffer (save)
 map('n', '<leader>w', ':w<CR>')
@@ -34,6 +38,10 @@ map('n', 'd', '"_d')
 map('n', 'D', '"_D')
 map('x', 'd', '"_d')
 map('x', 'D', '"_D')
+map('n', 'c', '"_c')
+map('n', 'C', '"_C')
+map('x', 'c', '"_c')
+map('x', 'C', '"_C')
 map('v', 'p', '"_dp')
 map('v', 'P', '"_dP')
 
@@ -57,7 +65,7 @@ map('n', 'U', '<c-r>')
 
 --tab operation
 map('n', '<leader>tn', ':tabnew<cr>')
-map('n', '<leader>te', ':tabedit')
+map('n', '<leader>te', ':tabedit ')
 map('n', '<leader>tc', ':tabclose<cr>')
 map('n', '<leader>td', ':tcd %:p:h<cr>')
 map('n', '[t', ':tabprevious<CR>')

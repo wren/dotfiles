@@ -76,6 +76,13 @@ local plugins = {
     },
   },
 
+  -- Pop-up cheatsheet for keyboard commands
+  {
+    opt = false,
+    'folke/which-key.nvim',
+    config = get_config('which-key'),
+  },
+
   ----- Statusline -----
   {
     'nvim-lualine/lualine.nvim',
@@ -152,21 +159,13 @@ local plugins = {
   },
 
 
-  -- Fade text in inactive windows (while preserving syntax)
-  {
-    disable = true,
-    'tadaa/vimade',
-    config = get_config('vimade'),
-    event = 'CursorMoved',
-  },
-
   ----- Tab management -----
 
   {
     -- replaces bufferline and bufkill
+    opt = false,
     'romgrk/barbar.nvim',
     config = get_config('barbar'),
-    event = 'CursorMoved',
   },
 
   ----- File explorer -----
@@ -232,13 +231,6 @@ local plugins = {
   {
     'tpope/vim-repeat',
     keys = '.',
-  },
-
-  -- Pop-up cheatsheet for keyboard commands
-  {
-    opt = false,
-    'folke/which-key.nvim',
-    config = get_config('which-key'),
   },
 
   -- Visual overlay to jump cursor to any part of screen
@@ -407,14 +399,15 @@ local plugins = {
     run = 'npm install -g typescript-language-server',
     config = get_config('nvim-lspconfig'),
     ft = lsp_filetypes,
-    cmd = 'LspStart',
+    cmd = {
+      'LspStart',
+    }
   },
 
   {
     'williamboman/nvim-lsp-installer',
     config = get_config('lsp-installer'),
-    ft = lsp_filetypes,
-    module = 'lspconfig',
+    after = 'nvim-lspconfig',
   },
 
   {
@@ -476,10 +469,10 @@ local plugins = {
     'lfv89/vim-interestingwords',
     config = get_config('interestingwords'),
     keys = {
-      '<leader>*',
-      '<leader><c-L>',
-      '<leader>n',
-      '<leader>N',
+      '<localleader>*',
+      '<localleader><c-L>',
+      '<localleader>n',
+      '<localleader>N',
     },
   },
 
@@ -507,18 +500,6 @@ local plugins = {
     ft = jrnl_filetypes
   },
 
-
-  {
-    -- this sounds nice, but had lots of stability problems
-    -- maybe we don't need this anymore?
-    disable = true,
-    'glacambre/firenvim',
-    run = function() fn['firenvim#install'](0) end,
-    config = get_config('firenvim'),
-    cond = function()
-      return fn.exists('g:started_by_firenvim') == 1
-    end,
-  },
 }
 
 return require'packer'.startup{plugins, config = config}

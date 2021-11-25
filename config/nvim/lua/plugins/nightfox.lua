@@ -31,11 +31,18 @@ nightfox.setup({
   },
   colors = {
     -- To see defaults run:
-    --   :Bufferize lua print(vim.inspect(require('nightfox.colors').load()))`
+    --   :Bufferize lua print(vim.inspect(require('nightfox.colors').load()))
     bg = custom.grey_darkest,
     bg_alt = custom.grey_dark,
     bg_sidebar = custom.grey_darkest,
     bg_statusline = custom.grey_mid,
+ 
+    blue = '#8CCBEA',
+    green = '#A4E57E',
+    yellow = '#FFDB72',
+    red = '#FF7272',
+    pink = '#FFB3FF',
+    magenta = '#9999FF',
 
     -- border = custom.grey_mid,
     border = custom.grey_dark,
@@ -61,7 +68,18 @@ nightfox.setup({
     SignifySignChange = { fg = '${blue}', bg  = 'NONE' },
     SignifySignChangeDelete = { fg = '${orange}', bg  = 'NONE' },
     LualineFilenameInactive = { fg = custom.grey_dark, bg = custom.grey_mid },
+    -- WhichKey
+    -- WhichKeyGroup
+    -- WhichKeySeparator
+    -- WhichKeyDesc = {},
+    WhichKeyFloat =  { bg = custom.grey_mid } ,
+    VM_Mono       =  { bg = custom.butt, fg = custom.butt } ,
+    VM_Cursor     =  { bg = custom.butt, fg = custom.butt } ,
+    VM_Extend     =  { bg = custom.butt, fg = custom.butt } ,
+    VM_Insert     =  { bg = custom.butt, fg = custom.butt } ,
+    MultiCursor   =  { bg = custom.butt, fg = custom.butt } ,
 
+    -- WhichKeyValue
     -- MsgArea           = { bg = custom.grey_mid },
   }
 })

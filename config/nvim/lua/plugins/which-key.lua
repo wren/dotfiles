@@ -34,157 +34,17 @@ which_key.setup {
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
   },
+  ignore_missing = false, -- hide mappings for which there's no label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
   show_help = true -- show help message on the command line when the popup is visible
 }
 
-local ignore = "which_key_ignore"
--- Keybindings help text
--- @todo add more help text for keybindings
+-- Keys not registered anywhere else (core keymaps) --
 which_key.register({
-  ["<leader>!"] = ignore,
-  ["<leader>["] = ignore,
-  ["<leader><space>"] = ignore,
-  ["<leader>"] = {
-    w = { "Write file" },
-    q = { "Quit window/tab/split" },
-    ["<C-L>"] = ignore,
-    ["*"] = { "Highlight <word>" },
-    h = {
-      name = '+History',
-        l = { "Git Blame" },
-        c = { "Commands" },
-        f = { "Files" },
-        ['/']= { "Search" },
-    },
-    f = {
-      name = "+Find",
-      b = { "Buffers" },
-      c = { "Commands" },
-      f = { "Find (in cwd)" },
-      m = { "Maps" },
-      p = { "Files in Project"},
-      s = { "Color schemes" },
-      t = { "Filetypes" },
-      w = { "Find <word> (in cwd)" },
-    },
-  },
   ["<localleader>"] = {
     name = "local leader",
-    t = { "Toggle checkbox" },
     ["<space>"] = "Delete trailing spaces",
-    s = "Show styling group"
+    s = "Show styling group",
+    ["*"] =  "Highlight <word>" ,
   }
 })
-
--- @todo Old plugin (delete when happy with new plugin)
--- -- Keymap --
--- opts = { silent = true }
--- map('n', '<leader>',  ':<c-u>WhichKey "<space>"<CR>', opts)
--- map('n', '<localleader>', ':<c-u>WhichKey  ";"<cr>', opts)
--- map('n', '[',             ':<c-u>WhichKey  "["<cr>', opts)
--- map('n', ']',             ':<c-u>WhichKey  "]"<cr>', opts)
---
--- -- Init --
--- vim.call('which_key#register', '<Space>', 'g:which_key_leader')
--- vim.call('which_key#register', ';', 'g:which_key_localleader')
--- vim.call('which_key#register', '[', 'g:which_key_prev')
--- vim.call('which_key#register', ']', 'g:which_key_next')
---
--- -- Settings --
--- g.which_key_use_floating_win = 0
---
--- -- Events --
--- nvim_create_augroup('which_key', {
---   string.format(
---     '%s | %s',
---     'FileType which_key set laststatus=0 noshowmode noruler',
---     'autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler'
---   )
--- })
---
--- g.which_key_leader = {
---   name = '+Root ' ,
---   b = {
---     name = 'buffer +',
---     c = 'keep current buffer',
---     o = 'kill {numbers or name} buffer',
---   },
---   e = {
---     name = '+explorer',
---     f = 'find current file' ,
---     o = 'open' ,
---   },
---   ['-'] = 'choose window by {prompt char}' ,
---   f = {
---     name = '+search {files cursorword word outline}',
---     b = 'find buffers',
---     f = 'find in project',
---     c = 'find commands',
---     p = 'find files in project',
---     m = 'find mappings',
---     w = 'find {word} in project',
---     v = 'find in vista outline',
---     h = {
---       name = '+history',
---       f    = 'file history',
---       c    = 'command history',
---       s    = 'search history',
---     },
---   },
---   l = 'clear search highlights' ,
---   m = 'open mundotree' ,
---   w = 'write file',
---   p = 'edit pluginsconfig {filename}',
---   g = {
---     name = ' git +',
---     d    = 'Gdiff',
---     c    = 'Gcommit',
---     b    = 'Gblame',
---     B    = 'Gbrowse',
---     S    = 'Gstatus',
---     p    = 'git push',
---     l    = 'GitLogAll',
---     h    = 'GitBranch',
---   },
---   t = {
---     name = '+tab-operate',
---     n    = 'new tab',
---     e    = 'edit tab',
---     m    = 'move tab',
---   },
---   q = 'quit window',
---   ['/'] = 'comment/uncomment line',
---   [' '] = {
---     name = '+easymotion-jumpto-word ' ,
---     b = {'<plug>(easymotion-b)' , 'beginning of word backward'},
---     f = {'<plug>(easymotion-f)' , 'find {char} to the left'},
---     w = {'<plug>(easymotion-w)' , 'beginning of word forward'},
---   }
--- }
---
--- g.which_key_localleader ={
---   name  = '+LocalLeaderKey'  ,
---   t     = 'toggle markdown checkbox',
---   s     = 'show theme classes on cursor word',
---   [' '] = 'clear trailing whitespace',
--- }
---
--- g.which_key_next = {
---   name  = '+Next',
---   a     = 'ale nextwarp',
---   c     = 'next change',
---   b     = 'next buffer',
---   t     = 'next tab',
---   [']'] = 'jump prefunction-golang',
--- }
---
--- g.which_key_prev = {
---   name  = '+Previous',
---   a     = 'ale prewarp',
---   c     = 'previous change',
---   b     = 'pre buffer',
---   t     = 'previous tab',
---   ['['] = 'jump nextfunction-golang',
--- }
---

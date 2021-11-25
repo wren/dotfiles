@@ -16,3 +16,14 @@ g.neoformat_basic_format_retab = 1
 
 -- Enable trimmming of trailing whitespace
 g.neoformat_basic_format_trim = 0
+
+-- Which key --
+local status, wk = pcall(require, "which-key")
+if(status) then
+  wk.register({
+    ["<localleader>"] = {
+      f =  "Format file",
+    }
+  })
+end
+
