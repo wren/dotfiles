@@ -16,7 +16,7 @@
     - ~/.config/nvim
 
 - link:
-    ~/.config/nvim:
+    ~/.config/lvim:
         path: '*'
         exclude:
           - install.conf.yaml

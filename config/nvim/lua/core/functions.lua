@@ -8,7 +8,7 @@ function cd_if_open_directory()
 end
 
 -- delete an unnamed, unmodified, empty buffer (including directory buffers)
-function delete_unused_buffer(my_bufnr)
+function delete_unused_buffer()
   if (fn.bufname() == "" and opt.buftype:get() == "")
     and not opt.modified:get()
     and fn.line('$') == 1

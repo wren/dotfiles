@@ -242,17 +242,6 @@ local plugins = {
   },
 
   {
-    opt = false,
-    'justinmk/vim-sneak',
-    config = function()
-      cmd[[
-      map f <Plug>Sneak_s
-      map F <Plug>Sneak_S
-      ]]
-    end,
-  },
-
-  {
     'chaoren/vim-wordmotion',
     config = get_config('wordmotion'),
     event = 'CursorMoved'

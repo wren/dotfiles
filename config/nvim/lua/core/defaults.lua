@@ -34,8 +34,8 @@ g.loaded_zipPlugin = 1
 
 
 -- Get rid of some default mappings --
-map('n', '<space>', '')
-map('x', '<space>', '')
+-- map('n', '<space>', '')
+-- map('x', '<space>', '')
 -- map('n', ',', '')
 -- map('x', ',', '')
 -- map('n', ';', '')

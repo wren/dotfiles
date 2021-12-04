@@ -95,8 +95,8 @@ opt.wildmenu = true
 -- Changes style for inactive windows (can be updated in color scheme)
 -- opt.winhighlight = 'Normal:Normal,NormalNC:InactiveWindow'
 
--- Set 7 lines to the cursor - when moving vertically using j/k
-opt.scrolloff = 6
+-- Set 3 lines to the cursor - when moving vertically using j/k
+opt.scrolloff = 2
 opt.sidescrolloff = 10
 
 opt.conceallevel = 2
@@ -153,7 +153,6 @@ if fn.exists('&backupskip') ~= 0 then
     '*.noindex/*',
   })
 end
-
 
 -- Markdown fenced syntax highlighting
 g.markdown_fenced_languages = { 'html', 'bash=sh', 'css', 'javascript', 'js=javascript', 'go' }
