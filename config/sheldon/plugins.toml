@@ -118,7 +118,7 @@ apply = [ 'defer' ]
 
 [ plugins.zsh-vim-mode-config-before ]
 inline = '''
-export VISUAL=nvim
+export VISUAL=lvim
 export EDITOR="$VISUAL"
 bindkey -v
 

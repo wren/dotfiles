@@ -28,6 +28,7 @@
           - '*/zsh'
           - '*/git'
           - '*/nvim'
+          - '*/lvim'
     ~/.local/bin/:
         glob: true
         path: bin/*

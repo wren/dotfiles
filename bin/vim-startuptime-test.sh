@@ -11,7 +11,7 @@
 # -L head ',--headless' \
 
 hyperfine --warmup 5 \
-  -L cmd 'nvim,nvim-nightly' \
+  -L cmd 'nvim,lvim' \
   -L file ',init.lua' \
   -L rc '--clean,,-i NONE' \
   '{cmd} +qa {rc} {file}' \
