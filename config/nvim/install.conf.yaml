@@ -1,0 +1,129 @@
+- defaults:
+    link:
+        relink: true
+        ignore-missing: true
+        force: true
+        create: true
+        quiet: true
+        glob: true
+    shell:
+        stdin: false
+        stdout: true
+        stderr: true
+        quiet: true
+
+- create:
+    - ~/.config/nvim
+
+- link:
+    ~/.config/nvim:
+        path: '*'
+        exclude:
+          - install.conf.yaml
+          - dictionaries
+    ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/custom.en.dict
+    ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
+
+- shell:
+    - description: Checking Neovim installation
+      command: |-
+        latest_version=$(curl -fLs https://api.github.com/repos/neovim/neovim/releases/latest | jq -r '.name')
+
+        if command -v nvim &> /dev/null; then
+          installed_version="$(nvim --version | head -1)"
+          if [[ "$latest_version" != $installed_version ]]; then
+            echo "Neovim upgrade available!"
+            echo "Installed: $installed_version"
+            echo "Latest:    $latest_version"
+            echo
+            echo "To upgrade, run:"
+            echo "  rm '/usr/local/bin/nvim'"
+            echo "Then try this script again"
+          fi
+          exit 0
+        fi
+        echo "Downloading ${latest_version}..."
+        my_dir="$(mktemp -d)"
+        cd $my_dir
+        my_file='nvim-macos.tar.gz'
+        my_url="https://github.com/neovim/neovim/releases/download/stable/${my_file}"
+
+        curl -fLsO $my_url
+        shasum --check <(curl -Ls ${my_url}.sha256sum)
+        tar xzf $my_file
+
+        my_target='/usr/local/share/nvim/stable'
+        mkdir -p $my_target
+        my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
+
+        if  [[ -d "${my_target}/${my_version}" ]];  then
+          echo "Already have ${my_version}. Skipping..."
+          exit 0
+        fi
+
+        mv -v nvim-osx64 "${my_target}/${my_version}"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
+
+    - description: Checking/Upgrading Neovim nightly
+      command: |-
+        set -e
+        my_dir="$(mktemp -d)"
+        cd $my_dir
+        my_file='nvim-macos.tar.gz'
+        my_url="https://github.com/neovim/neovim/releases/download/nightly/${my_file}"
+
+        echo "Downloading NVIM nightly..."
+        if ! curl -fLsO $my_url; then
+          my_status="$(curl -s -o /dev/null -w "%{http_code}" $my_url)"
+          if [[ $my_status == '404' ]]; then
+            echo "Neovim nightly not found (404)"
+            echo "Don't worry, this happens sometimes."
+            echo "See: https://github.com/neovim/neovim/issues/15709"
+            exit 0
+          fi
+        fi
+        shasum --check <(curl -Ls ${my_url}.sha256sum)
+        tar xzf $my_file
+
+        my_target=/usr/local/share/nvim/nightly
+        mkdir -p $my_target
+
+        my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
+        if  [[ -d "${my_target}/${my_version}" ]];  then
+          echo "Already have ${my_version}. Skipping..."
+          exit 0
+        fi
+        mv -v nvim-osx64 "${my_target}/${my_version}"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
+
+- link:
+    /usr/local/bin/nvim-nightly: /usr/local/share/nvim/nightly/latest/bin/nvim
+    /usr/local/bin/nvim: /usr/local/share/nvim/stable/latest/bin/nvim
+
+- shell:
+    - description: Checking Python environment
+      command: |-
+        PYTHON_VENVS_DIR=${PYTHON_VENVS_DIR:-$XDG_CACHE_HOME/python-virtual-envs}
+        "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pip | perl -ne 'print if not m/^Requirement already/'
+
+        if [[ ! -d "$PYTHON_VENVS_DIR/neovim" ]]; then
+            python -m venv "$PYTHON_VENVS_DIR/neovim"
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim
+        else
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim | perl -ne 'print if not m/^Requirement already/'
+        fi
+
+    - description: Checking Node environment
+      command: |-
+        if ! command -v node &> /dev/null; then
+          echo "Node not installed"
+          exit 1
+        fi
+        if ! npm list --depth 1 --global neovim > /dev/null 2>&1; then
+          npm install -g neovim
+        fi
+
+    # - description: Downloading Spanish dictionary for Neovim
+    #   command: >-
+    #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
+
