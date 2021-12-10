@@ -1,0 +1,24 @@
+- defaults:
+    link:
+        relink: true
+        ignore-missing: true
+        force: true
+        create: true
+        quiet: true
+        glob: true
+    shell:
+        stdin: false
+        stdout: true
+        stderr: true
+        quiet: true
+
+- create:
+    - ~/.config/lvim
+
+- link:
+    ~/.config/lvim:
+        path: '*'
+        exclude:
+          - install.conf.yaml
+          - dictionaries
+
