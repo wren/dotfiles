@@ -16,7 +16,7 @@ alias top='bpytop'
 alias h='run-help'
 alias l='less-with-pipe'
 alias ll='exa --time-style=long-iso --color=always --icons -la'
-function lg(){ exa --color=always -la $2 | rg --color=always -i $1; }
+function lg(){ exa --color=always -la $2 | rg --max-columns=999 --color=always -i $1; }
 function lt(){ ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences|node_modules" $@ | less; }
 alias ssh.init='eval `ssh-agent`;ssh-add'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
