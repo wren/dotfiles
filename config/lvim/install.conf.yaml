@@ -22,3 +22,27 @@
           - install.conf.yaml
           - dictionaries
 
+- shell:
+    - description: Installing Lunar vim
+      command: |-
+        if command -v lvim &> /dev/null; then
+          echo "Lunar vim already installed"
+          exit 0
+        fi
+
+        expect -- <(cat << 'EOF'
+        #!/usr/bin/env expect
+        set timeout -1
+        spawn /bin/bash
+        send -- "/bin/bash <(/usr/bin/curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)\n"
+        expect "Would you like to install LunarVim's NodeJS dependencies?"
+        send -- "y\n"
+        expect "Would you like to install LunarVim's Python dependencies?"
+        send -- "y\n"
+        expect "Would you like to install LunarVim's Rust dependencies?"
+        send -- "y\n"
+        expect "Thank you for installing LunarVim!!"
+        send -- "exit\n"
+        expect eof"
+        EOF
+        )
