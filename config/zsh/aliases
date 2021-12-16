@@ -63,10 +63,11 @@ alias j='jrnl notes'
 alias jn='jrnl notes'
 alias je='jn --edit'
 alias js='jn --short'
-function t() { jn "$@" '#todo +inbox'; }
+function t() { jn "$@" '#todo' -or '+inbox' --edit; }
 function jt(){ jn "$@" +todo; }
-alias jte='je +todo ^todo'
-alias jts='js +todo ^todo'
+alias jti='je +inbox'
+alias jte='je +todo -or ^todo'
+alias jts='js +todo -or ^todo'
 function jp() {
   my_root="$(git root 2>/dev/null || echo ".")"
   my_template_file="${my_root}/notes-template.jrnl"
@@ -83,7 +84,6 @@ alias j.hwt='jn --co template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
 
 alias py='python'
 alias speedtest='speed-test --verbose'
-alias t='tmux'
 alias ta='tmux-attach-fzf'
 alias tk='tmux kill-server'
 alias tn='tmux new'
