@@ -56,13 +56,14 @@
         mkdir -p $my_target
         my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
 
+        rm -f "${my_target}/latest"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
         if  [[ -d "${my_target}/${my_version}" ]];  then
           echo "Already have ${my_version}. Skipping..."
           exit 0
         fi
 
         mv -v nvim-osx64 "${my_target}/${my_version}"
-        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
 
     - description: Checking/Upgrading Neovim nightly
       command: |-
@@ -89,12 +90,13 @@
         mkdir -p $my_target
 
         my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
+        rm -f "${my_target}/latest"
+        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
         if  [[ -d "${my_target}/${my_version}" ]];  then
           echo "Already have ${my_version}. Skipping..."
           exit 0
         fi
         mv -v nvim-osx64 "${my_target}/${my_version}"
-        ln -sf "${my_target}/${my_version}" "${my_target}/latest"
 
 - link:
     /usr/local/bin/nvim-nightly: /usr/local/share/nvim/nightly/latest/bin/nvim
