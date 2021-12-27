@@ -1,23 +1,56 @@
+-- Change some builtin plugins active status --
+lvim.builtin.project.active = false
+lvim.builtin.terminal.active = true
 
--- Bootstrap plugin manager
--- local packer_status, lfs = pcall(require, 'packer_compiled')
+-- Additional config for builtin plugins
+require 'plugins.barbar'
+require 'plugins.dashboard'
+require 'plugins.gitsigns'
+require 'plugins.lualine'
+require 'plugins.nvim-tree'
+require 'plugins.telescope'
+require 'plugins.treesitter'
 
--- if(not packer_status) then
---   print('Downloading and installing plugins...')
+-- Add our own plugins
 
---   local packer_directory = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+-- Visual --
+require 'plugins.colorizer'
+require 'plugins.neoscroll'
+require 'plugins.nightfox'
+require 'plugins.easyalign'
+-- require 'plugins.visual-multi'
+require 'plugins.interestingwords'
 
---   fn.mkdir(packer_directory, 'p')
---   local out = fn.system({
---     'git',
---     'clone',
---     'https://github.com/wbthomason/packer.nvim',
---     packer_directory
---   })
+-- Navigation --
+require 'plugins.bqf' -- "better quick fix"
+require 'plugins.hop'
+require 'plugins.numb'
+require 'plugins.sandwich'
+require 'plugins.tmux-navigator'
+require 'plugins.wordmotion'
+require 'plugins.mundo'
 
---   -- manually call packer this time (it later manages itself)
---   cmd 'packadd packer.nvim'
---   local packer = require'plugins.packer'
---   packer.sync()
--- end
+-- Improve native --
+require 'plugins.auto-session'
+require 'plugins.bufferize'
+-- require 'plugins.spectre' -- @todo add some keymappings
+require 'plugins.vim-slash'
+require 'plugins.accelerated-jk'
+require 'plugins.repeat'
 
+-- Git --
+require 'plugins.diffview'
+require 'plugins.gitlinker'
+require 'plugins.octo'
+
+-- Coding --
+require 'plugins.splitjoin'
+require 'plugins.symbols-outline'
+require 'plugins.indentline'
+require 'plugins.editorconfig'
+
+-- Writing --
+require 'plugins.jrnl'
+require 'plugins.truezen'
+require 'plugins.pencil'
+require 'plugins.markdown-preview'
