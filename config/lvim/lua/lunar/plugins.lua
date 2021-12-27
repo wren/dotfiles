@@ -1,9 +1,12 @@
--- Additional Plugins
+-- Disable some builtins --
+lvim.builtin.project.active = false
 
-local get_config = function(name)
-  return string.format('require "plugins.%s"', name)
-end
+-- Additional config for builtin plugins
+lvim.autocommands.custom_groups = {
+  { 'ColorScheme', 'nightfox', ':lua require "plugins.lualine"' }
+}
 
+-- Add some of our own plugins --
 lvim.plugins = {
   {
     'EdenEast/nightfox.nvim',
@@ -65,21 +68,20 @@ lvim.plugins = {
   },
 
   {
-    "phaazon/hop.nvim",
-    event = "BufRead",
+    'phaazon/hop.nvim',
+    event = 'BufRead',
     config = function()
-      require("hop").setup()
-      vim.api.nvim_set_keymap("n", "f", ":HopWord<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "F", ":HopChar1<cr>", { silent = true })
+      require('hop').setup()
+      vim.api.nvim_set_keymap('n', 'f', ':HopWord<cr>', { silent = true })
+      vim.api.nvim_set_keymap('n', 'F', ':HopChar1<cr>', { silent = true })
     end,
   },
 
-
   {
-    "nacro90/numb.nvim",
-    event = "BufRead",
+    'nacro90/numb.nvim',
+    event = 'BufRead',
     config = function()
-      require("numb").setup {
+      require('numb').setup {
         show_numbers = true, -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
@@ -90,59 +92,57 @@ lvim.plugins = {
     -- find and replace
     -- @todo add some keymappings for this
     disable = true,
-    "windwp/nvim-spectre",
-    event = "BufRead",
+    'windwp/nvim-spectre',
+    event = 'BufRead',
     config = function()
-      require("spectre").setup()
+      require('spectre').setup()
       cmd [[nnoremap <leader>sw :lua require('spectre').open_visual({select_word=true})<CR>]]
     end,
   },
 
   {
-    "sindrets/diffview.nvim",
-    event = "BufRead",
+    'sindrets/diffview.nvim',
+    event = 'BufRead',
   },
-
 
   {
     -- better quickfix window
-    "kevinhwang91/nvim-bqf",
-    event = { "BufRead", "BufNew" },
+    'kevinhwang91/nvim-bqf',
+    event = { 'BufRead', 'BufNew' },
     config = function()
-      require("bqf").setup({
+      require('bqf').setup({
         auto_enable = true,
         preview = {
           win_height = 12,
           win_vheight = 12,
           delay_syntax = 80,
-          border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+          border_chars = { '┃', '┃', '━', '━', '┏', '┓', '┗', '┛', '█' },
         },
         func_map = {
-          vsplit = "",
-          ptogglemode = "z,",
-          stoggleup = "",
+          vsplit = '',
+          ptogglemode = 'z,',
+          stoggleup = '',
         },
         filter = {
           fzf = {
-            action_for = { ["ctrl-s"] = "split" },
-            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+            action_for = { ['ctrl-s'] = 'split' },
+            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' },
           },
         },
       })
     end,
   },
 
-
   {
     -- generate links to code on github, bitbucket, etc
-    "ruifm/gitlinker.nvim",
+    'ruifm/gitlinker.nvim',
     keys = {
-      "<leader>gy"
+      '<leader>gy'
     },
     config = function()
-      require("gitlinker").setup {
+      require('gitlinker').setup {
         opts = {
-          mappings = "<leader>gy",
+          mappings = '<leader>gy',
         },
       }
     end,
@@ -150,14 +150,37 @@ lvim.plugins = {
 
   {
     -- manage github issues and PRs from editor
-    "pwntester/octo.nvim",
+    'pwntester/octo.nvim',
     cmd = {
-      "Octo",
-      "OctoAddReviewComment",
-      "OctoAddReviewSuggestion",
+      'Octo',
+      'OctoAddReviewComment',
+      'OctoAddReviewSuggestion',
     },
   },
 
+  -- Writing --
+  {
+    'Pocco81/TrueZen.nvim',
+    config = get_config('truezen'),
+    cmd = {
+      'TZAtaraxis',
+      'TZFocus',
+      'TZMinimalist',
+    },
+  },
 
+  {
+    'preservim/vim-pencil',
+    ft = {
+      'jrnl',
+    },
+  },
 
+  -- Misc Tools --
+  {
+    'AndrewRadev/bufferize.vim',
+    cmd = {
+      'Bufferize'
+    }
+  },
 }

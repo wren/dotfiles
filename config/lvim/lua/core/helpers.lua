@@ -80,3 +80,9 @@ function _G.dump(...)
   local objects = vim.tbl_map(vim.inspect, {...})
   print(unpack(objects))
 end
+
+-- Used to load config for plugins
+function _G.get_config(name)
+  return string.format('require "plugins.%s"', name)
+end
+
