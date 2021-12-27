@@ -10,6 +10,12 @@ plugin.defaults.pickers = {
   }
 }
 
+plugin.defaults.file_ignore_patterns = {
+  "node_modules",
+  "^.git/",
+  "/Alfred.alfredpreferences/",
+}
+
 -- Config --
 plugin.defaults.layout_strategy = 'flex'
 plugin.defaults.layout_config = {
