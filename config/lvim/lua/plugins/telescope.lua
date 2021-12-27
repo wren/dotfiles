@@ -1,49 +1,26 @@
--- Config --
-require('telescope').setup{
-  defaults = {
-    layout_strategy = 'flex',
-    layout_config = {
-      flex = {
-        flip_columns = 200,
-      },
-      horizontal = {
-        -- prompt_position = 'top',
-      }
-    },
+local plugin = lvim.builtin.telescope
 
-    file_ignore_patterns = {
-      "node_modules",
-      "^.git/",
-      "/Alfred.alfredpreferences/",
-    },
-
-    mappings = {
-      -- mode = { ["key"] = "action" }
-      i = {
-        ["<C-k>"] = "which_key"
-      }
-    }
-  },
-  pickers = {
-    -- picker_name = { picker_config_key = value }
-    find_files = {
-      hidden = true
-    }
-
-  },
-  extensions = {
-    -- extension_name = { extension_config_key = value }
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    }
+plugin.defaults.path_display.smart = true
+plugin.defaults.pickers = {
+  find_files = {
+    hidden = true,
+    shorten_path = false,
   }
 }
 
-require('telescope').load_extension('fzf')
+-- Config --
+plugin.defaults.layout_strategy = 'flex'
+plugin.defaults.layout_config = {
+  flex = {
+    flip_columns = 200,
+  },
+  horizontal = {
+    -- prompt_position = 'top',
+  }
+}
 
+-- add some mappings, but don't erase the defaults
+plugin.defaults.mappings.i['<C-/>'] = 'which_key'
 
 -- Keymap --
 local silent = { silent = true }
@@ -62,4 +39,3 @@ map('n', '<leader>hf', ':Telescope oldfiles<CR>')
 map('n', '<leader>fs', ':Telescope colorscheme<CR>', silent)
 map('n',  '<leader>fw', ':Telescope grep_string<CR>', silent)
 map('n',  'z=', ':Telescope spell_suggest theme=cursor<CR>', silent)
-

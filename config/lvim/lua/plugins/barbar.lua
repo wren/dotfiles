@@ -1,73 +1,42 @@
--- Config --
-g.bufferline = {
-  -- Enable animations
-  animation = true,
+-- Bufferline with animations
+local plugin = lvim.builtin.bufferline
 
-  -- Enable auto-hiding the tab bar when there is a single buffer
-  auto_hide = false,
+plugin.on_config_done = function()
+  -- Keymap --
+  -- These commands will navigate through buffers in order regardless of which mode you are using
+  -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+  local opts = { silent = true }
+  -- These commands will move the current buffer backwards or forwards in the bufferline
+  -- map('n', '[b', ':BufferLineMovePrev<CR>', opts)
+  -- map('n', ']b', ':BufferLineMoveNext<CR>', opts)
 
-  -- Enable current/total tabpages indicator (top right corner)
-  tabpages = true,
+  -- Move to previous/next
+  map('n', '<a-,>', ':BufferPrevious<CR>', opts)
+  map('n', '<a-.>', ':BufferNext<CR>', opts)
+  map('n', '<c-,>', ':BufferPrevious<CR>', opts)
+  map('n', '<c-.>', ':BufferNext<CR>', opts)
 
-  -- Enable close button
-  closable = true,
+  -- Re-order to previous/next
+  map('n', '<a-<>', ':BufferMovePrevious<CR>', opts)
+  map('n', '<a->>', ':BufferMoveNext<CR>', opts)
+  map('n', '<c-<>', ':BufferMovePrevious<CR>', opts)
+  map('n', '<c->>', ':BufferMoveNext<CR>', opts)
 
-  -- Enables mouse support
-  --   left-click: go to buffer
-  --   middle-click: delete buffer
-  clickable = true,
+  -- Close/Wipeout buffer commands
+  map('n', '<leader>bd', ':BufferClose<CR>', opts)
+  map('n', '<leader>bw', ':BufferWipeout<CR>', opts)
+  map('n', '<leader>bda', ':BufferCloseAllButCurrent<CR>', opts)
+  map('n', '<leader>bdh', ':BufferCloseBuffersLeft<CR>', opts)
+  map('n', '<leader>bdl', ':BufferCloseBuffersRight<CR>', opts)
+  -- map('n', '<c-w>', ':BufferClose<CR>', opts)
+  map('n', '<c-s-w>', ':bdelete<CR>', opts)
 
-  -- Enable icons (true|'numbers'|'both')
-  icons = true,
+  -- Magic buffer-picking mode
+  map('n', '<leader>bp', ':BufferPick<CR>', opts)
 
-  -- Sets the icon's highlight group (or false for devicons default color)
-  icon_custom_colors = false,
+  -- Sort automatically by...
+  map('n', '<leader>bo', ':BufferOrderByDirectory<CR>', opts)
+  map('n', '<leader>bl', ':BufferOrderByLanguage<CR>', opts)
+end
 
-  -- Configure icons on the bufferline.
-  icon_separator_active = '▎',
-  icon_separator_inactive = '▎',
-  icon_close_tab = '',
-  icon_close_tab_modified = '●',
-
-  -- Sets the maximum padding width with which to surround each tab.
-  maximum_padding = 5,
-
-  -- Sets the maximum buffer name length.
-  maximum_length = 32,
-}
-
--- Keymap --
--- These commands will navigate through buffers in order regardless of which mode you are using
--- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-opts = { silent = true }
--- These commands will move the current buffer backwards or forwards in the bufferline
--- map('n', '[b', ':BufferLineMovePrev<CR>', opts)
--- map('n', ']b', ':BufferLineMoveNext<CR>', opts)
-
--- Move to previous/next
-map('n', '<a-,>', ':BufferPrevious<CR>', opts)
-map('n', '<a-.>', ':BufferNext<CR>', opts)
-map('n', '<c-,>', ':BufferPrevious<CR>', opts)
-map('n', '<c-.>', ':BufferNext<CR>', opts)
-
--- Re-order to previous/next
-map('n', '<a-<>', ':BufferMovePrevious<CR>', opts)
-map('n', '<a->>', ':BufferMoveNext<CR>', opts)
-map('n', '<c-<>', ':BufferMovePrevious<CR>', opts)
-map('n', '<c->>', ':BufferMoveNext<CR>', opts)
-
--- Close/Wipeout buffer commands
-map('n', '<leader>bd', ':BufferClose<CR>', opts)
-map('n', '<leader>bw', ':BufferWipeout<CR>', opts)
-map('n', '<leader>bda', ':BufferCloseAllButCurrent<CR>', opts)
-map('n', '<leader>bdh', ':BufferCloseBuffersLeft<CR>', opts)
-map('n', '<leader>bdl', ':BufferCloseBuffersRight<CR>', opts)
--- map('n', '<c-w>', ':BufferClose<CR>', opts)
-map('n', '<c-s-w>', ':bdelete<CR>', opts)
-
--- Magic buffer-picking mode
-map('n', '<leader>bp', ':BufferPick<CR>', opts)
-
--- Sort automatically by...
-map('n', '<leader>bo', ':BufferOrderByDirectory<CR>', opts)
-map('n', '<leader>bl', ':BufferOrderByLanguage<CR>', opts)
+table.insert(lvim.plugins, plugin)

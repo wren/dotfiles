@@ -1,186 +1,56 @@
--- Disable some builtins --
+-- Change some builtin plugins active status --
 lvim.builtin.project.active = false
+lvim.builtin.terminal.active = true
 
 -- Additional config for builtin plugins
-lvim.autocommands.custom_groups = {
-  { 'ColorScheme', 'nightfox', ':lua require "plugins.lualine"' }
-}
+require 'plugins.barbar'
+require 'plugins.dashboard'
+require 'plugins.gitsigns'
+require 'plugins.lualine'
+require 'plugins.nvim-tree'
+require 'plugins.telescope'
+require 'plugins.treesitter'
 
--- Add some of our own plugins --
-lvim.plugins = {
-  {
-    'EdenEast/nightfox.nvim',
-    config = get_config('nightfox'),
-  },
+-- Add our own plugins
 
-  {
-    'RRethy/vim-hexokinase',
-    run = 'make hexokinase',
-    setup = get_config('hexokinase'),
-    event = 'CursorMoved',
-  },
+-- Visual --
+require 'plugins.hexokinase'
+require 'plugins.neoscroll'
+require 'plugins.nightfox'
+require 'plugins.easyalign'
+-- require 'plugins.visual-multi'
+require 'plugins.interestingwords'
 
-  {
-    'karb94/neoscroll.nvim',
-    keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-    config = get_config('neoscroll'),
-  },
+-- Navigation --
+require 'plugins.bqf' -- "better quick fix"
+require 'plugins.hop'
+require 'plugins.numb'
+require 'plugins.sandwich'
+require 'plugins.tmux-navigator'
+require 'plugins.wordmotion'
+require 'plugins.mundo'
 
-  {
-    'chaoren/vim-wordmotion',
-    config = get_config('wordmotion'),
-  },
+-- Improve native --
+require 'plugins.auto-session'
+require 'plugins.bufferize'
+-- require 'plugins.spectre' -- @todo add some keymappings
+require 'plugins.vim-slash'
+require 'plugins.accelerated-jk'
+require 'plugins.repeat'
 
-  {
-    'christoomey/vim-tmux-navigator',
-    config = get_config('tmux-navigator'),
-    event = 'CursorMoved',
-  },
+-- Git --
+require 'plugins.diffview'
+require 'plugins.gitlinker'
+require 'plugins.octo'
 
-  {
-    'machakann/vim-sandwich',
-    config = get_config('sandwich'),
-    event = 'CursorMoved',
-  },
+-- Coding --
+require 'plugins.splitjoin'
+require 'plugins.symbols-outline'
+require 'plugins.indentline'
+require 'plugins.editorconfig'
 
-  {
-    opt = false,
-    'wren/jrnl.vim',
-  },
-
-  {
-    disable = true,
-    'wfxr/minimap.vim',
-    run = 'brew install code-minimap',
-    config = function()
-      g.minimap_width = 10
-      g.minimap_auto_start = 1
-      g.minimap_auto_start_win_enter = 1
-      g.minimap_highlight_search = 1
-    end,
-    cmd = {
-      'Minimap',
-      'MinimapClose',
-      'MinimapToggle',
-      'MinimapRefresh',
-      'MinimapUpdateHighlight',
-    }
-  },
-
-  {
-    'phaazon/hop.nvim',
-    event = 'BufRead',
-    config = function()
-      require('hop').setup()
-      vim.api.nvim_set_keymap('n', 'f', ':HopWord<cr>', { silent = true })
-      vim.api.nvim_set_keymap('n', 'F', ':HopChar1<cr>', { silent = true })
-    end,
-  },
-
-  {
-    'nacro90/numb.nvim',
-    event = 'BufRead',
-    config = function()
-      require('numb').setup {
-        show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-      }
-    end,
-  },
-
-  {
-    -- find and replace
-    -- @todo add some keymappings for this
-    disable = true,
-    'windwp/nvim-spectre',
-    event = 'BufRead',
-    config = function()
-      require('spectre').setup()
-      cmd [[nnoremap <leader>sw :lua require('spectre').open_visual({select_word=true})<CR>]]
-    end,
-  },
-
-  {
-    'sindrets/diffview.nvim',
-    event = 'BufRead',
-  },
-
-  {
-    -- better quickfix window
-    'kevinhwang91/nvim-bqf',
-    event = { 'BufRead', 'BufNew' },
-    config = function()
-      require('bqf').setup({
-        auto_enable = true,
-        preview = {
-          win_height = 12,
-          win_vheight = 12,
-          delay_syntax = 80,
-          border_chars = { '┃', '┃', '━', '━', '┏', '┓', '┗', '┛', '█' },
-        },
-        func_map = {
-          vsplit = '',
-          ptogglemode = 'z,',
-          stoggleup = '',
-        },
-        filter = {
-          fzf = {
-            action_for = { ['ctrl-s'] = 'split' },
-            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' },
-          },
-        },
-      })
-    end,
-  },
-
-  {
-    -- generate links to code on github, bitbucket, etc
-    'ruifm/gitlinker.nvim',
-    keys = {
-      '<leader>gy'
-    },
-    config = function()
-      require('gitlinker').setup {
-        opts = {
-          mappings = '<leader>gy',
-        },
-      }
-    end,
-  },
-
-  {
-    -- manage github issues and PRs from editor
-    'pwntester/octo.nvim',
-    cmd = {
-      'Octo',
-      'OctoAddReviewComment',
-      'OctoAddReviewSuggestion',
-    },
-  },
-
-  -- Writing --
-  {
-    'Pocco81/TrueZen.nvim',
-    config = get_config('truezen'),
-    cmd = {
-      'TZAtaraxis',
-      'TZFocus',
-      'TZMinimalist',
-    },
-  },
-
-  {
-    'preservim/vim-pencil',
-    ft = {
-      'jrnl',
-    },
-  },
-
-  -- Misc Tools --
-  {
-    'AndrewRadev/bufferize.vim',
-    cmd = {
-      'Bufferize'
-    }
-  },
-}
+-- Writing --
+require 'plugins.jrnl'
+require 'plugins.truezen'
+require 'plugins.pencil'
+require 'plugins.markdown-preview'

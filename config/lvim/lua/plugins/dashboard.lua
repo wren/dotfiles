@@ -1,8 +1,11 @@
-local alpha = require('alpha')
-local dashboard = require('alpha.themes.dashboard')
+-- A thing for when you open the other thing
+local plugin = lvim.builtin.dashboard
+
+-- disabled by default, so enable it
+plugin.active = true
 
 -- Set header
-dashboard.section.header.val = {
+plugin.custom_header = {
     '                                                     ',
     '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
     '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
@@ -14,18 +17,29 @@ dashboard.section.header.val = {
 }
 
 -- Set menu
-dashboard.section.buttons.val = {
-    dashboard.button( 'e', '  New file' , ':enew<CR>'),
-    dashboard.button( 'p', '  Find file in project', ':Telescope git_files<CR>'),
-    dashboard.button( 'r', '  Recent files'   , ':Telescope oldfiles<CR>'),
-    dashboard.button( 's', '  Restore session'   , ':silent! RestoreSession<CR>'),
-    dashboard.button( ',', '  Settings' , ':e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR>'),
-    dashboard.button( 'q', '  Quit', ':qa<CR>'),
+plugin.custom_section = {
+  a = {
+    description = { '  Find file           ' },
+    command = 'Telescope git_files',
+  },
+  b = {
+    description = { '  New file            ' },
+    command = ":enew!",
+  },
+  c = {
+    description = { '  Recent files        ' },
+    command = 'Telescope oldfiles',
+  },
+  d = {
+    description = { '  Restore session     ' },
+    command = ':RestoreSession',
+  },
+  e = {
+    description = { '  Settings            ' },
+    command = ':e $MYVIMRC | :cd %:p:h | wincmd k | pwd',
+  },
+  f = {
+    description = { '  Quit                ' },
+    command = ':qa',
+  },
 }
-
--- Send config to alpha
-alpha.setup(dashboard.opts)
-
--- Disable folding on alpha buffer
-vim.cmd('autocmd FileType alpha setlocal nofoldenable')
-

@@ -74,7 +74,7 @@ local config = {
       -- components.spaces,
     },
     lualine_z = {
-      'progress',
+      -- 'progress',
       'location',
       components.scrollbar,
     },

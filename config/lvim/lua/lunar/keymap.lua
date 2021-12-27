@@ -12,6 +12,7 @@ lvim.keys.normal_mode = {
   -- shortcuts for start/end of line
   ['<S-h>'] = '^',
   ['<S-l>'] = '$',
+  ['<leader>q'] = false,
 }
 
 -- lvim.keys.command_mode = {
@@ -62,9 +63,24 @@ lvim.builtin.which_key.mappings["h"] = {
   f = {':Telescope oldfiles<CR>'},
 }
 
+
+lvim.builtin.which_key.mappings["h"] = {
+  name = "Quit",
+  q = { '<c-w>c' },
+  qq = { 'qa' },
+}
+
 -- command line alias
 map('c', 'w!!', 'w !sudo tee % >/dev/null')
 -- map('c', '<esc>', '<c-c><c-c>', {modifiable_only = true})
+
+map('n', 'H', '^')
+map('v', 'H', '^')
+map('o', 'H', '^')
+
+map('n', 'L', '$')
+map('v', 'L', '$')
+map('o', 'L', '$')
 
 -- Insert newlines without leaving normal mode
 map('n', '<cr>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', {modifiable_only = true})
@@ -85,12 +101,13 @@ map('v', '<s-tab>', '<gv')
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 
+
 -- Yank, then reselect
 map('v', 'y', 'ygv')
 
 -- Write buffer (save)
 map('n', '<leader>w', ':w<CR>')
-map('n', '<leader>q', '<c-w>c')
+-- map('n', '<leader>q', '<c-w>c')
 map('n', '<leader>Q', ':qa<CR>')
 
 -- Oldies but goodies
