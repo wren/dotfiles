@@ -37,6 +37,7 @@ require 'plugins.bufferize'
 require 'plugins.vim-slash'
 require 'plugins.accelerated-jk'
 require 'plugins.repeat'
+require 'plugins.mini'
 
 -- Git --
 require 'plugins.diffview'

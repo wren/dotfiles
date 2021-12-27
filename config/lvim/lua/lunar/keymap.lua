@@ -157,9 +157,6 @@ map('n', '<leader>-', ':split<CR>', { noremap = false })
 -- Escape from terminal windows even if suspended
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 
--- Remove spaces at the end of lines
-map('n', '<localleader><Space>', [[:<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>]], {silent = true})
-
 -- Get syntax info at cursor
 map('n', '<Leader>cs', '<cmd>lua highlight_group()<CR>')
 
