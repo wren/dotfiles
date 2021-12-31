@@ -1,6 +1,13 @@
 -- Bufferline with animations
 local plugin = lvim.builtin.bufferline
 
+lvim.keys.normal_mode = {
+  -- Navigation shortcuts
+  ['<C-,>'] = false,
+  ['<C-.>'] = false,
+  ['<A-e>'] = ':echo butt<cr>',
+}
+
 plugin.on_config_done = function()
   -- Keymap --
   -- These commands will navigate through buffers in order regardless of which mode you are using
@@ -15,6 +22,11 @@ plugin.on_config_done = function()
   map('n', '<a-.>', ':BufferNext<CR>', opts)
   map('n', '<c-,>', ':BufferPrevious<CR>', opts)
   map('n', '<c-.>', ':BufferNext<CR>', opts)
+
+  map('v', '<a-,>', ':BufferPrevious<CR>', opts)
+  map('v', '<a-.>', ':BufferNext<CR>', opts)
+  map('v', '<c-,>', ':BufferPrevious<CR>', opts)
+  map('v', '<c-.>', ':BufferNext<CR>', opts)
 
   -- Re-order to previous/next
   map('n', '<a-<>', ':BufferMovePrevious<CR>', opts)

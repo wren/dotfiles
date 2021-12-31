@@ -1,24 +1,12 @@
--- Key mappings --
+-- Key mappings not specific to a plugin --
 lvim.leader = "space"
 
--- Overrides for lunar --
+-- Overrides for lunar conflicts --
 lvim.keys.normal_mode = {
-  -- Navigation shortcuts
-  ['<C-,>'] = ':BufferPrevious<cr>',
-  ['<C-.>'] = ':BufferNext<cr>',
-  ['<C-P>'] = ':Telescope find_files<CR>',
-  ['<M-C-P>'] = ':Telescope buffers<CR>',
-
-  -- shortcuts for start/end of line
-  ['<S-h>'] = '^',
-  ['<S-l>'] = '$',
-  ['<leader>q'] = false,
+  -- remove so lunar doesn't mess with these
+  ['<S-h>'] = false,
+  ['<S-l>'] = false,
 }
-
--- lvim.keys.command_mode = {
---   ['<down>'] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
---   ['<up>'] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
--- }
 
 lvim.keys.insert_mode = {
   ['jk'] = false,
@@ -34,41 +22,15 @@ lvim.keys.visual_mode = {
   -- Navigation shortcuts
   ['<C-,>'] = ':BufferPrevious<cr>',
   ['<C-.>'] = ':BufferNext<cr>',
-  ['<C-P>'] = ':Telescope find_files<CR>',
-  ['<M-C-P>'] = ':Telescope buffers<CR>',
 
   -- shortcuts for start/end of line
-  ['<S-h>'] = '^',
-  ['<S-l>'] = '$',
+  ['<S-h>'] = false,
+  ['<S-l>'] = false,
 }
 
--- Which key --
-lvim.builtin.which_key.mappings["f"] = {
-  name = "Find",
-  b = {':Telescope buffers<CR>', 'Buffers'},
-  t = {':Telescope filetypes<CR>', 'Filetype'},
-  p = {':Telescope find_files<CR>', 'Files in Project'},
-  f = {':Telescope live_grep<CR>', 'Find'},
-  m = {':Telescope keymaps<CR>', 'Key mappings'},
-  k = {':Telescope help_tags<CR>', 'Help'},
-  c = {':Telescope commands<CR>', 'Commands'},
-  s = {':Telescope colorscheme<CR>', 'Color schemes'},
-  w = {':Telescope grep_string<CR>', 'Find <word>'},
-}
-
-lvim.builtin.which_key.mappings["h"] = {
-  name = "History",
-  c = {':Telescope cocmmand_history<CR>'},
-  s = {':Telescope search_history<CR>'},
-  f = {':Telescope oldfiles<CR>'},
-}
-
-
-lvim.builtin.which_key.mappings["h"] = {
-  name = "Quit",
-  q = { '<c-w>c' },
-  qq = { 'qa' },
-}
+-- Write buffer (save)
+lvim.builtin.which_key.mappings["q"] = { "<c-w>c", "Quit window" }
+lvim.builtin.which_key.mappings["Q"] = { "<cmd>qa<cr>", "Quit all" }
 
 -- command line alias
 map('c', 'w!!', 'w !sudo tee % >/dev/null')
@@ -104,11 +66,6 @@ map('v', '<', '<gv')
 
 -- Yank, then reselect
 map('v', 'y', 'ygv')
-
--- Write buffer (save)
-map('n', '<leader>w', ':w<CR>')
--- map('n', '<leader>q', '<c-w>c')
-map('n', '<leader>Q', ':qa<CR>')
 
 -- Oldies but goodies
 map('n', '<c-s>', ':w<CR>')
@@ -161,11 +118,7 @@ map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 map('n', '<Leader>cs', '<cmd>lua highlight_group()<CR>')
 
 -- Disable some keymappings that don't do anything useful, and get in the way
--- map('n', 'q:', '')
-map('n', 'q:', 'q:i', {noremap = true})
--- map('n', 'q/', '')
--- map('n', 'q?', '')
-map('n', 'Q', '')
+map('n', 'Q', '') -- disable ex-mode because ugh
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {

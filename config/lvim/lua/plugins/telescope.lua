@@ -30,22 +30,36 @@ plugin.defaults.layout_config = {
 -- add some mappings, but don't erase the defaults
 plugin.defaults.mappings.i['<C-/>'] = 'which_key'
 
-plugin.on_config_done = function()
-  -- Keymap --
-  local silent = { silent = true }
-  map('n', '<leader>fb', ':Telescope buffers<CR>', silent)
-  map('n', '<leader>ft', ':Telescope filetypes<CR>', silent)
-  map('n', '<M-C-p>', ':Telescope buffers<CR>', silent)
-  map('n', '<C-p>', ':Telescope find_files<CR>', silent)
-  map('n', '<leader>fp', ':Telescope find_files<CR>')
-  map('n', '<leader>ff', ':Telescope live_grep<CR>')
-  map('n', '<leader>fm', ':Telescope keymaps<CR>')
-  map('n', '<leader>fk', ':Telescope help_tags<CR>')
-  map('n', '<leader>fc', ':Telescope commands<CR>')
-  map('n', '<leader>hc', ':Telescope cocmmand_history<CR>')
-  map('n', '<leader>hs', ':Telescope search_history<CR>')
-  map('n', '<leader>hf', ':Telescope oldfiles<CR>')
-  map('n', '<leader>fs', ':Telescope colorscheme<CR>', silent)
-  map('n',  '<leader>fw', ':Telescope grep_string<CR>', silent)
-  map('n',  'z=', ':Telescope spell_suggest theme=cursor<CR>', silent)
-end
+-- Keymap --
+lvim.builtin.which_key.mappings["f"] = {
+  name = "Find",
+  b = {':Telescope buffers<CR>', 'Buffers'},
+  t = {':Telescope filetypes<CR>', 'Filetype'},
+  p = {':Telescope find_files<CR>', 'Files in Project'},
+  f = {':Telescope live_grep<CR>', 'Find'},
+  m = {':Telescope keymaps<CR>', 'Key mappings'},
+  k = {':Telescope help_tags<CR>', 'Help'},
+  c = {':Telescope commands<CR>', 'Commands'},
+  s = {':Telescope colorscheme<CR>', 'Color schemes'},
+  w = {':Telescope grep_string<CR>', 'Find <word>'},
+}
+
+lvim.builtin.which_key.mappings["h"] = {
+  name = "History",
+  c = {':Telescope cocmmand_history<CR>'},
+  s = {':Telescope search_history<CR>'},
+  f = {':Telescope oldfiles<CR>'},
+}
+
+lvim.keys.normal_mode = {
+  -- Navigation shortcuts
+  ['<C-P>'] = ':Telescope find_files<CR>',
+  ['<M-C-P>'] = ':Telescope buffers<CR>',
+}
+
+lvim.keys.visual_mode = {
+  -- Navigation shortcuts
+  ['<C-P>'] = ':Telescope find_files<CR>',
+  ['<M-C-P>'] = ':Telescope buffers<CR>',
+}
+

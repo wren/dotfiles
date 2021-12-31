@@ -1,7 +1,6 @@
 
 local plugin = { 'iamcco/markdown-preview.nvim' }
-local my_filetypes = { 'jrnl', 'markdown' }
-plugin.ft = my_filetypes
+plugin.ft ={ 'jrnl', 'markdown' }
 plugin.run = 'cd app && yarn install'
 
 plugin.config = function()
@@ -95,7 +94,7 @@ plugin.config = function()
 
   -- recognized filetypes
   -- these filetypes will have MarkdownPreview... commands
-  g.mkdp_filetypes = my_filetypes
+  g.mkdp_filetypes = { 'jrnl', 'markdown' }
 end
 
 table.insert(lvim.plugins, plugin)
