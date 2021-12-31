@@ -110,9 +110,9 @@
 
         if [[ ! -d "$PYTHON_VENVS_DIR/neovim" ]]; then
             python -m venv "$PYTHON_VENVS_DIR/neovim"
-            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install pynvim debugpy
         else
-            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim | perl -ne 'print if not m/^Requirement already/'
+            "$PYTHON_VENVS_DIR/neovim/bin/python" -m pip install --upgrade pynvim debugpy | perl -ne 'print if not m/^Requirement already/'
         fi
 
     - description: Checking Node environment
