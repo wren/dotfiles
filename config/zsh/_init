@@ -10,7 +10,6 @@ my_dotfiles=(
   completion
   plugin_manager
   env
-  theme
   aliases
   extra
   load_host

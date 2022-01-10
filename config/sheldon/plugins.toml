@@ -3,7 +3,7 @@
 
 shell = "zsh"
 
-[ templates ]
+[templates]
 noop = ':'
 defer = { each = true, value = 'zsh-defer source "{{ file }}"' }
 path = 'path=( "{{ dir }}" $path )'
@@ -41,18 +41,18 @@ fi
 
 lessopen = 'export LESSOPEN="|{{ dir }}/bin/{{name}} %s"'
 
-[ plugins ]
+[plugins]
 
 # 2-3ms
-[ plugins.zsh-defer ]
+[plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
 # 8ms
 # fzf-tab needs to be loaded after compinit, but before plugins which will wrap
 # widgets, such as zsh-autosuggestions or fast-syntax-highlighting!
-[ plugins.fzf-tab ]
+[plugins.fzf-tab]
 github = 'aloxaf/fzf-tab'
-apply = [ 'defer' ]
+apply = ['defer']
 
 # 5-6ms
 # [ plugins.ohmyzsh ]
@@ -60,7 +60,7 @@ apply = [ 'defer' ]
 # use = [ 'lib/clipboard.zsh' ]
 # apply = [ 'defer' ]
 
-[ plugins.prezto-modules ]
+[plugins.prezto-modules]
 inline = '''
   zstyle :prezto:load pmodule \
     editor \
@@ -71,52 +71,47 @@ inline = '''
 '''
 
 # defer breaks this (terminal crashes on any keystroke)
-[ plugins.prezto ]
+[plugins.prezto]
 github = 'sorin-ionescu/prezto'
-use = [ '/init.zsh' ]
-
-# 7-8ms
-# doesn't support defer
-[ plugins.powerlevel10k ]
-github = 'romkatv/powerlevel10k'
+use = ['/init.zsh']
 
 # 0-1ms
-[ plugins.zsh-completions ]
+[plugins.zsh-completions]
 github = 'zsh-users/zsh-completions'
-apply = [ 'defer' ]
+apply = ['defer']
 
 # 6ms
-[ plugins.zsh-autosuggestions ]
+[plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
 
 # 24ms
 # breaks with defer
-[ plugins.zsh-syntax-highlighting ]
+[plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
 
 # 0ms
-[ plugins.zsh-autosuggestions-config ]
+[plugins.zsh-autosuggestions-config]
 inline = '''
 unset ZSH_AUTOSUGGEST_USE_ASYNC
 '''
 
 # 22ms (noop fixes it)
-[ plugins.forgit ]
+[plugins.forgit]
 github = 'wfxr/forgit'
 apply = ['noop']
 
 # 0ms
-[ plugins.forgit-config ]
+[plugins.forgit-config]
 inline = '''
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
 '''
 
 # 11-12ms
-[ plugins.zsh-history-substring-search ]
+[plugins.zsh-history-substring-search]
 github = 'zsh-users/zsh-history-substring-search'
-apply = [ 'defer' ]
+apply = ['defer']
 
-[ plugins.zsh-vim-mode-config-before ]
+[plugins.zsh-vim-mode-config-before]
 inline = '''
 export VISUAL=lvim
 export EDITOR="$VISUAL"
@@ -131,19 +126,19 @@ MODE_CURSOR_SEARCH="#ff00ff steady underline"
 '''
 
 # 22ms
-[ plugins.zsh-vim-mode ]
+[plugins.zsh-vim-mode]
 github = 'softmoth/zsh-vim-mode'
 # defer makes the initial cursor not have the correct style (since it's drawn
 # before this loads). Maybe worth it?
 # apply = [ 'defer' ]
 
 # 12ms
-[  plugins.zsh-system-clipboard  ]
+[plugins.zsh-system-clipboard]
 github = 'kutsan/zsh-system-clipboard'
 # apply = [ 'defer' ]
 
 # 0ms
-[ plugins.zsh-vim-mode-config-after ]
+[plugins.zsh-vim-mode-config-after]
 inline = '''
 # This isn't provided by the plugin, so we roll our own
 function zsh-system-clipboard-vicmd-vi-yank-eol() {
@@ -169,35 +164,30 @@ vim-mode-bindkey vicmd -- vi-delete          d
 '''
 
 # 0ms
-[ plugins.ohmytmux ]
+[plugins.ohmytmux]
 github = 'wren/.tmux'
-use = [ '.tmux.conf' ]
-apply = [ 'direnv-ohmytmux' ]
+use = ['.tmux.conf']
+apply = ['direnv-ohmytmux']
 
-[ plugins.asdf-nix ]
+[plugins.asdf-nix]
 local = '~/.nix-profile/share/asdf-vm/lib'
-use = [ 'asdf.sh' ]
-apply = [ 'defer' ]
+use = ['asdf.sh']
+apply = ['defer']
 
-[ plugins.fzf-nix ]
+[plugins.fzf-nix]
 local = '~/.nix-profile/share/fzf'
-use = [ '*.zsh' ]
-apply = [ 'defer' ]
+use = ['*.zsh']
+apply = ['defer']
 
-[ plugins.direnv-nix ]
+[plugins.direnv-nix]
 inline = 'eval "$(direnv hook zsh)"'
 
-[ plugins.lolcat ]
+[plugins.lolcat]
 github = 'jaseg/lolcat'
-apply = [ 'cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin' ]
+apply = ['cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin']
 
-[ plugins.batpipe ]
+[plugins.batpipe]
 github = 'eth-p/bat-extras'
-use = [ '/build.sh' ]
-apply = [
-  'cmd-exists',
-  'build',
-  'clean-cmd-exists',
-  'lessopen',
-  'path-bin',
-]
+use = ['/build.sh']
+apply = ['cmd-exists', 'build', 'clean-cmd-exists', 'lessopen', 'path-bin']
+

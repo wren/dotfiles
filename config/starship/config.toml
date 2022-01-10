@@ -1,0 +1,159 @@
+format = """
+$fill $status$time
+
+$username$hostname${custom.unread-mail}${custom.read-mail} $directory(
+$git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics)(
+$jobs$character)
+"""
+
+right_format = "$all"
+add_newline = false
+
+[line_break]
+disabled = true
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "fg:#718085"
+use_12hr = true
+
+[status]
+disabled = false
+symbol = ' '
+success_symbol = ' '
+
+[username]
+show_always = true
+style_user = "fg:176"
+style_root = "bold red"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style)"
+style = "fg:176"
+
+[directory]
+truncate_to_repo = false
+truncation_length = 0
+style = 'fg:179'
+
+[fill]
+symbol = '─'
+style = "fg:#718085"
+
+[git_branch]
+format = "[$symbol$branch]($style)"
+always_show_remote = true
+style = 'fg:179'
+
+[custom.git-remote-logo]
+# Adapted from: https://github.com/starship/starship/discussions/1252#discussioncomment-194627
+description = "Display logo for remote git repo"
+when = 'git rev-parse --is-inside-work-tree'
+shell = ["zsh"]
+format = "(  $output)"
+command = """
+  GIT_REMOTE_NAME=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)
+
+  # No remote
+  if [[ -z $GIT_REMOTE_NAME ]]; then
+    echo ""
+    return
+  fi
+
+  GIT_REMOTE_URL=$(git remote get-url ${GIT_REMOTE_NAME%%/*})
+  case "$GIT_REMOTE_URL" in
+      *github*)    GIT_REMOTE_LOGO="" ;;
+      *gitlab*)    GIT_REMOTE_LOGO="" ;;
+      *bitbucket*) GIT_REMOTE_LOGO="" ;;
+      *git*)       GIT_REMOTE_LOGO="" ;;
+      *)           GIT_REMOTE_LOGO="" ;;
+  esac
+
+  echo "${GIT_REMOTE_LOGO}"
+"""
+
+[custom.git-remote-name]
+description = "Display name for the remote git repo"
+when = 'git rev-parse --is-inside-work-tree'
+shell = ["zsh"]
+format = "( [$output](fg:81))"
+command = """
+  GIT_REMOTE_NAME="$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)"
+  echo "${GIT_REMOTE_NAME%%/*}"
+"""
+
+[custom.git-remote-branch]
+description = "Display remote branch name if different from local branch"
+when = 'git rev-parse --is-inside-work-tree'
+shell = ["zsh"]
+format = "[(/$output)](fg:67)"
+command = """
+  REMOTE_NAME_AND_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+
+  REMOTE_BRANCH="${REMOTE_NAME_AND_BRANCH#*/}"
+  LOCAL_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+  if [[ $LOCAL_BRANCH != $REMOTE_BRANCH ]]; then
+    echo $REMOTE_BRANCH
+  fi
+"""
+
+[git_metrics]
+disabled = false
+format = '( | [+$added]($added_style) )([-$deleted]($deleted_style))'
+
+[git_status]
+format = '( $ahead_behind)( |$staged$renamed)( |$deleted$modified$untracked)( |$stashed)'
+style = "white"
+conflicted = "="
+ahead = "([${count}](fg:#9BE782))"
+behind = "([${count}](fg:167))"
+diverged = "([${behind_count}](fg:167) [${ahead_count}](fg:#9BE782))"
+# up_to_date = "[](fg:119)"
+untracked = "([  $count](fg:81))"
+stashed = "( [ $count](fg:141))"
+modified = "([  $count](fg:179))"
+# modified = "([ ﯽ $count](fg:179))"
+staged = "([  $count](fg:#9BE782))"
+renamed = "([  $count](fg:179))"
+deleted = "([   $count](fg:167))"
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = ' '
+style = 'blue'
+
+[lua]
+format = '[$symbol($version )]($style)'
+symbol = ' '
+style = 'fg:205'
+
+[golang]
+symbol = ' '
+
+[package]
+format = '[$symbol$version]($style) '
+symbol = ' '
+style = 'fg:210'
+
+[custom.unread-mail]
+when = 'mail -e'
+shell = ["zsh"]
+format = '( [$output]($style))'
+style = 'cyan'
+command = 'echo '
+
+[custom.read-mail]
+when = 'test -f ~/mbox'
+shell = ["zsh"]
+format = '( [$output]($style))'
+style = "fg:#718085"
+command = 'echo '
+
+[jobs]
+symbol = ''
+style = 'white'
+
