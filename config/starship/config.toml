@@ -1,5 +1,5 @@
 format = """
-$fill $status$time
+$fill $status$cmd_duration$time
 
 $username$hostname${custom.unread-mail}${custom.read-mail} $directory(
 $git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics)(
@@ -11,6 +11,11 @@ add_newline = false
 
 [line_break]
 disabled = true
+
+[character]
+success_symbol = '[❯](fg:#718085)'
+error_symbol = '[❯](fg:#718085)'
+vicmd_symbol = '[🅽](green)'
 
 [time]
 disabled = false
@@ -156,4 +161,10 @@ command = 'echo '
 [jobs]
 symbol = ''
 style = 'white'
+
+[cmd_duration]
+format = '([ $duration]($style) )'
+style = "fg:#718085"
+min_time = 1000
+show_milliseconds = false
 
