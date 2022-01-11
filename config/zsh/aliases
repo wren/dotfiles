@@ -74,13 +74,13 @@ function jp() {
 
   jrnl \
     --co journals.default "${my_root}/project-notes.jrnl" \
-    $([[ -f $my_template_file ]] && echo "--co template '$my_template_file'") \
+    $([[ -f $my_template_file ]] && echo "--config-override template '$my_template_file'") \
     "$@"
 }
 alias jpe='jp --edit'
 alias jps='jp --short'
-alias j.business='jn --co template ~/Dotfiles/config/jrnl/templates/business-times.jrnl'
-alias j.hwt='jn --co template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
+alias j.business='jn --config-override template ~/Dotfiles/config/jrnl/templates/business-times.jrnl'
+alias j.hwt='jn --config-override template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
 
 alias py='python'
 alias speedtest='speed-test --verbose'
