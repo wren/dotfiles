@@ -1,16 +1,25 @@
+brew "curl" # Get a file from an HTTP, HTTPS or FTP server
+brew "git" # Distributed revision control system
+brew "git-filter-repo" # Quickly rewrite git repository history
+brew "gnu-sed" # GNU implementation of the famous stream editor
 brew "moreutils" # Collection of tools that nobody wrote when UNIX was young
+brew "python@3.9" # Interpreted, interactive, object-oriented programming language
 brew "sheldon" # Fast, configurable, shell plugin manager
 brew "showkey" # Simple keystroke visualizer
+brew "starship" # Cross-shell prompt for astronauts
 brew "tag" # Manipulate and query tags on macOS files
 brew "tmux", args: ["HEAD"] # Terminal multiplexer
 brew "trash" # CLI tool that moves files or folder to the trash
 brew "util-linux" # Collection of Linux utilities
 brew "viu" # Simple terminal image viewer written in Rust
+brew "youtube-dl" # Download YouTube videos from the command-line
 cask "1password" # Password manager that keeps all passwords secure behind one password
 cask "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
 cask "alfred" # Application launcher and productivity software
 cask "audio-hijack" # Records audio from any application
+cask "calendar-366" # Menu bar calendar for events and reminders
 cask "cyberduck" # Server and cloud storage browser
+cask "devbook" # Search engine for developers
 cask "discord" # Voice and text chat software
 cask "docker" # App to build and share containerized applications and microservices
 cask "farrago" # Audio playback
@@ -20,12 +29,14 @@ cask "flux" # Screen color temperature controller
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
-cask "google-backup-and-sync" # Back up and sync files with Google Drive
+cask "github" # Desktop client for GitHub repositories
 cask "google-chrome" # Web browser
+cask "google-drive" # Client for the Google Drive storage service
 cask "google-trends"
 cask "iterm2" # Terminal emulator as alternative to Apple's Terminal app
 cask "itsycal" # Menu bar calendar
 cask "karabiner-elements" # Keyboard customizer
+cask "logitech-camera-settings" # Provides access to camera controls
 cask "loopback" # Cable-free audio router
 cask "obs" # Open-source software for live streaming and screen recording
 cask "pandora" # Desktop client for the Pandora web radio service
@@ -41,7 +52,7 @@ cask "slack" # Team communication and collaboration software
 cask "spectacle" # Move and resize windows with ease
 cask "steam" # Video game digital distribution service
 cask "sublime-merge" # Git client
-cask "the-archive-browser"
+cask "the-archive-browser" # Browse the contents of archives
 cask "the-unarchiver" # Unpacks archive files
 cask "vlc" # Multimedia player
 cask "webpquicklook"
