@@ -33,9 +33,6 @@ path=(
 fpath=(
   $ZDOTDIR/functions
 
-  # nix
-  $HOME/.nix-profile/share/zsh/site-functions
-
   # homebrew
   /usr/local/share/zsh/site-functions
 

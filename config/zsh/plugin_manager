@@ -1,10 +1,5 @@
 # Initialize plugin/package manager(s)
 
-# nix and home-manager
-source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-
-
 if command -v sheldon &>/dev/null; then
   SHELDON_CACHE_FILE="$SHELDON_CACHE/cached_init.sh"
   SHELDON_LOCK_FILE="$XDG_DATA_HOME/sheldon/plugins.lock"

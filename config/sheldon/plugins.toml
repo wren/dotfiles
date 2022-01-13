@@ -169,19 +169,6 @@ github = 'wren/.tmux'
 use = ['.tmux.conf']
 apply = ['direnv-ohmytmux']
 
-[plugins.asdf-nix]
-local = '~/.nix-profile/share/asdf-vm/lib'
-use = ['asdf.sh']
-apply = ['defer']
-
-[plugins.fzf-nix]
-local = '~/.nix-profile/share/fzf'
-use = ['*.zsh']
-apply = ['defer']
-
-[plugins.direnv-nix]
-inline = 'eval "$(direnv hook zsh)"'
-
 [plugins.lolcat]
 github = 'jaseg/lolcat'
 apply = ['cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin']

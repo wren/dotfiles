@@ -34,7 +34,6 @@ export DIRENV_LOG_FORMAT=""
 
 # Python virtual envs
 export PYTHON_VENVS_DIR="$XDG_CACHE_HOME/python-virtual-envs"
-export VIRTUALENVWRAPPER_PYTHON="$HOME/.nix-profile/bin/python"
 export WORKON_HOME="$PYTHON_VENVS_DIR"
 
 # Dedupe becuase being in Tmux confuses some things that manipulate the path
