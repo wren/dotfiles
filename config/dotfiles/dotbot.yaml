@@ -75,7 +75,8 @@
         # Manually clean up the brewfile, since `brew bundle` is hot garbage
         # This perl line moves the "describe" comments inline
         perl -0777 -i -pe 's/(#.*?)\n(.*?)\n/$2 $1\n/g' "$BREWFILE"
-        sort -fo "$BREWFILE" "$BREWFILE"
+        # sort gets confused by unicode
+        LC_ALL='C' sort -fo "$BREWFILE" "$BREWFILE"
         sed -i '/^tap /d' "$BREWFILE"
         sed -i -r '/^mas "(GarageBand|iMovie|Keynote|Numbers|Pages)"/d' "$BREWFILE"
 
