@@ -4,6 +4,7 @@ brew "asdf" # Extendable version manager with support for Ruby, Node.js, Erlang 
 brew "aspell" # Spell checker with better logic than ispell
 brew "awscli" # Official Amazon AWS command-line interface
 brew "bat" # Clone of cat(1) with syntax highlighting and Git integration
+brew "bat-extras" # Bash scripts that integrate bat with various command-line tools
 brew "coreutils" # GNU File, Shell, and Text utilities
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
 brew "diff-so-fancy" # Good-lookin' diffs with diff-highlight and more

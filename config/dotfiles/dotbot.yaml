@@ -27,8 +27,8 @@
           - '*/*.enc.yaml'
           - '*/zsh'
           - '*/git'
-          - '*/nvim'
-          - '*/lvim'
+          - '*/neovim'
+          - '*/bat'
     ~/.local/bin/:
         glob: true
         path: bin/*
