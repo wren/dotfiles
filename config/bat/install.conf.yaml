@@ -25,5 +25,5 @@
 - link:
     ~/.config/bat:
         path: 'bat.config'
-    ~/.config/batpipe:
+    ~/.config/batpipe/viewers.d:
         path: 'viewers.d'

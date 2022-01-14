@@ -1,0 +1,15 @@
+# prepend so we override the default viewer
+BATPIPE_VIEWERS=('exa_with_icons' "${BATPIPE_VIEWERS[@]}")
+
+viewer_exa_with_icons_supports() {
+	[[ -d "$2" ]] || return 1
+	command -v "exa" &> /dev/null || return 1
+	return 0
+}
+
+viewer_exa_with_icons_process() {
+	local dir="$(strip_trailing_slashes "$1")"
+	batpipe_header "Viewing contents of directory: %{PATH}%s" "$dir"
+    exa -la --color=always --icons "$1" 2>&1
+	return $?
+}
