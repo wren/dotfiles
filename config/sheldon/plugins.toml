@@ -111,57 +111,78 @@ FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{})
 github = 'zsh-users/zsh-history-substring-search'
 apply = ['defer']
 
-[plugins.zsh-vim-mode-config-before]
+
+[plugins.vi-mode-before]
 inline = '''
 export VISUAL=lvim
 export EDITOR="$VISUAL"
-bindkey -v
 
-VIM_MODE_ESC_PREFIXED_WANTED='^?^Hfg' # Default: '^?^Hbdf.g'
+function zvm_config() {
+  ZVM_VI_SURROUND_BINDKEY='s-prefix'
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-# Change cursor styling
-MODE_CURSOR_VICMD="block"
-MODE_CURSOR_VIINS="blinking bar"
-MODE_CURSOR_SEARCH="#ff00ff steady underline"
-'''
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+  ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+}
 
-# 22ms
-[plugins.zsh-vim-mode]
-github = 'softmoth/zsh-vim-mode'
-# defer makes the initial cursor not have the correct style (since it's drawn
-# before this loads). Maybe worth it?
-# apply = [ 'defer' ]
-
-# 12ms
-[plugins.zsh-system-clipboard]
-github = 'kutsan/zsh-system-clipboard'
-# apply = [ 'defer' ]
-
-# 0ms
-[plugins.zsh-vim-mode-config-after]
-inline = '''
-# This isn't provided by the plugin, so we roll our own
-function zsh-system-clipboard-vicmd-vi-yank-eol() {
+function custom-vicmd-yank-eol() {
   zle vi-yank-eol
   printf '%s' "$CUTBUFFER" | pbcopy
 }
-zle -N zsh-system-clipboard-vicmd-vi-yank-eol
 
-# Bindings that start with esc are non-sensical in
-# vim mode, so we get rid of them
-bindkey -rpM viins '^[^['
+function custom-vicmd-yank() {
+  zle vi-yank
+  printf '%s' "$CUTBUFFER" | pbcopy
+}
 
-vim-mode-bindkey vicmd -- beginning-of-line  H
-vim-mode-bindkey vicmd -- end-of-line        L
-vim-mode-bindkey vicmd -- run-help           K
-vim-mode-bindkey vicmd -- fzf-history-widget '/'
-vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
+function custom-vicmd-yank-whole-line() {
+  zle vi-yank-whole-line
+  printf '%s' "$CUTBUFFER" | pbcopy
+}
 
-# unbind the system clipboard widgets from delete, so
-# deleting actually deletes
-vim-mode-bindkey vicmd -- vi-kill-eol        D
-vim-mode-bindkey vicmd -- vi-delete          d
+function custom-vicmd-put-after() {
+  CUTBUFFER="$(pbpaste)"
+  zle vi-put-after
+}
+
+function custom-vicmd-put-before() {
+  CUTBUFFER="$(pbpaste)"
+  zle vi-put-before
+}
+
+function zvm_after_lazy_keybindings() {
+  bindkey -M vicmd 's' your_normal_widget
+  bindkey -M visual 'n' your_visual_widget
+
+  # custom copy and paste widgets
+  zvm_define_widget custom-vicmd-yank-eol
+  zvm_define_widget custom-vicmd-yank
+  zvm_define_widget custom-vicmd-yank-whole-line
+  zvm_define_widget custom-vicmd-put-after
+  zvm_define_widget custom-vicmd-put-before
+
+  zvm_bindkey vicmd H beginning-of-line
+  zvm_bindkey vicmd L end-of-line
+  zvm_bindkey vicmd K run-help
+  zvm_bindkey vicmd '/' fzf-history-widget
+  zvm_bindkey vicmd Y custom-vicmd-yank-eol
+  zvm_bindkey vicmd y custom-vicmd-yank
+  zvm_bindkey vicmd yy custom-vicmd-yank-whole-line
+
+  zvm_bindkey vicmd p custom-vicmd-put-before
+  zvm_bindkey vicmd P custom-vicmd-put-after
+
+  # make delete actually delete again
+  zvm_bindkey vicmd D vi-kill-eol
+  zvm_bindkey vicmd d vi-delete
+}
+
 '''
+
+[plugins.vi-mode]
+github = 'jeffreytse/zsh-vi-mode'
+# apply = ['defer']
 
 # 0ms
 [plugins.ohmytmux]
