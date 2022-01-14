@@ -28,6 +28,11 @@ path=(
 
   # default path
   $path
+
+  /usr/local/opt/python@3.10/bin
+  /usr/local/opt/python@3.9/bin
+  /usr/local/opt/python@3.8/bin
+  /usr/local/opt/python@3.7/bin
 )
 
 fpath=(

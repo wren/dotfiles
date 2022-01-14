@@ -31,6 +31,9 @@ brew "pandoc" # Swiss-army knife of markup format conversion
 brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
 brew "prettyping" # Wrapper to colorize and simplify ping's output
 brew "pv" # Monitor data's progress through a pipe
+brew "python@3.10" # Interpreted, interactive, object-oriented programming language
+brew "python@3.7" # Interpreted, interactive, object-oriented programming language
+brew "python@3.8" # Interpreted, interactive, object-oriented programming language
 brew "python@3.9" # Interpreted, interactive, object-oriented programming language
 brew "qmk/qmk/qmk" # Quantum Mechanical Keyboard (QMK) Firmware
 brew "rclone" # Rsync for cloud storage
