@@ -53,6 +53,7 @@ require 'plugins.editorconfig'
 
 -- Writing --
 require 'plugins.jrnl'
+require 'plugins.bullets'
 require 'plugins.truezen'
 require 'plugins.pencil'
 require 'plugins.markdown-preview'
