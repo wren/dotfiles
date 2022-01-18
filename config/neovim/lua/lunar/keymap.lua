@@ -115,10 +115,14 @@ map('n', '<leader>-', ':split<CR>', { noremap = false })
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 
 -- Get syntax info at cursor
-map('n', '<Leader>cs', '<cmd>lua highlight_group()<CR>')
+map('n', '<LocalLeader>sh', '<cmd>lua highlight_group()<CR>')
 
 -- Disable some keymappings that don't do anything useful, and get in the way
 map('n', 'Q', '') -- disable ex-mode because ugh
+
+-- Quit all with ZZ
+map('n', 'ZZ', '<cmd>w<cr><cmd>qa<cr>')
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
