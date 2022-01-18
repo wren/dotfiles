@@ -39,7 +39,12 @@ if [[ ! -e ~/.local/bin/{{ name }} && -e {{ dir }}/{{ name }} ]]; then
 fi
 '''
 
-lessopen = 'export LESSOPEN="|{{ dir }}/bin/{{name}} %s"'
+lessopen = '''
+export LESSOPEN="|{{ dir }}/bin/{{name}} %s"
+unset LESSCLOSE
+# export LESS="$LESS -R"
+export BATPIPE="color"
+'''
 
 [plugins]
 
