@@ -26,7 +26,7 @@
   textconv = plutil -convert xml1 -r -o -
 
 [diff "pandoc"]
-  textconv=pandoc --to=markdown
+  textconv = pandoc --to=markdown
   prompt = false
 
 [diff "sops"]
