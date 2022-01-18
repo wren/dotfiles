@@ -1,13 +1,16 @@
 format = """
 $fill $status$cmd_duration$time
 
-$username$hostname${custom.unread-mail}${custom.read-mail} $directory(
-$git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics)(
-$jobs$character)
+$username$hostname $directory(
+$git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics( | $all))(
+$jobs$shell$character)
 """
 
-right_format = "$all"
-add_newline = false
+right_format = """
+$package
+"""
+
+add_newline = true
 
 [line_break]
 disabled = true
@@ -129,7 +132,7 @@ deleted = "([   $count](fg:167))"
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 symbol = ' '
-style = 'blue'
+style = 'yellow'
 
 [lua]
 format = '[$symbol($version )]($style)'
@@ -167,4 +170,7 @@ format = '([ $duration]($style) )'
 style = "fg:#718085"
 min_time = 1000
 show_milliseconds = false
+
+[shell]
+disabled = true
 
