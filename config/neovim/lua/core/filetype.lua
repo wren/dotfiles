@@ -1,5 +1,5 @@
 nvim_define_filetypes({
-  { '*.hcl'                       , 'terraform' },
+  { '*.{hcl,tf}'                  , 'terraform' },
   { 'yarn.lock'                   , 'yaml'      },
   { '*.postman_collection'        , 'json'      },
   { '.tern-{project,port}'        , 'json'      },
