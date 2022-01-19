@@ -1,13 +1,12 @@
 [core]
   pager = diff-so-fancy | less -F
 
-[mergetool "diffconflicts"]
-  cmd = diffconflicts nvim \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "smerge"]
+  cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
   trustExitCode = true
-  keepBackup = false
 
 [merge]
-  tool = diffconflicts
+  tool = smerge
   conflictstyle = merge
 
 [mergetool]
