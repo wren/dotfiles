@@ -13,72 +13,26 @@
 
 - clean:
     - '~'
-
-- create:
-    - ~/Library/KeyBindings
+    - '~/.config'
 
 - link:
-    # General
-    ~/.config/:
-        glob: true
-        path: config/*
-        exclude:
-          - '*/*.enc'
-          - '*/*.enc.yaml'
-          - '*/zsh'
-          - '*/git'
-          - '*/neovim'
-          - '*/bat'
     ~/.local/bin/:
         glob: true
         path: bin/*
 
-    # Alfred
-    ~/Library/ApplicationSupport/Alfred/prefs.json:
-        path: config/alfred/prefs.json
-    ~/Library/Application Support/Spectacle/Shortcuts.json:
-        path: config/spectacle/shortcuts.json
-
 - shell:
-    - description: Checking superuser access
-      command: |-
-        if [[ -z $DOTFILES_LOADED ]] && [[ "$EUID" -ne 0 ]]; then
-        sudo -v || {
-            printf "\n$UNDERLINE$(tput setaf 1)ERROR:$(tput sgr0) "
-            printf "Superuser access is required for some later steps in this script."
-            printf "\n\nPlease ctrl+c to try again\n"
-            sleep 9999
-        }
-        fi
-        # Keep sudo going in background for duration of the script
-        # see: https://gist.github.com/cowboy/3118588
-        while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-    - description: Checking Homebrew bundles
+    - description: Checking brew
       command: |-
         if ! command -v brew >/dev/null; then
           echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
-        BREWFILE="$DOTFILES_DIR/config/dotfiles/Brewfile"
-        export HOMEBREW_NO_AUTO_UPDATE=1
-        if ! brew bundle check --no-upgrade --file="$BREWFILE" >/dev/null; then
-            printf "Some brew dependencies are missing. Installing...\n"
-            brew bundle --file="$BREWFILE" --no-lock
-        fi
-        brew bundle dump \
-          --all \
-          --force \
-          --no-lock \
-          --no-upgrade \
-          --describe \
-          --file="$BREWFILE"
-        # Manually clean up the brewfile, since `brew bundle` is hot garbage
-        # This perl line moves the "describe" comments inline
-        perl -0777 -i -pe 's/(#.*?)\n(.*?)\n/$2 $1\n/g' "$BREWFILE"
-        # sort gets confused by unicode
-        LC_ALL='C' sort -fo "$BREWFILE" "$BREWFILE"
-        sed -i '/^tap /d' "$BREWFILE"
-        sed -i -r '/^mas "(GarageBand|iMovie|Keynote|Numbers|Pages)"/d' "$BREWFILE"
+
+- brew:
+    - "age" # Simple, modern, secure file encryption
+    - "sops" # Editor of encrypted files
+
+- shell:
 
     - description: Checking Encryption Key (Age)
       # @todo clean this up, and maybe make standalone script
@@ -247,14 +201,111 @@
         # Decrypt individual files
         fd -HI -t f '[\._]enc' -x zsh -c $decrypt_script
 
-    - description: Installing software licenses
+    - description: Run individual bundles through dotbot
       command: |-
-        if [[ -z $DOTFILES_LOADED ]]; then
-          sops exec-env ./data/keys/alfred.enc.yaml 'sh "$DOTFILES_DIR/bin/sops-install-key.sh"'
-        fi
+        set +e # if any steps fail, then the remaining steps should still happen
+
+        # Header to add to each config file below (it's easier than
+        # copying it into each file)
+        local DEFAULTS='
+        - defaults:
+            link:
+                relink: true
+                ignore-missing: true
+                force: true
+                create: true
+                quiet: true
+            shell:
+                stdin: false
+                stdout: true
+                stderr: true
+                quiet: true
+        '
+        for file in $(find config -name 'install.conf.yaml'); do
+          shortname="${file%%/install.conf.yaml}"
+          shortname="${shortname##config/}"
+          print -P "\n\n%F{006}───── ${(U)shortname} ─────%f"
+          ${=DOTBOT_CMD} -d $(dirname $file) -c <(cat =(<<<$DEFAULTS) $file) "$@"
+        done
 
 - pipx:
     file: config/dotfiles/pipx.txt
     stdout: false
     stderr: true
 
+- brew:
+    - "as-tree" # Print a list of paths as a tree of paths
+    - "asdf" # Extendable version manager with support for Ruby, Node.js, Erlang & more
+    - "aspell" # Spell checker with better logic than ispell
+    - "awscli" # Official Amazon AWS command-line interface
+    - "direnv" # Load/unload environment variables based on $PWD
+    - "exa" # Modern replacement for 'ls'
+    - "fd" # Simple, fast and user-friendly alternative to find
+    - "fzf" # Command-line fuzzy finder written in Go
+    - "gh" # GitHub command-line tool
+    - "git-annex" # Manage files with git without checking in file contents
+    - "go" # Open source programming language to build simple/reliable/efficient software
+    - "hyperfine" # Command-line benchmarking tool
+    - "jq" # Lightweight and flexible command-line JSON processor
+    - "less" # Pager program similar to more
+    - "micro" # Modern and intuitive terminal-based text editor
+    - "minisign" # Sign files & verify signatures. Works with signify in OpenBSD
+    - "node" # Platform built on V8 to build network applications
+    - "pandoc" # Swiss-army knife of markup format conversion
+    - "prettyping" # Wrapper to colorize and simplify ping's output
+    - "pv" # Monitor data's progress through a pipe
+    - "qmk/qmk/qmk" # Quantum Mechanical Keyboard (QMK) Firmware
+    - "rclone" # Rsync for cloud storage
+    - "restic" # Fast, efficient and secure backup program
+    - "ripgrep" # Search tool like grep and The Silver Searcher
+    - "rubberband" # Audio time stretcher tool and library
+    - "sheldon" # Fast, configurable, shell plugin manager
+    - "showkey" # Simple keystroke visualizer
+    - "sox" # SOund eXchange: universal sound sample translator
+    - "starship" # Cross-shell prompt for astronauts
+    - "tmux --HEAD" # Terminal multiplexer
+    - "trash" # CLI tool that moves files or folder to the trash
+    - "viu" # Simple terminal image viewer written in Rust
+    - "vivid" # Generator for LS_COLORS with support for multiple color themes
+    - "youtube-dl" # Download YouTube videos from the command-line
+    - "yq" # Process YAML documents from the CLI
+    - "zsh" # UNIX shell (command interpreter)
+    - "zstd" # Zstandard is a real-time compression algorithm
+
+
+- cask:
+    - "1password" # Password manager that keeps all passwords secure behind one password
+    - "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
+    - "audio-hijack" # Records audio from any application
+    - "calendar-366" # Menu bar calendar for events and reminders
+    - "cyberduck" # Server and cloud storage browser
+    - "devbook" # Search engine for developers
+    - "discord" # Voice and text chat software
+    - "docker" # App to build and share containerized applications and microservices
+    - "farrago" # Audio playback
+    - "fission" # Audio editor
+    - "flux" # Screen color temperature controller
+    - "font-fira-code"
+    - "font-fira-code-nerd-font"
+    - "font-hack-nerd-font"
+    - "github" # Desktop client for GitHub repositories
+    - "google-chrome" # Web browser
+    - "google-drive" # Client for the Google Drive storage service
+    - "google-trends"
+    - "iterm2" # Terminal emulator as alternative to Apple's Terminal app
+    - "itsycal" # Menu bar calendar
+    - "karabiner-elements" # Keyboard customizer
+    - "logitech-camera-settings" # Provides access to camera controls
+    - "loopback" # Cable-free audio router
+    - "obs" # Open-source software for live streaming and screen recording
+    - "pandora" # Desktop client for the Pandora web radio service
+    - "postman" # Collaboration platform for API development
+    - "sequel-pro" # MySQL/MariaDB database management platform
+    - "signal" # Instant messaging application focusing on security
+    - "skitch" # Screen capture tool with mark up and sharing features
+    - "slack" # Team communication and collaboration software
+    - "spectacle" # Move and resize windows with ease
+    - "steam" # Video game digital distribution service
+    - "vlc" # Multimedia player
+    - "zoom" # Video communication and virtual meeting platform
+    - "zsa-wally" # Flash tool for ZSA keyboards
