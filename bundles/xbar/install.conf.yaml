@@ -1,0 +1,5 @@
+- brew:
+    - xbar
+
+- link:
+    ~/Library/Application Support/xbar/plugins: plugins
