@@ -221,9 +221,9 @@
                 stderr: true
                 quiet: true
         '
-        for file in $(find config -name 'install.conf.yaml'); do
+        for file in $(find bundles -name 'install.conf.yaml'); do
           shortname="${file%%/install.conf.yaml}"
-          shortname="${shortname##config/}"
+          shortname="${shortname##bundles/}"
           print -P "\n\n%F{006}───── ${(U)shortname} ─────%f"
           ${=DOTBOT_CMD} -d $(dirname $file) -c <(cat =(<<<$DEFAULTS) $file) "$@"
         done
