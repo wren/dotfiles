@@ -1,0 +1,16 @@
+- link:
+    ~/Library/ApplicationSupport/Alfred/prefs.json:
+        path: prefs.json
+
+- brew:
+    - sops
+
+- shell:
+    - description: Installing software licenses
+      command: |-
+        if [[ -z $DOTFILES_LOADED ]]; then
+          sops exec-env ./data/keys/alfred.enc.yaml 'sh "$DOTFILES_DIR/bin/sops-install-key.sh"'
+        fi
+
+- cask:
+    - "alfred" # Application launcher and productivity software

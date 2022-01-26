@@ -1,3 +1,5 @@
+- create:
+    - ~/Library/KeyBindings
 
 - link:
     ~/Library/Preferences/:
@@ -8,10 +10,31 @@
     ~/Library/KeyBindings/DefaultKeyBinding.dict:
         path: 'DefaultKeyBinding.dict'
 
-
 - shell:
     - description: Setting MacOS preferences
       command: |-
         if [[ ! $DOTFILES_LOADED ]]; then
           zsh ./macos.sh
         fi
+
+- brew:
+    - "coreutils" # GNU File, Shell, and Text utilities
+    - "curl" # Get a file from an HTTP, HTTPS or FTP server
+    - "cmake" # Cross-platform make
+    - "gnu-sed" # GNU implementation of the famous stream editor
+    - "grep" # GNU grep, egrep and fgrep
+    - "moreutils" # Collection of tools that nobody wrote when UNIX was young
+    - "rename" # Perl-powered file rename script with many helpful built-ins
+    - "rsync" # Utility that provides fast incremental file transfer
+    - "tag" # Manipulate and query tags on macOS files
+    - "util-linux" # Collection of Linux utilities
+    - "wget" # Internet file retriever
+
+- cask:
+    - "qlimagesize" # Display image info and preview unsupported formats in QuickLook
+    - "qlmarkdown" # QuickLook generator for Markdown files
+    - "qlvideo"
+    - "qview" # Image viewer
+    - "the-archive-browser" # Browse the contents of archives
+    - "the-unarchiver" # Unpacks archive files
+    - "webpquicklook"

@@ -1,17 +1,3 @@
-- defaults:
-    link:
-        relink: true
-        ignore-missing: true
-        force: true
-        create: true
-        quiet: true
-        glob: true
-    shell:
-        stdin: false
-        stdout: true
-        stderr: true
-        quiet: true
-
 - create:
     - ~/.config/bat
     - ~/.config/batpipe
@@ -27,3 +13,7 @@
         path: 'bat.config'
     ~/.config/batpipe/viewers.d:
         path: 'viewers.d'
+
+- brew:
+    - "bat" # Clone of cat(1) with syntax highlighting and Git integration
+    - "bat-extras" # Bash scripts that integrate bat with various command-line tools
