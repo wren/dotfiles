@@ -300,6 +300,7 @@
     - "obs" # Open-source software for live streaming and screen recording
     - "pandora" # Desktop client for the Pandora web radio service
     - "postman" # Collaboration platform for API development
+    - "raycast" # Control your tools with a few keystrokes
     - "sequel-pro" # MySQL/MariaDB database management platform
     - "signal" # Instant messaging application focusing on security
     - "skitch" # Screen capture tool with mark up and sharing features
