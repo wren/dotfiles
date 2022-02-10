@@ -257,7 +257,6 @@
     - "qmk/qmk/qmk" # Quantum Mechanical Keyboard (QMK) Firmware
     - "rclone" # Rsync for cloud storage
     - "restic" # Fast, efficient and secure backup program
-    - "ripgrep" # Search tool like grep and The Silver Searcher
     - "rubberband" # Audio time stretcher tool and library
     - "sheldon" # Fast, configurable, shell plugin manager
     - "showkey" # Simple keystroke visualizer

@@ -1,0 +1,12 @@
+- brew:
+    - "ripgrep" # Search tool like grep and The Silver Searcher
+
+- create:
+    - ~/.config/ripgrep
+
+- link:
+    ~/.config/ripgrep:
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
