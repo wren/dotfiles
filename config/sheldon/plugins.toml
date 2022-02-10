@@ -5,6 +5,7 @@ shell = "zsh"
 
 [templates]
 noop = ':'
+chmodx = 'chmod +x "{{ dir }}/"*'
 defer = { each = true, value = 'zsh-defer source "{{ file }}"' }
 path = 'path=( "{{ dir }}" $path )'
 path-bin = 'path=( "{{ dir }}/bin" $path )'
@@ -206,3 +207,19 @@ github = 'eth-p/bat-extras'
 use = ['/build.sh']
 apply = ['cmd-exists', 'build', 'clean-cmd-exists', 'lessopen', 'path-bin']
 
+# My personal scripts from gists
+[plugins.less-with-pipe]
+gist = "wren/29e7cc8784f858a28648b9360e29ac96"
+apply = ['path', 'chmodx']
+
+[plugins.git-branch-list]
+gist = "wren/87d82952f24d503c14888e0430a46b17"
+apply = ['path', 'chmodx']
+
+[plugins.pretty-packer]
+gist = "wren/c7a385e0b59c1f4cdeb0b81f099f1610"
+apply = ['path', 'chmodx']
+
+[plugins.vim-startup-time-sh]
+gist = 'wren/3c36ceae90403f9731edc9ba8e8ffbd0'
+apply = ['path', 'chmodx']

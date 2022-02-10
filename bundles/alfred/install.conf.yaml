@@ -1,9 +1,8 @@
-- link:
-    ~/Library/ApplicationSupport/Alfred/prefs.json:
-        path: prefs.json
-
 - brew:
     - sops
+
+- link:
+    ~/Library/ApplicationSupport/Alfred/prefs.json: prefs.json
 
 - shell:
     - description: Installing software licenses
