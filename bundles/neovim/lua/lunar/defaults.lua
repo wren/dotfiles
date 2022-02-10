@@ -5,3 +5,4 @@ lvim.colorscheme = "onedarker"
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.line_wrap_cursor_movement = true
+lvim.format_on_save = false
