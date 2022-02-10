@@ -72,7 +72,6 @@ inline = '''
     editor \
     terminal
 
-  zstyle :prezto:module:editor key-bindings vi
   zstyle :prezto:module:editor dot-expansion yes
 '''
 
