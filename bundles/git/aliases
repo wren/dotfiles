@@ -82,7 +82,7 @@
   sa = stash apply
   sd = stash drop
   sp = stash pop
-  ss = forgit stash-show
+  ss = forgit stash_show
   ssa = stash save
 
   # submodules
@@ -112,15 +112,13 @@
   todo = "!rg -i '@todo'"
 
   # fzf integration
-  lgf = forgit log
   dff = forgit diff
   af = forgit add
-  rhf = forgit reset-head
+  rhf = forgit reset_head
   if = forgit ignore
   rf = forgit restore
   clf = forgit clean
-  ssf = forgit stash-show
-  chpf = forgit cherry-pick
+  chpf = forgit cherry_pick
   rbf = forgit rebase
 
   # misc

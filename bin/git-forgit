@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-source "${XDG_DATA_HOME}/sheldon/repos/github.com/wfxr/forgit/forgit.plugin.zsh"
-
-cmd="$1"
-shift
-forgit::${cmd/-/::} "$@"

@@ -103,12 +103,14 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC
 # 22ms (noop fixes it)
 [plugins.forgit]
 github = 'wfxr/forgit'
-apply = ['noop']
+apply = ['path-bin']
 
 # 0ms
 [plugins.forgit-config]
 inline = '''
-FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+export FORGIT_NO_ALIASES=1
+export FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+export FORGIT_INSTALL_DIR="${XDG_DATA_HOME}/sheldon/repos/github.com/wfxr/forgit"
 '''
 
 # 11-12ms
