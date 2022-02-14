@@ -1,0 +1,14 @@
+- cask:
+  - wezterm
+
+- create:
+    - ~/.config/wezterm
+
+- link:
+    ~/.config/wezterm/wezterm.lua: _init.lua
+    ~/.config/wezterm:
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
+          - _init.lua

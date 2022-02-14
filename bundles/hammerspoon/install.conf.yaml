@@ -1,0 +1,13 @@
+- cask:
+  - hammerspoon
+
+- create:
+    - ~/.config/hammerspoon
+
+- shell:
+    - description: Setting config directory for XDG standard
+      command: defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+
+- link:
+    ~/.config/hammerspoon/init.lua:
+        path: 'init.lua'
