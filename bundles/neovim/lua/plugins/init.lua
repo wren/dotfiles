@@ -17,7 +17,7 @@ require 'plugins.dap'
 -- Visual --
 require 'plugins.colorizer'
 require 'plugins.neoscroll'
-require 'plugins.nightfox'
+require 'plugins.onedark'
 require 'plugins.easyalign'
 -- require 'plugins.visual-multi'
 require 'plugins.interestingwords'
