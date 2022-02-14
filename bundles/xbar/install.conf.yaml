@@ -1,4 +1,4 @@
-- brew:
+- cask:
     - xbar
 
 - link:
