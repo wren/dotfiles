@@ -1,0 +1,2 @@
+- brew:
+    - "asciinema" # Record and share terminal sessions
