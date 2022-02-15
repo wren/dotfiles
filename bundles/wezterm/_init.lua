@@ -59,6 +59,16 @@ local my_config = {
 
   colors = {
     background = "#1F2329",
+    foreground = "#DCDFE4",
+    cursor_bg = "#A3B3CC",
+    cursor_border = "#A3B3CC",
+    cursor_fg = "#DCDfe4",
+    selection_bg = "#474E5D",
+    selection_fg = "#DCDFE4",
+
+    ansi = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
+    brights = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
+
   },
 
   window_close_confirmation = "NeverPrompt",
