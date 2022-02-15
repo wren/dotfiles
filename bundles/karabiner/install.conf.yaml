@@ -1,0 +1,12 @@
+- cask:
+    - "karabiner-elements" # Keyboard customizer
+
+- create:
+    - ~/.config/karabiner
+
+- link:
+    ~/.config/karabiner:
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml

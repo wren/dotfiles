@@ -293,7 +293,6 @@
     - "google-trends"
     - "iterm2" # Terminal emulator as alternative to Apple's Terminal app
     - "itsycal" # Menu bar calendar
-    - "karabiner-elements" # Keyboard customizer
     - "logitech-camera-settings" # Provides access to camera controls
     - "loopback" # Cable-free audio router
     - "obs" # Open-source software for live streaming and screen recording
