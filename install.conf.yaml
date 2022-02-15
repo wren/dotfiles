@@ -242,7 +242,6 @@
     - "direnv" # Load/unload environment variables based on $PWD
     - "exa" # Modern replacement for 'ls'
     - "fzf" # Command-line fuzzy finder written in Go
-    - "gh" # GitHub command-line tool
     - "git-annex" # Manage files with git without checking in file contents
     - "go" # Open source programming language to build simple/reliable/efficient software
     - "hyperfine" # Command-line benchmarking tool
@@ -284,7 +283,6 @@
     - "farrago" # Audio playback
     - "fission" # Audio editor
     - "flux" # Screen color temperature controller
-    - "github" # Desktop client for GitHub repositories
     - "google-chrome" # Web browser
     - "google-drive" # Client for the Google Drive storage service
     - "google-trends"

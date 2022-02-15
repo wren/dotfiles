@@ -1,0 +1,11 @@
+- brew:
+    - "gh" # GitHub command-line tool
+
+- cask:
+    - "github" # Desktop client for GitHub repositories
+
+- create:
+    - ~/.config/gh
+
+- link:
+    ~/.config/gh/config.yml: config.yml
