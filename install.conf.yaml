@@ -284,9 +284,6 @@
     - "farrago" # Audio playback
     - "fission" # Audio editor
     - "flux" # Screen color temperature controller
-    - "font-fira-code"
-    - "font-fira-code-nerd-font"
-    - "font-hack-nerd-font"
     - "github" # Desktop client for GitHub repositories
     - "google-chrome" # Web browser
     - "google-drive" # Client for the Google Drive storage service
