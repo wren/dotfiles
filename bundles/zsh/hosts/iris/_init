@@ -1,3 +1,0 @@
-if [[ $(hostname) == iris.lan ]]; then
-  extra_hosts+=(iris)
-fi

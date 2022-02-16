@@ -11,8 +11,6 @@ my_dotfiles=(
   plugin_manager
   env
   aliases
-  extra
-  load_host
 )
 
 for my_file in $my_dotfiles; do

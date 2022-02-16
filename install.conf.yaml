@@ -222,7 +222,7 @@
                 stderr: true
                 quiet: true
         '
-        for file in $(find bundles -name 'install.conf.yaml'); do
+        for file in $(find bundles -name 'install.conf.yaml' | sort); do
           shortname="${file%%/install.conf.yaml}"
           shortname="${shortname##bundles/}"
           print -P "\n\n%F{006}───── ${(U)shortname} ─────%f"
@@ -257,17 +257,14 @@
     - "rclone" # Rsync for cloud storage
     - "restic" # Fast, efficient and secure backup program
     - "rubberband" # Audio time stretcher tool and library
-    - "sheldon" # Fast, configurable, shell plugin manager
     - "showkey" # Simple keystroke visualizer
     - "sox" # SOund eXchange: universal sound sample translator
-    - "starship" # Cross-shell prompt for astronauts
     - "tmux --HEAD" # Terminal multiplexer
     - "trash" # CLI tool that moves files or folder to the trash
     - "viu" # Simple terminal image viewer written in Rust
     - "vivid" # Generator for LS_COLORS with support for multiple color themes
     - "youtube-dl" # Download YouTube videos from the command-line
     - "yq" # Process YAML documents from the CLI
-    - "zsh" # UNIX shell (command interpreter)
     - "zstd" # Zstandard is a real-time compression algorithm
 
 
@@ -286,7 +283,6 @@
     - "google-chrome" # Web browser
     - "google-drive" # Client for the Google Drive storage service
     - "google-trends"
-    - "iterm2" # Terminal emulator as alternative to Apple's Terminal app
     - "itsycal" # Menu bar calendar
     - "logitech-camera-settings" # Provides access to camera controls
     - "loopback" # Cable-free audio router

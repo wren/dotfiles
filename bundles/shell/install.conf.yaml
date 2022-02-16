@@ -1,0 +1,41 @@
+- brew:
+    - "zsh" # UNIX shell (command interpreter)
+    - "sheldon" # Fast, configurable, shell plugin manager
+    - "starship" # Cross-shell prompt for astronauts
+
+- create:
+    - ~/.config/zsh
+    - ~/.config/sheldon
+    - ~/.config/starship
+
+- link:
+    # Zsh
+    ~/.config/zsh/.zshrc: zsh/_init
+    ~/.config/zsh/.zlogout: zsh/logout
+    ~/.config/zsh/functions: functions
+    ~/.config/zsh:
+        force: true
+        glob: true
+        path: 'zsh/*'
+        exclude:
+          - _init
+          - logout
+
+    # Sheldon
+    ~/.config/sheldon/plugins.toml: sheldon.toml
+
+    # Starship
+    ~/.config/starship/config.toml: starship.toml
+
+- shell:
+    - description: Zsh setup
+      command: |-
+        if [[ -z "$ZDOTDIR" ]]; then
+          printf "\n\nInstall dotfiles to /etc/zshenv (requires sudo)? [y/N]: "
+          if read; then
+            sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zshenv"
+          fi
+        fi
+
+    - description: Sheldon Lock
+      command: sheldon lock
