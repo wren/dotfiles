@@ -81,6 +81,7 @@ local my_config = {
     {key="j", mods="SUPER", action={SendKey={key="j", mods="CTRL"}}},
     {key="k", mods="SUPER", action={SendKey={key="k", mods="CTRL"}}},
     {key="l", mods="SUPER", action={SendKey={key="l", mods="CTRL"}}},
+    {key="p", mods="SUPER", action={SendKey={key="p", mods="CTRL"}}},
     {key="/", mods="SUPER", action={SendKey={key="/", mods="ALT"}}},
   },
 
