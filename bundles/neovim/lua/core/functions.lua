@@ -43,3 +43,11 @@ function highlight_group()
   end
   print(result)
 end
+
+function _G.custom_fold_text()
+  local line = vim.fn.getline(vim.v.foldstart)
+  local line_count = string.format("%s lines", vim.v.foldend - vim.v.foldstart + 1)
+  local divider = string.rep(' ', fn.winwidth(0) - #line - #line_count - 2)
+  return string.format("%s%s %s", line, divider, line_count)
+end
+

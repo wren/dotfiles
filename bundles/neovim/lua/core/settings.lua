@@ -79,6 +79,7 @@ opt.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize,globals'
 
 opt.foldenable = false
 opt.foldlevelstart = 99
+opt.foldtext = 'v:lua.custom_fold_text()'
 
 opt.grepprg=[[rg\ --vimgrep\ $*]]
 opt.wildignore:append({
