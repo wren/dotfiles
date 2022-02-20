@@ -239,7 +239,6 @@
     - "go" # Open source programming language to build simple/reliable/efficient software
     - "hyperfine" # Command-line benchmarking tool
     - "jq" # Lightweight and flexible command-line JSON processor
-    - "less" # Pager program similar to more
     - "minisign" # Sign files & verify signatures. Works with signify in OpenBSD
     - "pandoc" # Swiss-army knife of markup format conversion
     - "prettyping" # Wrapper to colorize and simplify ping's output

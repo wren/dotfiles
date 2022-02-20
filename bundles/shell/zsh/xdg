@@ -59,7 +59,7 @@ export PYTHONHISTORY="$XDG_DATA_HOME/python/history"
 export PYLINTHOME="$XDG_DATA_HOME/pylint"
 
 # less (https://linux.die.net/man/1/less)
-export LESSKEY="$XDG_CACHE_HOME/less/lesskey"
+export LESSKEYIN="$XDG_CONFIG_HOME/less/lesskey.conf"
 
 # npm manager
 export N_PREFIX="$XDG_DATA_HOME/n"
