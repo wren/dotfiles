@@ -134,7 +134,7 @@ deleted = "([   $count](fg:167))"
 [python]
 symbol = " "
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-style = 'yellow'
+style = 'cyan'
 
 [lua]
 format = '[$symbol($version )]($style)'
