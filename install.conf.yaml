@@ -231,7 +231,6 @@
 
 - brew:
     - "as-tree" # Print a list of paths as a tree of paths
-    - "asdf" # Extendable version manager with support for Ruby, Node.js, Erlang & more
     - "aspell" # Spell checker with better logic than ispell
     - "awscli" # Official Amazon AWS command-line interface
     - "direnv" # Load/unload environment variables based on $PWD
