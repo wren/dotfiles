@@ -9,4 +9,7 @@ return {
   RIGHT_EMPTY = u(0xee02),
   POWER_ICON_CHARGE = u(0xf584),
   POWER_ICON_BATTERY = u(0xf578),
+
+  -- leader --
+  TERMINAL = u(0xe795),
 }
