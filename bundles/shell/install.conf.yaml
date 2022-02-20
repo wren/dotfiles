@@ -1,7 +1,9 @@
 - brew:
-    - "zsh" # UNIX shell (command interpreter)
+    - "exa" # Modern replacement for 'ls'
     - "sheldon" # Fast, configurable, shell plugin manager
     - "starship" # Cross-shell prompt for astronauts
+    - "vivid" # Generator for LS_COLORS with support for multiple color themes
+    - "zsh" # UNIX shell (command interpreter)
 
 - create:
     - ~/.config/zsh
