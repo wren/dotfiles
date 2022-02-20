@@ -1,5 +1,6 @@
 - cask:
-    - "wezterm"
+    - "wez/wezterm/wezterm-nightly"
+    # - "wezterm"
     - "font-fira-code"
     - "font-fira-code-nerd-font"
     - "font-hack-nerd-font"

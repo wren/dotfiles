@@ -14,8 +14,8 @@
 - clean:
     - '~'
     - '~/.config'
+    - '~/.local/bin'
 
-- bootstrap-brew: true
 - brew:
     - "age" # Simple, modern, secure file encryption
     - "sops" # Editor of encrypted files
@@ -265,7 +265,6 @@
     - "audio-hijack" # Records audio from any application
     - "calendar-366" # Menu bar calendar for events and reminders
     - "cyberduck" # Server and cloud storage browser
-    - "devbook" # Search engine for developers
     - "discord" # Voice and text chat software
     - "docker" # App to build and share containerized applications and microservices
     - "farrago" # Audio playback
