@@ -180,6 +180,13 @@
             sops --decrypt $OLD_PATH > $NEW_PATH || {
               print -P "   %F{001} Problem decrypting %s\n" $OLD_PATH
             }
+          else
+            if [[ -n "$( diff -q $NEW_PATH <(sops -d $OLD_PATH) )" ]]; then
+              printf " - encrypting %s\n" $NEW_PATH
+              sops --input-type binary --output-type json --encrypt $NEW_PATH > $OLD_PATH || {
+                print -P "   %F{001} Problem encrypting %s\n" $NEW_PATH
+              }
+            fi
           fi
         '
 
