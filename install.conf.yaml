@@ -242,7 +242,6 @@
     - "hyperfine" # Command-line benchmarking tool
     - "jq" # Lightweight and flexible command-line JSON processor
     - "less" # Pager program similar to more
-    - "micro" # Modern and intuitive terminal-based text editor
     - "minisign" # Sign files & verify signatures. Works with signify in OpenBSD
     - "node" # Platform built on V8 to build network applications
     - "pandoc" # Swiss-army knife of markup format conversion

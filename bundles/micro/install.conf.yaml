@@ -1,0 +1,12 @@
+- brew:
+    - "micro" # Modern and intuitive terminal-based text editor
+
+- create:
+    - ~/.config/micro
+
+- link:
+    ~/.config/micro:
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
