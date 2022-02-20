@@ -1,0 +1,8 @@
+- brew:
+    - "node" # Platform built on V8 to build network applications
+
+- create:
+    - ~/.config/npm
+
+- link:
+    ~/.config/npm/npmrc: npmrc

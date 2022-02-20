@@ -243,7 +243,6 @@
     - "jq" # Lightweight and flexible command-line JSON processor
     - "less" # Pager program similar to more
     - "minisign" # Sign files & verify signatures. Works with signify in OpenBSD
-    - "node" # Platform built on V8 to build network applications
     - "pandoc" # Swiss-army knife of markup format conversion
     - "prettyping" # Wrapper to colorize and simplify ping's output
     - "pv" # Monitor data's progress through a pipe
