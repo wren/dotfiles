@@ -30,6 +30,7 @@
 
 [interactive]
   diffFilter = diff-so-fancy --patch
+  singleKey = true
 
 [diff-so-fancy]
   markEmptyLines = true
