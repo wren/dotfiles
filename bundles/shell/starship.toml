@@ -111,7 +111,7 @@ command = """
 
 [git_metrics]
 disabled = false
-format = '( | [+$added]($added_style) )([-$deleted]($deleted_style))'
+format = '( |( [+$added]($added_style))( [-$deleted]($deleted_style)))'
 
 [git_status]
 format = '( $ahead_behind)( |$staged$renamed)( |$deleted$modified$untracked)( |$stashed)'
