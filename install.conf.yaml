@@ -15,19 +15,7 @@
     - '~'
     - '~/.config'
 
-- link:
-    ~/.local/bin/:
-        glob: true
-        path: bin/*
-
-- shell:
-
-    - description: Checking brew
-      command: |-
-        if ! command -v brew >/dev/null; then
-          echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        fi
-
+- bootstrap-brew: true
 - brew:
     - "age" # Simple, modern, secure file encryption
     - "sops" # Editor of encrypted files
