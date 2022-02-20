@@ -43,6 +43,7 @@ format = "[@$hostname]($style)"
 style = "fg:176"
 
 [directory]
+read_only = " "
 truncate_to_repo = false
 truncation_length = 0
 style = 'fg:179'
@@ -52,6 +53,7 @@ symbol = '─'
 style = "fg:#718085"
 
 [git_branch]
+symbol = " "
 format = "[$symbol$branch]($style)"
 always_show_remote = true
 style = 'fg:179'
@@ -130,8 +132,8 @@ renamed = "([  $count](fg:179))"
 deleted = "([   $count](fg:167))"
 
 [python]
+symbol = " "
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-symbol = ' '
 style = 'yellow'
 
 [lua]
@@ -139,12 +141,9 @@ format = '[$symbol($version )]($style)'
 symbol = ' '
 style = 'fg:205'
 
-[golang]
-symbol = ' '
-
 [package]
+symbol = " "
 format = '[$symbol$version]($style) '
-symbol = ' '
 style = 'fg:210'
 
 [custom.unread-mail]
@@ -174,3 +173,68 @@ show_milliseconds = false
 [shell]
 disabled = true
 
+
+### NERD FONT SYMBOLS ###
+
+[aws]
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
