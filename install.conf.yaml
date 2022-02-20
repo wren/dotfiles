@@ -249,7 +249,6 @@
     - "rubberband" # Audio time stretcher tool and library
     - "showkey" # Simple keystroke visualizer
     - "sox" # SOund eXchange: universal sound sample translator
-    - "tmux --HEAD" # Terminal multiplexer
     - "trash" # CLI tool that moves files or folder to the trash
     - "viu" # Simple terminal image viewer written in Rust
     - "youtube-dl" # Download YouTube videos from the command-line

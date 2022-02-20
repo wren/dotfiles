@@ -1,0 +1,12 @@
+- brew:
+    - "tmux --HEAD" # Terminal multiplexer
+
+- create:
+    - ~/.config/tmux
+
+- link:
+    ~/.config/tmux:
+        glob: true
+        path: '*'
+        exclude:
+          - install.conf.yaml
