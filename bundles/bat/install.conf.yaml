@@ -2,11 +2,9 @@
     - ~/.config/bat
     - ~/.config/batpipe
 
-- shell:
-    - description: Checking Bat installation
-      command: |-
-        command -v bat &> /dev/null && return
-        brew install bat bat-extras
+- brew:
+    - "bat" # Clone of cat(1) with syntax highlighting and Git integration
+    - "bat-extras" # Bash scripts that integrate bat with various command-line tools
 
 - link:
     ~/.config/bat:
@@ -14,6 +12,3 @@
     ~/.config/batpipe/viewers.d:
         path: 'viewers.d'
 
-- brew:
-    - "bat" # Clone of cat(1) with syntax highlighting and Git integration
-    - "bat-extras" # Bash scripts that integrate bat with various command-line tools

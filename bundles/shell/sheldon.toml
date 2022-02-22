@@ -201,10 +201,6 @@ apply = ['direnv-ohmytmux']
 github = 'jaseg/lolcat'
 apply = ['cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin']
 
-[plugins.batpipe]
-github = 'eth-p/bat-extras'
-use = ['/build.sh']
-apply = ['cmd-exists', 'build', 'clean-cmd-exists', 'lessopen', 'path-bin']
 
 # My personal scripts from gists
 [plugins.less-with-pipe]
