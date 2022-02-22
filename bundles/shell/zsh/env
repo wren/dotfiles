@@ -18,6 +18,7 @@ export LS_COLORS="$(vivid generate jellybeans)"
 export EXA_COLORS=$LS_COLORS
 
 export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
+export LESSOPEN="|/usr/local/bin/batpipe %s"
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
