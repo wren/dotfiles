@@ -20,24 +20,16 @@ fi
 clean-cmd-exists = 'unset SHELDON_CMD_EXISTS_${(U):-{{name}}}'
 
 make = '''
-[[ -z SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
+[[ -n SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
   cd "{{ dir }}"
   make {{ name }}
-) >/dev/null
-'''
-
-build.each = true
-build.value = '''
-[[ -n SHELDON_CMD_EXISTS_${(U):-{{name}}} ]] || (
-  cd "{{dir}}"
-  ./{{ file }}
-) >/dev/null
+)
 '''
 
 symlink-bin = '''
-if [[ ! -e ~/.local/bin/{{ name }} && -e {{ dir }}/{{ name }} ]]; then
+[[ -z SHELDON_CMD_EXISTS_${(U):-{{name}}} && -e {{ dir }}/{{ name }} ]] && (
   ln -fs {{ dir }}/{{ name }} ~/.local/bin/
-fi
+)
 '''
 
 lessopen = '''
@@ -199,7 +191,7 @@ apply = ['direnv-ohmytmux']
 
 [plugins.lolcat]
 github = 'jaseg/lolcat'
-apply = ['cmd-exists', 'make', 'clean-cmd-exists', 'symlink-bin']
+apply = ['cmd-exists', 'make',  'symlink-bin', 'clean-cmd-exists']
 
 
 # My personal scripts from gists
