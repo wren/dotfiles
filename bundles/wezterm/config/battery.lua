@@ -19,7 +19,7 @@ local function get_percent(output)
 end
 
 local function get_color(percent)
-  return _G.COLORS.battery[math.floor(percent/10)]
+  return _G.MY_COLORS.battery[math.floor(percent/10)]
 end
 
 return {

@@ -29,7 +29,8 @@ config.inactive_pane_hsb = {
 }
 
   -- colors for each 10% the battery changes
-_G.COLORS.battery = {
+_G.MY_COLORS = {}
+_G.MY_COLORS.battery = {
   [0] = "#FF0000",
   [1] = "#EC5F67",
   [2] = "#FF5F00",
