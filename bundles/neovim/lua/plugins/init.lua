@@ -44,6 +44,7 @@ require 'plugins.mini'
 require 'plugins.diffview'
 require 'plugins.gitlinker'
 require 'plugins.octo'
+require 'plugins.committia'
 
 -- Coding --
 require 'plugins.splitjoin'
