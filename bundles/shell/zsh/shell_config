@@ -19,8 +19,8 @@ setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a d
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt MENU_COMPLETE             # autoselect the first completion entry
-setopt AUTO_LIST
+setopt MENU_COMPLETE             # Autoselect the first completion entry instead of beeping.
+setopt AUTO_LIST                 # Automatically list choices on an ambiguous completion. 
 # setopt HIST_BEEP
 
 setopt AUTO_CD                  # try to cd to entries that aren't valid commands
