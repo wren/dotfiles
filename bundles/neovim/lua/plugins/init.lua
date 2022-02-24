@@ -39,6 +39,7 @@ require 'plugins.vim-slash'
 require 'plugins.accelerated-jk'
 require 'plugins.repeat'
 require 'plugins.mini'
+require 'plugins.lastplace'
 
 -- Git --
 require 'plugins.diffview'
