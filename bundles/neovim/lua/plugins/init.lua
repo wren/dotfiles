@@ -3,7 +3,7 @@ lvim.builtin.project.active = false
 lvim.builtin.terminal.active = true
 
 -- Additional config for builtin plugins
-require 'plugins.barbar'
+require 'plugins.bufferline'
 require 'plugins.dashboard'
 require 'plugins.gitsigns'
 require 'plugins.lualine'
