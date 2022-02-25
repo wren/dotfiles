@@ -1,6 +1,6 @@
 
 -- Misc functions (like maybe for autocommands or whatever)
-function cd_if_open_directory()
+function _G.cd_if_open_directory()
   local full_path = fn.expand('%:p')
   if fn.isdirectory(full_path) == 1 then
     cmd(string.format('cd %s', fn.fnameescape(full_path)))
@@ -8,7 +8,7 @@ function cd_if_open_directory()
 end
 
 -- delete an unnamed, unmodified, empty buffer (including directory buffers)
-function delete_unused_buffer()
+function _G.delete_unused_buffer()
   if (fn.bufname() == "" and opt.buftype:get() == "")
     and not opt.modified:get()
     and fn.line('$') == 1
@@ -26,7 +26,7 @@ function delete_unused_buffer()
 end
 
 -- show some useful info about highlight groups (for debugging color schemes)
-function highlight_group()
+function _G.highlight_group()
   local ids = fn.synstack(fn.line('.'), fn.col('.'))
   local result = 'no group found'
   for i, id in ipairs(ids) do
