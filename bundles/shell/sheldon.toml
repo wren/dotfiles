@@ -32,13 +32,6 @@ symlink-bin = '''
 )
 '''
 
-lessopen = '''
-export LESSOPEN="|{{ dir }}/bin/{{name}} %s"
-unset LESSCLOSE
-# export LESS="$LESS -R"
-export BATPIPE="color"
-'''
-
 [plugins]
 
 # 2-3ms
