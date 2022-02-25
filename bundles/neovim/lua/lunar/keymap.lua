@@ -122,17 +122,3 @@ map('n', 'Q', '') -- disable ex-mode because ugh
 
 -- Quit all with ZZ
 map('n', 'ZZ', '<cmd>w<cr><cmd>qa<cr>')
-
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-  -- set keymap for bindings that don't work on unmodifiable buffers (e.g. help)
-  {
-    'BufReadPost,BufModifiedSet',
-    '*',
-    'lua if opt.modifiable:get() then map_buffer_group(_G.MODIFIABLE_ONLY_BINDINGS) end'
-  },
-
-  -- get out of command mode by pressing <esc> in normal mode
-  {'CmdwinEnter', '*', 'map <buffer> <esc> <c-c><c-c>'},
-}
