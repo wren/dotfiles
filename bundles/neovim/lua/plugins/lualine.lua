@@ -7,31 +7,27 @@ local custom_components = {
     color = 'LualineFilenameInactive'
   },
 
-  filename = {
-    function ()
-      if opt.bo.filetype == 'help' then
-        return 'HELP - ' .. fn.expand('%:t:r')
-      end
-
-      local my_colors = require('nightfox.colors').load('nightfox')
-      local is_modified = api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified')
-      local filename = fn.fnamemodify(fn.expand("%"), ":~:.")
-      local fg = my_colors.fg
-      local bg = my_colors.bg_statusline
-      local gui = 'NONE'
-
-      if is_modified then
-        fg = my_colors.yellow
-        filename = filename .. ' '
-        gui = 'bold'
-      end
-
-      cmd(string.format('hi LualineFilename guifg=%s guibg=%s gui=%s', fg, bg, gui))
-
-      return filename
-    end,
-    color = 'LualineFilename'
+  filename_default = {
+    'filename',
+    path = 0,
+    symbols = {
+      modified = ' ',      -- Text to show when the file is modified.
+      readonly = '',      -- Text to show when the file is non-modifiable or readonly.
+      unnamed = '[No Name]', -- Text to show for unnamed buffers.
+    },
   },
+
+  filename = {
+    'filename',
+    cond = function() return not api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified') end
+  },
+
+  filename_modified = {
+    'filename',
+    color = { fg = '#E5C07B', gui = 'bold' },
+    cond = function() return api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modified') end
+  },
+
 }
 
 -- overrides for builtin components
@@ -44,11 +40,9 @@ components.branch.color = { fg = colors.orange, gui = 'bold' }
 -- Config
 local config = {
   options = {
-    theme = 'nightfox',
-    component_separators = '',
+    theme = 'onedark',
     -- component_separators = {left = '', right = ''},
-    -- section_separators = {left = '', right = ''},
-    section_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
   },
   sections = {
     -- these are to remove the defaults
@@ -56,7 +50,8 @@ local config = {
       'mode',
     },
     lualine_b = {
-      custom_components.filename,
+      vim.tbl_extend('force', custom_components.filename_default, custom_components.filename),
+      vim.tbl_extend('force', custom_components.filename_default, custom_components.filename_modified),
     },
     lualine_c = {
       components.diagnostics
@@ -85,7 +80,8 @@ local config = {
       custom_components.mode_inactive
     },
     lualine_b = {
-      custom_components.filename,
+      vim.tbl_extend('force', custom_components.filename_default, custom_components.filename),
+      vim.tbl_extend('force', custom_components.filename_default, custom_components.filename_modified),
     },
     lualine_c = {
       components.diagnostics
