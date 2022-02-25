@@ -14,6 +14,8 @@ plugin.config = function()
       NormalNC = { bg = '#2d3035' },
       EndOfBuffer = { bg = 'NONE'},
       SignColumn = { bg = 'NONE' },
+      VertSplit = { bg = '#282C34' },
+      StatusLine = { bg = '#282C34' },
     }
   }
   od.load()
