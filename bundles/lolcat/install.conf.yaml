@@ -1,0 +1,12 @@
+- shell:
+    - description: Checking lolcat installation
+      command: |-
+        if command -v lolcat &> /dev/null; then
+          return 0
+        fi
+
+        cd $(mktemp -d)
+        git clone https://github.com/jaseg/lolcat
+        cd lolcat
+        make lolcat
+        mv lolcat /usr/local/bin/lolcat
