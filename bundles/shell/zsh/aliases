@@ -79,7 +79,7 @@ function jp() {
 }
 alias jpe='jp --edit'
 alias jps='jp --short'
-alias j.business='jn --config-override template ~/Dotfiles/config/jrnl/templates/business-times.jrnl'
+alias j.business='jn --config-override template ~/.config/jrnl/templates/business-times.jrnl'
 alias j.hwt='jn --config-override template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
 
 alias py='python'
