@@ -7,7 +7,7 @@
     - "bat-extras" # Bash scripts that integrate bat with various command-line tools
 
 - link:
-    ~/.config/bat:
+    ~/.config/bat/bat.config:
         path: 'bat.config'
     ~/.config/batpipe/viewers.d:
         path: 'viewers.d'

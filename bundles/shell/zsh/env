@@ -19,6 +19,7 @@ export EXA_COLORS=$LS_COLORS
 
 export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
 export LESSOPEN="|/usr/local/bin/batpipe %s"
+export BATPIPE="color"
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
