@@ -33,11 +33,8 @@
     - description: Zsh setup
       command: |-
         if [[ -z "$ZDOTDIR" ]]; then
-          printf "\n\nInstall dotfiles to /etc/zshenv (requires sudo)? [y/N]: "
-          if read; then
-            sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zshenv"
-          fi
+          sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zshenv"
         fi
 
     - description: Sheldon Lock
-      command: sheldon lock
+      command: XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config} sheldon lock
