@@ -38,9 +38,6 @@
             xbar
         )
 
-        # to install all bundles, use this
-        # for bundle in $(ls bundles); do
-
         for bundle in $my_bundles; do
           file="bundles/$bundle/install.conf.yaml"
           print -P "\n\n%F{006}───── ${(U)bundle} ─────%f"
