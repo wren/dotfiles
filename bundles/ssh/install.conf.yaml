@@ -8,8 +8,6 @@
         glob: true
         force: true
         path: 'configs/**'
-        exclude:
-            - 'configs/**.enc'
 
 - shell:
     - description: Checking SSH Key
