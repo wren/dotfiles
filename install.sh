@@ -25,7 +25,7 @@ export DOTBOT_DEFAULTS
 
 # Load all plugins, and run dotbot
 CMD=$DOTBOT_DIR/dotbot/bin/dotbot
-for dir in $DOTBOT_PLUGINS_DIR/plugins/*; do
+for dir in $DOTBOT_DIR/plugins/*; do
   CMD+=" --plugin-dir=$dir"
 done
 # CMD+=' --verbose'
