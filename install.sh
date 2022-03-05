@@ -22,6 +22,7 @@ CMD=$DOTBOT_DIR/dotbot/bin/dotbot
 for dir in $DOTBOT_DIR/plugins/*; do
   CMD+=" --plugin-dir=$dir"
 done
+CMD+=' --quiet'
 # CMD+=' --verbose'
 
 export DOTBOT_CMD=$CMD
