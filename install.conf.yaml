@@ -1,16 +1,3 @@
-- defaults:
-    link:
-        relink: true
-        ignore-missing: true
-        force: true
-        create: true
-        quiet: true
-    shell:
-        stdin: false
-        stdout: true
-        stderr: true
-        quiet: true
-
 - clean:
     - '~'
     - '~/.config'
@@ -197,31 +184,47 @@
         # Decrypt individual files
         fd -HI -t f '[\._]enc' -x zsh -c $decrypt_script
 
+
     - description: Run individual bundles through dotbot
       command: |-
         set +e # if any steps fail, then the remaining steps should still happen
 
-        # Header to add to each config file below (it's easier than
-        # copying it into each file)
-        local DEFAULTS='
-        - defaults:
-            link:
-                relink: true
-                ignore-missing: true
-                force: true
-                create: true
-                quiet: true
-            shell:
-                stdin: false
-                stdout: true
-                stderr: true
-                quiet: true
-        '
-        for file in $(find bundles -name 'install.conf.yaml' | sort); do
-          shortname="${file%%/install.conf.yaml}"
-          shortname="${shortname##bundles/}"
-          print -P "\n\n%F{006}───── ${(U)shortname} ─────%f"
-          ${=DOTBOT_CMD} -d $(dirname $file) -c <(cat =(<<<$DEFAULTS) $file) "$@"
+        my_bundles=(
+            alfred
+            asciinema
+            bat
+            borgbackup
+            direnv
+            fd
+            firefox
+            git
+            github
+            hammerspoon
+            jrnl
+            karabiner
+            less
+            lolcat
+            macos
+            micro
+            neovim
+            node-js
+            python
+            ripgrep
+            shell
+            spectacle
+            ssh
+            tmux
+            wezterm
+            xbar
+        )
+
+        # if you want to install all bundles in alphabetical order, use this
+        # for bundle in $(ls bundles); do
+
+        for bundle in $my_bundles; do
+          file="bundles/$bundle/install.conf.yaml"
+          print -P "\n\n%F{006}───── ${(U)bundle} ─────%f"
+          ${=DOTBOT_CMD} -d $(dirname "$file") -c <(cat $DOTBOT_DEFAULTS $file) "$@"
         done
 
 - pipx:
@@ -252,7 +255,6 @@
     - "youtube-dl" # Download YouTube videos from the command-line
     - "yq" # Process YAML documents from the CLI
     - "zstd" # Zstandard is a real-time compression algorithm
-
 
 - cask:
     - "1password" # Password manager that keeps all passwords secure behind one password

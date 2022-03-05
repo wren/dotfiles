@@ -1,0 +1,12 @@
+- defaults:
+    link:
+        relink: true
+        ignore-missing: true
+        force: true
+        create: true
+        quiet: true
+    shell:
+        stdin: false
+        stdout: true
+        stderr: true
+        quiet: true

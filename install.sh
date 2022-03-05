@@ -8,6 +8,7 @@ DOTBOT_REPO="https://github.com/wren/dotfiles-dotbot.git"
 
 DOTFILES_DIR="${0:A:h}"
 DOTBOT_CONFIG="$DOTFILES_DIR/install.conf.yaml"
+DOTBOT_DEFAULTS="$DOTFILES_DIR/defaults.conf.yaml"
 DOTBOT_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotbot"
 DOTBOT_PLUGINS_DIR="$DOTBOT_DIR/plugins"
 DOTBOT_BIN="$DOTBOT_DIR/dotbot/bin/dotbot"
@@ -26,6 +27,8 @@ git submodule update --init --recursive
 
 # Prep dotfiles dir
 export DOTFILES_DIR
+export DOTBOT_CONFIG
+export DOTBOT_DEFAULTS
 
 # Check dotfiles directory
 if ! git -C $DOTFILES_DIR rev-parse; then
@@ -46,4 +49,4 @@ export DOTBOT_CMD=$CMD
 
 # Run dotbot
 print -P "%F{006}───── Dotbot ─────%f"
-${=CMD} -d $DOTFILES_DIR -c $DOTBOT_CONFIG "$@" || true
+${=CMD} -d $DOTFILES_DIR -c <(cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG) "$@" || true
