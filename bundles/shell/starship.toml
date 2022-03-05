@@ -1,7 +1,7 @@
 format = """
 $fill $status$cmd_duration$time
 
-$username$hostname(${custom.read-mail}${custom.unread-mail} )$directory( $aws)(
+$username$hostname(${custom.read-mail}${custom.unread-mail}) $directory( $aws)(
 $git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics( | $all))(
 $jobs$shell$character)
 """
