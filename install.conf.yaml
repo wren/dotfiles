@@ -235,7 +235,6 @@
     - "awscli" # Official Amazon AWS command-line interface
     - "direnv" # Load/unload environment variables based on $PWD
     - "fzf" # Command-line fuzzy finder written in Go
-    - "git-annex" # Manage files with git without checking in file contents
     - "go" # Open source programming language to build simple/reliable/efficient software
     - "hyperfine" # Command-line benchmarking tool
     - "jq" # Lightweight and flexible command-line JSON processor
@@ -245,7 +244,6 @@
     - "pv" # Monitor data's progress through a pipe
     - "qmk/qmk/qmk" # Quantum Mechanical Keyboard (QMK) Firmware
     - "rclone" # Rsync for cloud storage
-    - "restic" # Fast, efficient and secure backup program
     - "rubberband" # Audio time stretcher tool and library
     - "showkey" # Simple keystroke visualizer
     - "sox" # SOund eXchange: universal sound sample translator
