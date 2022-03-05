@@ -32,6 +32,6 @@ if [[ -d $DOTFILES_DIR ]]; then
   ${=CMD} -d $DOTFILES_DIR -c <(cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG) "$@" || true
 else
   # Probably first run
-  url='https://raw.githubusercontent.com/wren/dotfiles/main/'
-  ${=CMD} -d $DOTFILES_DIR -c <(curl -s "${url}/defaults.conf.yaml" && curl -s "${url}/install.conf.yaml") "$@" || true
+  url='https://raw.githubusercontent.com/wren/dotfiles/main'
+  ${=CMD} -d $DOTFILES_DIR -c <(curl -s "$url/defaults.conf.yaml" && curl -s "$url/install.conf.yaml") "$@" || true
 fi
