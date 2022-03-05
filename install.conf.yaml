@@ -86,7 +86,7 @@
     - "flux" # Screen color temperature controller
     - "google-chrome" # Web browser
     - "google-drive" # Client for the Google Drive storage service
-    - "google-trends"
+    - "google-trends" # Colorful screen saver
     - "itsycal" # Menu bar calendar
     - "logitech-camera-settings" # Provides access to camera controls
     - "loopback" # Cable-free audio router
