@@ -225,7 +225,7 @@
         done
 
 - pipx:
-    file: config/dotfiles/pipx.txt
+    file: bundles/macos/pipx.txt
     stdout: false
     stderr: true
 
