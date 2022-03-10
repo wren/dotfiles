@@ -16,9 +16,10 @@ add_newline = true
 disabled = true
 
 [character]
-success_symbol = '[❯](fg:#718085)'
-error_symbol = '[❯](fg:#718085)'
-vicmd_symbol = '[🅽](green)'
+format = "$symbol"
+success_symbol = '[❯ ](fg:#718085)'
+error_symbol = '[❯ ](fg:#718085)'
+vicmd_symbol = '[🅽 ](green)'
 
 [time]
 disabled = false
