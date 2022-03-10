@@ -164,6 +164,9 @@ command = 'echo '
 [jobs]
 symbol = ''
 style = 'white'
+symbol_threshold = 1
+number_threshold = 2
+format = "[$symbol$number]($style) "
 
 [cmd_duration]
 format = '([ $duration]($style) )'
