@@ -7,6 +7,9 @@ config.send_composed_key_when_right_alt_is_pressed = false
 
 config.leader = { key=" ", mods="CTRL", timeout_milliseconds=1000 }
 config.keys = {
+  -- disable defaults
+  {key="l", mods="CTRL", action="DisableDefaultAssignment"},
+
   -- make some often used keys easier to access by using cmd
   {key="d", mods="SUPER", action={SendKey={key="d", mods="CTRL"}}},
   {key="u", mods="SUPER", action={SendKey={key="u", mods="CTRL"}}},
@@ -38,6 +41,11 @@ config.keys = {
   {key="j", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Down", 1}}},
   {key="k", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Up", 1}}},
   {key="l", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Right", 1}}},
+
+  -- scrolling
+  {key="k", mods="SUPER|CTRL", action=wezterm.action{ScrollByPage=-1}},
+  {key="j", mods="SUPER|CTRL", action=wezterm.action{ScrollByPage=1}},
+
 }
 
 return config
