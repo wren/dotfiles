@@ -15,6 +15,8 @@ config.hide_tab_bar_if_only_one_tab = false
 config.window_decorations = "RESIZE"
 config.unzoom_on_switch_pane = false
 config.window_close_confirmation = "NeverPrompt"
+-- config.enable_scroll_bar = true
+config.scrollback_lines = 1000000
 
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)

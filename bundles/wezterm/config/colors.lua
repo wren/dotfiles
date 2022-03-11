@@ -10,6 +10,7 @@ config.colors = {
   cursor_fg = "#DCDfe4",
   selection_bg = "#474E5D",
   selection_fg = "#DCDFE4",
+  scrollbar_thumb = "#282C34",
   split = "#808080",
 
   ansi = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
