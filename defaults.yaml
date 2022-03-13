@@ -10,3 +10,7 @@
         stdout: true
         stderr: true
         quiet: true
+    pipx:
+        stdout: false
+        stderr: true
+        quiet: true

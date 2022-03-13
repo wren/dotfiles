@@ -43,15 +43,15 @@
         )
 
         for bundle in $my_bundles; do
-          file="bundles/$bundle/config.yaml"
+          file="bundles/$bundle/bundle-config.yaml"
           print -P "\n\n%F{006}───── ${(U)bundle} ─────%f"
           ${=DOTBOT_CMD} -d $(dirname "$file") -c <(cat $DOTBOT_DEFAULTS $file) "$@"
         done
 
+
+# Misc apps that don't require any extra config
 - pipx:
     file: bundles/macos/pipx.txt
-    stdout: false
-    stderr: true
 
 - brew:
     - "as-tree" # Print a list of paths as a tree of paths

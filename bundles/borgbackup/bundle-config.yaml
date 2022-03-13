@@ -7,7 +7,7 @@
 
 - link:
     ~/.config/backups/ignore: ignore
-    ~/.config/backups/config.yaml: config.yaml
+    ~/.config/backups/config.yaml: backups-config.yaml
     ~/.local/bin/run-backup: run-backup.sh
 
 - shell:

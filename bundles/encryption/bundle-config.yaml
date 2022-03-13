@@ -10,7 +10,7 @@
         if [[ -f $SOPS_AGE_KEY_FILE ]]; then
           chmod 400 $SOPS_AGE_KEY_FILE
           echo "Encryption key already exists: $SOPS_AGE_KEY_FILE"
-          # exit 0
+          exit 0
         fi
 
         echo 'Retrieving dotfiles key from Doppler...'
