@@ -23,9 +23,5 @@
         chmod 400 $config_file
 
 - crontab:
-    - key: SHELL
-      value: /bin/zsh
-    - key: PATH
-      value: "$HOME/.local/bin:/usr/local/bin:$PATH"
     - time: "0 * * * *" # every hour
-      command: run-backup
+      command: PATH="$HOME:/.local/bin:/usr/local/bin:$PATH" run-backup
