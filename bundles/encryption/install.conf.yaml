@@ -2,142 +2,39 @@
     - "age" # Simple, modern, secure file encryption
     - "sops" # Editor of encrypted files
     - "fd" # Simple, fast and user-friendly alternative to find
+    - "dopplerhq/cli/doppler" # Cli client for doppler.com
 
 - shell:
-
     - description: Checking Encryption Key (Age)
-      # @todo clean this up, and maybe make standalone script
       command: |-
-        #!/usr/bin/env zsh
-        if [[ ! -f $SOPS_AGE_KEY_FILE ]]; then
+        if [[ -f $SOPS_AGE_KEY_FILE ]]; then
+          chmod 400 $SOPS_AGE_KEY_FILE
+          echo "Encryption key already exists: $SOPS_AGE_KEY_FILE"
+          # exit 0
+        fi
 
-        # Requires:
-        # - age
-        # - cat
-        # - curl
-        # - openssl
-        # - perl
-        # - printf
+        echo 'Retrieving dotfiles key from Doppler...'
 
-        printf 'Retrieving dotfiles key from Google Cloud...\n'
-
-        # Encrypted block contains definitions for these variables:
-        # - SERVICE_ACCOUNT_EMAIL
-        # - SERVICE_ACCOUNT_KEY
-        # - BUCKET_NAME
-        # - KEY_FILENAME
-        source <(age -d <(<<'EOT'
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHNjcnlwdCByNk9QKzA1OU5iMUdYOE53
-        WnhnTlVRIDE4CjA4TXFBVUM0WlVvKzQ3dzBvTE1RekoyclhFemcwQXEwb01BUzNW
-        ZU5ZZjAKLS0tIGRWSjhkQUF2RGpZOE9ZSEZ2TFlhdU9QYlNFTm96RDVxSUg1bEhk
-        WVIrVzAKqhoVSew8A8eQMD61Fk6X4yAefj5Kap+rmnw5ijyYilHLwWs52EuH60vh
-        7P9pzVMor7D3RjqYOK3oTeSzl9WcvvFruG+tGBZE8FGP1JdZtlHlBRmwNdGxAqTx
-        ghv/QIuUkiEV9AB44IuWR9MIbFc8gQY+8tqMMhVcNHRCj+BP5WlD5z2gbI7PKTDj
-        Rc0iVE443VHrnekrIKdPXc3FzJY43imyP3rmHWaRh+PVCFOptISII7pMa/g0OpAC
-        HDscWzkCVERo1ZOYNCb1hU053CpJTHtSvjESwR3SmyMwgTbBxciyeCG9uTZ6zphG
-        araxHT6b6yunf2XB76tkPNvine1URHGojKBCTj30NmmgjY17CSFp0+2eMx5R71Nn
-        7bEWGSukDs3emp3Z1R20c6GPaTq5gizbEbhYgDYHNItx4UKUZbjai66gdiiPIpFO
-        207jeYvi3jisKgudn2FNUwONEIkyT8qw8RV3N6k7VCY6rYSQEqoWULKPytEpkyVI
-        iZK2YrEelSQTYWcD/8RXObrS4iwbv8kQVkDnWdytXX2X4+l3ALlkBmtC5cQbJVWN
-        GmWWGIgtfBh7De9dIHMxUoWWbHMHucLqol0qWiBEN03Xztpgqq1v/iaRDX1BbwuJ
-        7/+KspPsTaAzQARBgHGEVCmrEpxyAQ0M7Com+elldtbtmO/guHGItgEgMZg88yum
-        ZLD8rq+mgfIzdqxpmY3wCIxxoU9M0ryFm2mDH8Xd0ovtzXWPHo2Xyv9RhAxGnO4h
-        RlIeHZOzd70NIOG7P5qSCMYyzrdZG90K1BTlVp9QRaRaNFbvWrwHjOHnz6kjUEkm
-        OW4huwlWlchH5TGsy0E8E75KUs3u+YQXLLRyOo/yVx/U0dKGrwT8KVCnEd+o8ENo
-        XZ6dAH5WOWLFsQueOS2QUI6FveVIEwR9qIiTYwhllKs33TYmOmVdhPvlcWE+RITx
-        9Cua9KaeJhyWnqrb/Rf4sn+Q5x1RWV90CLvkyRlwlM/H/WgmTWkQLdSIr61Q65zo
-        eJMkaWTiRERnQbjo97lxApfz+f8VYFdOOo7akozx/0u3dVLuTQpj51fhhKwOfzIF
-        0cVdZ4cT1SsBN7q17YzmJ9nYGJikRJiBGogi8ukCwn8lohLniMPk7x0gjmZLOQlP
-        p0csveY3JrqU8qzzqhVyff1lN674FAlvQQyIKlxwqE+dOnfB4KWE5KlmoE4N6T1n
-        KYdYuXpdAXkx4bQiNdpj4A3FR8ZTYnqvpO4V1oLSr9nVCUVqC2wGVtQUmH+Rwu79
-        geM9tWE5lAjrDQ0hjSFMguSweG/c75DcvBiPP8l6bVBJocs4a9aUPBlUt/PZtYGq
-        pYOfMR0NBJd2bY7SGPnPo12xHeUCr8inhEw1tKFGGPtVfMq/FAfGO1Ay9ZHnm2o6
-        rYT9tU7wzlLPwrQfg9dOkC8lteFaUT3RTjbfKm9sGXakq64dMZXmjG+OwayfNGUM
-        4SRLmiT9HZkn/QeS2gXnsLC3Go0YKQtKTv1eRm3+hg0TinUQ0x34XD8IDlXcF9R9
-        PjXw4yf20OFjrgg2SEqxImEslTg21kY2dynMduMZZwjyCNwXJ7Os6lk5NEbZzSvO
-        FUTPAfI3t6DTCR4B39+bFr99xJrQtFvarP4EqkjxbAcb17vC/p9kVSvJQic/Zz99
-        /vSmHPcgUkH7txs6hk5LGywU6AoAf5iSior+iet8DUC440IfWdmF89FLd9qCsf4S
-        dEnTGZgD6z6leWk2GUwF4TcFDKVc9cM/e/A3C+9/sUXs0xqHNOJR/Dj0s+fjLdID
-        iO+/Ie65clHG4xFKeou+FVxAOXc16rUCcbsvvCFAx64js/SuO8Y2uGlh/31n1TWW
-        /pAmJfwYEpbLouWd/iy2t37fvsdyM+9YoC8LPmXef/G2FaficeKEmaCDopzl/V3D
-        +tBfgnHRCrnz5/J0gDU6m+yrH53dMkG4OVKME8fIMeOe8STKGtKpm+NipWjqZG6h
-        T0SHdyaW5gmZEjs1oXv6x4yKEylaNS3wv0bF2NdzW9uCHh9FDTKM46pOkD6PyNl/
-        7kWSsvx6biV4IZIRW/BnaVp+z68HGwZwkyr/6REZyOtngNQmcGbdFIgsrRN438Pf
-        S+huY8ofOeDM3Mom/vkypPZaKCO3PZ7toYJPaRcI7oHmxgpNbEFkIUd1BrBevAct
-        kn0Yy0ykZJq46ppqUbn19IIJcQeu6TbFLKiuHVVLq/0T4GtFj+LXJCX92w/RQyRH
-        G8+CpfjZNC4xa61V23VnQiDSoKEmyV+/8BJI6KV48PWH44aLYLoIQYoskV/+ljsn
-        3jU24LUGhjOCFXLjvj6yXTYrEc8K38s48JXSqjFHTTcj35j9T2wwB60dtDvZBarR
-        BGgo/oFv2q5R4Z9VcQ2bhre2tMFcVFLE7vKj3yPMEpd+cKNooNfZFHfOpVfEM8YB
-        muypisXqpJpTysDZYmPS45dC9PHsEwfuihizSIhIwxaQHJ/CSnPjynzL6ZxCIUYz
-        qNi2lLyoNyCe33owGuUxS/6q86LiUYOIDto9mhsciC6kYvnBtPiTlirJc/mzg65i
-        x/x7u6vA2nGMHw==
-        -----END AGE ENCRYPTED FILE-----
-        EOT
-        ))
-
-        [[ -n $SERVICE_ACCOUNT_EMAIL || -n $SERVICE_ACCOUNT_KEY || -n $SOPS_AGE_KEY_FILE ]] || exit 1
-
-        JSON_HEADER="$(printf %s '{"alg":"RS256","typ":"JWT"}' | openssl base64 -e)"
-
-        JSON_CLAIM="$(
-        cat <<eos | openssl base64 -e
-        {
-        "iss": "$SERVICE_ACCOUNT_EMAIL",
-        "scope": "https://www.googleapis.com/auth/cloud-platform",
-        "aud": "https://oauth2.googleapis.com/token",
-        "exp": "$(($(date +%s)+3600))",
-        "iat": "$(date +%s)"
-        }
-        eos
-        )"
-
-        HEAD_AND_CLAIM="$(
-          printf %s.%s $JSON_HEADER $JSON_CLAIM |
-          perl -pe 's![=\n]!!;' -pe 'tr!/+!_-!'
-        )"
-
-        SIGNATURE=$(
-          printf %s $HEAD_AND_CLAIM |
-          openssl dgst -sha256 -sign <(<<< $SERVICE_ACCOUNT_KEY) |
-          openssl base64 -e |
-          perl -pe 's![=\n]!!;' -pe 'tr!/+!_-!'
-        )
-
-        # Request access token from Google OAuth 2.0 Server
-        RESPONSE="$(
-          curl --silent \
-            -H "Content-type: application/x-www-form-urlencoded" \
-            -X POST "https://oauth2.googleapis.com/token" \
-            -d "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=$HEAD_AND_CLAIM.$SIGNATURE"
-        )"
-
-        # Get token
-        TOKEN=$(printf %s $RESPONSE | perl -ne 'print $1 if m/^\s*"access_token": "(.*)",$/')
-
-        if [[ -z $TOKEN ]]; then
-          printf '\n---\nresponse: %s\n---\n' $RESPONSE
+        if [[ ! -f DOPPLER_TOKEN ]]; then
+          echo 'ERROR: Doppler is not setup!'
+          echo 'Check `bundles/encryption/README.md` for more info.'
           exit 1
         fi
 
-        # Download the object from Google Cloud
-        KEY_PROBABLY="$(
-          curl --silent \
-          -X GET \
-          -H "Authorization: Bearer $TOKEN" \
-          "https://storage.googleapis.com/storage/v1/b/$BUCKET_NAME/o/$KEY_FILENAME?alt=media"
-        )"
+        echo 'Decrypt DOPPLER_TOKEN...'
+        export DOPPLER_TOKEN="$(age -d DOPPLER_TOKEN)"
 
-        if [[ ! $KEY_PROBABLY =~ '^age-encryption.org/v1' ]]; then
-          printf 'Failed to download key for some reason:\n  %s\n' $KEY_PROBABLY
+        KEY_PROBABLY="$(doppler secrets get DOTFILES_KEY --plain)"
+
+        if [[ -z $KEY_PROBABLY ]]; then
+          echo 'Failed to download key!'
           exit 1
         fi
-        printf 'Decrypting dotfiles key to %s...\n' $SOPS_AGE_KEY_FILE
+
+        printf 'Downloading and decrypting dotfiles key to %s...\n' $SOPS_AGE_KEY_FILE
         mkdir -pv "$( dirname $SOPS_AGE_KEY_FILE )"
         age -d  <(printf %s $KEY_PROBABLY) >> $SOPS_AGE_KEY_FILE || exit 1
         chmod 400 $SOPS_AGE_KEY_FILE
-
-        fi
 
 
     - description: Decrypt encrypted directories & files
