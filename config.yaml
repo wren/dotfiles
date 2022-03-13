@@ -43,7 +43,7 @@
         )
 
         for bundle in $my_bundles; do
-          file="bundles/$bundle/install.conf.yaml"
+          file="bundles/$bundle/config.yaml"
           print -P "\n\n%F{006}───── ${(U)bundle} ─────%f"
           ${=DOTBOT_CMD} -d $(dirname "$file") -c <(cat $DOTBOT_DEFAULTS $file) "$@"
         done

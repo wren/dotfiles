@@ -4,8 +4,8 @@ set -e
 
 # Config Options
 export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/Dotfiles}"
-export DOTBOT_CONFIG="$DOTFILES_DIR/install.conf.yaml"
-export DOTBOT_DEFAULTS="$DOTFILES_DIR/defaults.conf.yaml"
+export DOTBOT_CONFIG="$DOTFILES_DIR/config.yaml"
+export DOTBOT_DEFAULTS="$DOTFILES_DIR/defaults.yaml"
 export DOTBOT_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotbot"
 
 # Check dotbot directory
@@ -32,7 +32,7 @@ print -P "%F{006}───── Dotbot ─────%f"
 if [[ ! -d $DOTFILES_DIR ]]; then
   # Probably first run
   url='https://raw.githubusercontent.com/wren/dotfiles/main'
-  ${=CMD} --only git -c <(curl -s "$url/defaults.conf.yaml" && curl -s "$url/install.conf.yaml") "$@" || true
+  ${=CMD} --only git -c <(curl -s "$url/defaults.yaml" && curl -s "$url/config.yaml") "$@" || true
 fi
 
 ${=CMD} -d $DOTFILES_DIR -c <(cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG) "$@" || true
