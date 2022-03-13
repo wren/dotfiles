@@ -24,10 +24,10 @@
           - logout
 
     # Sheldon
-    ~/.config/sheldon/plugins.toml: sheldon.toml
+    ~/.config/sheldon/plugins.toml: plugins.toml
 
     # Starship
-    ~/.config/starship/config.toml: starship.toml
+    ~/.config/starship/config.toml: prompt.toml
 
 - shell:
     - description: Zsh setup
