@@ -24,4 +24,4 @@
 
 - crontab:
     - time: "0 * * * *" # every hour
-      command: PATH="$HOME:/.local/bin:/usr/local/bin:$PATH" run-backup
+      command: PATH="$HOME/.local/bin:/usr/local/bin:$PATH" run-backup
