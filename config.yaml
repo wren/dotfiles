@@ -1,7 +1,9 @@
 - git:
     ~/Dotfiles:
-        url: https://github.com/wren/dotfiles
         description: Dotfiles repo
+        url: https://github.com/wren/dotfiles
+        method: clone
+        branch: main
 
 - clean:
     - '~'
@@ -81,7 +83,6 @@
     - "1password" # Password manager that keeps all passwords secure behind one password
     - "adobe-creative-cloud" # Collection of apps and services for photography, design, video, web, and UX
     - "audio-hijack" # Records audio from any application
-    - "calendar-366" # Menu bar calendar for events and reminders
     - "cyberduck" # Server and cloud storage browser
     - "discord" # Voice and text chat software
     - "docker" # App to build and share containerized applications and microservices
@@ -106,4 +107,3 @@
     - "steam" # Video game digital distribution service
     - "vlc" # Multimedia player
     - "zoom" # Video communication and virtual meeting platform
-    - "zsa-wally" # Flash tool for ZSA keyboards
