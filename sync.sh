@@ -9,15 +9,16 @@ export DOTBOT_DEFAULTS="$DOTFILES_DIR/defaults.yaml"
 export DOTBOT_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotbot"
 
 # Check dotbot directory
-mkdir -p $DOTBOT_DIR
-cd $DOTBOT_DIR
+print -P "%F{006}───── DOTBOT AND PLUGINS ─────%f"
 if ! git -C $DOTBOT_DIR rev-parse; then
+  # mkdir -p $DOTBOT_DIR
   git clone https://github.com/wren/dotfiles-dotbot.git $DOTBOT_DIR
 fi
+cd $DOTBOT_DIR
 git pull --force origin main
 git submodule update --init --recursive
 
-# Load all plugins, and run dotbot
+# Build command to include plugins
 CMD=$DOTBOT_DIR/dotbot/bin/dotbot
 for dir in $DOTBOT_DIR/plugins/*; do
   CMD+=" --plugin-dir=$dir"
@@ -28,7 +29,6 @@ CMD+=' --quiet'
 export DOTBOT_CMD=$CMD
 
 # Run dotbot
-print -P "%F{006}───── Dotbot ─────%f"
 if [[ ! -d $DOTFILES_DIR ]]; then
   # Probably first run
   url='https://raw.githubusercontent.com/wren/dotfiles/main'
