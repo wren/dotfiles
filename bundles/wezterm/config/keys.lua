@@ -43,9 +43,8 @@ config.keys = {
   {key="l", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Right", 1}}},
 
   -- scrolling
-  {key="k", mods="SUPER|CTRL", action=wezterm.action{ScrollByPage=-1}},
-  {key="j", mods="SUPER|CTRL", action=wezterm.action{ScrollByPage=1}},
-
+  {key="PageUp", action=wezterm.action{ScrollByPage=-1}},
+  {key="PageDown", action=wezterm.action{ScrollByPage=1}},
 }
 
 return config
