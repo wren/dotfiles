@@ -19,7 +19,7 @@ git pull --force origin main
 git submodule update --init --recursive
 
 # Build command to include plugins
-CMD=$DOTBOT_DIR/dotbot/bin/dotbot
+CMD="python3 $DOTBOT_DIR/dotbot/bin/dotbot"
 for dir in $DOTBOT_DIR/plugins/*; do
   CMD+=" --plugin-dir=$dir"
 done
