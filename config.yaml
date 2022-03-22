@@ -10,6 +10,8 @@
     - '~/.config'
     - '~/.local/bin'
 
+- install-brew: true
+
 - shell:
     - description: Run individual bundles through dotbot
       command: |-
