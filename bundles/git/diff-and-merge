@@ -18,6 +18,9 @@
   diff = diff-so-fancy | less -F
   show = diff-so-fancy | less -F
 
+[diff "image"]
+  textconv = exiftool -@ ~/.config/git/misc/exiftool-args
+
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -
 
