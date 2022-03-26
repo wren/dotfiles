@@ -57,18 +57,15 @@ wezterm.on("update-right-status", function (window, pane)
   local color = battery.get_color(percent)
   local bar = battery.build_bar(percent)
 
-  -- Uncomment when feature is released
-  -- leader (uncomment when feature is released)
-  -- see: https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html
-  -- local leader = ""
-  -- if window:leader_is_active() then
-    -- leader = string.format(' %s ', chars.TERMINAL)
-  -- end
+  local leader = ""
+  if window:leader_is_active() then
+    leader = string.format(' %s ', chars.TERMINAL)
+  end
 
   window:set_right_status(wezterm.format({
     {Background={Color=_G.COLORS.background}},
-    -- {Foreground={Color='#FFFFFF'}},
-    -- {Text=leader},
+    {Foreground={Color='#FFFFFF'}},
+    {Text=leader},
     {Foreground={Color=_G.COLORS.split}},
     {Text=string.format("  %s %.0f%%", icon, percent)},
     {Foreground={Color=color}},
