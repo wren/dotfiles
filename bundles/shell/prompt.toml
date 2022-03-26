@@ -10,6 +10,8 @@ right_format = """
 $package
 """
 
+command_timeout = 1000
+
 add_newline = true
 
 [line_break]
