@@ -26,12 +26,6 @@ github = "romkatv/zsh-defer"
 github = 'aloxaf/fzf-tab'
 apply = ['defer']
 
-# 5-6ms
-# [ plugins.ohmyzsh ]
-# github = 'ohmyzsh/ohmyzsh'
-# use = [ 'lib/clipboard.zsh' ]
-# apply = [ 'defer' ]
-
 [plugins.prezto-modules]
 inline = '''
   zstyle :prezto:load pmodule \
@@ -103,8 +97,8 @@ MODE_CURSOR_SEARCH="#ff00ff steady underline"
 # 22ms
 [plugins.zsh-vim-mode]
 github = 'softmoth/zsh-vim-mode'
-# defer makes the initial cursor not have the correct style (since it's drawn
-# before this loads). Maybe worth it?
+# defer makes the initial cursor not have the correct style
+# (since it's drawn before this loads). Maybe worth it?
 # apply = [ 'defer' ]
 
 # 12ms
@@ -137,12 +131,6 @@ vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
 vim-mode-bindkey vicmd -- vi-kill-eol        D
 vim-mode-bindkey vicmd -- vi-delete          d
 '''
-
-# 0ms
-[plugins.ohmytmux]
-github = 'wren/.tmux'
-use = ['.tmux.conf']
-apply = ['direnv-ohmytmux']
 
 # My personal scripts from gists
 [plugins.less-with-pipe]
