@@ -26,6 +26,9 @@ github = "romkatv/zsh-defer"
 github = 'aloxaf/fzf-tab'
 apply = ['defer']
 
+[plugins.fzf-tab-config]
+inline = "zstyle ':fzf-tab:*' continuous-trigger tab"
+
 [plugins.prezto-modules]
 inline = '''
   zstyle :prezto:load pmodule \
