@@ -2,10 +2,8 @@
     - ~/Library/KeyBindings
 
 - link:
-    ~/Library/Preferences/:
-        force: true
-        glob: true
-        path: '*.plist'
+    ~/Library/Preferences/com.apple.symbolichotkeys.plist:
+        path: 'com.apple.symbolichotkeys.plist'
 
     ~/Library/KeyBindings/DefaultKeyBinding.dict:
         path: 'DefaultKeyBinding.dict'
