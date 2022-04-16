@@ -50,7 +50,7 @@ components.diff.separator = ''
 components.diff.padding = 0
 
 -- Style overrides
-local custom_theme = require'lualine.themes.onedarker'
+local custom_theme = require'lualine.themes.onedark'
 custom_theme.normal.c.bg = '#1F2329'
 -- custom_theme.inactive.c.bg = '#2D3035'
 
