@@ -1,0 +1,6 @@
+- cask:
+    - "steermouse" # Customize mouse buttons, wheels and cursor speed
+
+- link:
+    ~/Library/ApplicationSupport/SteerMouse & CursorSense/Device.smsetting:
+        path: 'Device.smsetting'
