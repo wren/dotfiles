@@ -23,6 +23,8 @@ config.keys = {
   {key=",", mods="CTRL", action={SendKey={key=",", mods="ALT"}}},
   {key=".", mods="CTRL", action={SendKey={key=".", mods="ALT"}}},
 
+  -- shift + enter
+  {key="\r", mods="SHIFT", action=wezterm.action{SendString="\x1b[13;2u"}},
 
   -- splits
   {key="\\", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
