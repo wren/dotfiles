@@ -26,6 +26,9 @@ github = "romkatv/zsh-defer"
 github = 'aloxaf/fzf-tab'
 apply = ['defer']
 
+[plugins.fzf-history]
+inline = '[ -f "/usr/local/opt/fzf/shell/key-bindings.zsh" ] && source "/usr/local/opt/fzf/shell/key-bindings.zsh"'
+
 [plugins.prezto-modules]
 inline = '''
   zstyle :prezto:load pmodule \
