@@ -13,8 +13,9 @@ config = {
   font_size = 22,
   line_height = 1.2,
   harfbuzz_features = {
+    -- see: https://github.com/tonsky/FiraCode/wiki/How-to-enable-stylistic-sets
     "zero", -- dot inside zero instead of line
-    -- "calt=0", "clig=0", "liga=0", -- disable ligatures
+    "calt=0", "clig=0", "liga=0", -- disable ligatures
   },
 
   -- tab bar
