@@ -10,9 +10,6 @@ defer = { each = true, value = 'zsh-defer source "{{ file }}"' }
 path = 'path=( "{{ dir }}" $path )'
 path-bin = 'path=( "{{ dir }}/bin" $path )'
 
-direnv-ohmytmux = 'export TMUX_OHMYTMUX_CONFIG_DIR="{{ dir }}"'
-
-
 [plugins]
 
 # 2-3ms
