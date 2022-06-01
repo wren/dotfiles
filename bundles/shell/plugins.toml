@@ -132,6 +132,11 @@ vim-mode-bindkey vicmd -- vi-kill-eol        D
 vim-mode-bindkey vicmd -- vi-delete          d
 '''
 
+# Wezterm
+[plugins.wezterm-shell-integration]
+remote = 'https://raw.githubusercontent.com/wez/wezterm/main/assets/shell-integration/wezterm.sh'
+apply = ['defer']
+
 # My personal scripts from gists
 [plugins.less-with-pipe]
 gist = "wren/29e7cc8784f858a28648b9360e29ac96"
