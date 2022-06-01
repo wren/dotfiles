@@ -44,11 +44,18 @@ config.keys = {
   {key="k", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Up", 1}}},
   {key="l", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Right", 1}}},
 
-  {key="w", mods="SUPER|SHIFT", action=wezterm.action{CloseCurrentPane={confirm=true}}},
+  -- Closing tabs and panes
+  {key="w", mods="SUPER|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=true}}},
+  {key="w", mods="SUPER", action=wezterm.action{CloseCurrentPane={confirm=true}}},
+  {key="q", mods="CMD", action="QuitApplication"},
 
   -- scrolling
   {key="PageUp", action=wezterm.action{ScrollByPage=-1}},
   {key="PageDown", action=wezterm.action{ScrollByPage=1}},
+
+  {key="UpArrow", mods="SHIFT", action=wezterm.action{ScrollToPrompt=-1}},
+  {key="DownArrow", mods="SHIFT", action=wezterm.action{ScrollToPrompt=1}},
+
 }
 
 return config
