@@ -4,6 +4,7 @@
 
 - create:
     - ~/.config/backups
+    - ~/Backups
 
 - link:
     ~/.config/backups/ignore: ignore
