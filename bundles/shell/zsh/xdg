@@ -106,6 +106,9 @@ export ZPLUG_LOADFILE="$ZDOTDIR/plugins"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 
+#ZSH-Z
+export ZSHZ_DATA="$XDG_DATA_HOME/z"
+
 # zinit
 declare -A ZINIT
 export ZINIT=(
