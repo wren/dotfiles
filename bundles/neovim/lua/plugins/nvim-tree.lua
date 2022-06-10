@@ -1,6 +1,6 @@
 local plugin = lvim.builtin.nvimtree
 
-plugin.show_icons.git = 0
+plugin.setup.renderer.icons.show.git = false
 
 -- Keymap --
 -- map('n', '<leader>eo', '<cmd>NvimTreeToggle<CR>')
