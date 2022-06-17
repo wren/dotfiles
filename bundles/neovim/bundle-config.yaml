@@ -42,11 +42,6 @@
 - link:
     /usr/local/bin/nvim: /usr/local/share/nvim/stable/latest/bin/nvim
 
-# - shell:
-    # - description: Downloading Spanish dictionary for Neovim
-    #   command: >-
-    #     nvim -u NORC -c 'set spell' -c 'set spelllang=es' -c 'qa!'
-
 - create:
     - ~/.config/lvim
 
