@@ -115,13 +115,10 @@ opt.undodir = my_str:format('undo')
 opt.backupdir = my_str:format('backup')
 opt.viewdir = my_str:format('view')
 
-local CUSTOM_DICT = DATA_PATH .. '/spell/custom.en.utf-8.add'
-local WORDS_DICT = DATA_PATH .. '/spell/words.en.utf-8.add'
+-- Spelling & Lang --
 opt.spell = false
-opt.spellfile = CUSTOM_DICT
-opt.spelllang = 'en'
--- opt.spelllang='en,es' -- @todo something keeps going wrong with this
-opt.dictionary:append({ WORDS_DICT, CUSTOM_DICT })
+-- opt.spelllang = {'en_us', 'es_mx'}
+opt.spelllang = {'en_us'}
 
 -- Copy/pasting stuff
 if fn.has('clipboard') == 1 then

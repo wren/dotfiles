@@ -57,8 +57,9 @@
         exclude:
           - bundle-config.yaml
           - dictionaries
-    ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/custom.en.dict
-    ~/.local/share/nvim/spell/words.en.utf-8.add: /usr/share/dict/words
+
+    ~/.local/share/nvim/spell/custom.en.utf-8.add: dictionaries/en.dict
+    ~/.local/share/nvim/spell/custom.es.utf-8.add: dictionaries/es.dict
 
 - shell:
     - description: Installing Lunar vim
