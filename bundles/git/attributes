@@ -5,7 +5,7 @@
 *.gif       diff=image
 *.bmp       diff=image
 *.docx      diff=pandoc
-*.pdf       diff=pandoc
+*.pdf       diff=image
 *           eol=lf
 *           text=auto
 
