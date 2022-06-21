@@ -167,3 +167,7 @@ apply = ['path', 'chmodx']
 [plugins.vim-startup-time-sh]
 gist = 'wren/3c36ceae90403f9731edc9ba8e8ffbd0'
 apply = ['path', 'chmodx']
+
+[plugins.git-image-diff]
+gist = 'wren/e45b2c49d7a08bb718c683ad986793da'
+apply = ['path', 'chmodx']

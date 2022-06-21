@@ -13,13 +13,13 @@
   keepBackup = false
 
 [pager]
-  dfi = false
   dfp = false
   diff = diff-so-fancy | less -F
   show = diff-so-fancy | less -F
+  diff-image = diff-so-fancy
 
 [diff "image"]
-  textconv = exiftool -@ ~/.config/git/misc/exiftool-args
+  command = git diff-image-driver
 
 [diff "plist"]
   textconv = plutil -convert xml1 -r -o -

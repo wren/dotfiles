@@ -37,6 +37,10 @@
   dfs = diff --shortstat --numstat
   dft = difftool
   dfw = diff --word-diff=color
+  diff-image = !GIT_DIFF_IMAGE_ENABLED=1 git diff
+  dfi = diff-image
+  dfic = diff-image --cached
+  dfci = diff-image --cached
 
   # merging/rebasing/etc
   chp = cherry-pick

@@ -18,6 +18,8 @@
     - "git-lfs" # Git extension for versioning large files
     - "diff-so-fancy" # Good-lookin' diffs with diff-highlight and more
     - "exiftool" # Perl lib for reading and writing EXIF metadata
+    - "imagemagick" # Tools and libraries to manipulate images in many formats
+    - "viu" # Simple terminal image viewer written in Rust
 
 - cask:
     - "sublime-merge" # Git client
