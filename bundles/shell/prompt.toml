@@ -1,5 +1,5 @@
 format = """
-$fill $status$cmd_duration$time
+$status$fill $cmd_duration$time
 
 $username$hostname(${custom.read-mail}${custom.unread-mail}) $directory( $aws)(
 $git_branch${custom.git-remote-logo}${custom.git-remote-name}${custom.git-remote-branch}( $git_commit)( $git_state)$git_status$git_metrics( | $all))(
@@ -31,8 +31,15 @@ use_12hr = true
 
 [status]
 disabled = false
-symbol = ' '
-success_symbol = ' '
+format = "[ $status( $symbol)( $common_meaning)]($style) "
+symbol = ""
+# success_symbol = ""
+map_symbol = true
+# pipestatus = true # this has a bug with the fill
+recognize_signal_code = true
+not_found_symbol = ""
+sigint_symbol = ""
+signal_symbol = ""
 
 [username]
 show_always = true
