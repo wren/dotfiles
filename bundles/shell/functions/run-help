@@ -16,6 +16,6 @@ fi
   "$@" --help || "$@" -h
 
   print -P ${header:s/_/MAN}
-  man "$@" | col -bx
+  man "$@"
 
 } 2>&1 | $=cmd
