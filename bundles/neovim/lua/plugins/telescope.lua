@@ -42,6 +42,7 @@ lvim.builtin.which_key.mappings["f"] = {
   c = {':Telescope commands<CR>', 'Commands'},
   s = {':Telescope colorscheme<CR>', 'Color schemes'},
   w = {':Telescope grep_string<CR>', 'Find <word>'},
+  r = {':Telescope resume<CR>', 'Resume finder'},
 }
 
 lvim.builtin.which_key.mappings["h"] = {
