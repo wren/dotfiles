@@ -1,7 +1,7 @@
 -- better quickfix window
 local plugin = { 'kevinhwang91/nvim-bqf' }
 
-plugin.event = { 'BufRead', 'BufNew' }
+plugin.ft = { 'qf' }
 plugin.config = function()
   require('bqf').setup({
     auto_enable = true,
