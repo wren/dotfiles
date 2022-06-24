@@ -3,11 +3,9 @@ local plugin = lvim.builtin.telescope
 plugin.defaults.path_display.absolute = true
 plugin.defaults.path_display.shorten = nil
 
-plugin.defaults.pickers = {
-  find_files = {
-    hidden = true,
-    shorten_path = false,
-  }
+plugin.pickers.find_files = {
+  hidden = true,
+  shorten_path = false,
 }
 
 plugin.defaults.file_ignore_patterns = {
