@@ -47,6 +47,7 @@
   mg = merge
   mga = merge --abort
   mgs = merge --squash
+  mgc = merge --continue
   mgt = mergetool
   rb = rebase
   rba = rebase --abort
