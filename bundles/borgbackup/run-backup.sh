@@ -20,7 +20,7 @@ if [[ -n $DEBUG ]] && [[ $DEBUG == 'x' ]]; then
   set -x
 fi
 
-ping_healthcheck() {
+function ping_healthcheck() {
   local cmd_output
   local error
   local exit_code
@@ -62,18 +62,17 @@ ping_healthcheck() {
   fi
 }
 
-is_debug() {
-
+function is_debug() {
   if [[ -n $DEBUG ]]; then
     printf -- '--dry-run'
   fi
 }
 
-take_snapshot() {
+function take_snapshot() {
   borg create $(is_debug)   \
       --verbose             \
-      --stat \
-      --list \
+      --stat                \
+      --list                \
       --filter AME          \
       --show-rc             \
       --compression zstd    \
@@ -92,7 +91,7 @@ take_snapshot() {
     --keep-yearly 10
 }
 
-sync_to_server() {
+function sync_to_server() {
   local rsync_server
   local repo
   repo="$1"
@@ -108,7 +107,7 @@ sync_to_server() {
     "$repo/" "$rsync_server/"
 }
 
-analytics_wrapper() {
+function analytics_wrapper() {
   local healthcheck_id
   local cmd
   healthcheck_id="$1"
@@ -124,7 +123,7 @@ analytics_wrapper() {
   ping_healthcheck "$healthcheck_id" 0
 }
 
-get_config_val() {
+function get_config_val() {
   local val
   val="$(yq e "$1" "$CONFIG_HOME/config.yaml")" || exit 1
   printf -- '%s' "$val"
