@@ -83,12 +83,7 @@ function take_snapshot() {
       --ignore-file "$CONFIG_HOME/ignore"
 
   borg prune $(is_debug) \
-    --keep-within 48H    \
-    --keep-hourly 24     \
-    --keep-daily 14      \
-    --keep-weekly 6      \
-    --keep-monthly 12    \
-    --keep-yearly 10
+    $(get_config_val .keep | perl -ne 'print "--keep-$1=$2 " if /^(.+): (.+)$/')
 }
 
 function sync_to_server() {

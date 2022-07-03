@@ -1,0 +1,18 @@
+# Healthcheck IDs to report success or failure for each task
+# @see: https://healthchecks.io
+analytics_ids:
+    snapshot: abcdef12-5678-9000-1234-abcdef123456
+    sync: abcdef12-5678-9000-1234-abcdef123456
+
+# Borg settings
+borg:
+    passphrase: 'some long passphrase to protect your backups'
+    repo: ~/Backups
+    sync-server: ssh-server-name:~/Backups
+keep:
+    within: 48H
+    hourly: 24
+    daily: 14
+    weekly: 6
+    monthly: 12
+    yearly: 10
