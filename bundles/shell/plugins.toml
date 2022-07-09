@@ -16,6 +16,11 @@ path-bin = 'path=( "{{ dir }}/bin" $path )'
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
+# 7-8ms
+# doesn't support defer
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+
 # 8ms
 # fzf-tab needs to be loaded after compinit, but before plugins which will wrap
 # widgets, such as zsh-autosuggestions or fast-syntax-highlighting!
