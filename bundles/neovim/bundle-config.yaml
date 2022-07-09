@@ -28,7 +28,7 @@
 
         my_target='/usr/local/share/nvim/stable'
         mkdir -p $my_target
-        my_version="$(nvim-osx64/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
+        my_version="$(nvim-macos/bin/nvim --version | head -1 | sed 's/^NVIM //g')"
 
         rm -f "${my_target}/latest"
         ln -sf "${my_target}/${my_version}" "${my_target}/latest"
@@ -37,7 +37,7 @@
           exit 0
         fi
 
-        mv -v nvim-osx64 "${my_target}/${my_version}"
+        mv -v nvim-macos "${my_target}/${my_version}"
 
 - link:
     /usr/local/bin/nvim: /usr/local/share/nvim/stable/latest/bin/nvim
