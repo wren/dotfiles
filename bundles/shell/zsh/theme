@@ -29,6 +29,7 @@
     # ===============[ Line #2 ]===============
     newline
     vcs # git
+    git_diff_shortstat
 
     # ===============[ Line #3 ]===============
     background_jobs
@@ -315,7 +316,7 @@
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=  #''
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=255
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
-  typeset -g POWERLEVEL9K_VCS_SUFFIX=$'\n'
+  typeset -g POWERLEVEL9K_VCS_SUFFIX=
 
   # Enable vcs prompt for repos of these types
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
@@ -463,14 +464,24 @@
   function prompt_login_banner() {
   }
 
-  function prompt_gitemail() {
-    emulate -L zsh
 
-    if ! git rev-parse; then
+  ###############################[ git_diff_shortstat: status ]###############################
+
+  function prompt_git_diff_shortstat() {
+    if ! git rev-parse &>/dev/null; then
       return
     fi
-    p10k segment -e -f 244 -t '$(git config user.email)'
+    str="$(git diff --shortstat | perl -ne 'print "$2$1 " while m/(\d+) \w+\(([+-])\)?/g' | perl -pe 's/(\+\d+)/%F{green}$1%f/; s/(-\d+)/%F{red}$1%f/')"
+    if [[ -z $str ]]; then
+      str=" "
+    else
+      str=" %F{white}|%f %B${str}%b"
+    fi
+
+    p10k segment -i $str
   }
+
+  typeset -g POWERLEVEL9K_GIT_DIFF_SHORTSTAT_SUFFIX=$'\n'
 
   # Change prompt after typing command (off|always|same-dir)
   typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
