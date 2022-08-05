@@ -9,7 +9,7 @@ config.window_padding = {
   bottom = 0,
 }
 
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.hide_tab_bar_if_only_one_tab = false
 config.window_decorations = "RESIZE"
@@ -27,14 +27,17 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local tab_fg = "#535965"
 
   if tab.is_active then
-    tab_bg = "#92D4F7"
+    tab_bg = _G.COLORS.active
+    tab_fg = _G.COLORS.background
+  elseif hover then
+    tab_bg = _G.COLORS.selection_bg
     tab_fg = _G.COLORS.background
   end
 
   return {
     {Background={Color=_G.COLORS.background}},
     {Foreground={Color=tab_bg}},
-    {Text=ROUND_LEFT_EDGE},
+    {Text=" " .. ROUND_LEFT_EDGE},
     {Background={Color=tab_bg}},
     {Foreground={Color=tab_fg}},
     {Text=" "},

@@ -12,12 +12,53 @@ config.colors = {
   selection_fg = "#DCDFE4",
   scrollbar_thumb = "#282C34",
   split = "#808080",
+  active = "#92D4F7",
+  inactive = "#808080",
 
   ansi = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
   brights = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
 }
 
 _G.COLORS = config.colors
+
+config.colors.tab_bar = {
+  -- The color of the strip that goes along the top of the window
+  -- (does not apply when fancy tab bar is in use)
+  background = _G.COLORS.background,
+
+  active_tab = {
+    bg_color = _G.COLORS.background,
+    fg_color = _G.COLORS.foreground,
+    intensity = 'Bold', -- Half | [Normal] | Bold
+    underline = 'None', -- [None] | Single | Double
+    italic = false,
+    strikethrough = false,
+  },
+
+  inactive_tab = {
+    bg_color = _G.COLORS.background,
+    fg_color = _G.COLORS.foreground,
+    italic = true,
+  },
+
+  inactive_tab_hover = {
+    bg_color = _G.COLORS.background,
+    fg_color = _G.COLORS.foreground,
+    italic = true,
+  },
+
+  new_tab = {
+    bg_color = _G.COLORS.background,
+    fg_color = _G.COLORS.inactive,
+    intensity = 'Half',
+  },
+
+  new_tab_hover = {
+    bg_color = _G.COLORS.background,
+    fg_color = _G.COLORS.active,
+    intensity = 'Bold',
+  },
+}
 
 config.window_frame = {
   active_titlebar_bg = _G.COLORS.background,
