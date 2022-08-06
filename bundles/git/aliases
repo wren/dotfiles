@@ -61,14 +61,14 @@
 
   # remotes
   f = fetch
-  pl = pull --rebase
-  pls = "!git print-header 'Pull' && git pl && git print-header 'Push' && git push"
-  plm = pull --no-rebase
-  plsm = "!git print-header 'Pull' && git plm && git print-header 'Push' && git push"
-  ps = push
+  pl = "!git print-header 'Pull (Rebase)' && git pull --rebase"
+  pls = "!git pl && git ps"
+  plm = "!git print-header 'Pull (Merge)' && git pull --no-rebase"
+  plsm = "!git plm && git ps"
+  ps = "!git print-header 'Push' && git push"
   psf = push -f
   rem = remote -v
-  print-header = "!p(){ printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\" \"$1\"; }; p"
+  print-header = "!printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\""
 
   # repo stats/info
   conflicts = diff --name-only --diff-filter=U
