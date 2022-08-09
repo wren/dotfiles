@@ -10,7 +10,7 @@ local my_font = wezterm.font_with_fallback({
 
 config = {
   font = my_font,
-  font_size = 20,
+  font_size = 22,
   line_height = 1.2,
   harfbuzz_features = {
     -- see: https://github.com/tonsky/FiraCode/wiki/How-to-enable-stylistic-sets
