@@ -16,6 +16,7 @@ config.colors = {
   split = "#808080",
   active = "#92D4F7",
   inactive = "#808080",
+  tab_foreground = "#535965",
 
   ansi = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
   brights = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
@@ -68,8 +69,8 @@ config.window_frame = {
 }
 
 config.inactive_pane_hsb = {
-  saturation = 0.85,
-  brightness = 0.75,
+  saturation = 0.6,
+  brightness = 1,
 }
 
   -- colors for each 10% the battery changes

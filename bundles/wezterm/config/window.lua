@@ -23,8 +23,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local ROUND_LEFT_EDGE = utf8.char(0xe0b6)
   local ROUND_RIGHT_EDGE = utf8.char(0xe0b4)
 
-  local tab_bg = "#282C34"
-  local tab_fg = "#535965"
+  local tab_bg = _G.COLORS.background
+  local tab_fg = _G.COLORS.tab_foreground
 
   if tab.is_active then
     tab_bg = _G.COLORS.active
