@@ -89,5 +89,4 @@ _G.MY_COLORS.battery = {
   [10] = "#98BE65",
 }
 
-
 return config

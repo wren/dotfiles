@@ -18,7 +18,6 @@ config.window_close_confirmation = "NeverPrompt"
 -- config.enable_scroll_bar = true
 config.scrollback_lines = 1000000
 
-
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local ROUND_LEFT_EDGE = utf8.char(0xe0b6)
   local ROUND_RIGHT_EDGE = utf8.char(0xe0b4)
