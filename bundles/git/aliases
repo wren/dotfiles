@@ -61,12 +61,12 @@
 
   # remotes
   f = fetch
-  pl = "!git print-header 'Pull (Rebase)' && git pull --rebase"
+  pl = plr
   pls = "!git pl && git ps"
+  plr = "!git print-header 'Pull (Rebase)' && git pull --rebase"
   plm = "!git print-header 'Pull (Merge)' && git pull --no-rebase"
-  plsm = "!git plm && git ps"
   ps = "!git print-header 'Push' && git push"
-  psf = push -f
+  psf = ps -f
   rem = remote -v
   print-header = "!printf -- \"$(tput setaf 6)───── %s ─────$(tput sgr0)\n\""
 
