@@ -52,6 +52,7 @@ require 'plugins.splitjoin'
 require 'plugins.symbols-outline'
 require 'plugins.indentline'
 require 'plugins.editorconfig'
+require 'plugins.null-ls'
 
 -- Writing --
 require 'plugins.jrnl'
