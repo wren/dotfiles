@@ -107,14 +107,24 @@
   wul = worktree unlock
 
   # workflow
-  brn = "!git config branch.$(git symbolic-ref HEAD|sed 's!refs/heads/!!').note"
-  brp = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
-  brs = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
+  new = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
+  branch-status = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
+  branch-status-list = "!f() { git config --get-regexp 'branch\\..*?\\.status' | perl -ne 'print \"$1\\n\" if /branch\\.(.*?)\\.status '\"$1\"'$/'; }; f"
+  remote-branch-exists = "!f(){ git for-each-ref --format '%(refname) %(upstream:track)' \"refs/heads/$1\" | grep -qv '\\[gone\\]$'; }; f"
+  branch-delete-merged = "!for branch in $(git branch-status-list 'PR Opened'); do if ! git remote-branch-exists $branch; then git br -D \"$branch\"; fi; done"
+  branch-delete-reviewed = "!for branch in $(git branch-status-list 'PRs for Review'); do git br -D \"$branch\"; done"
+  pr-get = "!f(){ gh pr checkout ${1:-0} && _MY_BRANCH=${2:-pr-$1-$(git current-branch)} && if git show-ref --quiet refs/heads/${_MY_BRANCH}; then git br -D ${_MY_BRANCH}; fi && git br -m ${_MY_BRANCH} && git brs 'PRs for Review'; }; f"
+  pr-open = "!f(){ gh pr create --title \"${@:-PR Title Goes Here}\" --web && git brs 'PR Opened'; }; f"
+  todo = "!rg -i '@todo'"
+
+  brs = branch-status
+  brdm = branch-delete-merged
+  brdr = branch-delete-reviewed
+  brs-ls = branch-status-list
   dmb = delete-merged-branches
   smb = show-merged-branches
-  prg = "!f(){ gh pr checkout ${1:-0} && _MY_BRANCH=${2:-pr-$1-$(git current-branch)} && if git show-ref --quiet refs/heads/${_MY_BRANCH}; then git br -D ${_MY_BRANCH}; fi && git br -m ${_MY_BRANCH} && git brs 'PRs for Review'; }; f"
-  pro = "!f(){ gh pr create --title \"${@:-PR Title Goes Here}\" --web && git brs 'PR Opened'; }; f"
-  todo = "!rg -i '@todo'"
+  prg = pr-get
+  pro = pr-open
 
   # fzf integration
   dff = forgit diff
