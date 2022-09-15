@@ -16,6 +16,7 @@ nvim_define_filetypes({
   { 'Brewfile'                    , 'ruby'      },
   { '*/*config/bash/*'            , 'sh'        },
   { '*/*config/zsh/*'             , 'zsh'       },
+  { '*/Dotfiles/*/zsh/*'          , 'zsh'       },
   { '*/*config/git/*'             , 'gitconfig' },
   { '*/*ssh/configs/*'            , 'sshconfig' },
   { '*/*config/tmux/*'            , 'tmux'      },
