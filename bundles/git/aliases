@@ -109,6 +109,7 @@
   # workflow
   new = "!f(){ git checkout -b $1; git push --set-upstream origin $1; git config branch.$1.status 'Active'; }; f"
   branch-status = "!f(){ git config branch.${2:-$(git current-branch)}.status \"$1\"; }; f"
+  branch-status-get = "!f(){ git config branch.${1:-$(git current-branch)}.status; }; f"
   branch-status-list = "!f() { git config --get-regexp 'branch\\..*?\\.status' | perl -ne 'print \"$1\\n\" if /branch\\.(.*?)\\.status '\"$1\"'$/'; }; f"
   remote-branch-exists = "!f(){ git for-each-ref --format '%(refname) %(upstream:track)' \"refs/heads/$1\" | grep -qv '\\[gone\\]$'; }; f"
   branch-delete-merged = "!for branch in $(git branch-status-list 'PR Opened'); do if ! git remote-branch-exists $branch; then git br -D \"$branch\"; fi; done"
