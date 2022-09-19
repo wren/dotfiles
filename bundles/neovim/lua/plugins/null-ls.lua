@@ -6,7 +6,12 @@ formatters.setup {
 
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "actionlint" },
+  {
+    command = "actionlint",
+    runtime_condition = function(params)
+      return string.find(params.bufname, "/.github/")
+    end,
+  },
   { command = "flake8", },
   { command = "shellcheck", },
   { command = "gitlint" },
