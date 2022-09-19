@@ -1,5 +1,5 @@
 - cask:
-    - "wezterm"
+    - "wez/wezterm/wezterm-nightly"
     - "font-fira-code"
     - "font-fira-code-nerd-font"
     - "font-hack-nerd-font"
@@ -15,3 +15,7 @@
         exclude:
           - install.conf.yaml
           - _init.lua
+
+- shell:
+    - description: Update Wezterm Nightly
+      command: brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
