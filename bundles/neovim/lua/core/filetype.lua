@@ -25,4 +25,5 @@ nvim_define_filetypes({
   { '*/Dotfiles/*/git/*'          , 'gitconfig' },
   { '*/Dotfiles/*/ssh/*'          , 'sshconfig' },
   { '*/Dotfiles/*/bat/bat.config' , 'zsh'       },
+  { '*/Dotfiles/*/bat/viewers.d/*', 'zsh'       },
 })
