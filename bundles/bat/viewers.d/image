@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+# see: https://github.com/eth-p/bat-extras/blob/master/doc/batpipe.md
+
+BATPIPE_VIEWERS=('image' "${BATPIPE_VIEWERS[@]}")
+
+function viewer_image_supports() {
+  command -v viu &> /dev/null      || return 1
+  [[ "$1" =~ \.(jpe?g|png|gif)$ ]] || return 1
+  return 0
+}
+
+function viewer_image_process() {
+  batpipe_header    "Viewing image w/ metadata: %{PATH}%s" "$1"
+  # batpipe_subheader ""
+
+  exiftool "$1" -@ ~/.config/git/misc/exiftool-args
+  viu -b "$1"
+}
+
