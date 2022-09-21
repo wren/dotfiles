@@ -113,6 +113,7 @@ github = 'kutsan/zsh-system-clipboard'
 
 # 0ms
 [plugins.zsh-vim-mode-config-after]
+# @see: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 inline = '''
 # This isn't provided by the plugin, so we roll our own
 function zsh-system-clipboard-vicmd-vi-yank-eol() {
