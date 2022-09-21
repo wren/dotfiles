@@ -130,6 +130,7 @@ vim-mode-bindkey vicmd -- end-of-line        L
 vim-mode-bindkey vicmd -- run-help           K
 vim-mode-bindkey vicmd -- fzf-history-widget '/'
 vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
+vim-mode-bindkey vicmd -- accept-line ZZ
 
 # unbind the system clipboard widgets from delete, so
 # deleting actually deletes
