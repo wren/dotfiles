@@ -13,7 +13,7 @@ function viewer_image_process() {
   batpipe_header    "Viewing image w/ metadata: %{PATH}%s" "$1"
   # batpipe_subheader ""
 
-  exiftool "$1" -@ ~/.config/git/misc/exiftool-args
+  exiftool "$1" -@ ~/.config/git/misc/exiftool-args | bat --language cpuinfo
   viu --blocks --static "$1"
 }
 
