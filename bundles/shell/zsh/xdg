@@ -16,10 +16,11 @@ export AGE_KEY_FILE="$XDG_CONFIG_HOME/age/keys.txt"
 # --- ASDF --- #
 # Default ~/.asdfrc
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-export ASDF_CONFIG_DIR="$XDG_CONFIG_HOME/asdf"
-export ASDF_CONFIG_FILE="$ASDF_CONFIG_DIR/config"
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$ASDF_CONFIG_DIR/tool-versions"
-# export ASDF_DIR="" # asdf sets this itself when initialized
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=".tool-versions"
+
+# --- asdf-direnv --- #
+export ASDF_DIRENV_BIN="/usr/local/bin/direnv"
 
 # --- AWS CLI --- #
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html

@@ -1,0 +1,19 @@
+- create:
+    - ~/.config/asdf
+
+- brew:
+    - "asdf" # Extendable version manager with support for Ruby, Node.js, Erlang & more
+    - "direnv" # Load/unload environment variables based on $PWD
+
+- link:
+    ~/.tool-versions: tool-versions
+
+- sudo:
+    - link:
+        /Users/.envrc: global-envrc
+
+- shell:
+    - description: Setup for asdf-direnv
+      command: |-
+        asdf plugin-add direnv
+        # asdf direnv setup --shell bash --version system

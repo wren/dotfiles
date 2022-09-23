@@ -31,8 +31,10 @@ export RESTIC_PASSWORD_COMMAND="yq e .restic.passphrase '$BACKUPS_CONFIG'"
 # export RESTIC_REPOSITORY="$(yq e .restic.repo "${BACKUPS_CONFIG/#\~/$HOME}")"
 export RESTIC_REPOSITORY="$HOME/Backups"
 
-# direnv
+# direnv & asdf
 export DIRENV_LOG_FORMAT=""
+export ASDF_DIR="/usr/local/opt/asdf/libexec"
+export ASDF_DIRENV_BIN="/usr/local/bin/direnv"
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 # Python virtual envs

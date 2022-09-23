@@ -19,6 +19,7 @@
 
         my_bundles=(
             encryption
+            asdf
             asciinema
             bat
             borgbackup
