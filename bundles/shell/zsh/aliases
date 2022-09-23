@@ -1,10 +1,5 @@
 # One-liners of various flavors (aliases, functions, etc)
 
-#--- Directories ---#
-hash -d Archive=~/Projects/Archived
-hash -d Projects=~/Projects/Active
-hash -d Dotfiles=~/Dotfiles
-
 #--- System ---#
 alias mv="mv -iv"
 alias cp="cp -ivr"
