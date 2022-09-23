@@ -8,9 +8,11 @@
 - link:
     ~/.tool-versions: tool-versions
 
-- sudo:
-    - link:
-        /Users/.envrc: global-envrc
+# This annoyingly asks for a password all the time
+# @todo can it be done conditionally (only if file isn't already linked)?
+# - sudo:
+#     - link:
+#         /Users/.envrc: global-envrc
 
 - shell:
     - description: Setup for asdf-direnv
