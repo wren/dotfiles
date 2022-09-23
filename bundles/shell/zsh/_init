@@ -12,6 +12,7 @@ my_dotfiles=(
   env
   theme
   aliases
+  keys
 )
 
 for my_file in $my_dotfiles; do
