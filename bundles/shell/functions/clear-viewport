@@ -1,4 +1,4 @@
 # (Clears the screen without losing any of the scrollback buffer)
-printf '\n%.0s' {1..$(( $(tput lines) - 6 ))}
+printf '\n%.0s' {1..$(( $(tput lines) - 4 ))}
 clear
 zle reset-prompt
