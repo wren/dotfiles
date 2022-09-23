@@ -15,7 +15,7 @@
 #         /Users/.envrc: global-envrc
 
 - shell:
-    - description: Setup for asdf-direnv
+    - description: Setup asdf plugins
       command: |-
-        asdf plugin-add direnv
-        # asdf direnv setup --shell bash --version system
+          asdf plugin add direnv || echo "Plugin direnv already installed"
+          asdf plugin add python || echo "Plugin python already installed"
