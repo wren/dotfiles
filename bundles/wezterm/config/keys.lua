@@ -9,6 +9,7 @@ config.leader = { key=" ", mods="CTRL", timeout_milliseconds=1000 }
 config.keys = {
   -- disable defaults
   {key="l", mods="CTRL", action="DisableDefaultAssignment"},
+  {key="l", mods="SUPER", action={SendKey={key="l", mods="CTRL"}}},
 
   -- make some often used keys easier to access by using cmd
   {key="d", mods="SUPER", action={SendKey={key="d", mods="CTRL"}}},
