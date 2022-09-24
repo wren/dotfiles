@@ -19,3 +19,11 @@
       command: |-
           asdf plugin add direnv || echo "Plugin direnv already installed"
           asdf plugin add python || echo "Plugin python already installed"
+
+    - description: Setup asdf plugins
+      command: asdf install
+
+    - description: Setup asdf-direnv
+      command: |-
+          asdf direnv setup --shell zsh --version system
+          rm ~/.zshrc
