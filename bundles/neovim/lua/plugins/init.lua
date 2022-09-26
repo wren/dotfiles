@@ -62,4 +62,5 @@ require 'plugins.pencil'
 require 'plugins.markdown-preview'
 
 -- Syntax --
-require 'plugins.reason'
+require 'plugins.syntax-reason'
+require 'plugins.syntax-markdown'
