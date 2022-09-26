@@ -31,7 +31,6 @@
 .todo.cfg
 .tern-port
 .vim/*
-node_modules/**
 Session.vim
 .envrc
 pyrightconfig.json
@@ -61,3 +60,11 @@ Icon?
 ehthumbs.db
 Thumbs.db
 Desktop.ini
+
+######################
+# Trashes and caches #
+######################
+.Trash/
+.cache/
+node_modules/
+__pycache__/

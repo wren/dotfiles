@@ -1,3 +1,7 @@
-**/Alfred.alfredpreferences
-.git/*
-.node-modules/*
+Alfred.alfredpreferences/
+.git/
+.node-modules/
+.Trash/
+.cache/
+node_modules/
+__pycache__/
