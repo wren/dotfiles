@@ -15,10 +15,6 @@ linters.setup {
   { command = "flake8", },
   { command = "shellcheck", },
   { command = "gitlint" },
-  {
-    command = "alex",
-    extra_filetypes = { "jrnl" },
-  },
 }
 
 -- local code_actions = require "lvim.lsp.null-ls.code_actions"
