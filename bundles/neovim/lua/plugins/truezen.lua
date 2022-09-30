@@ -2,6 +2,7 @@
 -- nice formatting when writing (removes a lot of noise)
 local plugin = { 'Pocco81/TrueZen.nvim' }
 
+plugin.commit = '13c227efb90977350f7595755d9801be8d165a4b'
 plugin.cmd = {
   'TZAtaraxis',
   'TZFocus',
