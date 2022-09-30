@@ -63,4 +63,4 @@ require 'plugins.markdown-preview'
 
 -- Syntax --
 require 'plugins.syntax-reason'
-require 'plugins.syntax-markdown'
+-- require 'plugins.syntax-markdown'
