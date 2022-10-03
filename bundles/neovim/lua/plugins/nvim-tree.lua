@@ -1,6 +1,13 @@
 local plugin = lvim.builtin.nvimtree
 
 plugin.setup.renderer.icons.show.git = false
+plugin.setup.filters.custom = {
+  "node_modules",
+  "\\.cache",
+  "__pycache__",
+  ".pytest_cache",
+  ".tox",
+}
 
 -- Keymap --
 -- map('n', '<leader>eo', '<cmd>NvimTreeToggle<CR>')
