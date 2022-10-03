@@ -96,9 +96,4 @@
     - description: Installing & updating plugins (via Packer)
       command: |-
         print -P "%F{4}Updating Neovim plugins (via :PackerSync)%f"
-        $EDITOR --headless +'autocmd User PackerComplete quitall' +PackerSync
-
-    - description: Installing & updating Treesitter plugins
-      command: |-
-        print -P "%F{4}Updating Treesitter plugins (via :TSUpdate)%f"
-        $EDITOR --headless +TSUpdate +quitall
+        $EDITOR +'autocmd User PackerComplete quitall' +PackerSync
