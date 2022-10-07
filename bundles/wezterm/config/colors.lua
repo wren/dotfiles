@@ -4,89 +4,97 @@ local wezterm = require 'wezterm'
 
 config.window_background_image = wezterm.home_dir .. "/.config/wezterm/bg_terminal.png"
 
-config.colors = {
-  background = "#1F2329",
-  foreground = "#DCDFE4",
-  cursor_bg = "#A3B3CC",
-  cursor_border = "#A3B3CC",
-  cursor_fg = "#DCDfe4",
-  selection_bg = "#474E5D",
-  selection_fg = "#DCDFE4",
-  scrollbar_thumb = "#282C34",
-  split = "#808080",
-  active = "#92D4F7",
-  inactive = "#808080",
-  tab_foreground = "#535965",
+local color = {
+  black = "#1F2329",
+  black_on_black = "#535965",
+  grey = "#808080",
+  grey_blue = "#474E5D",
+  red = "#E06C75",
+  green = "#98C379",
+  yellow = "#E5C07B",
+  blue_dark = "#A3B3CC",
+  blue = "#61AFEF",
+  blue_bright = "#92D4F7",
+  magenta = "#C678DD",
+  cyan = "#56B6C2",
+  white = "#DCDFE4",
 
-  ansi = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
-  brights = {"#535965","#E06C75","#98C379","#E5C07B","#61AFEF","#C678DD","#56B6C2","#DCDFE4"},
+  battery = {
+    [0] = "#FF0000",
+    [1] = "#EC5F67",
+    [2] = "#FF5F00",
+    [3] = "#FF8700",
+    [4] = "#F0AF30",
+    [5] = "#ECBE7B",
+    [6] = "#FFD758",
+    [7] = "#ECDE5B",
+    [8] = "#ACBE7B",
+    [9] = "#A8BE65",
+    [10] = "#98BE65",
+  }
 }
 
-_G.COLORS = config.colors
+local C = {
+  window = {
+    bg = color.black,
+    fg = color.white,
+  },
+  cursor = {
+    bg = color.blue_dark,
+    fg = color.white,
+  },
+  selection = {
+    bg = color.grey_blue,
+    fg = color.white,
+  },
+  tab = {
+    bg = color.black,
+    fg = color.white,
+    active = color.blue_bright,
+  },
+  scrollbar = color.grey_blue,
+  split = color.grey,
+  battery = color.battery,
 
-config.colors.tab_bar = {
-  -- The color of the strip that goes along the top of the window
-  -- (does not apply when fancy tab bar is in use)
-  background = _G.COLORS.background,
+  ansi = {
+    color.black,
+    color.red,
+    color.green,
+    color.yellow,
+    color.blue,
+    color.magenta,
+    color.cyan,
+    color.white,
+  },
+}
+_G.MY_COLORS = C
 
-  active_tab = {
-    bg_color = _G.COLORS.background,
-    fg_color = _G.COLORS.foreground,
-    intensity = 'Bold', -- Half | [Normal] | Bold
-    underline = 'None', -- [None] | Single | Double
-    italic = false,
-    strikethrough = false,
+config.colors = {
+  background = C.window.bg,
+  foreground = C.window.fg,
+  cursor_bg = C.cursor.bg,
+  cursor_border = C.cursor.bg,
+  cursor_fg = C.fg,
+  selection_bg = C.selection.bg,
+  selection_fg = C.selection.fg,
+  scrollbar_thumb = C.scrollbar,
+  split = C.split,
+  tab_bar = {
+    background = C.window.bg,
   },
 
-  inactive_tab = {
-    bg_color = _G.COLORS.background,
-    fg_color = _G.COLORS.foreground,
-    italic = true,
-  },
-
-  inactive_tab_hover = {
-    bg_color = _G.COLORS.background,
-    fg_color = _G.COLORS.foreground,
-    italic = true,
-  },
-
-  new_tab = {
-    bg_color = _G.COLORS.background,
-    fg_color = _G.COLORS.inactive,
-    intensity = 'Half',
-  },
-
-  new_tab_hover = {
-    bg_color = _G.COLORS.background,
-    fg_color = _G.COLORS.active,
-    intensity = 'Bold',
-  },
+  ansi = C.ansi,
+  brights = C.ansi,
 }
 
 config.window_frame = {
-  active_titlebar_bg = _G.COLORS.background,
-  inactive_titlebar_bg = _G.COLORS.background,
+  active_titlebar_bg = C.window.bg,
+  inactive_titlebar_bg = C.window.bg,
 }
 
 config.inactive_pane_hsb = {
   saturation = 0.6,
   brightness = 1,
-}
-
-  -- colors for each 10% the battery changes
-_G.MY_COLORS = {}
-_G.MY_COLORS.battery = {
-  [0] = "#FF0000",
-  [1] = "#EC5F67",
-  [2] = "#FF5F00",
-  [3] = "#FF8700",
-  [4] = "#F0AF30",
-  [5] = "#ECBE7B",
-  [6] = "#FFD758",
-  [7] = "#ECDE5B",
-  [8] = "#ACBE7B",
-  [9] = "#A8BE65",
-  [10] = "#98BE65",
 }
 
 return config

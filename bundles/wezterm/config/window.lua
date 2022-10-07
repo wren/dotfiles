@@ -19,22 +19,23 @@ config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 1000000
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local color = _G.MY_COLORS
   local ROUND_LEFT_EDGE = utf8.char(0xe0b6)
   local ROUND_RIGHT_EDGE = utf8.char(0xe0b4)
 
-  local tab_bg = _G.COLORS.background
-  local tab_fg = _G.COLORS.tab_foreground
+  local tab_bg = color.tab.bg
+  local tab_fg = color.tab.fg
 
   if tab.is_active then
-    tab_bg = _G.COLORS.active
-    tab_fg = _G.COLORS.background
+    tab_bg = color.tab.active
+    tab_fg = color.tab.bg
   elseif hover then
-    tab_bg = _G.COLORS.selection_bg
-    tab_fg = _G.COLORS.background
+    tab_bg = color.selection.bg
+    tab_fg = color.tab.bg
   end
 
   return {
-    {Background={Color=_G.COLORS.background}},
+    {Background={Color=color.window.bg}},
     {Foreground={Color=tab_bg}},
     {Text=" " .. ROUND_LEFT_EDGE},
     {Background={Color=tab_bg}},
@@ -42,7 +43,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     {Text=" "},
     {Text=basename(tab.active_pane.foreground_process_name)},
     {Text=" "},
-    {Background={Color=_G.COLORS.background}},
+    {Background={Color=color.window.bg}},
     {Foreground={Color=tab_bg}},
     {Text=ROUND_RIGHT_EDGE},
   }
@@ -65,10 +66,10 @@ wezterm.on("update-right-status", function (window, pane)
   end
 
   window:set_right_status(wezterm.format({
-    {Background={Color=_G.COLORS.background}},
-    {Foreground={Color='#FFFFFF'}},
+    {Background={Color=_G.MY_COLORS.window.bg}},
+    {Foreground={Color=_G.MY_COLORS.window.fg}},
     {Text=leader},
-    {Foreground={Color=_G.COLORS.split}},
+    {Foreground={Color=_G.MY_COLORS.split}},
     {Text=string.format("  %s %.0f%%", icon, percent)},
     {Foreground={Color=color}},
     {Text=string.format(" %s ", bar)},
