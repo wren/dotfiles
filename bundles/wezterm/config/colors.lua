@@ -79,10 +79,6 @@ config.colors = {
   selection_fg = C.selection.fg,
   scrollbar_thumb = C.scrollbar,
   split = C.split,
-  tab_bar = {
-    background = C.window.bg,
-  },
-
   ansi = C.ansi,
   brights = C.ansi,
 }
