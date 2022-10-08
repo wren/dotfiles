@@ -35,10 +35,10 @@ config.keys = {
   {key="=", mods="LEADER", action="TogglePaneZoomState"},
 
   -- Pane navigation
-  {key="h", mods="SUPER", action=wezterm.action{ActivatePaneDirection="Left"}},
-  {key="j", mods="SUPER", action=wezterm.action{ActivatePaneDirection="Down"}},
-  {key="k", mods="SUPER", action=wezterm.action{ActivatePaneDirection="Up"}},
-  {key="l", mods="SUPER", action=wezterm.action{ActivatePaneDirection="Right"}},
+  {key="h", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Left"))},
+  {key="j", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Down"))},
+  {key="k", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Up"))},
+  {key="l", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Right"))},
 
   {key="h", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Left", 1}}},
   {key="j", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Down", 1}}},

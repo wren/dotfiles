@@ -27,7 +27,6 @@ require 'plugins.bqf' -- "better quick fix"
 require 'plugins.hop'
 require 'plugins.numb'
 require 'plugins.sandwich'
-require 'plugins.tmux-navigator'
 require 'plugins.wordmotion'
 require 'plugins.mundo'
 

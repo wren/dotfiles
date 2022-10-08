@@ -51,3 +51,26 @@ function _G.custom_fold_text()
   return string.format("%s%s %s", line, divider, line_count)
 end
 
+function _G.nav_wezterm_split(key)
+  -- get pane info
+  local current = fn.winnr()
+  local next = fn.winnr(key)
+
+  if current ~= next then
+    -- keep in nvim
+    cmd('wincmd '..key)
+  else
+    -- forward to wezterm
+    local key_directions = {
+      h = 'left',
+      j = 'down',
+      k = 'up',
+      l = 'right',
+    }
+    local cmd = "wezterm cli activate-pane-direction " .. key_directions[key]
+    local handle = io.popen(cmd)
+    if handle then
+      handle:close()
+    end
+  end
+end

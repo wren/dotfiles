@@ -111,6 +111,12 @@ map('n', 'Y', 'y$')
 map('n', '<leader>\\', ':vsplit<CR>', { noremap = false })
 map('n', '<leader>-', ':split<CR>', { noremap = false })
 
+-- navigating split windows
+map('n', '<C-A-h>', ':lua nav_wezterm_split("h")<cr>', { silent = true })
+map('n', '<C-A-j>', ':lua nav_wezterm_split("j")<cr>', { silent = true })
+map('n', '<C-A-k>', ':lua nav_wezterm_split("k")<cr>', { silent = true })
+map('n', '<C-A-l>', ':lua nav_wezterm_split("l")<cr>', { silent = true })
+
 -- Escape from terminal windows even if suspended
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 
