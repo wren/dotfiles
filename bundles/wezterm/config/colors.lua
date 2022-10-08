@@ -57,7 +57,7 @@ local C = {
   battery = color.battery,
 
   ansi = {
-    color.black,
+    color.black_on_black,
     color.red,
     color.green,
     color.yellow,
