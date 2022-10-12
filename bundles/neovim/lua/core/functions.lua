@@ -62,10 +62,10 @@ function _G.nav_wezterm_split(key)
   else
     -- forward to wezterm
     local key_directions = {
-      h = 'left',
-      j = 'down',
-      k = 'up',
-      l = 'right',
+      h = 'Left',
+      j = 'Down',
+      k = 'Up',
+      l = 'Right',
     }
     local cmd = "wezterm cli activate-pane-direction " .. key_directions[key]
     local handle = io.popen(cmd)
