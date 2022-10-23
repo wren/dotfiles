@@ -15,7 +15,7 @@
         if command -v nvim &> /dev/null; then
             installed_version="$(nvim --version | head -1 | perl -pe 's/NVIM/Nvim/')"
 
-            if [[ $latest_version = $installed_version ]]; then
+            if [[ $installed_version =~ "${current_version}-.*" ]]; then
                 echo "Neovim already installed and at latest version"
                 exit 0
             fi
