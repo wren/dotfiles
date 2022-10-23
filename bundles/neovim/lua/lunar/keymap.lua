@@ -1,24 +1,7 @@
 -- Key mappings not specific to a plugin --
 lvim.leader = "space"
 
--- Overrides for lunar conflicts --
-lvim.keys.normal_mode = {
-  -- remove so lunar doesn't mess with these
-  ['<S-h>'] = false,
-  ['<S-l>'] = false,
-}
-
-lvim.keys.insert_mode = {
-  ['jk'] = false,
-  ['kj'] = false,
-  ['jj'] = false,
-  ['<A-h>'] = false,
-  ['<A-j>'] = false,
-  ['<A-k>'] = false,
-  ['<A-l>'] = false,
-}
-
-lvim.keys.visual_mode = {
+merge(lvim.keys.visual_mode, {
   -- Navigation shortcuts
   ['<C-,>'] = ':BufferPrevious<cr>',
   ['<C-.>'] = ':BufferNext<cr>',
@@ -26,7 +9,7 @@ lvim.keys.visual_mode = {
   -- shortcuts for start/end of line
   ['<S-h>'] = false,
   ['<S-l>'] = false,
-}
+})
 
 -- Write buffer (save)
 lvim.builtin.which_key.mappings["q"] = { "<c-w>c", "Quit window" }
@@ -34,11 +17,8 @@ lvim.builtin.which_key.mappings["Q"] = { "<cmd>qa<cr>", "Quit all" }
 
 -- command line alias
 map('c', 'w!!', 'w !sudo tee % >/dev/null')
--- map('c', '<esc>', '<c-c><c-c>', {modifiable_only = true})
 
-map('n', 'H', '^')
-map('v', 'H', '^')
-map('o', 'H', '^')
+map({'n', 'v', 'o'}, 'H', '^')
 
 map('n', 'L', '$')
 map('v', 'L', '$')
@@ -49,13 +29,13 @@ map('n', '<cr>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', {modifiable_only = 
 map('n', '<s-cr>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', {modifiable_only = true})
 
 -- Navigation in command mode
-map('c', '<down>', 'pumvisible() ? "\\<C-n>" : "\\<down>"', { expr = true, noremap = true })
-map('c', '<up>', 'pumvisible() ? "\\<C-p>" : "\\<up>"', { expr = true, noremap = true })
+map('c', '<down>', 'pumvisible() ? "\\<C-n>" : "\\<down>"', { expr = true })
+map('c', '<up>', 'pumvisible() ? "\\<C-p>" : "\\<up>"', { expr = true })
 
 -- Comment/uncomment a line
-map('n', '<A-/>', 'gcc', {noremap = false})
-map('v', '<A-/>', 'gc', {noremap = false})
-map('i', '<A-/>', '<esc>gcca', {noremap = false})
+map('n', '<A-/>', 'gcc', { remap = true })
+map('v', '<A-/>', 'gc', { remap = true })
+map('i', '<A-/>', '<esc>gcca', { remap = true })
 
 -- Indent/deindent lines, then reselect
 map('v', '<tab>', '>gv')
@@ -69,8 +49,8 @@ map('v', 'y', 'ygv')
 
 -- Oldies but goodies
 map('n', '<c-s>', ':w<CR>')
-map('i', '<C-s>', '<esc>:w<CR>a', {noremap = false})
-map('i', '<C-q>', '<esc>:wq<CR>', {noremap = false})
+map('i', '<C-s>', '<esc>:w<CR>a', {remap = true})
+map('i', '<C-q>', '<esc>:wq<CR>', {remap = true})
 
 -- Clear search highlights
 map('n', '<c-l>', ':nohlsearch<CR>', {silent = true})
@@ -97,34 +77,40 @@ map('v', 'k', 'gk')
 map('n', 'U', '<c-r>')
 
 --tab operation
-map('n', '<leader>tn', ':tabnew<cr>')
-map('n', '<leader>te', ':tabedit ')
-map('n', '<leader>tc', ':tabclose<cr>')
-map('n', '<leader>td', ':tcd %:p:h<cr>')
-map('n', '[t', ':tabprevious<CR>')
-map('n', ']t', ':tabnext<CR>')
+which_key_register_if_loaded({
+  name = 'Tab',
+  ['<leader>tn'] = {':tabnew<cr>', 'New tab'},
+  ['<leader>te'] = {':tabedit ', 'Edit in new tab'},
+  ['<leader>tc'] = {':tabclose<cr>', 'Close tab'},
+  ['<leader>td'] = {':tcd %:p:h<cr>', 'Change Dir in Tab'},
+})
+
+map('n', '[t', ':silent tabprevious<CR>')
+map('n', ']t', ':silent tabnext<CR>')
 
 --yank to end
 map('n', 'Y', 'y$')
 
 -- splitting windows (these match the tmux shortcuts)
-map('n', '<leader>\\', ':vsplit<CR>', { noremap = false })
-map('n', '<leader>-', ':split<CR>', { noremap = false })
+which_key_register_if_loaded({
+  ['<leader>\\'] = { ':vsplit<CR>', 'Split vertical' },
+  ['<leader>-'] = { ':split<CR>', 'Split horizontal' },
+}, { remap = true })
 
 -- navigating split windows
-map('n', '<C-A-h>', ':lua nav_wezterm_split("h")<cr>', { silent = true })
-map('n', '<C-A-j>', ':lua nav_wezterm_split("j")<cr>', { silent = true })
-map('n', '<C-A-k>', ':lua nav_wezterm_split("k")<cr>', { silent = true })
-map('n', '<C-A-l>', ':lua nav_wezterm_split("l")<cr>', { silent = true })
+local opts = {silent = true}
+map('n', '<C-A-h>', wezterm_split_by_key('h'), opts)
+map('n', '<C-A-j>', wezterm_split_by_key("j"), opts)
+map('n', '<C-A-k>', wezterm_split_by_key("k"), opts)
+map('n', '<C-A-l>', wezterm_split_by_key("l"), opts)
 
 -- Escape from terminal windows even if suspended
 map('t', '<C-c>', '<C-\\><C-n>:q!<CR>')
 
 -- Get syntax info at cursor
-map('n', '<LocalLeader>sh', '<cmd>lua highlight_group()<CR>')
-
--- Disable some keymappings that don't do anything useful, and get in the way
-map('n', 'Q', '') -- disable ex-mode because ugh
+which_key_register_if_loaded({
+  ['<localleader>h'] = { highlight_group, 'Show highlight group' },
+})
 
 -- Quit all with ZZ
 map('n', 'ZZ', '<cmd>w<cr><cmd>qa<cr>')

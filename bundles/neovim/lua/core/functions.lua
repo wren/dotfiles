@@ -74,3 +74,9 @@ function _G.nav_wezterm_split(key)
     end
   end
 end
+
+function _G.wezterm_split_by_key(key)
+  return function()
+    nav_wezterm_split(key)
+  end
+end
