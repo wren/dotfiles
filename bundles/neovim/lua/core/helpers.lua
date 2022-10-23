@@ -6,11 +6,14 @@ _G.fn = vim.fn
 _G.g = vim.g
 _G.call = vim.call
 _G.lsp = vim.lsp
+_G.set = vim.api.nvim_set_option
+_G.get = vim.api.nvim_get_option
+_G.unmap = vim.keymap.del
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua
 _G.MODIFIABLE_ONLY_BINDINGS = {}
 function _G.map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
+  local options = { remap = false }
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
@@ -24,11 +27,8 @@ function _G.map(mode, lhs, rhs, opts)
       opts = options,
     }
     table.insert(_G.MODIFIABLE_ONLY_BINDINGS, keymap)
-  elseif options.buffer then
-    options['buffer'] = nil
-    api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
   else
-    api.nvim_set_keymap(mode, lhs, rhs, options)
+    vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
 
@@ -79,4 +79,26 @@ end
 function _G.dump(...)
   local objects = vim.tbl_map(vim.inspect, {...})
   print(unpack(objects))
+end
+
+-- Helper function for other plugins to register which-key maps,
+-- but fails gracefully if which-key is not loaded
+function _G.which_key_register_if_loaded(maps, opts)
+  local my_opts = {
+    mode = "n", -- NORMAL mode
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = true, -- use `nowait` when creating keymaps
+  }
+  if not opts then opts = {} end
+  merge(my_opts, opts)
+  local ok, wk = pcall(require, 'which-key')
+  if(ok) then wk.register(maps, my_opts) end
+end
+
+function _G.merge(dst, src, start, finish)
+  if not start then start = 1 end
+  if not finish then finish = #src end
+  return vim.list_extend(dst, src, start, finish)
 end
