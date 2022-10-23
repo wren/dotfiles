@@ -13,7 +13,10 @@ lvim.autocommands = {
         '/private/var/*',
         '*.noindex/*'
       },
-      command = 'setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada='
+      callback = function()
+        cmd('setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=')
+        g.auto_session_enabled = false
+      end
     }
   },
 
