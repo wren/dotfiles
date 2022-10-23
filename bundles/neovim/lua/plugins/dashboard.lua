@@ -16,12 +16,23 @@ plugin.section.header.val = {
     '                                                     ',
 }
 
--- Set menu
-plugin.section.buttons.entries = {
-  { "p", "  Find project file", ":Telescope git_files<CR>" },
-  { "e", "  New file", ":ene <BAR> startinsert<CR>" },
-  { "r", "  Recent files", "Telescope oldfiles<CR>" },
-  { "s", "  Restore session", ":RestoreSession<CR>" },
-  { ",", "  Settings", ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR>" },
-  { "q", "  Quit", ":qa<CR>" },
-}
+local status_ok, dashboard = pcall(require, "alpha.themes.dashboard")
+if status_ok then
+  local function button(sc, txt, keybind, keybind_opts)
+    local b = dashboard.button(sc, txt, keybind, keybind_opts)
+    b.opts.hl_shortcut = "Macro"
+    return b
+  end
+  plugin.section.buttons.val = {
+    button("p", "  Find Files in Project", "<CMD>Telescope find_files<cr>"),
+    button("e", "  New File", "<CMD>ene!<cr>"),
+    button("s", "  Restore session", ":silent RestoreSession<cr>"),
+    button("r", "  Recent files", ":Telescope oldfiles<cr>"),
+    button("f", "  Find Text", ":Telescope live_grep<cr>"),
+    button(
+      "c",
+      "  Configuration",
+      "<CMD>edit " .. require("lvim.config"):get_user_config_path() .. " <CR>"
+    ),
+  }
+end
