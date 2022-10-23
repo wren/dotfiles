@@ -6,3 +6,6 @@ lvim.colorscheme = "onedark"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.line_wrap_cursor_movement = true
 lvim.format_on_save = false
+
+merge(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+lvim.lsp.automatic_configuration.skipped_filetypes = {"rst", "plaintext" }
