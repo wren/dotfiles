@@ -11,6 +11,7 @@ require 'plugins.nvim-tree'
 require 'plugins.telescope'
 require 'plugins.treesitter'
 require 'plugins.dap'
+require 'plugins.which-key'
 
 -- Add our own plugins
 
