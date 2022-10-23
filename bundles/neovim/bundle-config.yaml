@@ -97,3 +97,18 @@
       command: |-
         print -P "%F{4}Updating Neovim plugins (via :PackerSync)%f"
         $EDITOR +'autocmd User PackerComplete quitall' +PackerSync
+
+    - description: Installing & updating Treesitter (via TSUpdate)
+      command: |-
+        print -P "%F{4}Updating Treesitter plugins (via :TSUpdateSync)%f"
+        $EDITOR --headless +TSUpdateSync +quitall
+        echo
+
+    - description: Installing & updating Python virtual environment
+      command: |-
+        venv="$HOME/.cache/python-virtual-envs/neovim"
+        if [[ -d $venv ]]; then
+            exit 0
+        fi
+        python3 -m venv "$venv"
+        "${venv}/bin/python" -m pip install pynvim debugpy
