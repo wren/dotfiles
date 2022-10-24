@@ -6,7 +6,7 @@
   path = diff-and-merge
   path = format
   path = lfs
+  path = sign
 
   # .local overrides anything in above files
   path = .local
-

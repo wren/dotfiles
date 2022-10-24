@@ -6,11 +6,11 @@
   # staging and committing
   a = add
   ap = add --patch
-  ca = commit --all
-  cam = commit --all -m
-  ci = commit
-  cia = commit --amend
-  cim = commit -m
+  ci = commit -S
+  ca = ci --all
+  cam = ci --all -m
+  cia = ci --amend
+  cim = ci -m
   co = checkout
   r = reset
   rh = reset --hard

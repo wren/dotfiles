@@ -1,3 +1,4 @@
 [user]
   name = Jonathan Wren
   email = jonathan@nowandwren.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGkes7TGrkl7dFe/1dcjmD8DWsE3tMZOgjfCrrHS4jre
