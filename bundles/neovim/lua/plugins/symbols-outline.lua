@@ -2,19 +2,24 @@
 local plugin = { 'simrat39/symbols-outline.nvim' }
 
 plugin.cmd = {
+  'SymbolsOutline',
   'SymbolsOutlineOpen',
   'SymbolsOutlineClose',
 }
 
-plugin.config = function()
+plugin.setup = function()
   -- Keymap --
-  local silent = { silent = true }
-  map('n', '<localleader>so', ':SymbolsOutline<CR>', silent)
+  -- local silent = { silent = true }
+  -- map('n', '<localleader>s', ':SymbolsOutline<CR>', silent)
+
+  which_key_register_if_loaded({
+    ['<localleader>s'] = { ':SymbolsOutline<cr>', 'Symbols Toggle' }
+  })
 end
 
-plugin.setup = function()
+plugin.config = function()
 -- Config
-  g.symbols_outline = {
+  require("symbols-outline").setup({
     highlight_hovered_item = true,
     show_guides = true,
     auto_preview = true,
@@ -31,6 +36,12 @@ plugin.setup = function()
       hover_symbol = "<s-k>",
       rename_symbol = "r",
       code_actions = "a",
+      toggle_preview = "<s-q>",
+      fold = "h",
+      unfold = "l",
+      fold_all = "W",
+      unfold_all = "E",
+      fold_reset = "R",
     },
     lsp_blacklist = {},
     symbol_blacklist = {},
@@ -62,7 +73,7 @@ plugin.setup = function()
       Operator      =  { icon = "+"    , hl = "TSOperator"    }  ,
       TypeParameter =  { icon = "𝙏"    , hl = "TSParameter"   }  ,
     }
-  }
+  })
 end
 
 table.insert(lvim.plugins, plugin)
