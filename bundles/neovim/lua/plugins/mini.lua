@@ -6,6 +6,8 @@ plugin.config = function()
 end
 
 -- Remove spaces at the end of lines
-map('n', '<localleader><Space>', ':lua MiniTrailspace.trim()<CR>', {silent = true})
+which_key_register_if_loaded({
+  ['<localleader><Space>'] = { ':lua MiniTrailspace.trim()<CR>', 'Delete trailing spaces' }
+})
 
 table.insert(lvim.plugins, plugin)

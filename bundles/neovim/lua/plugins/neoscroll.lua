@@ -18,4 +18,12 @@ plugin.config = function()
   })
 end
 
+which_key_register_if_loaded({
+  z = {
+    b = 'Scroll line to bottom',
+    t = 'Scroll line to top',
+    z = 'Scroll line to middle',
+  }
+})
+
 table.insert(lvim.plugins, plugin)
