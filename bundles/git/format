@@ -5,10 +5,12 @@
   wren-short = ● %C(auto)%h %C(white)%s%C(auto)%d%C(dim white) %cd by %aN
   wren-rebase = %C(cyan)%aN (%ar - %cd): %C(yellow)%s
   fzf-short = '%C(auto)%h %C(white)%s%C(auto)%d%C(dim white) %cd by %aN
-  wren-full = %n%C(241)────────────────────────────────────────────────────────────%n%w(0,0,2)● %C(auto)%h %ad (%ar)%C(auto)%d%n%w(0,2,4)%C(255)by %aN <%ae>%n%n%C(141)%s%n%n%-b%C(auto,reset)
   shortlog = format:%C(auto,yellow)%h%C(auto)%  %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
-
-# [rebase]
-	# instructionFormat = wren-rebase
-
-
+  wren-full = %C(241)────────────────────────────────────────────────────────────%n\
+%w(0,0,2)● %C(auto)%h%C(auto)%d%n\
+%C(241) %C(auto)%ad (%ar)%n\
+%C(241) %C(auto)%aN <%ae>%n\
+%C(241) %C(auto)(%G?) %GS%n\
+%C(241) %C(141)%s%n\
+%n\
+%C(auto)%-b%C(auto,reset)
