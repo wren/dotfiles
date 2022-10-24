@@ -4,6 +4,7 @@ local wk = lvim.builtin.which_key
 plugin.defaults.path_display.absolute = true
 plugin.defaults.path_display.shorten = nil
 
+plugin.pickers.buffers.initial_mode = "insert"
 plugin.pickers.find_files = {
   hidden = true,
   shorten_path = false,
@@ -17,14 +18,7 @@ plugin.defaults.file_ignore_patterns = {
 
 -- Config --
 plugin.defaults.layout_strategy = 'flex'
-plugin.defaults.layout_config = {
-  flex = {
-    flip_columns = 200,
-  },
-  horizontal = {
-    -- prompt_position = 'top',
-  }
-}
+plugin.defaults.layout_config.vertical.mirror = true
 
 -- Keymap --
 wk.mappings["f"] = {
@@ -49,7 +43,7 @@ wk.mappings["h"] = {
 }
 
 which_key_register_if_loaded({
-  ['z='] = { ':Telescope spell_suggest<cr>', 'Spelling suggestions' },
+  ['z='] = { ':Telescope spell_suggest theme=cursor<cr>', 'Spelling suggestions' },
   ['<c-p>'] = { ':Telescope find_files<cr>', 'Find files in Project' },
 })
 
