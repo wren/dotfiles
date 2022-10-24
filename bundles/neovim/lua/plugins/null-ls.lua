@@ -12,10 +12,18 @@ linters.setup {
       return string.find(params.bufname, "/.github/")
     end,
   },
-  { command = "flake8", },
   { command = "shellcheck", },
   { command = "gitlint" },
 }
 
--- local code_actions = require "lvim.lsp.null-ls.code_actions"
--- code_actions.setup {}
+local null_ls = require("null-ls")
+null_ls.register {
+  null_ls.builtins.diagnostics.flake8.with({
+    name = "flakeheaven",
+    command = "flake8heavened",
+    meta = {
+        url = "https://github.com/flakeheaven/flakeheaven",
+        description = "Flake8 wrapper to make it nice, legacy-friendly, configurable.",
+    },
+  }),
+}
