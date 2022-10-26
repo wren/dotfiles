@@ -21,32 +21,34 @@ plugin.defaults.layout_strategy = 'flex'
 plugin.defaults.layout_config.vertical.mirror = true
 
 -- Keymap --
+local t = require('telescope.builtin')
+
 wk.mappings["f"] = {
   name = "Find",
-  b = {':Telescope buffers<cr>', 'Buffers'},
-  t = {':Telescope filetypes<cr>', 'Filetype'},
-  p = {':Telescope find_files<cr>', 'Files in Project'},
-  f = {':Telescope live_grep<cr>', 'Find'},
-  m = {':Telescope keymaps<cr>', 'Key mappings'},
-  k = {':Telescope help_tags<cr>', 'Help'},
-  c = {':Telescope commands<cr>', 'Commands'},
-  s = {':Telescope colorscheme<cr>', 'Color schemes'},
-  w = {':Telescope grep_string<cr>', 'Find <word>'},
-  r = {':Telescope resume<cr>', 'Resume finder'},
+  b = {t.buffers, 'Buffers'},
+  c = {t.commands, 'Commands'},
+  f = {t.live_grep, 'Find'},
+  k = {t.help_tags, 'Help'},
+  K = {function() t.help_tags({default_text=fn.expand("<cword>")}) end, 'Help <word>'},
+  m = {t.keymaps, 'Key mappings'},
+  o = {t.vim_options, 'Neovim Options'},
+  p = {t.find_files, 'Files in Project'},
+  r = {t.resume, 'Resume previous finder'},
+  s = {t.colorscheme, 'Color schemes'},
+  t = {t.filetypes, 'Filetype'},
+  w = {t.grep_string, 'Find <word>'},
 }
 
 wk.mappings["h"] = {
   name = "History",
-  [':'] = {':Telescope command_history<cr>', 'Command history'},
-  ['/'] = {':Telescope search_history<cr>', 'Search history'},
-  f = {':Telescope oldfiles<cr>', 'File history'},
+  [':'] = {t.command_history, 'Command history'},
+  ['/'] = {t.search_history, 'Search history'},
+  f = {t.oldfiles, 'File history'},
 }
 
 which_key_register_if_loaded({
+  -- doesn't work for some reason
+  -- ['z='] = { function() t.spell_suggest({theme='cursor'}) end, 'Spelling suggestions' },
   ['z='] = { ':Telescope spell_suggest theme=cursor<cr>', 'Spelling suggestions' },
-  ['<c-p>'] = { ':Telescope find_files<cr>', 'Find files in Project' },
+  ['<c-p>'] = { t.find_files, 'Find files in Project' },
 })
-
-which_key_register_if_loaded({
-  ['<c-p>'] = { ':Telescope find_files<cr>', 'Find files in Project' },
-}, { mode = 'v' })
