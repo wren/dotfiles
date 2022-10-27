@@ -29,8 +29,11 @@ map('n', '<cr>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', {modifiable_only = 
 map('n', '<s-cr>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', {modifiable_only = true})
 
 -- Navigation in command mode
-map('c', '<down>', 'pumvisible() ? "\\<C-n>" : "\\<down>"', { expr = true })
-map('c', '<up>', 'pumvisible() ? "\\<C-p>" : "\\<up>"', { expr = true })
+local function pumvisible_keycodes(key1, key2)
+  return function() return fn.pumvisible() == 1 and key1 or key2 end
+end
+map('c', '<down>', pumvisible_keycodes('<c-n>', '<down>'), { expr = true })
+map('c', '<up>', pumvisible_keycodes('<c-p>', '<up>'), { expr = true })
 
 -- Comment/uncomment a line
 map('n', '<A-/>', 'gcc', { remap = true })
