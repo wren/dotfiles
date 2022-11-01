@@ -9,4 +9,3 @@ plugin.config = function()
 end
 
 table.insert(lvim.plugins, plugin)
-
