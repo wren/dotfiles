@@ -6,5 +6,3 @@ plugin.options.char = '│'
 merge(plugin.options.filetype_exclude, { "jrnl" })
 
 plugin.options.char_highlight_list = {'IndentlineOne', 'IndentlineTwo'}
-
-table.insert(lvim.plugins, plugin)
