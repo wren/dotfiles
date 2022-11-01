@@ -1,6 +1,6 @@
 -- Better repeating with period command
 local plugin = { 'tpope/vim-repeat' }
 
-plugin.keys = '.',
+plugin.keys = '.'
 
 table.insert(lvim.plugins, plugin)
