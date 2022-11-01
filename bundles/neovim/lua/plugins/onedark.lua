@@ -20,6 +20,7 @@ plugin.config = function()
       StatusLine = { bg = '$dark_grey' },
       IndentlineOne = { fg = '$mid_grey' },
       IndentlineTwo = { fg = '$dim_grey' },
+      NavicSeparator = { fg = '$mid_grey' },
     }
   }
   od.load()
