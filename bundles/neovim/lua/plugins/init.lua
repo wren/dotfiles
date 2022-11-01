@@ -61,7 +61,3 @@ require 'plugins.bullets'
 require 'plugins.truezen'
 require 'plugins.pencil'
 require 'plugins.markdown-preview'
-
--- Syntax --
-require 'plugins.syntax-reason'
--- require 'plugins.syntax-markdown'
