@@ -38,6 +38,7 @@ require 'plugins.bufferize'
 require 'plugins.vim-slash'
 require 'plugins.accelerated-jk'
 require 'plugins.repeat'
+require 'plugins.splits'
 require 'plugins.mini'
 require 'plugins.lastplace'
 
