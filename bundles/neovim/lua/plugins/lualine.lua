@@ -44,10 +44,8 @@ components.lsp[1] = function() return '' end
 components.lsp.padding = 0
 components.branch.color = { fg = colors.yellow }
 components.scrollbar.separator = { left = '', right= '' }
-components.scrollbar.color = { bg = nil }
 components.encoding.separator = { right = '' }
 components.diff.separator = ''
-components.diff.padding = 0
 
 -- Style overrides
 local custom_theme = require'lualine.themes.onedark'
