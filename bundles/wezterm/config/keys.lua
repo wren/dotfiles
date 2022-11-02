@@ -21,9 +21,6 @@ config.keys = {
   {key="p", mods="SUPER", action={SendKey={key="p", mods="CTRL"}}},
   {key="/", mods="SUPER", action={SendKey={key="/", mods="ALT"}}},
 
-  {key=",", mods="CTRL", action={SendKey={key=",", mods="ALT"}}},
-  {key=".", mods="CTRL", action={SendKey={key=".", mods="ALT"}}},
-
   -- shift + enter
   {key="\r", mods="SHIFT", action=wezterm.action{SendString="\x1b[13;2u"}},
 

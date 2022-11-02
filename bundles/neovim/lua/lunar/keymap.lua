@@ -88,8 +88,10 @@ which_key_register_if_loaded({
   ['<leader>td'] = {':tcd %:p:h<cr>', 'Change Dir in Tab'},
 })
 
-map('n', '[t', ':silent tabprevious<CR>')
-map('n', ']t', ':silent tabnext<CR>')
+map('n', '<a-,>', ':silent tabprevious<cr>')
+map('n', '<a-.>', ':silent tabnext<cr>')
+map('n', '[t', ':silent tabprevious<cr>')
+map('n', ']t', ':silent tabnext<cr>')
 
 --yank to end
 map('n', 'Y', 'y$')
