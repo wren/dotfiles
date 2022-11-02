@@ -3,6 +3,7 @@ local wk = lvim.builtin.which_key
 
 plugin.defaults.path_display.absolute = true
 plugin.defaults.path_display.shorten = nil
+plugin.defaults.wrap_results = true
 
 plugin.pickers.buffers.initial_mode = "insert"
 plugin.pickers.find_files = {

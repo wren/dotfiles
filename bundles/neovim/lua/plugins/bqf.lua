@@ -10,6 +10,7 @@ plugin.config = function()
       win_vheight = 12,
       delay_syntax = 80,
       border_chars = { '┃', '┃', '━', '━', '┏', '┓', '┗', '┛', '█' },
+      wrap = true,
     },
     func_map = {
       vsplit = '',
