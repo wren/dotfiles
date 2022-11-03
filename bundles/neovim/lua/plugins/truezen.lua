@@ -1,8 +1,6 @@
-
 -- nice formatting when writing (removes a lot of noise)
 local plugin = { 'Pocco81/TrueZen.nvim' }
 
-plugin.commit = '13c227efb90977350f7595755d9801be8d165a4b'
 plugin.cmd = {
   'TZAtaraxis',
   'TZFocus',
@@ -11,73 +9,48 @@ plugin.cmd = {
 
 plugin.config = function()
   require("true-zen").setup {
-    ui = {
-      bottom = {
-        laststatus = 0,
-        ruler = false,
-        showmode = false,
-        showcmd = false,
-        cmdheight = 1,
-      },
-      top = {
-        showtabline = 0,
-      },
-      left = {
-        number = false,
-        relativenumber = false,
-        signcolumn = "no",
-      },
-    },
     modes = {
       ataraxis = {
-        left_padding = 0,
-        right_padding = 0,
-        top_padding = 0,
-        bottom_padding = 0,
-        ideal_writing_area_width = {93, 120},
-        auto_padding = true,
-        keep_default_fold_fillchars = true,
-        custom_bg = {"none", ""},
-        bg_configuration = true,
-        quit = "quit",
-        ignore_floating_windows = true,
-        affected_higroups = {
-          NormalNC = true,
-          NonText = true,
-          FoldColumn = true,
-          ColorColumn = true,
-          VertSplit = true,
-          StatusLine = true,
-          StatusLineNC = true,
-          SignColumn = true,
+        shade = "dark",
+        backdrop = 0, -- percentage by which padding windows should be dimmed/brightened. Must be a number between 0 and 1. Set to 0 to keep the same background color
+        minimum_writing_area = { -- minimum size of main window
+          width = 88,
+          height = 999,
         },
-      },
-      focus = {
-        margin_of_error = 5,
-        focus_method = "experimental"
+        options = { -- options to be disabled when entering Minimalist mode
+          number = false,
+          relativenumber = false,
+          showtabline = 0,
+          signcolumn = "no",
+          statusline = "",
+          cmdheight = 1,
+          laststatus = 0,
+          showcmd = false,
+          showmode = false,
+          ruler = false,
+          numberwidth = 1
+        },
+        quit_untoggles = false,
+        padding = {
+          left = 52,
+          right = 52,
+          top = 10,
+          bottom = 10,
+        },
+        callbacks = {
+          open_pre = function()
+            local normal = vim.api.nvim_get_hl_by_name("Normal", true)
+            vim.api.nvim_set_hl(0, "NormalNC", { bg = normal.background })
+          end,
+          open_pos = nil,
+          close_pre = nil,
+          close_pos = nil
+        },
       },
     },
     integrations = {
-      vim_gitgutter = false,
-      galaxyline = false,
-      tmux = false,
-      gitsigns = false,
-      nvim_bufferline = false,
-      limelight = false,
-      twilight = false,
-      vim_airline = false,
-      vim_powerline = false,
-      vim_signify = false,
-      express_line = false,
-      lualine = false,
-      lightline = false,
-      feline = false
+      lualine = true,
     },
-    misc = {
-      on_off_commands = false,
-      ui_elements_commands = false,
-      cursor_by_mode = false,
-    }
   }
 end
 

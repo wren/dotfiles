@@ -8,3 +8,4 @@ lvim.line_wrap_cursor_movement = true
 lvim.format_on_save = false
 
 lvim.lsp.automatic_configuration.skipped_filetypes = {"rst", "plaintext" }
+merge(lvim.builtin.breadcrumbs.winbar_filetype_exclude, { 'jrnl' })
