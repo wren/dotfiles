@@ -6,6 +6,7 @@
   # staging and committing
   a = add
   ap = add --patch
+  ai = add --intent-to-add
   ci = commit -S
   ca = ci --all
   cam = ci --all -m
