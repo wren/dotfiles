@@ -18,20 +18,18 @@ lvim.builtin.which_key.mappings["Q"] = { "<cmd>qa<cr>", "Quit all" }
 -- command line alias
 map('c', 'w!!', 'w !sudo tee % >/dev/null')
 
-map({'n', 'v', 'o'}, 'H', '^')
-
-map('n', 'L', '$')
-map('v', 'L', '$')
-map('o', 'L', '$')
+map({ 'n', 'v', 'o' }, 'H', '^')
+map({ 'n', 'v', 'o' }, 'L', '$')
 
 -- Insert newlines without leaving normal mode
-map('n', '<cr>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', {modifiable_only = true})
-map('n', '<s-cr>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', {modifiable_only = true})
+map('n', '<cr>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', { modifiable_only = true })
+map('n', '<s-cr>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', { modifiable_only = true })
 
 -- Navigation in command mode
 local function pumvisible_keycodes(key1, key2)
   return function() return fn.pumvisible() == 1 and key1 or key2 end
 end
+
 map('c', '<down>', pumvisible_keycodes('<c-n>', '<down>'), { expr = true })
 map('c', '<up>', pumvisible_keycodes('<c-p>', '<up>'), { expr = true })
 
@@ -52,11 +50,11 @@ map('v', 'y', 'ygv')
 
 -- Oldies but goodies
 map('n', '<c-s>', ':w<CR>')
-map('i', '<C-s>', '<esc>:w<CR>a', {remap = true})
-map('i', '<C-q>', '<esc>:wq<CR>', {remap = true})
+map('i', '<C-s>', '<esc>:w<CR>a', { remap = true })
+map('i', '<C-q>', '<esc>:wq<CR>', { remap = true })
 
 -- Clear search highlights
-map('n', '<c-l>', ':nohlsearch<CR>', {silent = true})
+map('n', '<c-l>', ':nohlsearch<CR>', { silent = true })
 
 -- make delete make sense
 map('n', 'd', '"_d')
@@ -82,10 +80,10 @@ map('n', 'U', '<c-r>')
 --tab operation
 which_key_register_if_loaded({
   name = 'Tab',
-  ['<leader>tn'] = {':tabnew<cr>', 'New tab'},
-  ['<leader>te'] = {':tabedit ', 'Edit in new tab'},
-  ['<leader>tc'] = {':tabclose<cr>', 'Close tab'},
-  ['<leader>td'] = {':tcd %:p:h<cr>', 'Change Dir in Tab'},
+  ['<leader>tn'] = { ':tabnew<cr>', 'New tab' },
+  ['<leader>te'] = { ':tabedit ', 'Edit in new tab' },
+  ['<leader>tc'] = { ':tabclose<cr>', 'Close tab' },
+  ['<leader>td'] = { ':tcd %:p:h<cr>', 'Change Dir in Tab' },
 })
 
 map('n', '<a-,>', ':silent tabprevious<cr>')
@@ -103,7 +101,7 @@ which_key_register_if_loaded({
 }, { remap = true })
 
 -- navigating split windows
-local opts = {silent = true}
+local opts = { silent = true }
 map('n', '<C-A-h>', wezterm_split_by_key('h'), opts)
 map('n', '<C-A-j>', wezterm_split_by_key("j"), opts)
 map('n', '<C-A-k>', wezterm_split_by_key("k"), opts)
