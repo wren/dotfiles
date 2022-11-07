@@ -9,6 +9,7 @@ plugin.defaults.path_display.shorten = nil
 plugin.pickers.commands = {}
 plugin.pickers.help_tags = {}
 plugin.pickers.keymaps = {}
+plugin.pickers.diagnostics = {}
 plugin.pickers.vim_options = {}
 plugin.pickers.colorscheme = {}
 plugin.pickers.oldfiles = {}
@@ -22,6 +23,9 @@ for _, val in pairs(plugin.pickers) do
   val.initial_mode = "insert"
   -- val.wrap_results = true
 end
+
+plugin.pickers.diagnostics.wrap_results = true
+
 -- plugin.pickers.find_files.previewer = plugin.file_previewer
 -- plugin.pickers.live_grep.previewer = plugin.grep_previewer
 
