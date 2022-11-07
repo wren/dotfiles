@@ -44,6 +44,19 @@ function _G.highlight_group()
   print(result)
 end
 
+function _G.get_visual_selection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
+end
+
 function _G.custom_fold_text()
   local line = vim.fn.getline(vim.v.foldstart)
   local line_count = string.format("%s lines", vim.v.foldend - vim.v.foldstart + 1)

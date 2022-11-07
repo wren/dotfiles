@@ -1,3 +1,3 @@
-# something
 Alfred.alfredpreferences
 .git/*
+*.lock
