@@ -13,6 +13,7 @@ path=(
   /usr/local/share/npm/bin
 
   # Homebrew because ugh
+  /home/linuxbrew/.linuxbrew/bin
   /usr/local/bin
   /usr/local/sbin
   /usr/local/Cellar

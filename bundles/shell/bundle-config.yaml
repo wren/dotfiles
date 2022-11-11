@@ -33,7 +33,7 @@
     - description: Zsh setup
       command: |-
         if [[ -z "$ZDOTDIR" ]]; then
-          sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zshenv"
+          sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zsh/zshenv"
         fi
 
     - description: Sheldon Lock

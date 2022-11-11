@@ -22,7 +22,7 @@
 
     # ===============[ Line #1 ]===============
     context
-    you_have_mail
+    # you_have_mail
     direnv
     dir
 
