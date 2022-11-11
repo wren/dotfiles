@@ -10,7 +10,7 @@ local my_font = wezterm.font_with_fallback({
 
 config = {
   font = my_font,
-  font_size = 22,
+  font_size = 16,
   line_height = 1.2,
   harfbuzz_features = {
     -- see: https://github.com/tonsky/FiraCode/wiki/How-to-enable-stylistic-sets
@@ -22,7 +22,7 @@ config = {
   window_frame = {
     -- The font used in the tab bar.
     font = my_font,
-    font_size = 18.0,
+    font_size = 14.0,
   },
 }
 
