@@ -1,0 +1,57 @@
+- name: Install git & friends
+  loop:
+    - git
+    - git-extras
+    - git-filter-repo
+    - git-lfs
+    - libimage-exiftool-perl
+    - imagemagick
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+
+- name: Install from homebrew
+  homebrew:
+    name:
+      - diff-so-fancy
+      # - viu
+    state: present
+    update_homebrew: false
+
+- name: Creates directory
+  file:
+    path: "{{ xdg_config_home }}/git"
+    state: directory
+
+- name: Link main git config file
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/_main"
+    dest: "{{ xdg_config_home }}/git/config"
+    state: link
+    force: yes
+
+- name: Link other git config files
+  loop:
+    - aliases
+    - allowed-signers
+    - attributes
+    - color
+    - core
+    - diff-and-merge
+    - format
+    - ignore
+    - lfs
+    - mailmap
+    - sign
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/{{ item }}"
+    dest: "{{ xdg_config_home }}/git/{{ item }}"
+    state: link
+    force: yes
+
+- name: Update config file with user info
+  template:
+    src: user.j2
+    dest: "{{ xdg_config_home }}/git/user"
+

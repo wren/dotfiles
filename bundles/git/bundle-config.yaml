@@ -11,7 +11,7 @@
             - install.conf.yaml
             - _init
 
-- brew:
+- aptget:
     - "git" # Distributed revision control system
     - "git-extras" # Small git utilities
     - "git-filter-repo" # Quickly rewrite git repository history
@@ -21,5 +21,5 @@
     - "imagemagick" # Tools and libraries to manipulate images in many formats
     - "viu" # Simple terminal image viewer written in Rust
 
-- cask:
-    - "sublime-merge" # Git client
+# - cask:
+    # - "sublime-merge" # Git client

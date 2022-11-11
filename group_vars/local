@@ -1,0 +1,7 @@
+dotfiles_user_home: "{{ '~' | expanduser }}"
+dotfiles_home: "{{ dotfiles_user_home }}/Dotfiles"
+xdg_config_home: "{{ dotfiles_user_home }}/.config"
+
+full_name: Jonathan Wren
+user_name: wren
+email: jonathan@nowandwren.com
