@@ -4,19 +4,13 @@ local wezterm = require 'wezterm'
 
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = false
+config.enable_csi_u_key_encoding = true
 
 config.leader = { key=" ", mods="CTRL", timeout_milliseconds=1000 }
 config.keys = {
   -- disable defaults
   {key="l", mods="CTRL", action="DisableDefaultAssignment"},
   {key="q", mods="CTRL", action="DisableDefaultAssignment"},
-  {key=",", mods="CTRL", action="DisableDefaultAssignment"},
-  {key=".", mods="CTRL", action="DisableDefaultAssignment"},
-
-  -- weird ones that need extra reinforcement for some reason
-  {key="l", mods="SUPER", action={SendKey={key="l", mods="CTRL"}}},
-  {key=",", mods="CTRL", action={SendKey={key=",", mods="CTRL"}}},
-  {key=".", mods="CTRL", action={SendKey={key=".", mods="CTRL"}}},
 
   -- make some often used keys easier to access by using cmd
   {key="d", mods="SUPER", action={SendKey={key="d", mods="CTRL"}}},
