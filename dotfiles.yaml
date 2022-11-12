@@ -1,8 +1,27 @@
 ---
 - name: Bootstrap desktop environment
-  hosts: local
+  hosts: localhost
+  connection: local
+  vars:
+    # general
+    home: "{{ '~' | expanduser }}"
+
+    # dotfiles
+    dotfiles_home: "{{ home }}/Dotfiles"
+
+    # xdg vars
+    config_home: "{{ home }}/.config"
+    data_home: "{{ home }}/.local/share"
+    cache_home: "{{ home }}/.cache"
+    bin_home: "{{ home }}/.local/bin"
+
+    # personal info
+    full_name: Jonathan Wren
+    computer_user: jonathan
+    user_name: wren
+    email: jonathan@nowandwren.com
   roles:
     - role: git
-    - role: asdf
+    # - role: asdf
     - role: neovim
     - role: zsh
