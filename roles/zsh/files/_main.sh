@@ -12,7 +12,7 @@ my_dotfiles=(
   plugin_manager
   theme
   aliases
-  keys
+  keymap
 )
 
 for my_file in $my_dotfiles; do
