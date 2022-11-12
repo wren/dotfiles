@@ -14,11 +14,8 @@ plugin.on_config_done = function()
   local opts = { silent = true }
 
   -- Move to previous/next
-  map('n', '<c-,>', ':BufferLineCyclePrev<CR>', opts)
-  map('n', '<c-.>', ':BufferLineCycleNext<CR>', opts)
-
-  map('v', '<c-,>', ':BufferLineCyclePrev<CR>', opts)
-  map('v', '<c-.>', ':BufferLineCycleNext<CR>', opts)
+  map({'n', 'v'}, '<c-,>', ':BufferLineCyclePrev<CR>')
+  map({'n', 'v'}, '<c-.>', ':BufferLineCycleNext<CR>')
 
   -- Re-order to previous/next
   map('n', '<c-<>', ':BufferLineMovePrev<CR>', opts)
