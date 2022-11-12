@@ -1,39 +1,18 @@
 - brew:
-    - "exa" # Modern replacement for 'ls'
     - "sheldon" # Fast, configurable, shell plugin manager
-    - "starship" # Cross-shell prompt for astronauts
-    - "vivid" # Generator for LS_COLORS with support for multiple color themes
-    - "zsh" # UNIX shell (command interpreter)
 
 - create:
-    - ~/.config/zsh
     - ~/.config/sheldon
-    - ~/.config/starship
 
 - link:
-    # Zsh
-    ~/.config/zsh/.zshrc: zsh/_init
-    ~/.config/zsh/.zlogout: zsh/logout
-    ~/.config/zsh/functions: functions
-    ~/.config/zsh:
-        force: true
-        glob: true
-        path: 'zsh/*'
-        exclude:
-          - _init
-          - logout
-
     # Sheldon
     ~/.config/sheldon/plugins.toml: plugins.toml
-
-    # Starship
-    ~/.config/starship/config.toml: prompt.toml
 
 - shell:
     - description: Zsh setup
       command: |-
         if [[ -z "$ZDOTDIR" ]]; then
-          sudo sh -c "echo ZDOTDIR='${HOME}/.config/zsh' >> /etc/zsh/zshenv"
+          sudo sh -c 'echo ZDOTDIR="${HOME}/.config/zsh" >> /etc/zsh/zshenv'
         fi
 
     - description: Sheldon Lock

@@ -11,19 +11,19 @@
 
 - name: Creates directory
   file:
-    path: "{{ xdg_config_home }}/lvim"
+    path: "{{ config_home }}/lvim"
     state: directory
 
 - name: Link main git config file
   file:
     src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
-    dest: "{{ xdg_config_home }}/lvim/config.lua"
+    dest: "{{ config_home }}/lvim/config.lua"
     state: link
     force: yes
 
 - name: Link neovim config directory
   file:
     src: "{{ dotfiles_home }}/roles/neovim/files/config"
-    dest: "{{ xdg_config_home }}/lvim/lua"
+    dest: "{{ config_home }}/lvim/lua"
     state: link
     force: yes

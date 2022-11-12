@@ -1,0 +1,74 @@
+- name: Install z-shell & friends
+  loop:
+    - zsh
+    - exa
+    - vivid
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+
+- name: Install extras from homebrew
+  homebrew:
+    name:
+      - sheldon
+      # - viu
+    state: present
+    update_homebrew: false
+
+- name: Create config dirs
+  loop:
+    - zsh
+    - env
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Create main data dir
+  # zsh crashes without this (it's very annoying)
+  file:
+    path: "{{ data_home }}/zsh"
+    state: directory
+
+- name: Link main z-shell config file
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/_main.sh"
+    dest: "{{ config_home }}/zsh/.zshrc"
+    state: link
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/config/logout.sh"
+    dest: "{{ config_home }}/zsh/.zlogout"
+    state: link
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/motd.png"
+    dest: "{{ config_home }}/zsh/motd.png"
+    state: link
+
+- name: Link other z-shell config files
+  loop:
+    - aliases
+    - completion
+    - keymap
+    - motd
+    - path
+    - plugins
+    - prompt
+    - options
+    - theme
+    - xdg
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/config/{{ item }}.sh"
+    dest: "{{ config_home }}/zsh/{{ item }}"
+    state: link
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/env"
+    dest: "{{ config_home }}/env/00_zsh.env.sh"
+    state: link
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/functions"
+    dest: "{{ config_home }}/zsh/functions"
+    state: link

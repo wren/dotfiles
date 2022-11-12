@@ -2,7 +2,7 @@
 - name: Clone asdf repository
   git:
     repo: https://github.com/asdf-vm/asdf.git
-    dest: "{{ dotfiles_user_home }}/.local/opt/asdf-vm"
+    dest: "{{ home }}/.local/opt/asdf-vm"
     version: v0.10.2
 
 - name:
@@ -11,7 +11,7 @@
     apply:
       become: yes
   vars:
-    asdf_dir: "{{ dotfiles_user_home }}/.local/opt/asdf-vm"
+    asdf_dir: "{{ home }}/.local/opt/asdf-vm"
     asdf_user: "{{ computer_user }}"
     asdf_group: "{{ computer_user }}"
     asdf_plugins:

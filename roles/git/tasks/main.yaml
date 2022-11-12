@@ -21,13 +21,13 @@
 
 - name: Creates directory
   file:
-    path: "{{ xdg_config_home }}/git"
+    path: "{{ config_home }}/git"
     state: directory
 
 - name: Link main git config file
   file:
     src: "{{ dotfiles_home }}/roles/git/files/_main"
-    dest: "{{ xdg_config_home }}/git/config"
+    dest: "{{ config_home }}/git/config"
     state: link
     force: yes
 
@@ -46,12 +46,12 @@
     - sign
   file:
     src: "{{ dotfiles_home }}/roles/git/files/{{ item }}"
-    dest: "{{ xdg_config_home }}/git/{{ item }}"
+    dest: "{{ config_home }}/git/{{ item }}"
     state: link
     force: yes
 
 - name: Update config file with user info
   template:
     src: user.j2
-    dest: "{{ xdg_config_home }}/git/user"
+    dest: "{{ config_home }}/git/user"
 
