@@ -1,0 +1,7 @@
+---
+- name: Bootstrap desktop environment
+  hosts: local
+  roles:
+    - role: git
+    - role: asdf
+    - role: neovim

@@ -14,9 +14,8 @@ if ! git -C $DOTBOT_DIR rev-parse; then
   # mkdir -p $DOTBOT_DIR
   git clone https://github.com/wren/dotfiles-dotbot.git $DOTBOT_DIR
 fi
-cd $DOTBOT_DIR
-git pull --force origin main
-git submodule update --init --recursive
+# cd $DOTBOT_DIR && git pull --force origin main
+# git submodule update --init --recursive
 
 # Build command to include plugins
 CMD="python3 $DOTBOT_DIR/dotbot/bin/dotbot"
@@ -35,5 +34,8 @@ if [[ ! -d $DOTFILES_DIR ]]; then
   ${=CMD} --only git -c <(curl -s "$url/defaults.yaml" && curl -s "$url/config.yaml") "$@" || true
 fi
 
-${=CMD} -d $DOTFILES_DIR -c <(cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG) "$@" || true
+config_file=$(mktemp)
+cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG > $config_file
+printf -- '--- %s ---\n' ${CMD}
+sudo -- ${=CMD} -d $DOTFILES_DIR -c $config_file "$@"
 

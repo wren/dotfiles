@@ -1,5 +1,0 @@
-- cask:
-    - "alfred" # Application launcher and productivity software
-
-- link:
-    ~/Library/ApplicationSupport/Alfred/prefs.json: prefs.json

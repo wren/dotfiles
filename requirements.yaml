@@ -1,0 +1,7 @@
+---
+collections:
+  - name: community.general
+
+roles:
+  - name: cimon-io.asdf
+    source: https://github.com/cimon-io/ansible-role-asdf/archive/refs/tags/v1.1.0.tar.gz
