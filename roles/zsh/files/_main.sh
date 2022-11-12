@@ -7,16 +7,16 @@ my_dotfiles=(
   path
   motd
   prompt
-  shell_config
+  options
   completion
-  plugin_manager
+  plugins
   theme
   aliases
   keymap
 )
 
 for my_file in $my_dotfiles; do
-  source "$ZDOTDIR/$my_file"
+  source "${ZDOTDIR}/${my_file}.sh"
 done
 
 export DOTFILES_LOADED=1

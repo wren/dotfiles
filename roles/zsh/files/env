@@ -1,3 +1,0 @@
-for my_file in $ZDOTDIR/env.d/*; do
-  source $ZDOTDIR/env.d/$my_file
-done
