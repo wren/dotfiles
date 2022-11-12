@@ -6,6 +6,7 @@
     - git-lfs
     - libimage-exiftool-perl
     - imagemagick
+    - libterm-readkey-perl
   apt:
     name: "{{ item }}"
     state: present
