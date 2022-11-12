@@ -1,3 +1,11 @@
+- name: Ensure ZDOTDIR is defined in global zshenv
+  lineinfile:
+    path: /etc/zsh/zshenv
+    line: ZDOTDIR="${HOME}/.config/zsh"
+    state: present
+    create: yes
+  become: yes
+
 - name: Install z-shell & friends
   loop:
     - zsh
@@ -12,6 +20,7 @@
   homebrew:
     name:
       - sheldon
+      # @TODO viu install errors out
       # - viu
     state: present
     update_homebrew: false
