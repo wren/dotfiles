@@ -59,6 +59,7 @@
   loop:
     - aliases
     - completion
+    - env
     - keymap
     - motd
     - path
