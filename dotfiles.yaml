@@ -21,6 +21,8 @@
     user_name: wren
     email: jonathan@nowandwren.com
   roles:
+    - role: bootstrap
+    - role: 1password
     - role: git
     # - role: asdf
     - role: neovim

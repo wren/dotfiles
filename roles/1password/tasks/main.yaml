@@ -1,0 +1,6 @@
+
+- name: Install 1password
+  apt:
+    deb: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
+    state: present
+  become: true

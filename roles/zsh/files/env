@@ -18,7 +18,7 @@ export LS_COLORS="$(vivid generate jellybeans)"
 export EXA_COLORS=$LS_COLORS
 
 export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
-export LESSOPEN="|batpipe %s"
+export LESSOPEN="|/home/linuxbrew/.linuxbrew/bin/batpipe %s"
 export BATPIPE="color"
 
 # fzf
@@ -34,7 +34,7 @@ export RESTIC_REPOSITORY="$HOME/Backups"
 # direnv & asdf
 export DIRENV_LOG_FORMAT=""
 export ASDF_DIR="$HOME/.local/opt/asdf-vm"
-. ~/.local/opt/asdf/asdf.sh
+# . "$ASDF_DIR/asdf.sh"
 if command -v direnv >/dev/null; then
   export ASDF_DIRENV_BIN="$(which direnv)"
   eval "$($ASDF_DIRENV_BIN hook zsh)"
