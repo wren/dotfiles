@@ -27,6 +27,9 @@ config.keys = {
   -- shift + enter
   {key="\r", mods="SHIFT", action=wezterm.action{SendString="\x1b[13;2u"}},
 
+  -- shift + space breaks terminal
+  {key=" ", mods="SHIFT", action={SendKey={key=" "}}},
+
   -- splits
   {key="\\", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
   {key="-", mods="LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
