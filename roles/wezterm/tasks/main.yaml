@@ -1,0 +1,30 @@
+
+- name: Ensure fonts dir
+  file:
+    path: /usr/local/share/fonts
+    state: directory
+
+- name: Check if Fira Code Nerd Font exists
+  check_mode: yes
+  stat:
+    path: /usr/local/share/fonts/Fira Code Retina Nerd Font Complete.ttf
+  register: fira_code_font
+
+- name: Get Font url download
+  uri:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/
+    follow_redirects: safe
+  register: fira_code_get_url
+  when: not fira_code_font.stat.exists
+
+- set_fact:
+      fira_code_version: "{{ fira_code_get_url.url | regex_search('/(v[0-9\\.]+)$', '\\1') | first }}"
+  when: not fira_code_font.stat.exists
+
+- name: Download Fira Code Nerd Font
+  become: true
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ fira_code_version }}/FiraCode.zip
+    dest: /usr/local/share/fonts/
+    remote_src: yes
+  when: not fira_code_font.stat.exists

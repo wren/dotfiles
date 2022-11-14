@@ -1,8 +1,5 @@
 - cask:
     - "wez/wezterm/wezterm-nightly"
-    - "font-fira-code"
-    - "font-fira-code-nerd-font"
-    - "font-hack-nerd-font"
 
 - create:
     - ~/.config/wezterm
