@@ -1,5 +1,6 @@
 ---
 - name: Bootstrap desktop environment
+  hosts: localhost
   vars:
     # general
     home: "{{ '~' | expanduser }}"
