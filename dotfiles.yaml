@@ -21,6 +21,7 @@
   roles:
     - role: bootstrap
     - role: 1password
+    - role: discord
     - role: git
     # - role: asdf
     - role: neovim
