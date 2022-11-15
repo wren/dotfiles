@@ -248,7 +248,7 @@
 
         remote_logo=''
         case $VCS_STATUS_REMOTE_URL in
-          *github.com*) remote_logo='';;
+          *github*) remote_logo='';;
           *bitbucket.org*) remote_logo='';;
         esac
 
