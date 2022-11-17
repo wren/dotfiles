@@ -1,0 +1,15 @@
+
+- name: flatpak present
+  apt:
+    name: flatpak
+    state: present
+- name: flathub flatpak repo
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+- name: Installing Zoom
+  flatpak:
+    name: us.zoom.zoom
+    method: system

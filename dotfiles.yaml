@@ -28,4 +28,5 @@
     # - role: asdf
     - role: neovim
     - role: wezterm
+    - role: zoom
     - role: zsh
