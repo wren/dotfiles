@@ -1,0 +1,78 @@
+
+- name: Ensure config dirs
+  loop:
+    - bat
+    - batpipe
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Checking bat installation
+  loop:
+    - bat
+    - shfmt
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+
+- name: Linking bat config file
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/bat.config"
+    dest: "{{ config_home }}/bat/bat.config"
+    state: link
+
+- name: Linking batpipe config dir
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/viewers"
+    dest: "{{ config_home }}/batpipe/viewers.d"
+    state: link
+
+- name: Linking batcat -> bat
+  file:
+    src: /bin/batcat
+    dest: /bin/bat
+    state: link
+  become: true
+
+- name: Check if batpipe exists
+  check_mode: yes
+  stat:
+    path: /bin/batpipe
+  register: batpipe
+
+- name: Clone bat-extras repository
+  git:
+    repo: https://github.com/eth-p/bat-extras.git
+    dest: /tmp/bat-extras
+  when: not batpipe.stat.exists
+
+- name: Build bat-extras
+  command:
+    cmd: ./build.sh
+    chdir: /tmp/bat-extras
+  when: not batpipe.stat.exists
+
+- name: Copy batpipe into /bin
+  loop:
+    - bat-modules
+    - batdiff
+    - batgrep
+    - batman
+    - batpipe
+    - batwatch
+    - prettybat
+  copy:
+    src: '/tmp/bat-extras/bin/{{ item }}'
+    dest: '/bin/{{ item }}'
+    mode: 'a+x'
+    force: yes
+  when: not batpipe.stat.exists
+  become: true
+
+- name: Linking env
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/env"
+    dest: "{{ config_home }}/env/bat.env.sh"
+    state: link
+

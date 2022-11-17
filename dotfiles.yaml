@@ -21,6 +21,7 @@
     email: jonathan@nowandwren.com
   roles:
     - role: bootstrap
+    - role: bat
     - role: 1password
     - role: discord
     - role: git

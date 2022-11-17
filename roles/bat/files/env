@@ -1,0 +1,3 @@
+export MANPAGER='sh -c "col -bx | bat -p -lman --theme=default"'
+export LESSOPEN="|/bin/batpipe %s"
+export BATPIPE="color"
