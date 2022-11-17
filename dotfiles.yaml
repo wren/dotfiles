@@ -21,11 +21,11 @@
     email: jonathan@nowandwren.com
   roles:
     - role: bootstrap
-    - role: bat
     - role: 1password
+    # - role: asdf
+    - role: bat
     - role: discord
     - role: git
-    # - role: asdf
     - role: neovim
     - role: wezterm
     - role: zoom
