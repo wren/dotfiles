@@ -11,6 +11,7 @@
     - zsh
     - exa
     - vivid
+    - lolcat
   apt:
     name: "{{ item }}"
     state: present
