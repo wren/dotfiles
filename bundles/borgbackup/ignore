@@ -13,6 +13,9 @@
 !/Projects
 !/Screenshots
 
+# Make sure to include git repos themselves
+!**/.git
+
 # Always ignore generated files
 .localized
 .DS_Store
