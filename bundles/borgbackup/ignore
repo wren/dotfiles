@@ -13,6 +13,16 @@
 !/Projects
 !/Screenshots
 
+# Shell history
+!/.local
+/.local/*
+!/.local/share
+/.local/share/*
+!/.local/share/z
+!/.local/share/zsh
+/.local/share/zsh/*
+!/.local/share/zsh/history
+
 # Make sure to include git repos themselves
 !**/.git
 
