@@ -26,6 +26,7 @@
     - role: bat
     - role: discord
     - role: git
+    - role: less
     - role: neovim
     - role: wezterm
     - role: zoom

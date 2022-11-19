@@ -1,0 +1,10 @@
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/less"
+    state: directory
+
+- name: Link less config file
+  file:
+    src: "{{ dotfiles_home }}/roles/less/files/_main.conf"
+    dest: "{{ config_home }}/less/lesskey.conf"
+    state: link
