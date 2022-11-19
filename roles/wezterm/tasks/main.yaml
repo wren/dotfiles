@@ -28,3 +28,25 @@
     dest: /usr/local/share/fonts/
     remote_src: yes
   when: not fira_code_font.stat.exists
+
+- name: Installing Wezterm
+  flatpak:
+    name: org.wezfurlong.wezterm
+    method: system
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/wezterm"
+    state: directory
+
+- name: Link main wezterm config file
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/_main.lua"
+    dest: "{{ config_home }}/wezterm/wezterm.lua"
+    state: link
+
+- name: Link wezterm config dir
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/config"
+    dest: "{{ config_home }}/wezterm/config"
+    state: link
