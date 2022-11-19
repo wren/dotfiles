@@ -10,7 +10,6 @@
   loop:
     - zsh
     - exa
-    - vivid
     - lolcat
   apt:
     name: "{{ item }}"
@@ -21,10 +20,24 @@
   homebrew:
     name:
       - sheldon
-      # @TODO viu install errors out
+      # @TODO viu & vivid installs error out
+      # - vivid
       # - viu
     state: present
     update_homebrew: false
+
+- name: Check if vivid is installed
+  check_mode: yes
+  stat:
+    path: /bin/vivid
+  register: bin_vivid
+
+- name: Install vivid
+  apt:
+    deb: https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb
+    state: present
+  become: true
+  when: not bin_vivid.stat.exists
 
 - name: Create config dirs
   file:
