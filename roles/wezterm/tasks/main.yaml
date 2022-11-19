@@ -50,3 +50,9 @@
     src: "{{ dotfiles_home }}/roles/wezterm/files/config"
     dest: "{{ config_home }}/wezterm/config"
     state: link
+
+- name: Link wezterm background image
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/bg_terminal.png"
+    dest: "{{ config_home }}/wezterm/bg_terminal.png"
+    state: link
