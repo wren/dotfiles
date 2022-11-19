@@ -10,11 +10,20 @@
   loop:
     - zsh
     - exa
+    - ripgrep
+    - fd-find
     - lolcat
   apt:
     name: "{{ item }}"
     state: present
   become: yes
+
+- name: Link fdfind -> fd
+  file:
+    src: "/bin/fdfind"
+    dest: "/bin/fd"
+    state: link
+  become: true
 
 - name: Install extras from homebrew
   homebrew:
