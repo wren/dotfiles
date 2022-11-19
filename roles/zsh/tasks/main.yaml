@@ -44,10 +44,13 @@
     path: "{{ config_home }}/zsh"
     state: directory
 
-- name: Create main data dir
-  # zsh crashes without this (it's very annoying)
+- name: Create main dirs
+  # zsh crashes without these (it's very annoying)
+  loop:
+    - "{{ data_home }}"
+    - "{{ cache_home }}"
   file:
-    path: "{{ data_home }}/zsh"
+    path: "{{ item }}/zsh"
     state: directory
 
 - name: Link main z-shell config file
