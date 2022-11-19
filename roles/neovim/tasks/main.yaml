@@ -1,12 +1,7 @@
-# - name: Add neovim stable repo
-# apt_repository:
-#   repo: ppa:neovim-ppa/stable
-
 - name: Install neovim & friends
   apt:
-    name: neovim
-    state: latest
-    update_cache: yes
+    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    state: present
   become: yes
 
 - name: Creates directory
