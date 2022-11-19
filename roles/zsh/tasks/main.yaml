@@ -27,11 +27,8 @@
     update_homebrew: false
 
 - name: Create config dirs
-  loop:
-    - zsh
-    - env
   file:
-    path: "{{ config_home }}/{{ item }}"
+    path: "{{ config_home }}/zsh"
     state: directory
 
 - name: Create main data dir
