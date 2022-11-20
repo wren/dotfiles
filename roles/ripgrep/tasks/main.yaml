@@ -1,0 +1,22 @@
+- name: Install ripgrep
+  apt:
+    name: ripgrep
+    state: latest
+  become: yes
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/ripgrep"
+    state: directory
+
+- name: Update config file with user info
+  template:
+    src: _main.txt.j2
+    dest: "{{ config_home }}/ripgrep.config"
+
+- name: Link ripgrep ignore file
+  file:
+    src: "{{ dotfiles_home }}/roles/ripgrep/files/global.gitignore"
+    dest: "{{ config_home }}/ripgrep/ignore"
+    state: link
+    force: yes
