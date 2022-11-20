@@ -138,88 +138,6 @@ filemanagers = [filemanager.casefold() for filemanager in filemanagers]
 filemanStr = "|".join(str('^'+x+'$') for x in filemanagers)
 
 
-
-##################################  CUSTOM FUNCTIONS  #####################################
-###                                                                                     ###
-###                                                                                     ###
-###      ███████ ██    ██ ███    ██  ██████ ████████ ██  ██████  ███    ██ ███████      ###
-###      ██      ██    ██ ████   ██ ██         ██    ██ ██    ██ ████   ██ ██           ###
-###      █████   ██    ██ ██ ██  ██ ██         ██    ██ ██    ██ ██ ██  ██ ███████      ###
-###      ██      ██    ██ ██  ██ ██ ██         ██    ██ ██    ██ ██  ██ ██      ██      ###
-###      ██       ██████  ██   ████  ██████    ██    ██  ██████  ██   ████ ███████      ###
-###                                                                                     ###
-###                                                                                     ###
-###########################################################################################
-
-
-def toggle_media_arrows_fix():
-    """Toggle the value of the _optspecialchars variable"""
-    # Needs "from subprocess import run" somewhere
-    def _toggle_media_arrows_fix():
-        global _media_arrows_fix
-        _media_arrows_fix = not _media_arrows_fix
-        if _media_arrows_fix:
-            run('notify-send -u critical ALERT "Kinto Media Arrows Fix is now ENABLED.\
-                \rMedia function arrow keys will be PgUp/PgDn/Home/End\
-                \rwhen used with the Fn key.\
-                \rDisable with Shift+Opt+Cmd+M."', shell=True)
-            print("(DD) Media Arrows Fix is now ENABLED.", flush=True)
-        else:
-            run('notify-send ALERT "Kinto Media Arrows Fix is now DISABLED.\
-                \rRe-enable with Shift+Opt+Cmd+M."', shell=True)
-            print("(DD) Media Arrows Fix is now DISABLED.", flush=True)
-
-    return _toggle_media_arrows_fix
-
-
-def isWindow(cls, nm, case='i'):
-    """
-    Return WM_CLASS and/or WM_NAME match for current window.
-    Default is case insensitive matching. Case param is optional.
-
-    Accepts regex patterns and literal strings.
-    Requires either "cls" or "nm" parameter, other can be None.
-
-    cls = WM_CLASS | nm = WM_NAME | case = 'i' or 's'
-    """
-    if case != 'i' and case != 's':
-        raise ValueError(f"(DD) ###  isWindow case parameter invalid: Use 'i' or 's'  ###")
-
-    if cls == None and nm == None:
-        raise ValueError("No valid argument given to isWindow function")
-
-    if case == 'i':
-        if cls != None:
-            cls_rgx = re.compile(cls.casefold())
-        if nm != None:
-            nm_rgx = re.compile(nm.casefold())
-
-        def cond(ctx):
-            if cls != None and nm != None:
-                return cls_rgx.search(ctx.wm_class.casefold()) and nm_rgx.search(ctx.wm_name.casefold())
-            elif cls == None and nm != None:
-                return nm_rgx.search(ctx.wm_name.casefold())
-            elif cls != None and nm == None:
-                return cls_rgx.search(ctx.wm_class.casefold())
-
-    if case == 's':
-        if cls != None:
-            cls_rgx = re.compile(cls)
-        if nm != None:
-            nm_rgx = re.compile(nm)
-
-        def cond(ctx):
-            if cls != None and nm != None:
-                return cls_rgx.search(ctx.wm_class) and nm_rgx.search(ctx.wm_name)
-            elif cls == None and nm != None:
-                return nm_rgx.search(ctx.wm_name)
-            elif cls != None and nm == None:
-                return cls_rgx.search(ctx.wm_class)
-
-    return cond
-
-
-
 #################################  MODMAPS  ####################################
 ###                                                                          ###
 ###                                                                          ###
@@ -233,11 +151,6 @@ def isWindow(cls, nm, case='i'):
 ################################################################################
 ### Modmaps turn a key into a different key as long as the modmap is active
 ### The modified key can be used in shortcut combos as the new key
-
-# Variable to enable media_arrows_fix
-# Makes arrow keys with media (Play_Pause/Stop/Rew/Fwd) functions
-# become PgUp/PgDn/Home/End keys when used with Fn key, like a MacBook
-_media_arrows_fix = False
 
 # multipurpose_modmap(
     # {Key.ENTER:                 [Key.ENTER, Key.RIGHT_CTRL]     # Enter2Cmd
@@ -260,7 +173,7 @@ modmap("Conditional modmap - Mac Numpad feature",{
     Key.KP0:                    Key.KEY_0,
     Key.KPDOT:                  Key.DOT,
     Key.KPENTER:                Key.ENTER,
-}, when = lambda _: _mac_numpad is True)
+}, when = lambda _: MAC_NUMPAD_ON)
 
 
 modmap("Conditional modmap - GTK3 numpad nav keys fix",{
@@ -282,7 +195,7 @@ modmap("Conditional modmap - GTK3 numpad nav keys fix",{
     Key.KPDOT:                  Key.DELETE,
     Key.KPENTER:                Key.ENTER,
 
-}, when = lambda ctx: ctx.numlock_on is False and _mac_numpad is False)
+}, when = lambda ctx: not ctx.numlock_on and not MAC_NUMPAD_ON)
 
 
 modmap("Conditional modmap - Media Arrows Fix",{
@@ -387,43 +300,21 @@ modmap("General global modmap",{
 # Force the numpad to always be a numpad, like a Mac keyboard on macOS
 # Numlock key becomes "Clear" key for use with calculator (sends Escape)
 # Toggle feature on/off with Option+Numlock (Fn+Numlock might work on Apple keyboards that have Fn key)
-# Set _mac_numpad var to "False" (no quotes) to disable by default
-_mac_numpad = True
-
-
-def mac_numpad_alert():
-    """Show notification of state of Kinto's Mac Numpad feature"""
-    # Needs "from subprocess import run" somewhere
-    if _mac_numpad:
-        run('notify-send ALERT \
-            "Kinto Mac Numpad feature is now ENABLED.\
-            \rNumlock becomes "Clear" key (Escape)\
-            \rDisable with Option+Numlock."', shell=True)
-        print("(DD) Kinto Mac Numpad feature is now ENABLED.", flush=True)
-    # Don't show pointless alert on startup if feature is set to be disabled by default
-    if not _mac_numpad:
-        run('notify-send ALERT \
-            "Kinto Mac Numpad feature is now DISABLED.\
-            \rRe-enable with Option+Numlock."', shell=True)
-        print("(DD) Kinto Mac Numpad feature is now DISABLED.", flush=True)
-
+# Set MAC_NUMPAD_ON var to "False" (no quotes) to disable by default
+MAC_NUMPAD_ON = True
 
 def toggle_mac_numpad():
-    """Toggle the value of the _mac_numpad variable"""
-    def _toggle_mac_numpad():
-        global _mac_numpad
-        _mac_numpad = not _mac_numpad
-        mac_numpad_alert()
-
-    return _toggle_mac_numpad
+    """Toggle the value of the MAC_NUMPAD_ON variable"""
+    global MAC_NUMPAD_ON
+    MAC_NUMPAD_ON = not MAC_NUMPAD_ON
 
 
 keymap(lambda wm_class: wm_class.casefold() not in remotes,{
-    C("Alt-Numlock"):           toggle_mac_numpad(),            # Turn the Mac Numpad feature on and off
-    C("Fn-Numlock"):            toggle_mac_numpad(),            # Turn the Mac Numpad feature on and off
+    C("Alt-Numlock"):           toggle_mac_numpad,            # Turn the Mac Numpad feature on and off
+    C("Fn-Numlock"):            toggle_mac_numpad,            # Turn the Mac Numpad feature on and off
 },"Mac Numpad toggle")
 
-keymap(lambda wm_class: wm_class.casefold() not in remotes and _mac_numpad is True,{
+keymap(lambda wm_class: wm_class.casefold() not in remotes and MAC_NUMPAD_ON,{
     C("Numlock"):               C("Esc"),                       # Turn Numlock key into "Clear" key for calculator apps
 },"Mac Numpad - Numlock is Clear")
 
@@ -1053,13 +944,6 @@ keymap(re.compile("pcmanfm|pcmanfm-qt", re.IGNORECASE),{
     C("RC-F"):                  C("RC-F"),                      # Don't toggle Enter key state, pass Cmd+F
 },"Overrides for PCManFM - Finder Mods")
 
-# Keybindings overrides for SpaceFM
-# (overrides some bindings from general file manager code block below)
-keymap("Overrides for SpaceFM Find Files dialog - Finder Mods", {
-    C("Enter"):                 C("Enter"),                     # Use Enter as Enter in the Find dialog
-    C("Esc"):                   C("Alt-F4"),                    # Close Find Files dialog with Escape
-    C("RC-W"):                  C("Alt-F4"),                    # Close Find Files dialog with Cmd+W
-}, when = isWindow("^SpaceFM$", "Find FiLes"))
 keymap(re.compile("spacefm", re.IGNORECASE),{
     C("RC-Page_Up"):            C("C-Shift-Tab"),               # Go to prior tab
     C("RC-Page_Down"):          C("C-Tab"),                     # Go to next tab
@@ -1641,7 +1525,6 @@ keymap(lambda wm_class: wm_class.casefold() not in terminals,{
 # - but remote clients and VM software ought to be set here
 # These are the typical remaps for ALL GUI based apps
 keymap(lambda wm_class: wm_class.casefold() not in remotes,{
-    C("Shift-Alt-RC-M"):        toggle_media_arrows_fix(),
     C("Shift-RC-Left_Brace"):   C("C-Page_Up"),                 # Tab nav: Go to prior (left) tab
     C("Shift-RC-Right_Brace"):  C("C-Page_Down"),               # Tab nav: Go to next (right) tab
     C("RC-Space"):              C("Alt-F1"),                    # Default SL - Launch Application Menu (gnome/kde)
