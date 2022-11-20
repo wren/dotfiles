@@ -1,4 +1,7 @@
 #--- Options ---#
+HISTSIZE=500000
+SAVEHIST=500000
+setopt appendhistory
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -12,12 +15,12 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt MENU_COMPLETE             # Autoselect the first completion entry instead of beeping.
-setopt AUTO_LIST                 # Automatically list choices on an ambiguous completion. 
+setopt AUTO_LIST                 # Automatically list choices on an ambiguous completion.
 # setopt HIST_BEEP
 
-setopt AUTO_CD                  # try to cd to entries that aren't valid commands
-setopt RC_QUOTES                # Allow escaping quotes in strings by doubling i.e.' foo ''bar'' baz' (good for aliases)
-setopt globdots                 # Include files/dirs that start with dots (e.g. .config) in globbing and completion
+setopt AUTO_CD                   # try to cd to entries that aren't valid commands
+setopt RC_QUOTES                 # Allow escaping quotes in strings by doubling i.e.' foo ''bar'' baz' (good for aliases)
+setopt globdots                  # Include files/dirs that start with dots (e.g. .config) in globbing and completion
 
 # We have our own run-help in functions
 unalias run-help &> /dev/null
