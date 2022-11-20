@@ -20,7 +20,7 @@
     state: present
     update_homebrew: false
 
-- name: Creates directory
+- name: Create config dir
   file:
     path: "{{ config_home }}/git"
     state: directory
