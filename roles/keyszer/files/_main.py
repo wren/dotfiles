@@ -244,7 +244,8 @@ modmap("Conditional modmap - Terminals",{
     # Left Ctrl Stays Left Ctrl
     Key.RIGHT_META: Key.RIGHT_CTRL, # Mac - Multi-language (Remove)
     Key.RIGHT_CTRL: Key.LEFT_CTRL,  # Mac - Multi-language (Remove)
-}, when = lambda ctx: ctx.wm_class.casefold() in terminals)
+# }, when = lambda ctx: ctx.wm_class.casefold() in terminals)
+}, when = wm_class_match(termStr))
 
 
 # [Global GUI modmap] Change modifier keys as in xmodmap
@@ -282,7 +283,6 @@ modmap("General global modmap",{
     Key.RIGHT_CTRL:           Key.RIGHT_META,                 # Mac - Multi-language (Remove)
 
 }, when = lambda ctx: ctx.wm_class.casefold() not in terminals)
-
 
 
 ######################################################################################################
@@ -482,140 +482,140 @@ keymap("DK - Tilde", {
     C("Shift-O"):               UC(0x00D5),                     # Õ Latin Capital O with Tilde
 }, when = lambda _: ac_Chr == 0x02DC)
 
-keymap("Escape actions for dead keys", {
-    C("Esc"):                   [getDK(),setDK(None)],                              # Leave accent char if dead keys Escaped
-    C("Space"):                 [getDK(),setDK(None)],                              # Leave accent char if user hits Space
-    C("Delete"):                [getDK(),setDK(None)],                              # Leave accent char if user hits Delete
-    C("Backspace"):             [getDK(),C("Backspace"),setDK(None)],               # Delete character if user hits Backspace
-    C("Tab"):                   [getDK(),C("Tab"),setDK(None)],                     # Leave accent char, insert Tab
-    C("Enter"):                 [getDK(),C("Enter"),setDK(None)],                   # Leave accent char, Enter key
-    C("Up"):                    [getDK(),C("Up"),setDK(None)],                      # Leave accent char, up arrow
-    C("Down"):                  [getDK(),C("Down"),setDK(None)],                    # Leave accent char, down arrow
-    C("Left"):                  [getDK(),C("Left"),setDK(None)],                    # Leave accent char, left arrow
-    C("Right"):                 [getDK(),C("Right"),setDK(None)],                   # Leave accent char, right arrow
-    C("RC-Tab"):                [getDK(),bind,C("Alt-Tab"),setDK(None)],            # Leave accent char, task switch
-    C("Shift-RC-Tab"):          [getDK(),bind,C("Shift-Alt-Tab"),setDK(None)],      # Leave accent char, task switch (reverse)
-    C("RC-Grave"):              [getDK(),bind,C("Alt-Grave"),setDK(None)],          # Leave accent char, in-app window switch
-    C("Shift-RC-Tab"):          [getDK(),bind,C("Shift-Alt-Grave"),setDK(None)],    # Leave accent char, in-app window switch (reverse)
+# keymap("Escape actions for dead keys", {
+#     C("Esc"):                   [getDK(),setDK(None)],                              # Leave accent char if dead keys Escaped
+#     C("Space"):                 [getDK(),setDK(None)],                              # Leave accent char if user hits Space
+#     C("Delete"):                [getDK(),setDK(None)],                              # Leave accent char if user hits Delete
+#     C("Backspace"):             [getDK(),C("Backspace"),setDK(None)],               # Delete character if user hits Backspace
+#     C("Tab"):                   [getDK(),C("Tab"),setDK(None)],                     # Leave accent char, insert Tab
+#     C("Enter"):                 [getDK(),C("Enter"),setDK(None)],                   # Leave accent char, Enter key
+#     C("Up"):                    [getDK(),C("Up"),setDK(None)],                      # Leave accent char, up arrow
+#     C("Down"):                  [getDK(),C("Down"),setDK(None)],                    # Leave accent char, down arrow
+#     C("Left"):                  [getDK(),C("Left"),setDK(None)],                    # Leave accent char, left arrow
+#     C("Right"):                 [getDK(),C("Right"),setDK(None)],                   # Leave accent char, right arrow
+#     C("RC-Tab"):                [getDK(),bind,C("Alt-Tab"),setDK(None)],            # Leave accent char, task switch
+#     C("Shift-RC-Tab"):          [getDK(),bind,C("Shift-Alt-Tab"),setDK(None)],      # Leave accent char, task switch (reverse)
+#     C("RC-Grave"):              [getDK(),bind,C("Alt-Grave"),setDK(None)],          # Leave accent char, in-app window switch
+#     C("Shift-RC-Tab"):          [getDK(),bind,C("Shift-Alt-Grave"),setDK(None)],    # Leave accent char, in-app window switch (reverse)
 
-    C("RC-z"):                  [getDK(),C("RC-z"),setDK(None)],                    # Leave accent char, undo
-    C("RC-x"):                  [getDK(),C("RC-x"),setDK(None)],                    # Leave accent char, cut
-    C("RC-c"):                  [getDK(),C("RC-c"),setDK(None)],                    # Leave accent char, copy
-    C("RC-v"):                  [getDK(),C("RC-v"),setDK(None)],                    # Leave accent char, paste
+#     C("RC-z"):                  [getDK(),C("RC-z"),setDK(None)],                    # Leave accent char, undo
+#     C("RC-x"):                  [getDK(),C("RC-x"),setDK(None)],                    # Leave accent char, cut
+#     C("RC-c"):                  [getDK(),C("RC-c"),setDK(None)],                    # Leave accent char, copy
+#     C("RC-v"):                  [getDK(),C("RC-v"),setDK(None)],                    # Leave accent char, paste
 
-    C("Alt-Grave"):             [getDK(),UC(0x0060),C("Shift-Left"),setDK(0x0060)], # Dead Key Accent: Grave
-    C("Alt-E"):                 [getDK(),UC(0x00B4),C("Shift-Left"),setDK(0x00B4)], # Dead Key Accent: Acute
-    C("Alt-U"):                 [getDK(),UC(0x00A8),C("Shift-Left"),setDK(0x00A8)], # Dead Key Accent: Umlaut
-    C("Alt-I"):                 [getDK(),UC(0x02C6),C("Shift-Left"),setDK(0x02C6)], # Dead Key Accent: Circumflex
-    C("Alt-N"):                 [getDK(),UC(0x02DC),C("Shift-Left"),setDK(0x02DC)], # Dead Key Accent: Tilde
+#     C("Alt-Grave"):             [getDK(),UC(0x0060),C("Shift-Left"),setDK(0x0060)], # Dead Key Accent: Grave
+#     C("Alt-E"):                 [getDK(),UC(0x00B4),C("Shift-Left"),setDK(0x00B4)], # Dead Key Accent: Acute
+#     C("Alt-U"):                 [getDK(),UC(0x00A8),C("Shift-Left"),setDK(0x00A8)], # Dead Key Accent: Umlaut
+#     C("Alt-I"):                 [getDK(),UC(0x02C6),C("Shift-Left"),setDK(0x02C6)], # Dead Key Accent: Circumflex
+#     C("Alt-N"):                 [getDK(),UC(0x02DC),C("Shift-Left"),setDK(0x02DC)], # Dead Key Accent: Tilde
 
-    # Number keys row
-    C("Key_1"):                 [getDK(),C("Key_1"),setDK(None)],
-    C("Key_2"):                 [getDK(),C("Key_2"),setDK(None)],
-    C("Key_3"):                 [getDK(),C("Key_3"),setDK(None)],
-    C("Key_4"):                 [getDK(),C("Key_4"),setDK(None)],
-    C("Key_5"):                 [getDK(),C("Key_5"),setDK(None)],
-    C("Key_6"):                 [getDK(),C("Key_6"),setDK(None)],
-    C("Key_7"):                 [getDK(),C("Key_7"),setDK(None)],
-    C("Key_8"):                 [getDK(),C("Key_8"),setDK(None)],
-    C("Key_9"):                 [getDK(),C("Key_9"),setDK(None)],
-    C("Key_0"):                 [getDK(),C("Key_0"),setDK(None)],
-    C("Minus"):                 [getDK(),C("Minus"),setDK(None)],
-    C("Equal"):                 [getDK(),C("Equal"),setDK(None)],
+#     # Number keys row
+#     C("Key_1"):                 [getDK(),C("Key_1"),setDK(None)],
+#     C("Key_2"):                 [getDK(),C("Key_2"),setDK(None)],
+#     C("Key_3"):                 [getDK(),C("Key_3"),setDK(None)],
+#     C("Key_4"):                 [getDK(),C("Key_4"),setDK(None)],
+#     C("Key_5"):                 [getDK(),C("Key_5"),setDK(None)],
+#     C("Key_6"):                 [getDK(),C("Key_6"),setDK(None)],
+#     C("Key_7"):                 [getDK(),C("Key_7"),setDK(None)],
+#     C("Key_8"):                 [getDK(),C("Key_8"),setDK(None)],
+#     C("Key_9"):                 [getDK(),C("Key_9"),setDK(None)],
+#     C("Key_0"):                 [getDK(),C("Key_0"),setDK(None)],
+#     C("Minus"):                 [getDK(),C("Minus"),setDK(None)],
+#     C("Equal"):                 [getDK(),C("Equal"),setDK(None)],
 
-    # Number keys row with Shift
-    C("Shift-Grave"):           [getDK(),C("Shift-Grave"),setDK(None)],
-    C("Shift-Key_1"):           [getDK(),C("Shift-Key_1"),setDK(None)],
-    C("Shift-Key_2"):           [getDK(),C("Shift-Key_2"),setDK(None)],
-    C("Shift-Key_3"):           [getDK(),C("Shift-Key_3"),setDK(None)],
-    C("Shift-Key_4"):           [getDK(),C("Shift-Key_4"),setDK(None)],
-    C("Shift-Key_5"):           [getDK(),C("Shift-Key_5"),setDK(None)],
-    C("Shift-Key_6"):           [getDK(),C("Shift-Key_6"),setDK(None)],
-    C("Shift-Key_7"):           [getDK(),C("Shift-Key_7"),setDK(None)],
-    C("Shift-Key_8"):           [getDK(),C("Shift-Key_8"),setDK(None)],
-    C("Shift-Key_9"):           [getDK(),C("Shift-Key_9"),setDK(None)],
-    C("Shift-Key_0"):           [getDK(),C("Shift-Key_0"),setDK(None)],
-    C("Shift-Minus"):           [getDK(),C("Shift-Minus"),setDK(None)],
-    C("Shift-Equal"):           [getDK(),C("Shift-Equal"),setDK(None)],
+#     # Number keys row with Shift
+#     C("Shift-Grave"):           [getDK(),C("Shift-Grave"),setDK(None)],
+#     C("Shift-Key_1"):           [getDK(),C("Shift-Key_1"),setDK(None)],
+#     C("Shift-Key_2"):           [getDK(),C("Shift-Key_2"),setDK(None)],
+#     C("Shift-Key_3"):           [getDK(),C("Shift-Key_3"),setDK(None)],
+#     C("Shift-Key_4"):           [getDK(),C("Shift-Key_4"),setDK(None)],
+#     C("Shift-Key_5"):           [getDK(),C("Shift-Key_5"),setDK(None)],
+#     C("Shift-Key_6"):           [getDK(),C("Shift-Key_6"),setDK(None)],
+#     C("Shift-Key_7"):           [getDK(),C("Shift-Key_7"),setDK(None)],
+#     C("Shift-Key_8"):           [getDK(),C("Shift-Key_8"),setDK(None)],
+#     C("Shift-Key_9"):           [getDK(),C("Shift-Key_9"),setDK(None)],
+#     C("Shift-Key_0"):           [getDK(),C("Shift-Key_0"),setDK(None)],
+#     C("Shift-Minus"):           [getDK(),C("Shift-Minus"),setDK(None)],
+#     C("Shift-Equal"):           [getDK(),C("Shift-Equal"),setDK(None)],
 
-    C("a"):                     [getDK(),C("a"),setDK(None)],
-    C("b"):                     [getDK(),C("b"),setDK(None)],
-    C("c"):                     [getDK(),C("c"),setDK(None)],
-    C("d"):                     [getDK(),C("d"),setDK(None)],
-    C("e"):                     [getDK(),C("e"),setDK(None)],
-    C("f"):                     [getDK(),C("f"),setDK(None)],
-    C("g"):                     [getDK(),C("g"),setDK(None)],
-    C("h"):                     [getDK(),C("h"),setDK(None)],
-    C("i"):                     [getDK(),C("i"),setDK(None)],
-    C("j"):                     [getDK(),C("j"),setDK(None)],
-    C("k"):                     [getDK(),C("k"),setDK(None)],
-    C("l"):                     [getDK(),C("l"),setDK(None)],
-    C("m"):                     [getDK(),C("m"),setDK(None)],
-    C("n"):                     [getDK(),C("n"),setDK(None)],
-    C("o"):                     [getDK(),C("o"),setDK(None)],
-    C("p"):                     [getDK(),C("p"),setDK(None)],
-    C("q"):                     [getDK(),C("q"),setDK(None)],
-    C("r"):                     [getDK(),C("r"),setDK(None)],
-    C("s"):                     [getDK(),C("s"),setDK(None)],
-    C("t"):                     [getDK(),C("t"),setDK(None)],
-    C("u"):                     [getDK(),C("u"),setDK(None)],
-    C("v"):                     [getDK(),C("v"),setDK(None)],
-    C("w"):                     [getDK(),C("w"),setDK(None)],
-    C("x"):                     [getDK(),C("x"),setDK(None)],
-    C("y"):                     [getDK(),C("y"),setDK(None)],
-    C("z"):                     [getDK(),C("z"),setDK(None)],
+#     C("a"):                     [getDK(),C("a"),setDK(None)],
+#     C("b"):                     [getDK(),C("b"),setDK(None)],
+#     C("c"):                     [getDK(),C("c"),setDK(None)],
+#     C("d"):                     [getDK(),C("d"),setDK(None)],
+#     C("e"):                     [getDK(),C("e"),setDK(None)],
+#     C("f"):                     [getDK(),C("f"),setDK(None)],
+#     C("g"):                     [getDK(),C("g"),setDK(None)],
+#     C("h"):                     [getDK(),C("h"),setDK(None)],
+#     C("i"):                     [getDK(),C("i"),setDK(None)],
+#     C("j"):                     [getDK(),C("j"),setDK(None)],
+#     C("k"):                     [getDK(),C("k"),setDK(None)],
+#     C("l"):                     [getDK(),C("l"),setDK(None)],
+#     C("m"):                     [getDK(),C("m"),setDK(None)],
+#     C("n"):                     [getDK(),C("n"),setDK(None)],
+#     C("o"):                     [getDK(),C("o"),setDK(None)],
+#     C("p"):                     [getDK(),C("p"),setDK(None)],
+#     C("q"):                     [getDK(),C("q"),setDK(None)],
+#     C("r"):                     [getDK(),C("r"),setDK(None)],
+#     C("s"):                     [getDK(),C("s"),setDK(None)],
+#     C("t"):                     [getDK(),C("t"),setDK(None)],
+#     C("u"):                     [getDK(),C("u"),setDK(None)],
+#     C("v"):                     [getDK(),C("v"),setDK(None)],
+#     C("w"):                     [getDK(),C("w"),setDK(None)],
+#     C("x"):                     [getDK(),C("x"),setDK(None)],
+#     C("y"):                     [getDK(),C("y"),setDK(None)],
+#     C("z"):                     [getDK(),C("z"),setDK(None)],
 
-    C("Shift-a"):               [getDK(),C("Shift-a"),setDK(None)],
-    C("Shift-b"):               [getDK(),C("Shift-b"),setDK(None)],
-    C("Shift-c"):               [getDK(),C("Shift-c"),setDK(None)],
-    C("Shift-d"):               [getDK(),C("Shift-d"),setDK(None)],
-    C("Shift-e"):               [getDK(),C("Shift-e"),setDK(None)],
-    C("Shift-f"):               [getDK(),C("Shift-f"),setDK(None)],
-    C("Shift-g"):               [getDK(),C("Shift-g"),setDK(None)],
-    C("Shift-h"):               [getDK(),C("Shift-h"),setDK(None)],
-    C("Shift-i"):               [getDK(),C("Shift-i"),setDK(None)],
-    C("Shift-j"):               [getDK(),C("Shift-j"),setDK(None)],
-    C("Shift-k"):               [getDK(),C("Shift-k"),setDK(None)],
-    C("Shift-l"):               [getDK(),C("Shift-l"),setDK(None)],
-    C("Shift-m"):               [getDK(),C("Shift-m"),setDK(None)],
-    C("Shift-n"):               [getDK(),C("Shift-n"),setDK(None)],
-    C("Shift-o"):               [getDK(),C("Shift-o"),setDK(None)],
-    C("Shift-p"):               [getDK(),C("Shift-p"),setDK(None)],
-    C("Shift-q"):               [getDK(),C("Shift-q"),setDK(None)],
-    C("Shift-r"):               [getDK(),C("Shift-r"),setDK(None)],
-    C("Shift-s"):               [getDK(),C("Shift-s"),setDK(None)],
-    C("Shift-t"):               [getDK(),C("Shift-t"),setDK(None)],
-    C("Shift-u"):               [getDK(),C("Shift-u"),setDK(None)],
-    C("Shift-v"):               [getDK(),C("Shift-v"),setDK(None)],
-    C("Shift-w"):               [getDK(),C("Shift-w"),setDK(None)],
-    C("Shift-x"):               [getDK(),C("Shift-x"),setDK(None)],
-    C("Shift-y"):               [getDK(),C("Shift-y"),setDK(None)],
-    C("Shift-z"):               [getDK(),C("Shift-z"),setDK(None)],
+#     C("Shift-a"):               [getDK(),C("Shift-a"),setDK(None)],
+#     C("Shift-b"):               [getDK(),C("Shift-b"),setDK(None)],
+#     C("Shift-c"):               [getDK(),C("Shift-c"),setDK(None)],
+#     C("Shift-d"):               [getDK(),C("Shift-d"),setDK(None)],
+#     C("Shift-e"):               [getDK(),C("Shift-e"),setDK(None)],
+#     C("Shift-f"):               [getDK(),C("Shift-f"),setDK(None)],
+#     C("Shift-g"):               [getDK(),C("Shift-g"),setDK(None)],
+#     C("Shift-h"):               [getDK(),C("Shift-h"),setDK(None)],
+#     C("Shift-i"):               [getDK(),C("Shift-i"),setDK(None)],
+#     C("Shift-j"):               [getDK(),C("Shift-j"),setDK(None)],
+#     C("Shift-k"):               [getDK(),C("Shift-k"),setDK(None)],
+#     C("Shift-l"):               [getDK(),C("Shift-l"),setDK(None)],
+#     C("Shift-m"):               [getDK(),C("Shift-m"),setDK(None)],
+#     C("Shift-n"):               [getDK(),C("Shift-n"),setDK(None)],
+#     C("Shift-o"):               [getDK(),C("Shift-o"),setDK(None)],
+#     C("Shift-p"):               [getDK(),C("Shift-p"),setDK(None)],
+#     C("Shift-q"):               [getDK(),C("Shift-q"),setDK(None)],
+#     C("Shift-r"):               [getDK(),C("Shift-r"),setDK(None)],
+#     C("Shift-s"):               [getDK(),C("Shift-s"),setDK(None)],
+#     C("Shift-t"):               [getDK(),C("Shift-t"),setDK(None)],
+#     C("Shift-u"):               [getDK(),C("Shift-u"),setDK(None)],
+#     C("Shift-v"):               [getDK(),C("Shift-v"),setDK(None)],
+#     C("Shift-w"):               [getDK(),C("Shift-w"),setDK(None)],
+#     C("Shift-x"):               [getDK(),C("Shift-x"),setDK(None)],
+#     C("Shift-y"):               [getDK(),C("Shift-y"),setDK(None)],
+#     C("Shift-z"):               [getDK(),C("Shift-z"),setDK(None)],
 
-    # Other punctuation keys
-    C("Left_Brace"):            [getDK(),C("Left_Brace"),setDK(None)],
-    C("Right_Brace"):           [getDK(),C("Right_Brace"),setDK(None)],
-    C("Backslash"):             [getDK(),C("Backslash"),setDK(None)],
+#     # Other punctuation keys
+#     C("Left_Brace"):            [getDK(),C("Left_Brace"),setDK(None)],
+#     C("Right_Brace"):           [getDK(),C("Right_Brace"),setDK(None)],
+#     C("Backslash"):             [getDK(),C("Backslash"),setDK(None)],
 
-    C("Semicolon"):             [getDK(),C("Semicolon"),setDK(None)],
-    C("Apostrophe"):            [getDK(),C("Apostrophe"),setDK(None)],
+#     C("Semicolon"):             [getDK(),C("Semicolon"),setDK(None)],
+#     C("Apostrophe"):            [getDK(),C("Apostrophe"),setDK(None)],
 
-    C("Comma"):                 [getDK(),C("Comma"),setDK(None)],
-    C("Dot"):                   [getDK(),C("Dot"),setDK(None)],
-    C("Slash"):                 [getDK(),C("Slash"),setDK(None)],
+#     C("Comma"):                 [getDK(),C("Comma"),setDK(None)],
+#     C("Dot"):                   [getDK(),C("Dot"),setDK(None)],
+#     C("Slash"):                 [getDK(),C("Slash"),setDK(None)],
 
-    C("Shift-Left_Brace"):      [getDK(),C("Shift-Left_Brace"),setDK(None)],
-    C("Shift-Right_Brace"):     [getDK(),C("Shift-Right_Brace"),setDK(None)],
-    C("Shift-Backslash"):       [getDK(),C("Shift-Backslash"),setDK(None)],
+#     C("Shift-Left_Brace"):      [getDK(),C("Shift-Left_Brace"),setDK(None)],
+#     C("Shift-Right_Brace"):     [getDK(),C("Shift-Right_Brace"),setDK(None)],
+#     C("Shift-Backslash"):       [getDK(),C("Shift-Backslash"),setDK(None)],
 
-    C("Shift-Semicolon"):       [getDK(),C("Shift-Semicolon"),setDK(None)],
-    C("Shift-Apostrophe"):      [getDK(),C("Shift-Apostrophe"),setDK(None)],
+#     C("Shift-Semicolon"):       [getDK(),C("Shift-Semicolon"),setDK(None)],
+#     C("Shift-Apostrophe"):      [getDK(),C("Shift-Apostrophe"),setDK(None)],
 
-    C("Shift-Comma"):           [getDK(),C("Shift-Comma"),setDK(None)],
-    C("Shift-Dot"):             [getDK(),C("Shift-Dot"),setDK(None)],
-    C("Shift-Slash"):           [getDK(),C("Shift-Slash"),setDK(None)],
+#     C("Shift-Comma"):           [getDK(),C("Shift-Comma"),setDK(None)],
+#     C("Shift-Dot"):             [getDK(),C("Shift-Dot"),setDK(None)],
+#     C("Shift-Slash"):           [getDK(),C("Shift-Slash"),setDK(None)],
 
-}, when = lambda _: ac_Chr in deadkeys_US)
+# }, when = lambda _: ac_Chr in deadkeys_US)
 
 
 keymap("Disable Dead Keys",{
@@ -797,42 +797,35 @@ keymap("User hardware-specific customizations",{
 ###                                                                             ###
 ###################################################################################
 
-def re_match(regex):
-    def func(ctx):
-        cls = ctx.wm_class.casefold()
-        name = str(ctx.wm_name).casefold()
-        return re.search(regex, cls) or re.search(regex, name)
-    return func
-
 keymap("Thunderbird email client",{
     C("Alt-RC-I"):              C("Shift-RC-I"),                # Dev tools
     # Enable Cmd+Option+Left/Right for tab navigation
     C("RC-Alt-Left"):           C("C-Page_Up"),                 # Go to prior tab (macOS Thunderbird tab nav shortcut)
     C("RC-Alt-Right"):          C("C-Page_Down"),               # Go to next tab (macOS Thunderbird tab nav shortcut)
-}, when = re_match("thunderbird"))
+}, when = wm_class_match("thunderbird"))
 
 keymap("Angry IP Scanner", {
     C("RC-comma"):              C("Shift-RC-P"),                # Open preferences
-}, when = re_match("Angry.*IP.*Scanner"))
+}, when = wm_class_match("Angry.*IP.*Scanner"))
 
 keymap("Transmission bittorrent client",{
     C("RC-i"):                  C("Alt-Enter"),                 # Open properties (Get Info) dialog
     C("RC-comma"):             [C("Alt-e"),C("p")],             # Open preferences (settings) dialog
-}, when = re_match("transmission"))
+}, when = wm_class_match("transmission"))
 
 keymap("jDownloader",{
     C("RC-i"):                  C("Alt-Enter"),                 # Open properties
     C("RC-Backspace"):          C("Delete"),                    # Remove download from list
     C("RC-Comma"):              C("C-P"),                       # Open preferences (settings)
-}, when = re_match("jdownloader"))
+}, when = wm_class_match("jdownloader"))
 
 keymap("Totem video player",{
     C("RC-dot"):                C("C-q"),                       # Stop (quit player, there is no "Stop" function)
-}, when = re_match("totem"))
+}, when = wm_class_match("totem"))
 
 keymap("GNOME image viewer",{
     C("RC-i"):                  C("Alt-Enter"),                 # Image properties
-}, when = re_match("eog"))
+}, when = wm_class_match("eog"))
 
 
 
@@ -1024,10 +1017,10 @@ keymap("XDG file dialogs", {
 ####################################################################################
 
 # Open preferences in browsers
-# keymap(re.compile("Firefox", re.IGNORECASE),{
-#     C("C-comma"):              [C("C-t"),usleep(5),ST("about"),C("Shift-SEMICOLON"),ST("preferences"),C("Enter")],
-#     C("Shift-RC-N"):            C("Shift-RC-P"),                # Open private window with Cmd+Shift+N like other browsers
-# })
+keymap("Firefox",{
+    C("C-comma"):              [C("C-t"),usleep(5),ST("about"),C("Shift-SEMICOLON"),ST("preferences"),C("Enter")],
+    C("Shift-RC-N"):            C("Shift-RC-P"),                # Open private window with Cmd+Shift+N like other browsers
+}, when = wm_class_match("firefox"))
 
 # keymap(re.compile(chromeStr, re.IGNORECASE),{
 #     C("C-comma"):              [C("Alt-e"), C("s"),C("Enter")], # Open preferences
@@ -1039,33 +1032,33 @@ keymap("XDG file dialogs", {
 # }, "Chrome Browsers")
 # # Opera C-F12
 
-# # Keybindings for General Web Browsers
-# keymap(re.compile(browserStr, re.IGNORECASE),{
-#     C("RC-Q"):                  C("RC-Q"),                      # Close all browsers Instances
-#     C("Alt-RC-I"):              C("Shift-RC-I"),                # Dev tools
-#     # C("Alt-RC-J"):              C("Shift-RC-J"),                # Dev tools
-#     C("RC-Key_1"):              C("Alt-Key_1"),                 # Jump to Tab #1-#8
-#     C("RC-Key_2"):              C("Alt-Key_2"),
-#     C("RC-Key_3"):              C("Alt-Key_3"),
-#     C("RC-Key_4"):              C("Alt-Key_4"),
-#     C("RC-Key_5"):              C("Alt-Key_5"),
-#     C("RC-Key_6"):              C("Alt-Key_6"),
-#     C("RC-Key_7"):              C("Alt-Key_7"),
-#     C("RC-Key_8"):              C("Alt-Key_8"),
-#     C("RC-Key_9"):              C("Alt-Key_9"),                 # Jump to last tab
-#     # Enable Cmd+Shift+Braces for tab navigation
-#     C("Shift-RC-Left_Brace"):   C("C-Page_Up"),                 # Go to prior tab
-#     C("Shift-RC-Right_Brace"):  C("C-Page_Down"),               # Go to next tab
-#     # Enable Cmd+Option+Left/Right for tab navigation
-#     C("RC-Alt-Left"):           C("C-Page_Up"),                 # Go to prior tab
-#     C("RC-Alt-Right"):          C("C-Page_Down"),               # Go to next tab
-#     # Enable Ctrl+PgUp/PgDn for tab navigation
-#     C("Super-Page_Up"):         C("C-Page_Up"),                 # Go to prior tab
-#     C("Super-Page_Down"):       C("C-Page_Down"),               # Go to next tab
-#     # Use Cmd+Braces keys for tab navigation instead of page navigation
-#     # C("C-Left_Brace"):        C("C-Page_Up"),
-#     # C("C-Right_Brace"):       C("C-Page_Down"),
-# }, "General Web Browsers")
+# Keybindings for General Web Browsers
+keymap("General Web Browsers",{
+    C("RC-Q"):                  C("RC-Q"),                      # Close all browsers Instances
+    C("Alt-RC-I"):              C("Shift-RC-I"),                # Dev tools
+    # C("Alt-RC-J"):              C("Shift-RC-J"),                # Dev tools
+    C("RC-Key_1"):              C("Alt-Key_1"),                 # Jump to Tab #1-#8
+    C("RC-Key_2"):              C("Alt-Key_2"),
+    C("RC-Key_3"):              C("Alt-Key_3"),
+    C("RC-Key_4"):              C("Alt-Key_4"),
+    C("RC-Key_5"):              C("Alt-Key_5"),
+    C("RC-Key_6"):              C("Alt-Key_6"),
+    C("RC-Key_7"):              C("Alt-Key_7"),
+    C("RC-Key_8"):              C("Alt-Key_8"),
+    C("RC-Key_9"):              C("Alt-Key_9"),                 # Jump to last tab
+    # Enable Cmd+Shift+Braces for tab navigation
+    C("Shift-RC-Left_Brace"):   C("C-Page_Up"),                 # Go to prior tab
+    C("Shift-RC-Right_Brace"):  C("C-Page_Down"),               # Go to next tab
+    # Enable Cmd+Option+Left/Right for tab navigation
+    C("RC-Alt-Left"):           C("C-Page_Up"),                 # Go to prior tab
+    C("RC-Alt-Right"):          C("C-Page_Down"),               # Go to next tab
+    # Enable Ctrl+PgUp/PgDn for tab navigation
+    C("Super-Page_Up"):         C("C-Page_Up"),                 # Go to prior tab
+    C("Super-Page_Down"):       C("C-Page_Down"),               # Go to next tab
+    # Use Cmd+Braces keys for tab navigation instead of page navigation
+    # C("C-Left_Brace"):        C("C-Page_Up"),
+    # C("C-Right_Brace"):       C("C-Page_Down"),
+}, when = wm_class_match(browserStr))
 
 
 
@@ -1395,7 +1388,7 @@ keymap("Deepin Terminal fixes",{
     C("RC-j"):                  None,                           # Block Cmd+J from remapping to vertical split (Ctrl+Shift+J)
     C("RC-minus"):              C("C-minus"),                   # Decrease font size/zoom out
     C("RC-equal"):              C("C-equal"),                   # Increase font size/zoom in
-}, when = re_match("deepin-terminal"))
+}, when = wm_class_match("deepin-terminal"))
 
 keymap("All Terminals",{
     ### wordwise overrides of general GUI block
@@ -1438,7 +1431,7 @@ keymap("All Terminals",{
     C("RC-W"):                  C("C-Shift-W"),
     C("RC-E"):                  C("C-Shift-E"),
     C("RC-R"):                  C("C-Shift-R"),
-    # C("RC-T"):                  C("C-Shift-t"),
+    C("RC-T"):                  C("Super-T"),
     C("RC-Y"):                  C("C-Shift-Y"),
     C("RC-U"):                  C("C-Shift-U"),
     C("RC-I"):                  C("C-Shift-I"),
@@ -1459,9 +1452,9 @@ keymap("All Terminals",{
     C("RC-APOSTROPHE"):         C("C-Shift-APOSTROPHE"),
     C("RC-GRAVE"):              C("C-Shift-GRAVE"),
     C("RC-Z"):                  C("C-Shift-Z"),
-    C("RC-X"):                  C("C-Shift-X"),
-    C("RC-C"):                  C("C-Shift-C"),
-    C("RC-V"):                  C("C-Shift-V"),
+    C("RC-X"): [bind, C("C-Shift-X")],
+    C("RC-C"): [bind, C("C-Shift-C")],
+    C("RC-V"): [bind, C("C-Shift-V")],
     C("RC-B"):                  C("C-Shift-B"),
     C("RC-N"):                  C("C-Shift-N"),
     C("RC-M"):                  C("C-Shift-M"),
@@ -1469,7 +1462,8 @@ keymap("All Terminals",{
     C("RC-Dot"):                C("C-Shift-DOT"),
     C("RC-SLASH"):              C("C-Shift-SLASH"),
     C("RC-KPASTERISK"):         C("C-Shift-KPASTERISK"),
-}, when = re_match(termStr))
+# }, when = wm_class_match(termStr))
+}, when = lambda ctx: ctx.wm_class.casefold() in terminals)
 
 
 ############################################################################
@@ -1493,9 +1487,8 @@ keymap(
     {
         # C("RC-Dot"):                C("Esc"),                       # Mimic macOS Cmd+dot = Escape key (not in terminals)
     },
-    lambda ctx: ctx.wm_class.casefold() not in terminals
+    when = lambda ctx: ctx.wm_class.casefold() not in terminals
 )
-
 
 keymap(
     """
@@ -1585,5 +1578,5 @@ keymap(
         # C(""):                      ignore_key,                     # cancel
         # C(""):                      C(""),                          #
     },
-    lambda ctx: ctx.wm_class.casefold() not in remotes
+    when = lambda ctx: ctx.wm_class.casefold() not in remotes
 )
