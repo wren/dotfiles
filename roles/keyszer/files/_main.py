@@ -333,9 +333,6 @@ keymap(lambda wm_class: wm_class.casefold() not in remotes and MAC_NUMPAD_ON,{
 ###                                                                                             ###
 ###                                                                                             ###
 ###################################################################################################
-
-###########   START OF OPTION KEY SPECIAL CHARACTER ENTRY SCHEME - US LAYOUT   #############
-############################################################################################
 ### Full list of special characters on Apple US keyboard layout:
 ### https://github.org/RedBearAK/optspecialchars
 
@@ -633,7 +630,7 @@ keymap("Option key special characters US", {
 
     # Number keys row with Option
     ######################################################
-    C("Alt-Grave"): [UC(0x0060), C("Shift-Left"), setDK(0x0060)],       # Dead Key Accent: Grave
+    C("Alt-Grave"): [UC(0x0060), C("Shift-Left"), setDK(0x0060)], # Dead Key Accent: Grave
 
     C("Alt-1"):                     UC(0x00A1),                 # ¡ Inverted Exclamation Mark
     C("Alt-2"):                     UC(0x2122),                 # ™ Trade Mark Sign Emoji
@@ -759,14 +756,7 @@ keymap("Option key special characters US", {
     C("Shift-Alt-Comma"):           UC(0x00AF),                 # ¯ Macron/overline/overbar (non-combining)
     C("Shift-Alt-Dot"):             UC(0x02D8),                 # ˘ Breve diacritic (non-combining)
     C("Shift-Alt-Slash"):           UC(0x00BF),                 # ¿ Inverted Question mark
-
 }, when = lambda ctx: ctx.wm_class not in remotes and _optspecialchars_US is True)
-
-
-################################################################################
-############   END OF OPTION KEY SPECIAL CHARACTER ENTRY SCHEME   ##############
-################################################################################
-
 
 
 ######################################################################################
@@ -850,9 +840,6 @@ keymap(re.compile("eog", re.IGNORECASE),{
 ###                                                                                              ###
 ###                                                                                              ###
 ####################################################################################################
-
-###  START OF FILE MANAGER GROUP OF KEYMAPS - FINDER MODS  ###
-
 # Boolean variable to toggle Enter key state between F2 and Enter
 # True = Enter key sends F2, False = Enter key sends Enter
 _enter_is_F2 = True
@@ -1035,12 +1022,6 @@ keymap(re.compile(filemanStr, re.IGNORECASE),{
     C("Esc"):                   is_Enter_F2(C("Esc"), True),            # Send Escape, make sure Enter is back to F2
     C("Shift-RC-Enter"):        C("Enter"),                             # alternative "Enter" key for unusual cases
 },"General File Managers - Finder Mods")
-
-############################################
-### END OF FILE MANAGER GROUP OF KEYMAPS ###
-############################################
-
-
 
 ###################################  BROWSERS  #####################################
 ###                                                                              ###
