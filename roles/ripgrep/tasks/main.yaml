@@ -12,7 +12,7 @@
 - name: Update config file with user info
   template:
     src: _main.txt.j2
-    dest: "{{ config_home }}/ripgrep.config"
+    dest: "{{ config_home }}/ripgrep/ripgrep.config"
 
 - name: Link ripgrep ignore file
   file:
