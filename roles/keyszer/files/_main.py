@@ -13,9 +13,10 @@ from keyszer.config_api import to_US_keystrokes, unicode_keystrokes
 dump_diagnostics_key(Key.F7)    # default key: F15
 emergency_eject_key(Key.F8)     # default key: F16
 timeouts(
-    multipurpose = 1,           # default: 1 sec
-    suspend = 0.1,              # default: 1 sec
+    multipurpose = 0.09,           # default: 1 sec
+    suspend = 1,              # default: 1 sec
 )
+
 
 
 
@@ -152,12 +153,15 @@ filemanStr = "|".join(str('^'+x+'$') for x in filemanagers)
 ### Modmaps turn a key into a different key as long as the modmap is active
 ### The modified key can be used in shortcut combos as the new key
 
-# multipurpose_modmap(
-    # {Key.ENTER:                 [Key.ENTER, Key.RIGHT_CTRL]     # Enter2Cmd
-    # {Key.CAPSLOCK:              [Key.ESC, Key.RIGHT_CTRL]       # Caps2Esc
-    # {Key.LEFT_META:             [Key.ESC, Key.RIGHT_CTRL]       # Caps2Esc - Chromebook
-    # {                                                             # Placeholder
-# })
+add_modifier("HYPER", aliases = ["Hyper"], key = Key.F24)
+multipurpose_modmap(
+    "Caps Lock -> Esc/Hyper",
+    {
+        # Key.ENTER:    [Key.ENTER, Key.RIGHT_CTRL], # Enter2Cmd
+        Key.CAPSLOCK: [Key.ESC, Key.F24],
+    }
+)
+
 
 modmap("Conditional modmap - Mac Numpad feature",{
     # Make numpad be a numpad regardless of Numlock state (like an Apple keyboard in macOS)
@@ -772,6 +776,15 @@ keymap("Option key special characters US", {
 ######################################################################################
 ### Good place for adding new custom keymaps for user applications and custom function keys
 
+
+def switch_to_workspace(num: int):
+    return lambda: run(["/bin/xdotool", "set_desktop", f"{num - 1}"])
+
+
+def open_or_focus(window: str):
+    return lambda: run(['/bin/open-or-focus-window.sh', window])
+
+
 # REMOVE THE CONTENTS OF THIS FOR GENERAL USE
 keymap("User hardware-specific customizations",{
     # My brightness keys on function row - BIOS set to make hardware functions require Fn key
@@ -781,8 +794,36 @@ keymap("User hardware-specific customizations",{
     C("F9"):                    C("Mute"),                      # Turn F9 into mute button
     C("F10"):                   C("Volumedown"),                # Turn F10 into volume down button
     C("F11"):                   C("Volumeup"),                  # Turn F11 into volume up button
-}, lambda ctx: ctx.wm_class.casefold() not in remotes)
 
+    # Hyper keys
+    C("Hyper-H"): [bind, C("Left")],
+    C("Hyper-J"): [bind, C("Down")],
+    C("Hyper-K"): [bind, C("Up")],
+    C("Hyper-L"): [bind, C("Right")],
+    C("Hyper-U"): [bind, C("Volumedown")],
+    C("Hyper-I"): [bind, C("Volumeup")],
+    C("Hyper-Y"): [bind, C("Shift-Alt-Super-Y")],  # Toggle tiling mode
+    C("Hyper-1"): [bind, switch_to_workspace(1)],  # Change workspace
+    C("Hyper-2"): [bind, switch_to_workspace(2)],  # Change workspace
+    C("Hyper-3"): [bind, switch_to_workspace(3)],  # Change workspace
+    C("Hyper-4"): [bind, switch_to_workspace(4)],  # Change workspace
+    C("Hyper-5"): [bind, switch_to_workspace(5)],  # Change workspace
+    C("Hyper-6"): [bind, switch_to_workspace(6)],  # Change workspace
+    C("Hyper-7"): [bind, switch_to_workspace(7)],  # Change workspace
+    C("Hyper-8"): [bind, switch_to_workspace(8)],  # Change workspace
+    C("Hyper-9"): [bind, switch_to_workspace(9)],  # Change workspace
+    C("Hyper-0"): [bind, switch_to_workspace(10)],  # Change workspace
+    C("Hyper-Comma"): [bind, C("C-Shift-Tab")],
+    C("Hyper-Dot"): [bind, C("C-Tab")],
+
+    C("Hyper-Alt-I"): [bind, C("Shift-Alt-Super-I")], # maximize window
+    C("Hyper-Alt-H"): [bind, C("Shift-Alt-Super-H")], # move window to left
+    C("Hyper-Alt-L"): [bind, C("Shift-Alt-Super-L")], # move window to right
+
+    # Overrides
+    C("RC-Dot"): open_or_focus('org.wezfurlong.wezterm'),
+
+}, lambda ctx: ctx.wm_class.casefold() not in remotes)
 
 
 ###################################################################################
