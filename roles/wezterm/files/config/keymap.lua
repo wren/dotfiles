@@ -11,16 +11,12 @@ config.keys = {
   -- disable defaults
   {key="l", mods="CTRL", action="DisableDefaultAssignment"},
   {key="q", mods="CTRL", action="DisableDefaultAssignment"},
+  {key="c", mods="CTRL", action="DisableDefaultAssignment"},
+  {key="v", mods="CTRL", action="DisableDefaultAssignment"},
 
   -- make some often used keys easier to access by using cmd
   {key="d", mods="SUPER", action={SendKey={key="d", mods="CTRL"}}},
   {key="u", mods="SUPER", action={SendKey={key="u", mods="CTRL"}}},
-  {key="c", mods="SUPER", action={SendKey={key="c", mods="CTRL|SHIFT"}}},
-  {key="v", mods="SUPER", action={SendKey={key="v", mods="CTRL|SHIFT"}}},
-  -- {key="h", mods="SUPER", action={SendKey={key="h", mods="CTRL"}}},
-  -- {key="j", mods="SUPER", action={SendKey={key="j", mods="CTRL"}}},
-  -- {key="k", mods="SUPER", action={SendKey={key="k", mods="CTRL"}}},
-  -- {key="l", mods="SUPER", action={SendKey={key="l", mods="CTRL"}}},
   {key="p", mods="SUPER", action={SendKey={key="p", mods="CTRL"}}},
   {key="/", mods="SUPER", action={SendKey={key="/", mods="ALT"}}},
 

@@ -30,9 +30,10 @@
   when: not fira_code_font.stat.exists
 
 - name: Installing Wezterm
-  flatpak:
-    name: org.wezfurlong.wezterm
-    method: system
+  apt:
+    deb: https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+    state: present
+  become: true
 
 - name: Create config dir
   file:
