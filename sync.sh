@@ -14,4 +14,5 @@ if ! command -v ansible >/dev/null; then
   python3 -m pip install ansible
 fi
 
+ansible-galaxy install -r requirements.yaml
 ansible-playbook "${DOTFILES_DIR}/dotfiles.yaml" --ask-become-pass
