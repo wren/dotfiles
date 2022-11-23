@@ -13,6 +13,7 @@
     - ripgrep
     - fd-find
     - lolcat
+    - zoxide
   apt:
     name: "{{ item }}"
     state: present

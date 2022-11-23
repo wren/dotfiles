@@ -3,12 +3,12 @@ ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 # these files are loaded in this order
 my_dotfiles=(
   xdg
+  completion
   env
   path
   motd
   prompt
   options
-  completion
   plugins
   theme
   aliases

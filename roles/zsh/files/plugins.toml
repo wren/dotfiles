@@ -144,20 +144,6 @@ vim-mode-bindkey vicmd -- vi-delete          d
 remote = 'https://raw.githubusercontent.com/wez/wezterm/main/assets/shell-integration/wezterm.sh'
 apply = ['defer']
 
-# zsh-z
-[plugins.zsh-z-config]
-# https://github.com/agkozak/zsh-z#settings
-inline = """
-ZSHZ_CASE=smart
-ZSHZ_COMPLETION=frecent
-ZSHZ_TILDE=1
-ZSHZ_TRAILING_SLASH=1
-"""
-
-[plugins.zsh-z]
-github = "agkozak/zsh-z"
-apply = ['defer']
-
 # My personal scripts from gists
 [plugins.less-with-pipe]
 gist = "wren/29e7cc8784f858a28648b9360e29ac96"
