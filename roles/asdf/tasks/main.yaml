@@ -5,18 +5,35 @@
     dest: "{{ home }}/.local/opt/asdf-vm"
     version: v0.10.2
 
+- name: Install prereqs
+  apt:
+    name:
+      - libssl-dev
+      - direnv
+  become: true
+
 - name:
   include_role:
     name: cimon-io.asdf
     apply:
-      become: yes
+      become: true
+      become_user: "{{ computer_user }}"
   vars:
     asdf_dir: "{{ home }}/.local/opt/asdf-vm"
     asdf_user: "{{ computer_user }}"
     asdf_group: "{{ computer_user }}"
     asdf_plugins:
     - name: python
+      versions:
+        - 3.11.0
+      global: 3.11.0
     - name: nodejs
+      versions:
+        - lts
+      global: lts
     - name: rust
+      versions:
+        - stable
+      global: stable
     - name: direnv
-    - name: yarn
+      global: system
