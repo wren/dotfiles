@@ -133,8 +133,8 @@ if not is_empty(sudo_user) and user ~= sudo_user then
   opt.backup = false
   opt.writebackup = false
   opt.undofile = false
-  opt.shada = 'NONE'
-  opt.viminfo = 'NONE'
+  opt.shada = nil
+  opt.viminfo = nil
 end
 
 -- Secure sensitive information, disable backup files in temp directories
