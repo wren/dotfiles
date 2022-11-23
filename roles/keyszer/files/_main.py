@@ -273,6 +273,18 @@ keymap(
         C("Hyper-8"):     switch_to_workspace(8),  # Change workspace
         C("Hyper-9"):     switch_to_workspace(9),  # Change workspace
         C("Hyper-0"):     switch_to_workspace(10),  # Change workspace
+
+        C("C-Shift-Alt-1"):     switch_to_workspace(1),  # Change workspace
+        C("C-Shift-Alt-2"):     switch_to_workspace(2),  # Change workspace
+        C("C-Shift-Alt-3"):     switch_to_workspace(3),  # Change workspace
+        C("C-Shift-Alt-4"):     switch_to_workspace(4),  # Change workspace
+        C("C-Shift-Alt-5"):     switch_to_workspace(5),  # Change workspace
+        C("C-Shift-Alt-6"):     switch_to_workspace(6),  # Change workspace
+        C("C-Shift-Alt-7"):     switch_to_workspace(7),  # Change workspace
+        C("C-Shift-Alt-8"):     switch_to_workspace(8),  # Change workspace
+        C("C-Shift-Alt-9"):     switch_to_workspace(9),  # Change workspace
+        C("C-Shift-Alt-0"):     switch_to_workspace(10),  # Change workspace
+
         C("Hyper-Comma"): [bind, C("C-Shift-Tab")],
         C("Hyper-Dot"):   [bind, C("C-Tab")],
 
