@@ -1,6 +1,6 @@
 
 -- Use space as leader and ; as secondary-leader --
-g.mapleader = ' '
+g.mapleader = '<space>'
 g.maplocalleader = '\\'
 
 -- Set main config directory as parent directory --

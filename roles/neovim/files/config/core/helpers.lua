@@ -6,9 +6,11 @@ _G.fn = vim.fn
 _G.g = vim.g
 _G.call = vim.call
 _G.lsp = vim.lsp
-_G.set = vim.api.nvim_set_option
-_G.get = vim.api.nvim_get_option
+_G.set = api.nvim_set_option
+_G.get = api.nvim_get_option
 _G.unmap = vim.keymap.del
+_G.create_autocmd = api.nvim_create_autocmd
+
 
 -- from: https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua
 _G.MODIFIABLE_ONLY_BINDINGS = {}

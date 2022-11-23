@@ -5,8 +5,11 @@
   become: yes
 
 - name: Creates directory
+  loop:
+    - lvim
+    - nvim
   file:
-    path: "{{ config_home }}/lvim"
+    path: "{{ config_home }}/{{ item }}"
     state: directory
 
 - name: Link main git config file
@@ -16,9 +19,19 @@
     state: link
     force: yes
 
-- name: Link neovim config directory
+- name: Link basic git config file
+  file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/basic.lua"
+    dest: "{{ config_home }}/nvim/init.lua"
+    state: link
+    force: yes
+
+- name: Link neovim config dirs
+  loop:
+    - lvim
+    - nvim
   file:
     src: "{{ dotfiles_home }}/roles/neovim/files/config"
-    dest: "{{ config_home }}/lvim/lua"
+    dest: "{{ config_home }}/{{ item }}/lua"
     state: link
     force: yes
