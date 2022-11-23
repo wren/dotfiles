@@ -13,3 +13,4 @@
   flatpak:
     name: us.zoom.zoom
     method: system
+  become: true
