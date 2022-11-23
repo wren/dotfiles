@@ -20,14 +20,15 @@
     user_name: wren
     email: jonathan@nowandwren.com
   roles:
-    - role: bootstrap
-    - role: 1password
-    # - role: asdf
-    - role: bat
-    - role: discord
-    - role: git
-    - role: less
-    - role: neovim
-    - role: wezterm
-    - role: zoom
-    - role: zsh
+    - {role: bootstrap, tags: bootstrap}
+    - {role: 1password, tags: 1password}
+    - {role: asdf, tags: asdf}
+    - {role: bat, tags: bat}
+    - {role: discord, tags: discord}
+    - {role: git, tags: git}
+    - {role: less, tags: less}
+    - {role: neovim, tags: neovim}
+    - {role: ripgrep, tags: ripgrep}
+    - {role: wezterm, tags: wezterm}
+    - {role: zoom, tags: zoom}
+    - {role: zsh, tags: zsh}
