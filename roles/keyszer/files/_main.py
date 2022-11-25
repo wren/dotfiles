@@ -411,7 +411,7 @@ keymap(
 keymap(
     "Firefox",
     {
-        C("C-comma"):    [C("C-t"),usleep(5),ST("about"),C("Shift-SEMICOLON"),ST("preferences"),C("Enter")],
+        C("Super-comma"):    [C("C-t"),usleep(5),ST("about"),C("Shift-SEMICOLON"),ST("preferences"),C("Enter")],
         C("Shift-Super-N"): C("Shift-Super-P"),                # Open private window with Cmd+Shift+N like other browsers
     },
     when = wm_class_match("firefox")
