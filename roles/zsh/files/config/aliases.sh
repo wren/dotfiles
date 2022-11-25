@@ -27,7 +27,7 @@ function show-all(){ cat -A $1 | sed 's/ /␠/g' | cat -n; }
 alias g='git'
 alias gar="git ls-files -z -d | xargs -0 git rm"
 alias gblame="git ls-files | grep -E '\.(py|php|html|htm|css|js|md|sql|htaccess|xml|txt)$' | xargs -n1 git blame --line | grep -E '^author '|sort|uniq -c|sort -nr"
-alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
+alias yolo='git commit -am "DEAL WITH IT" && git push -f'
 
 #--- Diff ---#
 alias dsf='diff-so-fancy'
