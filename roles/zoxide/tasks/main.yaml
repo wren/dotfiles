@@ -1,8 +1,8 @@
-- name: Install zoxide
-  apt:
-    name: zoxide
-    state: present
-  become: true
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yml
+  when: ansible_os_family == "Debian"
 
 - file:
     src: "{{ dotfiles_home }}/roles/zoxide/files/env"

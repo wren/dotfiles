@@ -1,0 +1,5 @@
+- name: Install zoxide
+  apt:
+    name: zoxide
+    state: present
+  become: true
