@@ -1,4 +1,3 @@
----
 - name: Bootstrap desktop environment
   hosts: localhost
   vars:
@@ -23,15 +22,16 @@
     - {role: bootstrap, tags: bootstrap}
     - {role: 1password, tags: 1password}
     - {role: asdf, tags: asdf}
-    - {role: bat, tags: bat}
+    - {role: bat, tags: cli}
     - {role: discord, tags: discord}
-    - {role: fira-code-nerd-font, tags: fira-code-nerd-font}
+    - {role: fira-code-nerd-font, tags: fonts}
     - {role: git, tags: git}
-    - {role: less, tags: less}
-    - {role: neovim, tags: neovim}
-    - {role: ripgrep, tags: ripgrep}
-    - {role: wezterm, tags: wezterm}
+    - {role: less, tags: cli}
+    - {role: neovim, tags: editor}
+    - {role: python, tags: python}
+    - {role: ripgrep, tags: cli}
+    - {role: wezterm, tags: terminal}
     - {role: zoom, tags: zoom}
-    - {role: zoxide, tags: zoxide}
-    - {role: viu, tags: viu}
-    - {role: zsh, tags: zsh}
+    - {role: zoxide, tags: cli}
+    - {role: viu, tags: cli}
+    - {role: zsh, tags: cli}
