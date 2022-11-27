@@ -39,5 +39,4 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
     zcompile -M $compdump &!
   fi
 }
-autoload -Uz bashcompinit && bashcompinit
-
+autoload -Uz compinit && compinit
