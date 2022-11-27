@@ -41,6 +41,7 @@ require 'plugins.repeat'
 require 'plugins.splits'
 require 'plugins.mini'
 require 'plugins.lastplace'
+require 'plugins.suda'
 
 -- Git --
 require 'plugins.diffview'
