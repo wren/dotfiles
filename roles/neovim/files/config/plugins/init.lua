@@ -2,7 +2,7 @@
 lvim.builtin.project.active = false
 lvim.builtin.terminal.active = true
 
--- Additional config for builtin plugins
+-- Additional config for builtin lunar plugins
 require 'plugins.bufferline'
 require 'plugins.dashboard'
 require 'plugins.gitsigns'
