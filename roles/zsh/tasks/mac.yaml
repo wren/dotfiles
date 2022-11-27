@@ -5,7 +5,6 @@
       - exa
       - ripgrep
       - vivid
-      - zoxide
     state: present
     update_homebrew: false
 
