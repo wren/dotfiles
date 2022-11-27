@@ -1,0 +1,25 @@
+- name: Check if lolcat exists
+  check_mode: yes
+  stat:
+    path: /bin/lolcat
+  register: lolcat
+
+- name: Clone lolcat repo
+  git:
+    repo: https://github.com/jaseg/lolcat
+    dest: /tmp/lolcat
+  when: not lolcat.stat.exists
+
+- name: Make lolcat
+  command:
+    cmd: make lolcat
+    chdir: /tmp/lolcat
+  when: not lolcat.stat.exists
+
+- name: Install lolcat bin
+  become: true
+  copy:
+    src: /tmp/lolcat/lolcat
+    dest: /bin/lolcat
+    mode: 755
+  when: not lolcat.stat.exists
