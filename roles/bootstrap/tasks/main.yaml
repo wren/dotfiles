@@ -2,8 +2,8 @@
   apt:
     name: python3-apt
     state: latest
-  become: yes
-  
+  become: true
+
 - name: Create config dirs
   file:
     path: "{{ config_home }}/env"
