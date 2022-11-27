@@ -16,7 +16,6 @@
   homebrew:
     name:
       - diff-so-fancy
-      # - viu
     state: present
     update_homebrew: false
 

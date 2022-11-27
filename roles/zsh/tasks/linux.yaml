@@ -11,15 +11,6 @@
     state: present
   become: true
 
-# - name: Install extras from homebrew
-#   homebrew:
-#     name:
-#       # @TODO viu & vivid installs error out
-#       # - vivid
-#       # - viu
-#     state: present
-#     update_homebrew: false
-
 - name: Check if vivid is installed
   check_mode: yes
   stat:

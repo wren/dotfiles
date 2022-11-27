@@ -1,0 +1,24 @@
+- name: Check if viu is installed
+  check_mode: yes
+  stat:
+    path: /bin/viu
+  register: bin_viu
+
+- name: Get download url for viu
+  uri:
+    url: https://github.com/atanunq/viu/releases/latest/
+    follow_redirects: safe
+  register: viu_get_url
+  when: not bin_viu.stat.exists
+
+- set_fact:
+      viu_version: "{{ viu_get_url.url | regex_search('/(v[0-9\\.]+)$', '\\1') | first }}"
+  when: not bin_viu.stat.exists
+
+- name: Install viu from compiled executable
+  get_url:
+    url: https://github.com/atanunq/viu/releases/download/{{ viu_version }}/viu
+    dest: /bin/
+    mode: 755
+  become: true
+  when: not bin_viu.stat.exists

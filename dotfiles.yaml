@@ -32,4 +32,5 @@
     - {role: wezterm, tags: wezterm}
     - {role: zoom, tags: zoom}
     - {role: zoxide, tags: zoxide}
+    - {role: viu, tags: viu}
     - {role: zsh, tags: zsh}
