@@ -1,0 +1,13 @@
+- name: Install from homebrew
+  homebrew:
+    name:
+      - zsh
+      - exa
+      - fd
+      - ripgrep
+      - viu
+      - vivid
+      - zoxide
+    state: present
+    update_homebrew: false
+

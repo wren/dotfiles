@@ -1,0 +1,41 @@
+- name: Install z-shell & friends
+  loop:
+    - zsh
+    - exa
+    - ripgrep
+    - fd-find
+    - lolcat
+    - zoxide
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+
+# - name: Install extras from homebrew
+#   homebrew:
+#     name:
+#       # @TODO viu & vivid installs error out
+#       # - vivid
+#       # - viu
+#     state: present
+#     update_homebrew: false
+
+- name: Check if vivid is installed
+  check_mode: yes
+  stat:
+    path: /bin/vivid
+  register: bin_vivid
+
+- name: Install vivid
+  apt:
+    deb: https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb
+    state: present
+  become: true
+  when: not bin_vivid.stat.exists
+
+- name: Link fdfind -> fd
+  file:
+    src: "/bin/fdfind"
+    dest: "/bin/fd"
+    state: link
+  become: true
