@@ -1,0 +1,10 @@
+- name: Install zoxide
+  apt:
+    name: zoxide
+    state: present
+  become: true
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zoxide/files/env"
+    dest: "{{ config_home }}/env/zoxide.env.sh"
+    state: link

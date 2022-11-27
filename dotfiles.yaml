@@ -31,4 +31,5 @@
     - {role: ripgrep, tags: ripgrep}
     - {role: wezterm, tags: wezterm}
     - {role: zoom, tags: zoom}
+    - {role: zoxide, tags: zoxide}
     - {role: zsh, tags: zsh}
