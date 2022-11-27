@@ -46,7 +46,7 @@ alias d.start='eval $(docker-machine env default)'
 alias d.exec='func{docker exec -it "$@";}; func'
 
 #--- Apps ---#
-alias f='fdfind --hidden' # find including hidden
+alias f='fd --hidden' # find including hidden
 alias ff='fd -HI' # find all
 alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path
 alias fe='env | rg -v ''^(PATH|(LS|EXA)_?COLORS)='' | rg' # find in env

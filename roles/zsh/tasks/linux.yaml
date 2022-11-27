@@ -3,7 +3,6 @@
     - zsh
     - exa
     - ripgrep
-    - fd-find
     - lolcat
     - zoxide
   apt:
@@ -23,10 +22,3 @@
     state: present
   become: true
   when: not bin_vivid.stat.exists
-
-- name: Link fdfind -> fd
-  file:
-    src: "/bin/fdfind"
-    dest: "/bin/fd"
-    state: link
-  become: true
