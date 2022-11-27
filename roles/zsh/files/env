@@ -47,6 +47,3 @@ fi
 
 # SOPS
 export SOPS_AGE_RECIPIENTS='age1p637gyvk0c0adn9jl3m6u3j2tlym395jkvj0hlpnyxd0pgq7wf3q0xepfw'
-
-# Z
-eval "$(zoxide init zsh)"

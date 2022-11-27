@@ -10,7 +10,6 @@
     - '~/.config'
     - '~/.local/bin'
 
-
 - shell:
     - description: Run individual bundles through dotbot
       command: |-
@@ -26,5 +25,3 @@
           print -P "\n\n%F{006}───── ${(U)bundle} ─────%f"
           ${=DOTBOT_CMD} -d $(dirname "$file") -c <(cat $DOTBOT_DEFAULTS $file) "$@"
         done
-
-
