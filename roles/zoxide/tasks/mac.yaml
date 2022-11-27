@@ -1,5 +1,5 @@
 - name: Install zoxide
-  brew:
+  homebrew:
     name: zoxide
     state: present
 
