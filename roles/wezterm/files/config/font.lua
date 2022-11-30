@@ -3,18 +3,19 @@ local config = {}
 local wezterm = require 'wezterm'
 
 local my_font = wezterm.font_with_fallback({
+  {family="MonoLisa Nerd Font", weight="Light"},
   {family="FiraCode Nerd Font", weight="Light"},
-  {family="Fira Code", weight="Bold"},
   {family="Noto Color Emoji"},
 })
 
+
 config = {
   font = my_font,
-  font_size = 16,
-  line_height = 1.2,
+  font_size = 14,
+  line_height = 1.25,
   harfbuzz_features = {
     -- see: https://github.com/tonsky/FiraCode/wiki/How-to-enable-stylistic-sets
-    "zero", -- dot inside zero instead of line
+    -- "zero", -- slash inside zero instead of dot
     "calt=0", "clig=0", "liga=0", -- disable ligatures
   },
 
@@ -22,7 +23,7 @@ config = {
   window_frame = {
     -- The font used in the tab bar.
     font = my_font,
-    font_size = 14.0,
+    font_size = 12,
   },
 }
 
