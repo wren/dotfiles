@@ -22,7 +22,7 @@
   block:
     - name: Decrypt tarball for MonoLisa font
       command:
-        cmd: age --identity $AGE_KEY_FILE --output /tmp/monolisa.tar.zst --decrypt MonoLisa-Nerd-Font-Complete.tar.zst.enc
+        cmd: age --identity $AGE_KEY_FILE --output /tmp/monolisa.tar.zst --decrypt MonoLisa-Nerd-Font-Complete.enc.tar.zst
         chdir: "{{ dotfiles_home }}/roles/monolisa-nerd-font/files"
 
     - name: Unarchive tarball for MonoLisa font
