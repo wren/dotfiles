@@ -4,3 +4,6 @@
 *.enc.env   diff=sops
 *.enc.ini   diff=sops
 **/*.enc/**    diff=sops
+
+# LFS
+*.enc.tar.zst   filter=lfs diff=lfs merge=lfs -text

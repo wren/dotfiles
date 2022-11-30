@@ -21,10 +21,12 @@
   roles:
     - {role: bootstrap, tags: bootstrap}
     - {role: 1password, tags: 1password}
+    - {role: age, tags: age}
     - {role: asdf, tags: asdf}
     - {role: bat, tags: cli}
     - {role: discord, tags: discord}
     - {role: fira-code-nerd-font, tags: fonts}
+    - {role: monolisa-nerd-font, tags: fonts}
     - {role: git, tags: git}
     - {role: less, tags: cli}
     - {role: lolcat, tags: cli}

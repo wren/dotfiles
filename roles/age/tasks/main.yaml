@@ -1,0 +1,33 @@
+- name: Install age (linux)
+  apt:
+    name:
+      - age
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Install age (mac)
+  homebrew:
+    name:
+      - age
+    state: present
+    update_homebrew: false
+  when: ansible_os_family == "Darwin"
+
+- name: Create config dirs
+  file:
+    path: "{{ config_home }}/age"
+    state: directory
+
+- name: Install recipients file
+  file:
+    src: "{{ dotfiles_home }}/roles/age/files/recipients.txt"
+    dest: "{{ config_home }}/age/recipients.txt"
+    state: link
+    force: true
+
+- name: Install env file
+  file:
+    src: "{{ dotfiles_home }}/roles/age/files/env"
+    dest: "{{ config_home }}/env/age.env.sh"
+    state: link
+    force: true

@@ -1,0 +1,39 @@
+- set_fact:
+      font_dir: /usr/local/share/fonts
+  when: ansible_os_family == "Debian"
+
+- set_fact:
+      font_dir: "{{ home }}/Library/Fonts"
+  when: ansible_os_family == "Darwin"
+
+- name: Ensure user fonts dir exists
+  file:
+    path: "{{ font_dir }}"
+    state: directory
+
+- name: Check if MonoLisa Nerd Font is installed
+  check_mode: true
+  stat:
+    path: "{{ font_dir }}/MonoLisa Light Nerd Font Complete.ttf"
+  register: monolisa_font
+
+- name: Install font - MonoLisa Nerd Font
+  when: not monolisa_font.stat.exists
+  block:
+    - name: Decrypt tarball for MonoLisa font
+      command:
+        cmd: age --identity $AGE_KEY_FILE --output /tmp/monolisa.tar.zst --decrypt MonoLisa-Nerd-Font-Complete.tar.zst.enc
+        chdir: "{{ dotfiles_home }}/roles/monolisa-nerd-font/files"
+
+    - name: Unarchive tarball for MonoLisa font
+      command:
+        cmd: /usr/bin/tar xf monolisa.tar.zst
+        chdir: /tmp
+
+    - name: Copy font files into fonts dir
+      copy:
+        src: "{{ item }}"
+        dest: "{{ font_dir }}/"
+        force: yes
+      with_fileglob: "/tmp/ttf/*.ttf"
+      become: true
