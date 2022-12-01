@@ -1,0 +1,6 @@
+- name: Install 1password
+  homebrew_cask:
+    name:
+      - wez/wezterm/wezterm-nightly
+    state: present
+    update_homebrew: false

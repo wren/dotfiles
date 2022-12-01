@@ -1,0 +1,5 @@
+- name: Installing Wezterm
+  apt:
+    deb: https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+    state: present
+  become: true

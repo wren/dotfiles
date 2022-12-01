@@ -1,8 +1,8 @@
-- name: Installing Wezterm
-  apt:
-    deb: https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-    state: present
-  become: true
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
 
 - name: Create config dir
   file:
