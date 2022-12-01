@@ -1,0 +1,21 @@
+- name: Create gnupg data home dir
+  file:
+    name: "{{ data_home }}/gnupg"
+    state: directory
+
+- name: Add doppler apt key
+  apt_key:
+    url: https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key
+    state: present
+
+- name: Add doppler repo to apt sources
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.doppler.com/public/cli/deb/debian any-version main
+    state: present
+
+- name: Install doppler cli
+  become: true
+  apt:
+    name: doppler
+    state: present
+    update_cache: true
