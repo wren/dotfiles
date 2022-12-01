@@ -1,5 +1,5 @@
 - name: Install jrnl
-  pipx:
+  community.general.pipx:
     name: jrnl
 
 - name: Create config dir
