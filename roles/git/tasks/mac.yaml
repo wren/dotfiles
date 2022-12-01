@@ -1,0 +1,11 @@
+- name: Install from homebrew
+  homebrew:
+    name:
+      - git
+      - git-extras
+      - git-filter-repo
+      - git-lfs
+      - imagemagick
+      - diff-so-fancy
+    state: present
+    update_homebrew: false

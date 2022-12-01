@@ -1,23 +1,8 @@
-- name: Install git & friends
-  loop:
-    - git
-    - git-extras
-    - git-filter-repo
-    - git-lfs
-    - libimage-exiftool-perl
-    - imagemagick
-    - libterm-readkey-perl
-  apt:
-    name: "{{ item }}"
-    state: present
-  become: yes
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
 
-- name: Install from homebrew
-  homebrew:
-    name:
-      - diff-so-fancy
-    state: present
-    update_homebrew: false
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
 
 - name: Create config dir
   file:
