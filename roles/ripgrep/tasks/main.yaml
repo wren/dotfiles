@@ -1,8 +1,8 @@
-- name: Install ripgrep
-  apt:
-    name: ripgrep
-    state: latest
-  become: yes
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
 
 - name: Create config dir
   file:
