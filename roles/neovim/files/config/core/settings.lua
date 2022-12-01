@@ -27,8 +27,6 @@ opt.ttimeout = true
 opt.timeoutlen = 500
 opt.ttimeoutlen = 10
 opt.updatetime = 250
-opt.undofile = true
-opt.undodir = '~/.cache/vim/undo'
 opt.relativenumber = true
 opt.backspace = '2'
 opt.backspace = 'indent,eol,start'
@@ -109,7 +107,7 @@ opt.undofile = true
 opt.swapfile = false
 opt.backup = false
 local DATA_PATH = fn.stdpath('data')
-local my_str = DATA_PATH .. '/%s//,' .. DATA_PATH .. ',~/tmp/var/tmp,/tmp'
+local my_str = DATA_PATH .. '/%s/,' .. DATA_PATH .. ',~/tmp/var/tmp,/tmp'
 opt.directory = my_str:format('swap')
 opt.undodir = my_str:format('undo')
 opt.backupdir = my_str:format('backup')
@@ -128,7 +126,7 @@ end
 -- If sudo, disable vim swap/backup/undo/shada/viminfo writing
 local sudo_user = os.getenv('SUDO_USER')
 local user = os.getenv('USER')
-if not is_empty(sudo_user) and user ~= sudo_user then
+if not is_empty(sudo_user) and user == sudo_user then
   opt.swapfile = false
   opt.backup = false
   opt.writebackup = false
