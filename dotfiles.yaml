@@ -30,6 +30,7 @@
     - {role: fira-code-nerd-font, tags: fonts}
     - {role: monolisa-nerd-font, tags: fonts}
     - {role: git, tags: git}
+    - {role: jrnl, tags: jrnl}
     - {role: less, tags: cli}
     - {role: lolcat, tags: cli}
     - {role: neovim, tags: editor}

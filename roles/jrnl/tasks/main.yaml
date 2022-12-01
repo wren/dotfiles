@@ -12,6 +12,7 @@
     - jrnl.yaml
     - templates
   file:
-    name: "{{ item }}"
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ config_home }}/jrnl/{{ item }}"
     state: link
     force: true

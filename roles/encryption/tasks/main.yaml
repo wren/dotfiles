@@ -30,7 +30,7 @@
         mode: 400
 
 - name: Decrypt individual files
-- block:
+  block:
     - find:
         recurse: true
         paths: "{{ dotfiles_home }}/roles"
