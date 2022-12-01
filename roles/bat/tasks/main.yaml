@@ -27,37 +27,37 @@
 - name: Check if batpipe exists
   check_mode: yes
   stat:
-    path: /bin/batpipe
+    path: /usr/local/bin/batpipe
   register: batpipe
 
-- name: Clone bat-extras repository
-  git:
-    repo: https://github.com/eth-p/bat-extras.git
-    dest: /tmp/bat-extras
+- name: Get bat-extras
   when: not batpipe.stat.exists
+  block:
+  - name: Clone bat-extras repository
+    git:
+      repo: https://github.com/eth-p/bat-extras.git
+      dest: /tmp/bat-extras
 
-- name: Build bat-extras
-  command:
-    cmd: ./build.sh
-    chdir: /tmp/bat-extras
-  when: not batpipe.stat.exists
+  - name: Build bat-extras
+    command:
+      cmd: ./build.sh
+      chdir: /tmp/bat-extras
 
-- name: Copy batpipe into /bin
-  loop:
-    - bat-modules
-    - batdiff
-    - batgrep
-    - batman
-    - batpipe
-    - batwatch
-    - prettybat
-  copy:
-    src: '/tmp/bat-extras/bin/{{ item }}'
-    dest: '/bin/{{ item }}'
-    mode: 'a+x'
-    force: yes
-  when: not batpipe.stat.exists
-  become: true
+  - name: Copy batpipe into /bin
+    loop:
+      - bat-modules
+      - batdiff
+      - batgrep
+      - batman
+      - batpipe
+      - batwatch
+      - prettybat
+    copy:
+      src: '/tmp/bat-extras/bin/{{ item }}'
+      dest: '/usr/local/bin/{{ item }}'
+      mode: 'a+x'
+      force: yes
+    become: true
 
 - name: Linking env
   file:
