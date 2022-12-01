@@ -1,9 +1,10 @@
-*.enc       diff=sops
 *.enc.yaml  diff=sops
 *.enc.json  diff=sops
 *.enc.env   diff=sops
 *.enc.ini   diff=sops
-**/*.enc/**    diff=sops
+
+*.enc       diff=age
+**/*.enc/** diff=age
 
 # LFS
 *.enc.tar.zst   filter=lfs diff=lfs merge=lfs -text

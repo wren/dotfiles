@@ -1,9 +1,0 @@
-- brew:
-    - "jrnl" # Command-line note taker
-
-- create:
-    - ~/.config/jrnl
-
-- link:
-    ~/.config/jrnl/jrnl.yaml: jrnl.yaml
-    ~/.config/jrnl/templates: templates

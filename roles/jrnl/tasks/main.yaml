@@ -1,0 +1,17 @@
+- name: Install jrnl
+  pipx:
+    name: jrnl
+
+- name: Create config dir
+  file:
+    name: "{{ config_home }}/jrnl"
+    state: directory
+
+- name: Link jrnl config
+  loop:
+    - jrnl.yaml
+    - templates
+  file:
+    name: "{{ item }}"
+    state: link
+    force: true

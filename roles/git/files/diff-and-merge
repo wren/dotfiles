@@ -31,6 +31,9 @@
 [diff "sops"]
   textconv = "sops -d"
 
+[diff "age"]
+  textconv = "age --identity $AGE_KEY_FILE --decrypt"
+
 [interactive]
   diffFilter = diff-so-fancy --patch
   singleKey = true
