@@ -1,7 +1,7 @@
 - import_tasks: mac.yaml
   when: ansible_os_family == "Darwin"
 
-- import_tasks: linux.yml
+- import_tasks: linux.yaml
   when: ansible_os_family == "Debian"
 
 - name: Create config dir
