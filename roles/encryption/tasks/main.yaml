@@ -1,0 +1,32 @@
+
+- name: Check encryption key
+  check_mode: yes
+  stat:
+    path: "{{ config_home }}/age/keys.txt"
+  register: age_key
+
+- name: Download encryption key
+  when: not age_key.stat.exists
+  block:
+
+    - name: Decrypt service token (please enter password)
+      command:
+        cmd: age -d "{{ dotfiles_home }}/roles/encryption/files/doppler_service_token"
+      register: service_token
+
+    - name: Get dotfiles key from Doppler
+      command:
+        cmd: doppler secrets get DOTFILES_KEY --plain --token {{ service_token.stdout }}
+      register: encrypted_dotfiles_key
+
+    - name: Decrypt downloaded key
+      command:
+        cmd: age -d
+        stdin: "{{ encrypted_dotfiles_key.stdout }}"
+      register: dotfiles_key
+
+    - name: Save encryption key
+      copy:
+        content: "{{ dotfiles_key.stdout }}"
+        dest: "{{ config_home }}/age/keys.txt"
+        mode: 400

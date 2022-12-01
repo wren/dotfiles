@@ -20,6 +20,7 @@
     email: jonathan@nowandwren.com
   roles:
     - {role: bootstrap, tags: bootstrap}
+    - {role: encryption, tags: encryption}
     - {role: 1password, tags: 1password}
     - {role: age, tags: age}
     - {role: asdf, tags: asdf}

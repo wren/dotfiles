@@ -1,0 +1,4 @@
+dependencies:
+  - role: age
+  - role: doppler
+  - role: fd
