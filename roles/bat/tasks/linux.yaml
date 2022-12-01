@@ -6,3 +6,10 @@
     name: "{{ item }}"
     state: present
   become: true
+
+- name: Linking batcat -> bat
+  file:
+    src: /bin/batcat
+    dest: /bin/bat
+    state: link
+  become: true

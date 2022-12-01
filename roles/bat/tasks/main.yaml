@@ -24,13 +24,6 @@
     dest: "{{ config_home }}/batpipe/viewers.d"
     state: link
 
-- name: Linking batcat -> bat
-  file:
-    src: /bin/batcat
-    dest: /bin/bat
-    state: link
-  become: true
-
 - name: Check if batpipe exists
   check_mode: yes
   stat:
