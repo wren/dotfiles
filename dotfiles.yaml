@@ -25,6 +25,7 @@
     - {role: asdf, tags: asdf}
     - {role: bat, tags: cli}
     - {role: discord, tags: discord}
+    - {role: doppler, tags: doppler}
     - {role: fira-code-nerd-font, tags: fonts}
     - {role: monolisa-nerd-font, tags: fonts}
     - {role: git, tags: git}
