@@ -8,3 +8,6 @@
   file:
     path: "{{ config_home }}/env"
     state: directory
+
+- name: Ensure pipx installation
+  command: python3 -m pip install pipx
