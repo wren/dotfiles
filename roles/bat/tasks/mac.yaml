@@ -1,0 +1,6 @@
+- name: Install bat
+  homebrew:
+    name:
+      - bat
+    state: present
+    update_homebrew: false

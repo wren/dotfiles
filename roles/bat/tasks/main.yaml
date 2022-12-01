@@ -1,3 +1,8 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
 
 - name: Ensure config dirs
   loop:
@@ -6,15 +11,6 @@
   file:
     path: "{{ config_home }}/{{ item }}"
     state: directory
-
-- name: Checking bat installation
-  loop:
-    - bat
-    - shfmt
-  apt:
-    name: "{{ item }}"
-    state: present
-  become: true
 
 - name: Linking bat config file
   file:

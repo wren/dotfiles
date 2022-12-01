@@ -1,0 +1,8 @@
+- name: Install bat
+  loop:
+    - bat
+    - shfmt
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
