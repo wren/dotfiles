@@ -1,8 +1,8 @@
-- name: Install neovim & friends
-  apt:
-    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-    state: present
-  become: yes
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
 
 - name: Creates directory
   loop:
