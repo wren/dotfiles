@@ -1,0 +1,26 @@
+- set_fact:
+    my_filename: "{{ encrypted_path | replace('.enc', '') }}"
+
+- name: Check if decrypted file exists - {{ encrypted_path | replace(dotfiles_home, '') }}
+  stat:
+    path: "{{ my_filename }}"
+  register: my_file
+
+- when: my_file.stat.exists
+  block:
+    - set_fact:
+        my_file_checksum: "{{ lookup('file', my_filename) | checksum }}"
+
+    - name: Get checksum of encrypted file
+      command: age -i "$AGE_KEY_FILE" -d '{{ encrypted_path }}'
+      register: encrypted_file_contents
+      changed_when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
+
+    - name: Re-encrypt file
+      when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
+      command: age -R "$AGE_RECIPIENTS_FILE" -o '{{ encrypted_path }}' -e '{{ my_filename }}'
+
+- name: Decrypt file
+  when: not my_file.stat.exists
+  command:
+    cmd: age -i "$AGE_KEY_FILE" -o '{{ my_filename }}' -d '{{ encrypted_path }}'

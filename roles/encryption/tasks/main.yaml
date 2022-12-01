@@ -1,6 +1,5 @@
-
 - name: Check encryption key
-  check_mode: yes
+  check_mode: true
   stat:
     path: "{{ config_home }}/age/keys.txt"
   register: age_key
@@ -8,10 +7,9 @@
 - name: Download encryption key
   when: not age_key.stat.exists
   block:
-
     - name: Decrypt service token (please enter password)
       command:
-        cmd: age -d "{{ dotfiles_home }}/roles/encryption/files/doppler_service_token"
+        cmd: age -d "{{ role_path }}/files/doppler_service_token"
       register: service_token
 
     - name: Get dotfiles key from Doppler
@@ -30,3 +28,32 @@
         content: "{{ dotfiles_key.stdout }}"
         dest: "{{ config_home }}/age/keys.txt"
         mode: 400
+
+- name: Decrypt individual files
+- block:
+    - find:
+        recurse: true
+        paths: "{{ dotfiles_home }}/roles"
+        patterns: '*.enc'
+        file_type: file
+      register: encrypted_files
+
+    - include_tasks: decrypt_file.yaml
+      loop: "{{ encrypted_files.files | map(attribute='path') | list }}"
+      loop_control:
+        loop_var: encrypted_path
+
+- name: Decrypt entire directories
+  block:
+    - find:
+        recurse: true
+        paths: "{{ dotfiles_home }}/roles"
+        patterns: '*.enc'
+        file_type: directory
+      register: encrypted_dirs
+
+    - name: Decrypt each directory
+      include_tasks: decrypt_dir.yaml
+      loop: "{{ encrypted_dirs.files | map(attribute='path') | list }}"
+      loop_control:
+        loop_var: encrypted_dir_path
