@@ -1,22 +1,17 @@
 - name: Bootstrap desktop environment
-  hosts: localhost
   vars:
-    # general
+    # general (probably don't edit)
     home: "{{ '~' | expanduser }}"
-
-    # dotfiles
-    dotfiles_home: "{{ home }}/Dotfiles"
-
-    # xdg vars
     config_home: "{{ home }}/.config"
     data_home: "{{ home }}/.local/share"
     cache_home: "{{ home }}/.cache"
     bin_home: "{{ home }}/.local/bin"
 
-    # personal info
+    # personal info (edit here)
+    dotfiles_home: "{{ home }}/Dotfiles"
     full_name: Jonathan Wren
     computer_user: jonathan
-    user_name: wren
+    github_user_name: wren
     email: jonathan@nowandwren.com
   roles:
     - {role: bootstrap, tags: bootstrap}
