@@ -1,0 +1,13 @@
+- name: Installing Slack (linux)
+  flatpak:
+    name: com.slack.Slack
+    method: system
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Install Slack (mac)
+  homebrew_cask:
+    name: slack
+    state: present
+    update_homebrew: false
+  when: ansible_os_family == "Darwin"

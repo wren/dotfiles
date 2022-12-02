@@ -33,6 +33,7 @@
     - {role: neovim, tags: editor}
     - {role: python, tags: python}
     - {role: ripgrep, tags: cli}
+    - {role: slack, tags: slack}
     - {role: wezterm, tags: terminal}
     - {role: zoom, tags: zoom}
     - {role: zoxide, tags: cli}
