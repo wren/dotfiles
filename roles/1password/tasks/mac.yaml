@@ -4,3 +4,14 @@
       - 1password
     state: present
     update_homebrew: false
+
+- file:
+    name: /opt/1Password
+    state: directory
+  become: true
+
+- file:
+    src: /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+    dest: /opt/1Password/op-ssh-sign
+    state: link
+  become: true
