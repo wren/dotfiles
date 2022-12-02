@@ -15,4 +15,4 @@ if ! command -v ansible >/dev/null; then
 fi
 
 ansible-galaxy install -r requirements.yaml
-ansible-playbook "${DOTFILES_DIR}/dotfiles.yaml" --ask-become-pass "$@"
+ansible-playbook "${DOTFILES_DIR}/dotfiles.yaml" --ask-become-pass -i hosts "$@"
