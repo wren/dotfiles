@@ -18,24 +18,24 @@
     - role: spali.beautiful_output
     - {role: bootstrap, tags: bootstrap}
     - {role: encryption, tags: encryption}
-    - {role: 1password, tags: 1password}
-    - {role: age, tags: age}
-    - {role: asdf, tags: asdf}
+    - {role: 1password, tags: apps}
+    - {role: age, tags: cli}
+    - {role: asdf, tags: langs}
     - {role: bat, tags: cli}
-    - {role: discord, tags: discord}
-    - {role: doppler, tags: doppler}
+    - {role: discord, tags: apps}
+    - {role: doppler, tags: cli}
     - {role: fira-code-nerd-font, tags: fonts}
     - {role: monolisa-nerd-font, tags: fonts}
-    - {role: git, tags: git}
-    - {role: jrnl, tags: jrnl}
+    - {role: git, tags: cli}
+    - {role: jrnl, tags: cli}
     - {role: less, tags: cli}
     - {role: lolcat, tags: cli}
     - {role: neovim, tags: editor}
-    - {role: python, tags: python}
+    - {role: python, tags: langs}
     - {role: ripgrep, tags: cli}
-    - {role: slack, tags: slack}
+    - {role: slack, tags: apps}
     - {role: wezterm, tags: terminal}
-    - {role: zoom, tags: zoom}
+    - {role: zoom, tags: apps}
     - {role: zoxide, tags: cli}
     - {role: viu, tags: cli}
     - {role: zsh, tags: cli}
