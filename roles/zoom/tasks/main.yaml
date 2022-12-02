@@ -1,15 +1,13 @@
-- name: Installing Zoom
+- name: Installing Zoom (linux)
   flatpak:
     name: us.zoom.zoom
     method: system
   become: true
   when: ansible_os_family == "Debian"
 
-- name: Install 1password
+- name: Install Zoom (mac)
   homebrew_cask:
-    name:
-      - zoom
+    name: zoom
     state: present
     update_homebrew: false
   when: ansible_os_family == "Darwin"
-
