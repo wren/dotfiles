@@ -1,2 +1,7 @@
 collections:
   - name: community.general
+
+roles:
+  - name: spali.beautiful_output
+    src: https://github.com/spali/ansible_beautiful-output.git
+    version: master

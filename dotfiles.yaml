@@ -1,4 +1,5 @@
 - name: Bootstrap desktop environment
+  hosts: local
   vars:
     # general (probably don't edit)
     home: "{{ '~' | expanduser }}"
@@ -14,6 +15,7 @@
     github_user_name: wren
     email: jonathan@nowandwren.com
   roles:
+    - role: spali.beautiful_output
     - {role: bootstrap, tags: bootstrap}
     - {role: encryption, tags: encryption}
     - {role: 1password, tags: 1password}
