@@ -16,3 +16,9 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
+
+# Some apt-installed apps need this for no real reason
+- name: Create gnupg data home dir
+  file:
+    name: "{{ data_home }}/gnupg"
+    state: directory
