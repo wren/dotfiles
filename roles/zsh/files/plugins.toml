@@ -132,6 +132,7 @@ vim-mode-bindkey vicmd -- run-help           K
 vim-mode-bindkey vicmd -- fzf-history-widget '/'
 vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
 vim-mode-bindkey vicmd -- accept-line ZZ
+vim-mode-bindkey viins -- backward-delete-char '^[[127;2u' # shift+backspace
 
 # unbind the system clipboard widgets from delete, so
 # deleting actually deletes
