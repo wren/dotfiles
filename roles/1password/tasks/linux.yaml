@@ -10,4 +10,3 @@
     state: present
   become: true
   when: not bin_1password.stat.exists
-
