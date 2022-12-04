@@ -24,3 +24,8 @@
   when: not my_file.stat.exists
   command:
     cmd: age -i "$AGE_KEY_FILE" -o '{{ my_filename }}' -d '{{ encrypted_path }}'
+
+- name: Update permissions for decrypted file
+  file:
+    name: "{{ my_filename }}"
+    mode: 400
