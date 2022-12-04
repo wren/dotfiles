@@ -1,0 +1,6 @@
+- name: Install doppler cli
+  homebrew:
+    name:
+      - dopplerhq/cli/doppler
+    state: present
+    update_homebrew: false

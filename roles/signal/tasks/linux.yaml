@@ -1,0 +1,25 @@
+- name: Check if Signal is installed
+  check_mode: yes
+  stat:
+    path: /bin/signal-desktop
+  register: bin_signal
+
+- name: Install Signal
+  when: not bin_signal.stat.exists
+  block:
+    - name: Add Signal apt key
+      apt_key:
+        url: https://updates.signal.org/desktop/apt/keys.asc
+        state: present
+
+    - name: Add Signal repo to apt sources
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://updates.signal.org/desktop/apt any-version main
+        state: present
+
+    - name: Install Signal
+      become: true
+      apt:
+        name: signal-desktop
+        state: present
+        update_cache: true
