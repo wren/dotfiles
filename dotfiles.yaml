@@ -22,6 +22,7 @@
     - {role: age, tags: cli}
     - {role: asdf, tags: langs}
     - {role: bat, tags: cli}
+    - {role: borg-backup, tags: backups}
     - {role: discord, tags: apps}
     - {role: doppler, tags: cli}
     - {role: fira-code-nerd-font, tags: fonts}

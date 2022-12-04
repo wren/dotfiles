@@ -1,0 +1,7 @@
+- name: Install borg
+  homebrew:
+    name:
+      - borgbackup
+      - yq
+    state: present
+    update_homebrew: false

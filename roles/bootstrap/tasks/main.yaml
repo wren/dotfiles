@@ -9,5 +9,11 @@
     path: "{{ config_home }}/env"
     state: directory
 
+- name: Add path to cron file
+  cron:
+    name: PATH
+    env: yes
+    job: "{{ home }}/.local/bin:/usr/local/bin:$PATH"
+
 - name: Ensure pipx installation
   command: python3 -m pip install pipx

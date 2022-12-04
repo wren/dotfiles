@@ -1,0 +1,11 @@
+- name: Install borg
+  apt:
+    name: borgbackup
+    state: latest
+  become: true
+
+- name: Install yq
+  homebrew:
+    name: yq
+    state: present
+    update_homebrew: false

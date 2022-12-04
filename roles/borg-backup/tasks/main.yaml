@@ -1,0 +1,38 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create dirs
+  loop:
+    - "{{ config_home }}/backups"
+    - "{{ home }}/Backups"
+  file:
+    name: "{{ item }}"
+    state: directory
+
+- name: Link config file
+  file:
+    src: "{{ role_path }}/files/run-backup.yaml"
+    dest: "{{ config_home }}/backups/config.yaml"
+    state: link
+
+- name: Link ignore file
+  file:
+    src: "{{ role_path }}/files/run-backup.gitignore"
+    dest: "{{ config_home }}/backups/ignore"
+    state: link
+
+- name: Link bin file
+  file:
+    src: "{{ role_path }}/files/run-backup.sh"
+    dest: "{{ bin_home }}/run-backup"
+    mode: a+x
+    state: link
+
+- name: Install cron for hourly backups
+  cron:
+    name: run backups
+    minute: "0"
+    job: run-backup
