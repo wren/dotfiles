@@ -20,17 +20,9 @@ config.keys = {
   {key="p", mods="SUPER", action={SendKey={key="p", mods="CTRL"}}},
   {key="/", mods="SUPER", action={SendKey={key="/", mods="ALT"}}},
 
-  -- shift + enter
-  {key="\r", mods="SHIFT", action=wezterm.action{SendString="\x1b[13;2u"}},
-
-  -- shift + space breaks terminal
-  {key=" ", mods="SHIFT", action={SendKey={key=" "}}},
-
   -- splits
   {key="\\", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
   {key="-", mods="LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
-  {key="\\", mods="CTRL|LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
-  {key="-", mods="CTRL|LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
   {key="=", mods="LEADER", action="TogglePaneZoomState"},
 
   -- Pane navigation
@@ -39,6 +31,7 @@ config.keys = {
   {key="k", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Up"))},
   {key="l", mods="SUPER", action=wezterm.action_callback(_G.nav_nvim_split("Right"))},
 
+  -- Resize panes
   {key="h", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Left", 1}}},
   {key="j", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Down", 1}}},
   {key="k", mods="SUPER|SHIFT", action=wezterm.action{AdjustPaneSize={"Up", 1}}},
@@ -56,6 +49,9 @@ config.keys = {
   {key="UpArrow", mods="SHIFT", action=wezterm.action{ScrollToPrompt=-1}},
   {key="DownArrow", mods="SHIFT", action=wezterm.action{ScrollToPrompt=1}},
 
+  -- Some key combos that I hit often break the shell, so get rid of them
+  {key=" ", mods="SHIFT", action={SendKey={key=" "}}},
+  {key="Backspace", mods="SHIFT", action={SendKey={key="Backspace"}}},
 }
 
 return config
