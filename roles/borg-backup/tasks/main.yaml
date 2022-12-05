@@ -14,26 +14,26 @@
 
 - name: Link config file
   file:
-    src: "{{ role_path }}/files/run-backup.yaml"
+    src: "{{ role_path }}/files/config.yaml"
     dest: "{{ config_home }}/backups/config.yaml"
     state: link
 
 - name: Link ignore file
   file:
-    src: "{{ role_path }}/files/run-backup.gitignore"
+    src: "{{ role_path }}/files/main.gitignore"
     dest: "{{ config_home }}/backups/ignore"
     state: link
 
 - name: Link bin file
   file:
-    src: "{{ role_path }}/files/run-backup.sh"
+    src: "{{ role_path }}/files/bin/run-backup.sh"
     dest: "{{ bin_home }}/run-backup"
     mode: a+x
     state: link
 
 - name: Link borg-wrapper
   file:
-    src: "{{ role_path }}/files/borg-wrapper.sh"
+    src: "{{ role_path }}/files/bin/borg-wrapper.sh"
     dest: "{{ bin_home }}/borg-wrapper"
     mode: a+x
     state: link
