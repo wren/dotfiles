@@ -245,7 +245,6 @@ modmap(
 ###                                                     ###
 ###########################################################
 
-
 keymap(
     """
     Hyper key shortcuts
@@ -263,6 +262,8 @@ keymap(
         C("Hyper-I"):     C("Volumeup"),
         C("Hyper-O"):     C("Mute"),
         C("Hyper-Y"):     C("Shift-Alt-Super-Y"),  # Toggle tiling mode
+
+        #--- Workspaces ---#
         C("Hyper-1"):     switch_to_workspace(1),  # Change workspace
         C("Hyper-2"):     switch_to_workspace(2),  # Change workspace
         C("Hyper-3"):     switch_to_workspace(3),  # Change workspace
@@ -291,6 +292,9 @@ keymap(
         C("Hyper-Alt-I"): C("Shift-Alt-Super-I"), # maximize window
         C("Hyper-Alt-H"): C("Shift-Alt-Super-H"), # move window to left
         C("Hyper-Alt-L"): C("Shift-Alt-Super-L"), # move window to right
+
+        # C('Hyper-Super-K'): C('Page_Up'),
+        # C('Hyper-Super-J'): C('Page_Down'),
     },
     when = class_not_in_group(remotes)
 )
@@ -528,11 +532,6 @@ keymap(
 keymap(
     "All Terminals",
     {
-        ### wordwise overrides of general GUI block
-        C("Alt-Backspace"):     C("Alt-Shift-Backspace"),       # Wordwise delete word left of cursor in terminals
-        C("Alt-Delete"):        [ C("Esc"), C("d") ],           # Wordwise delete word right of cursor in terminals
-        C("Super-Backspace"):   C("C-u"),                       # Wordwise delete line left of cursor in terminals
-        C("Super-Delete"):      C("C-k"),                       # Wordwise delete line right of cursor in terminals
     },
     when = class_in_group(terminals)
 )
