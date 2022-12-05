@@ -3,6 +3,7 @@
 #--- System ---#
 alias mv="mv -iv"
 alias cp="cp -ivr"
+alias rm='rm -rv'
 alias mkdir="mkdir -pv"
 function cdp(){ mkdir -p "$@"; cd "$@"; }
 # alias rm='trash -v' # or: rm="rm -rv"
