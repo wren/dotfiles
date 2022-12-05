@@ -49,6 +49,7 @@ alias d.start='eval $(docker-machine env default)'
 alias d.exec='func{docker exec -it "$@";}; func'
 
 #--- Apps ---#
+alias b='borg-wrapper'
 alias f='fd --hidden' # find including hidden
 alias ff='fd -HI' # find all
 alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path

@@ -31,6 +31,13 @@
     mode: a+x
     state: link
 
+- name: Link borg-wrapper
+  file:
+    src: "{{ role_path }}/files/borg-wrapper.sh"
+    dest: "{{ bin_home }}/borg-wrapper"
+    mode: a+x
+    state: link
+
 - name: Install cron for hourly backups
   cron:
     name: run backups
