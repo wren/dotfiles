@@ -36,7 +36,7 @@
     - {role: ripgrep, tags: cli}
     - {role: signal, tags: apps}
     - {role: slack, tags: apps}
-    - {role: wezterm, tags: terminal}
+    - {role: wezterm, tags: apps}
     - {role: zoom, tags: apps}
     - {role: zoxide, tags: cli}
     - {role: viu, tags: cli}
