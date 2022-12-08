@@ -19,16 +19,25 @@
 - name: Link other git config files
   loop:
     - aliases
-    - allowed-signers
-    - attributes
     - color
     - core
     - diff-and-merge
     - format
-    - ignore
     - lfs
-    - mailmap
     - sign
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/config/{{ item }}"
+    dest: "{{ config_home }}/git/{{ item }}"
+    state: link
+    force: yes
+
+- name: Link other git files
+  loop:
+    - allowed-signers
+    - attributes
+    - ignore
+    - mailmap
+    - exiftool-args
   file:
     src: "{{ dotfiles_home }}/roles/git/files/{{ item }}"
     dest: "{{ config_home }}/git/{{ item }}"
