@@ -1,4 +1,4 @@
--- Better repeating with period command
+-- Split resizing
 local plugin = { 'mrjones2014/smart-splits.nvim' }
 
 plugin.keys = {
