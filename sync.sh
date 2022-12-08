@@ -8,7 +8,7 @@ export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/Dotfiles}"
 PATH=~/.local/bin:$PATH
 
 function print-header() {
-  printf -- "\n$(tput setaf 6)───── %s ─────$(tput sgr0)\n" "$@"
+  printf -- "$(tput setaf 6)───── %s ─────$(tput sgr0)\n" "$@"
 }
 
 if ! command -v ansible >/dev/null; then
