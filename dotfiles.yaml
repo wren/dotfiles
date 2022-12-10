@@ -31,7 +31,8 @@
     - {role: jrnl, tags: cli}
     - {role: less, tags: cli}
     - {role: lolcat, tags: cli}
-    - {role: neovim, tags: editor}
+    - {role: lunarvim, tags: editor}
+    # - {role: neovim, tags: editor} # vanilla neovim
     - {role: python, tags: langs}
     - {role: ripgrep, tags: cli}
     - {role: signal, tags: apps}

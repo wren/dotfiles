@@ -1,0 +1,40 @@
+- name: Create config directories
+  loop:
+    - lvim
+    - lvim/lua
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Link config files
+  file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
+    dest: "{{ config_home }}/lvim/config.lua"
+    state: link
+    force: true
+
+- loop:
+    - lunar
+    - plugins
+  file:
+    src: "{{ role_path }}/files/config/{{ item }}"
+    dest: "{{ config_home }}/lvim/lua/{{ item }}"
+    state: link
+    force: true
+
+- loop:
+    - after
+    - spell
+  file:
+    # borrow after and spell from vanilla neovim
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
+    dest: "{{ config_home }}/lvim/{{ item }}"
+    state: link
+    force: true
+
+- file:
+    # borrow core module from vanilla neovim
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/core"
+    dest: "{{ config_home }}/lvim/lua/core"
+    state: link
+    force: true

@@ -1,7 +1,5 @@
 - name: Create config directories
   loop:
-    - lvim
-    - lvim/lua
     - nvim
     - nvim/lua
   file:
@@ -29,9 +27,9 @@
     state: link
 
 - name: Link config files
-  file:
+- file:
     src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
-    dest: "{{ config_home }}/lvim/config.lua"
+    dest: "{{ config_home }}/nvim/init.lua"
     state: link
     force: true
 
@@ -44,35 +42,8 @@
     state: link
     force: true
 
-- loop:
-    - after
-    - spell
-  file:
-    src: "{{ role_path }}/files/config/{{ item }}"
-    dest: "{{ config_home }}/lvim/{{ item }}"
-    state: link
-    force: true
-
 - file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/basic.lua"
-    dest: "{{ config_home }}/nvim/init.lua"
-    state: link
-    force: true
-
-- loop:
-    - core
-  file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
-    dest: "{{ config_home }}/nvim/lua/{{ item }}"
-    state: link
-    force: true
-
-- loop:
-    - core
-    - lunar
-    - plugins
-  file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
-    dest: "{{ config_home }}/lvim/lua/{{ item }}"
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/core"
+    dest: "{{ config_home }}/nvim/lua/core"
     state: link
     force: true
