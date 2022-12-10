@@ -1,10 +1,20 @@
 - name: Create config directories
   loop:
     - lvim
+    - lvim/lua
     - nvim
+    - nvim/lua
   file:
     path: "{{ config_home }}/{{ item }}"
     state: directory
+
+- name: Link spelling dictionaries for different languages
+  loop:
+    - en
+    - es
+  file:
+    src: "{{ role_path }}/files/dictionaries/{{ item }}"
+    dest: "{{ data_home }}/nvim/spell/custom.{{ item }}.utf-8.add"
 
 - name: Link config files
   file:
@@ -20,10 +30,19 @@
     force: true
 
 - loop:
-    - lvim
-    - nvim
+    - core
   file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/config"
-    dest: "{{ config_home }}/{{ item }}/lua"
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
+    dest: "{{ config_home }}/nvim/lua/{{ item }}"
+    state: link
+    force: true
+
+- loop:
+    - core
+    - lunar
+    - plugins
+  file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
+    dest: "{{ config_home }}/lvim/lua/{{ item }}"
     state: link
     force: true
