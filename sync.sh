@@ -16,7 +16,7 @@ if ! command -v ansible >/dev/null; then
     # mac ships with pip, so we only install on linux
     sudo apt install python3-pip -y
   fi
-  python3 -m pip install ansible simplejson
+  python3 -m pip install ansible simplejson jmespath
 fi
 
 print-header 'Pre-reqs'
