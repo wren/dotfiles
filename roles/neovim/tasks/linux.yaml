@@ -1,5 +1,0 @@
-- name: Install neovim & friends
-  apt:
-    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-    state: present
-  become: true

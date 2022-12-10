@@ -1,10 +1,9 @@
-- import_tasks: mac.yaml
-  when: ansible_os_family == "Darwin"
+- import_tasks: version-check.yaml
 
-- import_tasks: linux.yaml
-  when: ansible_os_family == "Debian"
+- when: nvim_version_local is version(nvim_version_latest, '<' )
+  import_tasks: install.yaml
 
-- name: Creates directory
+- name: Create config directories
   loop:
     - lvim
     - nvim
@@ -12,26 +11,24 @@
     path: "{{ config_home }}/{{ item }}"
     state: directory
 
-- name: Link main git config file
+- name: Link config files
   file:
     src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
     dest: "{{ config_home }}/lvim/config.lua"
     state: link
-    force: yes
+    force: true
 
-- name: Link basic git config file
-  file:
+- file:
     src: "{{ dotfiles_home }}/roles/neovim/files/basic.lua"
     dest: "{{ config_home }}/nvim/init.lua"
     state: link
-    force: yes
+    force: true
 
-- name: Link neovim config dirs
-  loop:
+- loop:
     - lvim
     - nvim
   file:
     src: "{{ dotfiles_home }}/roles/neovim/files/config"
     dest: "{{ config_home }}/{{ item }}/lua"
     state: link
-    force: yes
+    force: true
