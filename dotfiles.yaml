@@ -15,7 +15,7 @@
     github_user_name: wren
     email: jonathan@nowandwren.com
   roles:
-    - role: spali.beautiful_output
+    - role: wren.beautiful_output
     - {role: bootstrap, tags: bootstrap}
     - {role: encryption, tags: encryption}
     - {role: 1password, tags: apps}
