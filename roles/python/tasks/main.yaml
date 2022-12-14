@@ -1,3 +1,6 @@
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
 - name: Install python plugin for asdf
   command: asdf plugin add python
   register: asdf_plugin_add_out

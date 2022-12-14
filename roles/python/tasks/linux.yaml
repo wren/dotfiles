@@ -1,0 +1,5 @@
+- name: Install reqs for system
+  apt:
+    name: libsqlite3-dev
+    state: latest
+  become: true
