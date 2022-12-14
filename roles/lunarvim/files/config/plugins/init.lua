@@ -1,6 +1,7 @@
 -- Change some builtin plugins active status --
 lvim.builtin.project.active = false
 lvim.builtin.terminal.active = true
+lvim.builtin.lir.active = false
 
 -- Additional config for builtin lunar plugins
 require 'plugins.bufferline'

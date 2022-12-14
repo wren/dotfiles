@@ -1,5 +1,6 @@
 local plugin = lvim.builtin.nvimtree
 
+plugin.setup.open_on_setup = true
 plugin.setup.renderer.icons.show.git = false
 plugin.setup.filters.custom = {
   "node_modules",
