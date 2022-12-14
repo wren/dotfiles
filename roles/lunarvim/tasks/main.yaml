@@ -8,10 +8,9 @@
 
 - name: Link config files
   file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
+    src: "{{ role_path }}/files/_main.lua"
     dest: "{{ config_home }}/lvim/config.lua"
     state: link
-    force: true
 
 - loop:
     - lunar
@@ -20,7 +19,6 @@
     src: "{{ role_path }}/files/config/{{ item }}"
     dest: "{{ config_home }}/lvim/lua/{{ item }}"
     state: link
-    force: true
 
 - loop:
     - after
@@ -30,11 +28,9 @@
     src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
     dest: "{{ config_home }}/lvim/{{ item }}"
     state: link
-    force: true
 
 - file:
     # borrow core module from vanilla neovim
     src: "{{ dotfiles_home }}/roles/neovim/files/config/core"
     dest: "{{ config_home }}/lvim/lua/core"
     state: link
-    force: true
