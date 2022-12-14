@@ -27,7 +27,7 @@
     state: link
 
 - name: Link config files
-- file:
+  file:
     src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
     dest: "{{ config_home }}/nvim/init.lua"
     state: link
