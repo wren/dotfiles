@@ -17,3 +17,5 @@
 
 - name: Ensure pipx installation
   command: python3 -m pip install pipx
+  register: pip_output
+  changed_when: "'Requirement already satisfied: pipx' not in pip_output.stdout"
