@@ -1,13 +1,5 @@
-- name: Installing Zoom (linux)
-  flatpak:
-    name: us.zoom.zoom
-    method: system
-  become: true
-  when: ansible_os_family == "Debian"
-
-- name: Install Zoom (mac)
-  homebrew_cask:
-    name: zoom
-    state: present
-    update_homebrew: false
+- import_tasks: mac.yaml
   when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"

@@ -1,0 +1,12 @@
+- name: Check if Zoom is installed
+  check_mode: yes
+  stat:
+    path: /bin/zoom
+  register: bin_zoom
+
+- name: Install Zoom (linux)
+  when: not bin_zoom.stat.exists
+  apt:
+    deb: https://zoom.us/client/latest/zoom_amd64.deb
+    state: present
+  become: true
