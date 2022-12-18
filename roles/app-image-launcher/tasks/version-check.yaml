@@ -1,0 +1,35 @@
+- name: Get release info from Github API
+  uri:
+    url: https://api.github.com/repos/TheAssassin/AppImageLauncher/releases
+    return_content: yes
+  register: json_content
+
+- name: Parse json from Github API - version
+  set_fact:
+    appimage_version_latest: "{{ json_content.json | json_query(tag_query) | regex_search(regex, '\\1') | first }}"
+  vars:
+    tag_query: '[?contains(tag_name, ''v'')].tag_name | [0]'
+    regex: 'v([0-9\\.]+)$'
+
+- name: Check if AppImageLauncher is installed
+  check_mode: yes
+  stat:
+    path: /bin/AppImageLaunchersss
+  register: bin_appimage
+
+- when: bin_appimage.stat.exists
+  block:
+    - name: Get AppImagelauncher version
+      changed_when: false
+      command: AppImageLauncher --appimagelauncher-version
+      register: appimage_output
+
+    - name: Parse version output
+      set_fact:
+        appimage_version_local: "{{ appimage_output.stderr | regex_search(regex, '\\1') | first }}"
+      vars:
+        regex: 'AppImageLauncher version ([0-9\\.]+) '
+
+- when: not bin_appimage.stat.exists
+  set_fact:
+    appimage_version_local: "0.0.0"

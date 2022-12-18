@@ -1,0 +1,4 @@
+- import_tasks: version-check.yaml
+
+- when: appimage_version_local is version(appimage_version_latest, '<' )
+  import_tasks: install.yaml
