@@ -52,8 +52,7 @@
         file_type: directory
       register: encrypted_dirs
 
-    - name: Decrypt each directory
-      include_tasks: decrypt_dir.yaml
+    - include_tasks: decrypt_dir.yaml
       loop: "{{ encrypted_dirs.files | map(attribute='path') | list }}"
       loop_control:
         loop_var: encrypted_dir_path

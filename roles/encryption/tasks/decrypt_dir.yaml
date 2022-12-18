@@ -1,12 +1,12 @@
 - debug:
     msg: "{{ encrypted_dir_path }}"
 
-- name: Ensure dir exists for {{ encrypted_dir_path | replace(dotfiles_home, '') }}
+- name: "Ensure dir exists: {{ encrypted_dir_path | replace(dotfiles_home, '.') }}"
   file:
     name: "{{ encrypted_dir_path | replace('.enc', '') }}"
     state: directory
 
-- name: Find files to decrypt for {{ encrypted_dir_path }}
+- name: "Find files: {{ encrypted_dir_path }}"
   find:
     recurse: false
     paths: "{{ encrypted_dir_path }}"
@@ -14,8 +14,7 @@
     file_type: file
   register: encrypted_files
 
-- name: Decrypt each file
-  include_tasks: decrypt_file.yaml
+- include_tasks: decrypt_file.yaml
   loop: "{{ encrypted_files.files | map(attribute='path') | list }}"
   loop_control:
     loop_var: encrypted_path
