@@ -4,9 +4,11 @@
 - import_tasks: linux.yaml
   when: ansible_os_family == "Debian"
 
-- name: Create config dirs
+- name: Create config dir
+  with_items:
+    - env
   file:
-    path: "{{ config_home }}/env"
+    path: "{{ config_home }}/{{ item }}"
     state: directory
 
 - name: Add path to cron file
