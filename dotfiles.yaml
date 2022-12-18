@@ -1,4 +1,4 @@
-- name: Bootstrap desktop environment
+- name: Bootstrap's bootstraps
   hosts: local
   vars:
     # general (probably don't edit)
