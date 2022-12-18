@@ -33,8 +33,3 @@
 - when: not bin_nvim.stat.exists
   set_fact:
     nvim_version_local: "0.0.0"
-
-- debug:
-    msg: |-
-      latest: {{ nvim_version_latest }}
-      local: {{ nvim_version_local }}

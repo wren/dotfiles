@@ -1,4 +1,4 @@
-- name: Install bat
+- name: Install
   loop:
     - bat
     - shfmt

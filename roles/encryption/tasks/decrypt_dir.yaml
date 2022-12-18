@@ -1,6 +1,3 @@
-- debug:
-    msg: "{{ encrypted_dir_path }}"
-
 - name: "Ensure dir exists: {{ encrypted_dir_path | replace(dotfiles_home, '.') }}"
   file:
     name: "{{ encrypted_dir_path | replace('.enc', '') }}"
