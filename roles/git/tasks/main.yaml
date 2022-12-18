@@ -9,14 +9,14 @@
     path: "{{ config_home }}/git"
     state: directory
 
-- name: Link main git config file
+- name: "Link config: main"
   file:
     src: "{{ dotfiles_home }}/roles/git/files/_main"
     dest: "{{ config_home }}/git/config"
     state: link
     force: yes
 
-- name: Link other git config files
+- name: Link config
   loop:
     - aliases
     - color
@@ -31,7 +31,7 @@
     state: link
     force: yes
 
-- name: Link other git files
+- name: Link config
   loop:
     - allowed-signers
     - attributes
@@ -44,7 +44,7 @@
     state: link
     force: yes
 
-- name: Update config file with user info
+- name: "Link config (template): user"
   template:
     src: user.j2
     dest: "{{ config_home }}/git/user"

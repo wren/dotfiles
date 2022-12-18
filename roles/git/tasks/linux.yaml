@@ -1,5 +1,5 @@
-- name: Install git & friends
-  loop:
+- name: Install
+  with_items:
     - git
     - git-extras
     - git-filter-repo
@@ -12,9 +12,8 @@
     state: present
   become: true
 
-- name: Install from homebrew
+- name: "Install: diff-so-fancy"
   homebrew:
-    name:
-      - diff-so-fancy
+    name: diff-so-fancy
     state: present
     update_homebrew: false

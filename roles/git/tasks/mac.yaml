@@ -1,11 +1,12 @@
-- name: Install from homebrew
-  homebrew:
-    name:
+- name: Install
+  with_items:
       - git
       - git-extras
       - git-filter-repo
       - git-lfs
       - imagemagick
       - diff-so-fancy
+  homebrew:
+    name: "{{ item }}"
     state: present
     update_homebrew: false
