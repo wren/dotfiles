@@ -1,0 +1,31 @@
+- name: Create config dir
+  file:
+    name: "{{ config_home }}/qmk"
+    state: directory
+
+- name: Create data dir
+  file:
+    name: "{{ data_home }}/qmk"
+    state: directory
+
+- name: Link config
+  file:
+    src: "{{ role_path }}/files/main.ini"
+    dest: "{{ config_home }}/qmk/qmk.ini"
+    state: link
+
+- name: 'Install: qmk'
+  community.general.pipx:
+    name: qmk
+
+- name: Clone firmware repo
+  git:
+    repo: https://github.com/wren/qmk_firmware.git
+    dest: "{{ data_home }}/qmk"
+
+- name: Run setup command
+  command:
+    cmd: qmk setup --yes
+  register: qmk_setup_output
+  changed_when: "'QMK is ready to go' not in qmk_setup_output.stderr"
+
