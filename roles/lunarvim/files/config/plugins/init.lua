@@ -56,6 +56,7 @@ require 'plugins.symbols-outline'
 require 'plugins.indentline'
 require 'plugins.editorconfig'
 require 'plugins.null-ls'
+require 'plugins.glance'
 
 -- Writing --
 require 'plugins.jrnl'
