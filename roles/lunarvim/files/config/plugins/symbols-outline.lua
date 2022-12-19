@@ -9,9 +9,6 @@ plugin.cmd = {
 
 plugin.setup = function()
   -- Keymap --
-  -- local silent = { silent = true }
-  -- map('n', '<localleader>s', ':SymbolsOutline<CR>', silent)
-
   which_key_register_if_loaded({
     ['<localleader>s'] = { ':SymbolsOutline<cr>', 'Symbols Toggle' }
   })
@@ -22,9 +19,9 @@ plugin.config = function()
   require("symbols-outline").setup({
     highlight_hovered_item = true,
     show_guides = true,
-    auto_preview = true,
+    auto_preview = false,
     position = 'right',
-    -- width = 50,
+    width = 32,
     show_numbers = false,
     show_relative_numbers = false,
     show_symbol_details = true,
@@ -46,33 +43,33 @@ plugin.config = function()
     lsp_blacklist = {},
     symbol_blacklist = {},
     symbols = {
-      File          =  { icon = ""    , hl = "TSURI"         }  ,
-      Module        =  { icon = ""    , hl = "TSNamespace"   }  ,
-      Namespace     =  { icon = ""    , hl = "TSNamespace"   }  ,
-      Package       =  { icon = ""    , hl = "TSNamespace"   }  ,
-      Class         =  { icon = "𝓒"    , hl = "TSType"        }  ,
-      Method        =  { icon = "ƒ"    , hl = "TSMethod"      }  ,
-      Property      =  { icon = ""    , hl = "TSMethod"      }  ,
-      Field         =  { icon = ""    , hl = "TSField"       }  ,
-      Constructor   =  { icon = ""    , hl = "TSConstructor" }  ,
-      Enum          =  { icon = "ℰ"    , hl = "TSType"        }  ,
-      Interface     =  { icon = "ﰮ"    , hl = "TSType"        }  ,
-      Function      =  { icon = ""    , hl = "TSFunction"    }  ,
-      Variable      =  { icon = ""    , hl = "TSConstant"    }  ,
-      Constant      =  { icon = ""    , hl = "TSConstant"    }  ,
-      String        =  { icon = "𝓐"    , hl = "TSString"      }  ,
-      Number        =  { icon = "#"    , hl = "TSNumber"      }  ,
-      Boolean       =  { icon = "⊨"    , hl = "TSBoolean"     }  ,
-      Array         =  { icon = ""    , hl = "TSConstant"    }  ,
-      Object        =  { icon = "⦿"    , hl = "TSType"        }  ,
-      Key           =  { icon = "🔐"   , hl = "TSType"        }  ,
-      Null          =  { icon = "NULL" , hl = "TSType"        }  ,
-      EnumMember    =  { icon = ""    , hl = "TSField"       }  ,
-      Struct        =  { icon = "𝓢"    , hl = "TSType"        }  ,
-      Event         =  { icon = "🗲"    , hl = "TSType"        }  ,
-      Operator      =  { icon = "+"    , hl = "TSOperator"    }  ,
-      TypeParameter =  { icon = "𝙏"    , hl = "TSParameter"   }  ,
-    }
+      File = {hl = "@text.uri" },
+      Module = {hl = "@namespace" },
+      Namespace = {hl = "@namespace" },
+      Package = {hl = "@namespace" },
+      Class = {hl = "@type" },
+      Method = {hl = "@method" },
+      Property = {hl = "@method" },
+      Field = {hl = "@field" },
+      Constructor = {hl = "@constructor" },
+      Enum = {hl = "@type" },
+      Interface = {hl = "@type" },
+      Function = {hl = "@function" },
+      Variable = {hl = "@constant" },
+      Constant = {hl = "@constant" },
+      String = {hl = "@string" },
+      Number = {hl = "@number" },
+      Boolean = {hl = "@boolean" },
+      Array = {hl = "@constant" },
+      Object = {hl = "@type" },
+      Key = {hl = "@type" },
+      Null = {hl = "@type" },
+      EnumMember = {hl = "@field" },
+      Struct = {hl = "@type" },
+      Event = {hl = "@type" },
+      Operator = {hl = "@operator" },
+      TypeParameter = {hl = "@parameter" },
+    },
   })
 end
 
