@@ -23,6 +23,7 @@ require 'plugins.onedark'
 require 'plugins.easyalign'
 -- require 'plugins.visual-multi'
 require 'plugins.interestingwords'
+require 'plugins.scrollbar'
 
 -- Navigation --
 require 'plugins.bqf' -- "better quick fix"
