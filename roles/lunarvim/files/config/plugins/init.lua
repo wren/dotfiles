@@ -57,6 +57,7 @@ require 'plugins.indentline'
 require 'plugins.editorconfig'
 require 'plugins.null-ls'
 require 'plugins.glance'
+require 'plugins.dial'
 
 -- Writing --
 require 'plugins.jrnl'
