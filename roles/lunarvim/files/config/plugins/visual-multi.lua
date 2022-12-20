@@ -6,9 +6,11 @@
 local plugin = { 'mg979/vim-visual-multi' }
 
 plugin.keys = {
-  '<c-m-j>',
-  '<c-m-k>',
+  '<c-a-j>',
+  '<c-a-k>',
   '<c-n>',
+  '<c-down>',
+  '<c-up>',
 }
 
 plugin.setup = function()
@@ -28,10 +30,12 @@ plugin.setup = function()
   cmd [[ let g:VM_maps = {} ]]
 
   g.VM_maps = {
-    ['Add Cursor Down'] = '<S-C-J>',
-    ['Add Cursor Up'] = '<S-C-K>',
-    ['Reselect Last'] = with_leader('h'),
-    ['Select All'] = with_leader('*'),
+    ["Add Cursor Down"]= '<c-m-j>',
+    ["Add Cursor Up"]= '<c-m-k>',
+    ["Reselect Last"]= with_leader('h'),
+    ["Select All"]= with_leader('*'),
+    ["Undo"]= 'u',
+    ["Redo"]= 'U',
   }
 
   g.VM_custom_noremaps = {
