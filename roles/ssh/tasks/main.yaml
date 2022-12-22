@@ -1,0 +1,35 @@
+- name: Create config dir
+  with_items:
+    - .ssh
+    - .ssh/configs
+  file:
+    name: "{{ home }}/{{ item }}"
+    state: directory
+
+- name: Link main config
+  file:
+    src: "{{ role_path }}/files/main.ssh_config"
+    dest: "{{ home }}/.ssh/config"
+    state: link
+
+- name: Link config
+  with_fileglob: "{{ role_path }}/files/configs/*"
+  file:
+    src: "{{ item }}"
+    dest: "{{ home }}/.ssh/configs/{{ item | basename | splitext | first }}"
+    state: link
+
+- name: Check if ssh key exists
+  stat:
+    path: "{{ home }}/.ssh/id_ed25519"
+  register: ssh_key
+
+- name: Create ssh key
+  when: not ssh_key.stat.exists
+  command:
+    cmd: |-
+      ssh-keygen -o -a 100
+      -t ed25519
+      -f "{{ home }}/.ssh/id_ed25519"
+      -C "{{ email }}"
+      -N ""

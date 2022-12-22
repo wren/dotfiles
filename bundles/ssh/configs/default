@@ -1,8 +1,1 @@
-# Add config entries for SSH here. You can have as many files
-# in this directory as you want for organization.
-
-#----- Hosts -----#
-
-Host github
-  Hostname github.com
-  User git
+/home/jonathan/Dotfiles/roles/ssh/files/configs/default.ssh_config
