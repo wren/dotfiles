@@ -2,4 +2,3 @@
   homebrew:
     name: zoxide
     state: present
-
