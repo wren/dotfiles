@@ -3,9 +3,9 @@ local config = {}
 local wezterm = require 'wezterm'
 
 local my_font = wezterm.font_with_fallback({
-  {family="MonoLisa Nerd Font", weight="Light"},
-  {family="FiraCode Nerd Font", weight="Light"},
-  {family="Noto Color Emoji"},
+  { family = "MonoLisa Nerd Font", weight = "Light" },
+  { family = "FiraCode Nerd Font", weight = "Light" },
+  { family = "Noto Color Emoji" },
 })
 
 
