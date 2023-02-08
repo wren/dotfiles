@@ -1,7 +1,7 @@
 -- Syntax highlighting for jrnl files
 local plugin = { 'wren/jrnl.vim' }
 
-plugin.opt = false
+plugin.lazy = false
 plugin.branch = 'rework-structure-5'
 
 table.insert(lvim.plugins, plugin)

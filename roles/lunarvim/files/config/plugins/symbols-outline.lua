@@ -7,7 +7,7 @@ plugin.cmd = {
   'SymbolsOutlineClose',
 }
 
-plugin.setup = function()
+plugin.init = function()
   -- Keymap --
   which_key_register_if_loaded({
     ['<localleader>s'] = { ':SymbolsOutline<cr>', 'Symbols Toggle' }

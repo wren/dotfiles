@@ -13,7 +13,7 @@ plugin.keys = {
   '<c-up>',
 }
 
-plugin.setup = function()
+plugin.init = function()
 
   -- Keymap
   g.VM_leader = '<leader>m'

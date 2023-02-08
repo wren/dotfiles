@@ -1,7 +1,7 @@
 
 local plugin = { 'iamcco/markdown-preview.nvim' }
 plugin.ft ={ 'jrnl', 'markdown' }
-plugin.run = 'cd app && yarn install'
+plugin.build = 'cd app && yarn install'
 
 plugin.config = function()
 

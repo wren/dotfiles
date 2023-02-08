@@ -3,7 +3,7 @@ local plugin = { 'DNLHC/glance.nvim' }
 
 plugin.cmd = 'Glance'
 
-plugin.setup = function()
+plugin.init = function()
   -- Keymap --
   which_key_register_if_loaded({
     ['<localleader>g'] = {

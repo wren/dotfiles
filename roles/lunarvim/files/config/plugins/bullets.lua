@@ -11,7 +11,7 @@ g.bullets_enabled_file_types = {
   'jrnl',
 }
 
-plugin.setup = function()
+plugin.init = function()
   g.bullets_checkbox_markers = ' .x'
   g.bullets_enable_in_empty_buffers = 1
   g.bullets_mapping_leader = ''
