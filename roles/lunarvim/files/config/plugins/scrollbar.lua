@@ -54,7 +54,7 @@ plugin.config = function()
       diagnostic = true,
       gitsigns = true, -- Requires gitsigns
       handle = true,
-      search = true, -- Requires hlslens
+      search = false, -- Requires hlslens
     },
   })
 end
