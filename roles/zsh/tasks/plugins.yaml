@@ -1,0 +1,22 @@
+- name: Install plugin manager
+  homebrew:
+    name:
+      - sheldon
+    state: present
+    update_homebrew: false
+
+- name: Creating plugin manager config dir
+  file:
+    path: "{{ config_home }}/sheldon"
+    state: directory
+
+- name: Linking plugin manager's config file
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/plugins.toml"
+    dest: "{{ config_home }}/sheldon/plugins.toml"
+    state: link
+
+- name: Locking in shell plugins
+  command: sheldon lock
+  register: sheldon_output
+  changed_when: "'CLONED' in sheldon_output.stderr"

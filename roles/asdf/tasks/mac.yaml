@@ -1,0 +1,7 @@
+- name: Install extras from homebrew
+  homebrew:
+    name:
+      - direnv
+      - asdf
+    state: present
+    update_homebrew: false

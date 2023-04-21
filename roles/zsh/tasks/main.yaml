@@ -1,0 +1,8 @@
+- import_tasks: "{{ dotfiles_home }}/roles/zsh/tasks/mac.yaml"
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: "{{ dotfiles_home }}/roles/zsh/tasks/linux.yaml"
+  when: ansible_os_family == "Debian"
+
+- import_tasks: "{{ dotfiles_home }}/roles/zsh/tasks/config.yaml"
+- import_tasks: "{{ dotfiles_home}}/roles/zsh/tasks/plugins.yaml"

@@ -1,0 +1,2 @@
+# Z
+eval "$(zoxide init zsh --cmd c)"

@@ -1,8 +1,0 @@
-- create:
-    - ~/.config/fd
-
-- link:
-    ~/.config/fd/ignore: ignore
-
-- brew:
-    - "fd"

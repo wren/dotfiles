@@ -1,0 +1,13 @@
+- name: Install prereqs for asdf
+  apt:
+    name:
+      - libssl-dev
+      - direnv
+  become: true
+
+- name: Link asdf completions
+  become: true
+  file:
+    src: "{{ home }}/.local/opt/asdf-vm/completions/_asdf"
+    dest: /usr/share/zsh/functions/Completion/_asdf
+    state: link

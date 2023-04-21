@@ -1,0 +1,67 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Ensure config dirs
+  loop:
+    - bat
+    - batpipe
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Linking bat config file
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/bat.config"
+    dest: "{{ config_home }}/bat/bat.config"
+    state: link
+
+- name: Linking batpipe config dir
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/viewers"
+    dest: "{{ config_home }}/batpipe/viewers.d"
+    state: link
+
+- name: Check if batpipe exists
+  check_mode: yes
+  stat:
+    path: /usr/local/bin/batpipe
+  register: batpipe
+
+- name: Get bat-extras
+  when: not batpipe.stat.exists
+  block:
+  - name: Clone bat-extras repository
+    git:
+      repo: https://github.com/eth-p/bat-extras.git
+      dest: /tmp/bat-extras
+
+  - name: Build bat-extras
+    command:
+      cmd: ./build.sh
+      chdir: /tmp/bat-extras
+
+  - name: Copy batpipe into /bin
+    loop:
+      - bat-modules
+      - batdiff
+      - batgrep
+      - batman
+      - batpipe
+      - batwatch
+      - prettybat
+    copy:
+      src: '/tmp/bat-extras/bin/{{ item }}'
+      dest: '/usr/local/bin/{{ item }}'
+      mode: 'a+x'
+      force: yes
+    become: true
+
+- name: Linking env
+  file:
+    src: "{{ dotfiles_home }}/roles/bat/files/env"
+    dest: "{{ config_home }}/env/bat.env.sh"
+    state: link
+

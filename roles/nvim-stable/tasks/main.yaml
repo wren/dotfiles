@@ -1,0 +1,4 @@
+- import_tasks: version-check.yaml
+
+- when: nvim_version_local is version(nvim_version_latest, '<' )
+  import_tasks: install.yaml

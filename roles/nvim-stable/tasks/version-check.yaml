@@ -1,0 +1,35 @@
+- name: Get Neovim releases info from Github API
+  uri:
+    url: https://api.github.com/repos/neovim/neovim/releases
+    return_content: yes
+  register: json_content
+
+- name: Parse json from Github API
+  set_fact:
+    nvim_version_latest: "{{ json_content.json | json_query(tag_query) | regex_search(regex, '\\1') | first }}"
+  vars:
+    tag_query: '[?contains(tag_name, ''v'')].tag_name | [0]'
+    regex: 'v([0-9\\.]+)$'
+
+- name: Check if Neovim is installed
+  check_mode: yes
+  stat:
+    path: /usr/local/bin/nvim
+  register: bin_nvim
+
+- when: bin_nvim.stat.exists
+  block:
+    - name: Run `nvim --version`
+      changed_when: false
+      command: /usr/local/bin/nvim --version
+      register: nvim_output
+
+    - name: Parse version output
+      set_fact:
+        nvim_version_local: "{{ nvim_output.stdout_lines[0] | regex_search(regex, '\\1') | first }}"
+      vars:
+        regex: ' v([0-9\\.]+)$'
+
+- when: not bin_nvim.stat.exists
+  set_fact:
+    nvim_version_local: "0.0.0"

@@ -1,0 +1,10 @@
+- import_tasks: "{{ dotfiles_home }}/roles/zoxide/tasks/mac.yaml"
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: "{{ dotfiles_home }}/roles/zoxide/tasks/linux.yaml"
+  when: ansible_os_family == "Debian"
+
+- file:
+    src: "{{ dotfiles_home }}/roles/zoxide/files/env"
+    dest: "{{ config_home }}/env/zoxide.env.sh"
+    state: link

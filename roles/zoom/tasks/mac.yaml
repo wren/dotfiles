@@ -1,0 +1,5 @@
+- name: Install Zoom (mac)
+  homebrew_cask:
+    name: zoom
+    state: present
+    update_homebrew: false

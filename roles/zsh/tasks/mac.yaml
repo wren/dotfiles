@@ -1,0 +1,10 @@
+- name: Install from homebrew
+  homebrew:
+    name:
+      - zsh
+      - exa
+      - ripgrep
+      - vivid
+    state: present
+    update_homebrew: false
+

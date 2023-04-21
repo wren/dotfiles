@@ -1,0 +1,63 @@
+- when: ansible_os_family == "Darwin"
+  set_fact:
+    nvim_bin_name: macos
+
+- when: ansible_os_family == "Debian"
+  set_fact:
+    nvim_bin_name: linux64
+
+- name: Create directories
+  loop:
+    - nvim
+    - nvim/stable
+  file:
+    path: /usr/local/src/{{ item }}
+    state: directory
+  become: true
+
+- name: Check if version already downloaded
+  stat:
+    path: /usr/local/src/nvim/stable/v{{ nvim_version_latest }}
+  register: nvim_stable_dir
+
+- name: Download Neovim version
+  when: not nvim_stable_dir.stat.exists
+  block:
+    - name: Create temp directory for source
+      changed_when: false
+      tempfile:
+        state: directory
+        suffix: .nvim.{{ nvim_bin_name }}
+      register: nvim_temp_dir
+
+    - name: Download Neovim source
+      get_url:
+        url: https://github.com/neovim/neovim/releases/download/v{{ nvim_version_latest }}/nvim-{{ nvim_bin_name }}.tar.gz
+        dest: "{{ nvim_temp_dir.path }}"
+
+    - name: Extract souce tarball
+      command:
+        cmd: tar -xzf nvim-{{ nvim_bin_name }}.tar.gz
+        chdir: "{{ nvim_temp_dir.path }}"
+      become: true
+
+    - name: Copy source to final directory
+      become: true
+      command:
+        cmd: mv {{ nvim_temp_dir.path }}/nvim-{{ nvim_bin_name }} /usr/local/src/nvim/stable/v{{ nvim_version_latest }}
+
+- name: Link latest download for convenience
+  become: true
+  file:
+    src: /usr/local/src/nvim/stable/v{{ nvim_version_latest }}
+    dest: /usr/local/src/nvim/stable/latest
+    state: link
+    force: true
+
+- name: Link Neovim bin
+  become: true
+  file:
+    src: /usr/local/src/nvim/stable/latest/bin/nvim
+    dest: /usr/local/bin/nvim
+    state: link
+    force: true

@@ -1,0 +1,6 @@
+- name: Install ripgrep (mac)
+  homebrew:
+    name:
+      - ripgrep
+    state: present
+    update_homebrew: false

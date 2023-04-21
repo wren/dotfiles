@@ -1,0 +1,13 @@
+[Unit]
+Description=keyszer
+
+[Service]
+Type=simple
+KillMode=process
+ExecStart=/bin/sudo /home/jonathan/.local/bin/keyszer --watch --very-bad-idea -c /home/jonathan/.config/keyszer/config.py
+Restart=on-failure
+RestartSec=3
+Environment=DISPLAY=:1
+
+[Install]
+WantedBy=graphical.target

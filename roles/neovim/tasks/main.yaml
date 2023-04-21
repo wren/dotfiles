@@ -1,0 +1,49 @@
+- name: Create config directories
+  loop:
+    - nvim
+    - nvim/lua
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Create data directories
+  loop:
+    - sessions
+    - shada
+    - spell
+    - swap
+    - undo
+  file:
+    path: "{{ data_home }}/nvim/{{ item }}"
+    state: directory
+
+- name: Link spelling dictionaries for different languages
+  loop:
+    - en
+    - es
+  file:
+    src: "{{ role_path }}/files/dictionaries/{{ item }}.dict"
+    dest: "{{ data_home }}/nvim/spell/custom.{{ item }}.utf-8.add"
+    state: link
+
+- name: Link config files
+  file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/_main.lua"
+    dest: "{{ config_home }}/nvim/init.lua"
+    state: link
+    force: true
+
+- loop:
+    - after
+    - spell
+  file:
+    src: "{{ role_path }}/files/config/{{ item }}"
+    dest: "{{ config_home }}/nvim/{{ item }}"
+    state: link
+    force: true
+
+- file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/core"
+    dest: "{{ config_home }}/nvim/lua/core"
+    state: link
+    force: true

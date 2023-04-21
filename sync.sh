@@ -1,39 +1,26 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -e
-# Sets up and runs dotbot + plugins
+# Sets up and runs ansible
 
 # Config Options
 export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/Dotfiles}"
-export DOTBOT_CONFIG="$DOTFILES_DIR/config.yaml"
-export DOTBOT_DEFAULTS="$DOTFILES_DIR/defaults.yaml"
-export DOTBOT_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotbot"
 
-# Check dotbot directory
-print -P "%F{006}───── DOTBOT AND PLUGINS ─────%f"
-if ! git -C $DOTBOT_DIR rev-parse; then
-  # mkdir -p $DOTBOT_DIR
-  git clone https://github.com/wren/dotfiles-dotbot.git $DOTBOT_DIR
-fi
-cd $DOTBOT_DIR
-git pull --force origin main
-git submodule update --init --recursive
+PATH=~/.local/bin:$PATH
 
-# Build command to include plugins
-CMD="python3 $DOTBOT_DIR/dotbot/bin/dotbot"
-for dir in $DOTBOT_DIR/plugins/*; do
-  CMD+=" --plugin-dir=$dir"
-done
-CMD+=' --quiet'
-# CMD+=' --verbose'
+function print-header() {
+  printf -- "$(tput setaf 6)───── %s ─────$(tput sgr0)\n" "$@"
+}
 
-export DOTBOT_CMD=$CMD
-
-# Run dotbot
-if [[ ! -d $DOTFILES_DIR ]]; then
-  # Probably first run
-  url='https://raw.githubusercontent.com/wren/dotfiles/main'
-  ${=CMD} --only git -c <(curl -s "$url/defaults.yaml" && curl -s "$url/config.yaml") "$@" || true
+if ! command -v ansible >/dev/null; then
+  if ! command -v pip >/dev/null; then
+    # mac ships with pip, so we only install on linux
+    sudo apt install python3-pip -y
+  fi
+  python3 -m pip install ansible simplejson jmespath
 fi
 
-${=CMD} -d $DOTFILES_DIR -c <(cat $DOTBOT_DEFAULTS $DOTBOT_CONFIG) "$@" || true
+print-header 'Pre-reqs'
+ansible-galaxy install -r requirements.yaml
 
+print-header 'Tasks'
+ansible-playbook "${DOTFILES_DIR}/dotfiles.yaml" --ask-become-pass -i hosts "$@"

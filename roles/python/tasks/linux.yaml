@@ -1,0 +1,8 @@
+- name: Install reqs for system
+  with_items:
+    - libsqlite3-dv
+    - dbus-x11
+  apt:
+    name: "{{ item }}"
+    state: latest
+  become: true

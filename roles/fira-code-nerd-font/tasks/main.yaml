@@ -1,0 +1,37 @@
+- set_fact:
+      font_dir: /usr/local/share/fonts
+  when: ansible_os_family == "Debian"
+
+- set_fact:
+      font_dir: "{{ home }}/Library/Fonts"
+  when: ansible_os_family == "Darwin"
+
+- name: Ensure user fonts dir exists
+  file:
+    path: "{{ font_dir }}"
+    state: directory
+
+- name: Check if Fira Code Nerd Font exists
+  check_mode: true
+  stat:
+    path: "{{ font_dir }}/Fira Code Retina Nerd Font Complete.ttf"
+  register: fira_code_font
+
+- name: Install font - Fira Code Nerd Font
+  when: not fira_code_font.stat.exists
+  block:
+    - name: Get download url for Fira Code font
+      uri:
+        url: https://github.com/ryanoasis/nerd-fonts/releases/latest/
+        follow_redirects: safe
+      register: fira_code_get_url
+
+    - set_fact:
+        fira_code_version: "{{ fira_code_get_url.url | regex_search('/(v[0-9\\.]+)$', '\\1') | first }}"
+
+    - name: Download Fira Code Nerd Font {{ fira_code_version }}
+      become: true
+      unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ fira_code_version }}/FiraCode.zip
+        dest: "{{ font_dir }}"
+        remote_src: true

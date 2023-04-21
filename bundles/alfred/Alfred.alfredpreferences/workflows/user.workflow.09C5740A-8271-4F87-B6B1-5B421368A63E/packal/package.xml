@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>Movie and TV Show Search</name>
-  <version>2.5</version>
-  <bundle>com.mcknight.movies</bundle>
-  <updated>1511793497</updated>
-  <file>movie_and_tv_show_search.alfredworkflow</file>
-</workflow>

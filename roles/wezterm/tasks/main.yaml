@@ -1,0 +1,28 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/wezterm"
+    state: directory
+
+- name: Link main wezterm config file
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/_main.lua"
+    dest: "{{ config_home }}/wezterm/wezterm.lua"
+    state: link
+
+- name: Link wezterm config dir
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/config"
+    dest: "{{ config_home }}/wezterm/config"
+    state: link
+
+- name: Link wezterm background image
+  file:
+    src: "{{ dotfiles_home }}/roles/wezterm/files/bg_terminal.png"
+    dest: "{{ config_home }}/wezterm/bg_terminal.png"
+    state: link

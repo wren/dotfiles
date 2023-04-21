@@ -1,0 +1,7 @@
+collections:
+  - name: community.general
+
+roles:
+  - name: wren.beautiful_output
+    src: https://github.com/wren/ansible-beautiful-output.git
+    version: main

@@ -1,0 +1,22 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/ripgrep"
+    state: directory
+
+- name: Update config file with user info
+  template:
+    src: _main.txt.j2
+    dest: "{{ config_home }}/ripgrep/ripgrep.config"
+
+- name: Link ripgrep ignore file
+  file:
+    src: "{{ dotfiles_home }}/roles/ripgrep/files/global.gitignore"
+    dest: "{{ config_home }}/ripgrep/ignore"
+    state: link
+    force: yes

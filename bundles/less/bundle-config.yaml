@@ -1,8 +1,0 @@
-- brew:
-    - "less" # Pager program similar to more
-
-- create:
-    - ~/.config/less
-
-- link:
-    ~/.config/less/lesskey.conf: lesskey.conf

@@ -1,0 +1,23 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/fd"
+    state: directory
+
+- name: Link fd ignore file
+  file:
+    src: "{{ dotfiles_home }}/roles/fd/files/global.gitignore"
+    dest: "{{ config_home }}/fd/ignore"
+    state: link
+
+- name: Link fdfind -> fd
+  file:
+    src: /bin/fdfind
+    dest: /bin/fd
+    state: link
+  become: true

@@ -1,0 +1,23 @@
+- name: Install z-shell & friends
+  loop:
+    - zsh
+    - exa
+    - ripgrep
+    - zoxide
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+
+- name: Check if vivid is installed
+  check_mode: yes
+  stat:
+    path: /bin/vivid
+  register: bin_vivid
+
+- name: Install vivid
+  apt:
+    deb: https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb
+    state: present
+  become: true
+  when: not bin_vivid.stat.exists

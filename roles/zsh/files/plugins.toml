@@ -1,0 +1,167 @@
+# `sheldon` configuration file
+# ----------------------------
+
+shell = "zsh"
+
+[templates]
+noop = ':'
+chmodx = 'chmod +x "{{ dir }}/"*'
+defer = '{% for file in files %}zsh-defer source "{{ file }}"{% endfor %}'
+path = 'path=( "{{ dir }}" $path )'
+path-bin = 'path=( "{{ dir }}/bin" $path )'
+
+[plugins]
+
+# 2-3ms
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+# 7-8ms
+# doesn't support defer
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+
+# 8ms
+# fzf-tab needs to be loaded after compinit, but before plugins which will wrap
+# widgets, such as zsh-autosuggestions or fast-syntax-highlighting!
+[plugins.fzf-tab]
+github = 'aloxaf/fzf-tab'
+apply = ['defer']
+
+[plugins.fzf-history]
+inline = '[ -f "/usr/local/opt/fzf/shell/key-bindings.zsh" ] && source "/usr/local/opt/fzf/shell/key-bindings.zsh"'
+
+[plugins.prezto-modules]
+inline = '''
+  zstyle :prezto:load pmodule \
+    editor \
+    terminal
+
+  zstyle :prezto:module:editor key-bindings vi
+  zstyle :prezto:module:editor dot-expansion yes
+'''
+
+# defer breaks this (terminal crashes on any keystroke)
+[plugins.prezto]
+github = 'sorin-ionescu/prezto'
+use = ['/init.zsh']
+
+# 0-1ms
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+apply = ['defer']
+
+# 6ms
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+
+# 24ms
+# breaks with defer
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+# 0ms
+[plugins.zsh-autosuggestions-config]
+inline = '''
+unset ZSH_AUTOSUGGEST_USE_ASYNC
+'''
+
+# 22ms (noop fixes it)
+[plugins.forgit]
+github = 'wfxr/forgit'
+apply = ['path-bin']
+
+# 0ms
+[plugins.forgit-config]
+inline = '''
+export FORGIT_NO_ALIASES=1
+export FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+export FORGIT_INSTALL_DIR="${XDG_DATA_HOME}/sheldon/repos/github.com/wfxr/forgit"
+'''
+
+# 11-12ms
+[plugins.zsh-history-substring-search]
+github = 'zsh-users/zsh-history-substring-search'
+apply = ['defer']
+
+
+[plugins.zsh-vim-mode-config-before]
+inline = '''
+export VISUAL=lvim
+export EDITOR="$VISUAL"
+bindkey -v
+
+VIM_MODE_ESC_PREFIXED_WANTED='^?^Hfg' # Default: '^?^Hbdf.g'
+
+# Change cursor styling
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_VIINS="blinking bar"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+'''
+
+# 22ms
+[plugins.zsh-vim-mode]
+github = 'softmoth/zsh-vim-mode'
+# defer makes the initial cursor not have the correct style
+# (since it's drawn before this loads). Maybe worth it?
+# apply = [ 'defer' ]
+
+# 12ms
+[plugins.zsh-system-clipboard]
+github = 'kutsan/zsh-system-clipboard'
+# apply = [ 'defer' ]
+
+# 0ms
+[plugins.zsh-vim-mode-config-after]
+# @see: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+inline = '''
+# This isn't provided by the plugin, so we roll our own
+function zsh-system-clipboard-vicmd-vi-yank-eol() {
+  zle vi-yank-eol
+  printf '%s' "$CUTBUFFER" | pbcopy
+}
+zle -N zsh-system-clipboard-vicmd-vi-yank-eol
+
+# Bindings that start with esc are non-sensical in
+# vim mode, so we get rid of them
+bindkey -rpM viins '^[^['
+
+vim-mode-bindkey vicmd -- beginning-of-line  H
+vim-mode-bindkey vicmd -- end-of-line        L
+vim-mode-bindkey vicmd -- run-help           K
+vim-mode-bindkey vicmd -- fzf-history-widget '/'
+vim-mode-bindkey vicmd -- zsh-system-clipboard-vicmd-vi-yank-eol Y
+vim-mode-bindkey vicmd -- accept-line ZZ
+vim-mode-bindkey viins -- backward-delete-char '^[[127;2u' # shift+backspace
+
+# unbind the system clipboard widgets from delete, so
+# deleting actually deletes
+vim-mode-bindkey vicmd -- vi-kill-eol        D
+vim-mode-bindkey vicmd -- vi-delete          d
+'''
+
+# Wezterm
+[plugins.wezterm-shell-integration]
+remote = 'https://raw.githubusercontent.com/wez/wezterm/main/assets/shell-integration/wezterm.sh'
+apply = ['defer']
+
+# My personal scripts from gists
+[plugins.less-with-pipe]
+gist = "wren/29e7cc8784f858a28648b9360e29ac96"
+apply = ['path', 'chmodx']
+
+[plugins.git-branch-list]
+gist = "wren/87d82952f24d503c14888e0430a46b17"
+apply = ['path', 'chmodx']
+
+[plugins.pretty-packer]
+gist = "wren/c7a385e0b59c1f4cdeb0b81f099f1610"
+apply = ['path', 'chmodx']
+
+[plugins.vim-startup-time-sh]
+gist = 'wren/3c36ceae90403f9731edc9ba8e8ffbd0'
+apply = ['path', 'chmodx']
+
+[plugins.git-image-diff]
+gist = 'wren/e45b2c49d7a08bb718c683ad986793da'
+apply = ['path', 'chmodx']

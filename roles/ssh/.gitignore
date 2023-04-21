@@ -1,0 +1,2 @@
+files/configs/*
+!files/configs/default.ssh_config

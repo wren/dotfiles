@@ -1,0 +1,2 @@
+export AGE_RECIPIENTS_FILE="${XDG_CONFIG_HOME}/age/recipients.txt"
+export AGE_RECIPIENTS='age1p637gyvk0c0adn9jl3m6u3j2tlym395jkvj0hlpnyxd0pgq7wf3q0xepfw'

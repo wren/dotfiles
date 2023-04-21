@@ -1,5 +1,5 @@
 {
-  "settingsVersion": "1.66",
+  "settingsVersion": "1.67.4",
   "exclusionRules": [
     {
       "pattern": "https?://mail.google.com/*",
@@ -7,11 +7,7 @@
     },
     {
       "pattern": "https://app.hey.com/*",
-      "passKeys": ""
-    },
-    {
-      "pattern": "https?://app.hey.com/*/?*",
-      "passKeys": ""
+      "passKeys": "rlamfbvt"
     },
     {
       "pattern": "https?://todoist.com/*",
@@ -24,12 +20,40 @@
     {
       "pattern": "https?://docs.google.com/*",
       "passKeys": ""
+    },
+    {
+      "pattern": "https?://persephone.local:5000/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://persephone.local:8310/*",
+      "passKeys": "o"
+    },
+    {
+      "pattern": "https?://molpe.local:5000/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://config.qmk.fm/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://persephone.local:5032/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://app.clickup.com/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://www.nytimes.com/games/wordle/*",
+      "passKeys": ""
     }
   ],
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# Insert your preferred key mappings here.",
+  "keyMappings": "unmap t",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",

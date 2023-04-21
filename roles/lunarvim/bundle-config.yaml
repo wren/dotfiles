@@ -1,0 +1,55 @@
+- brew:
+    # various linters that require global installation
+    - actionlint
+    - alexjs
+    - black
+    - gitlint
+    - prettier
+    - shellcheck
+
+- shell:
+    - description: Installing/updating Lunar vim
+      command: |-
+        if command -v lvim &> /dev/null; then
+          echo "LunarVim already installed."
+          print -P "%F{4}Updating LunarVim (via :LvimUpdate)%f"
+          $EDITOR --headless +LvimUpdate +quitall
+          exit $?
+        fi
+
+        expect -- <(cat << 'EOF'
+        #!/usr/bin/env expect
+        set timeout -1
+        spawn /bin/bash
+        send -- "/bin/bash <(/usr/bin/curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)\n"
+        expect "Would you like to install LunarVim's NodeJS dependencies?"
+        send -- "y\n"
+        expect "Would you like to install LunarVim's Python dependencies?"
+        send -- "y\n"
+        expect "Would you like to install LunarVim's Rust dependencies?"
+        send -- "y\n"
+        expect "Thank you for installing LunarVim!!"
+        send -- "exit\n"
+        expect eof"
+        EOF
+        )
+
+    - description: Installing & updating plugins (via Packer)
+      command: |-
+        print -P "%F{4}Updating Neovim plugins (via :PackerSync)%f"
+        $EDITOR +'autocmd User PackerComplete quitall' +PackerSync
+
+    - description: Installing & updating Treesitter (via TSUpdate)
+      command: |-
+        print -P "%F{4}Updating Treesitter plugins (via :TSUpdateSync)%f"
+        $EDITOR --headless +TSUpdateSync +quitall
+        echo
+
+    - description: Installing & updating Python virtual environment
+      command: |-
+        venv="$HOME/.cache/python-virtual-envs/neovim"
+        if [[ -d $venv ]]; then
+            exit 0
+        fi
+        python3 -m venv "$venv"
+        "${venv}/bin/python" -m pip install pynvim debugpy

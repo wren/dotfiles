@@ -1,0 +1,19 @@
+- name: Install
+  with_items:
+    - git
+    - git-extras
+    - git-filter-repo
+    - git-lfs
+    - libimage-exiftool-perl
+    - imagemagick
+    - libterm-readkey-perl
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+
+- name: "Install: diff-so-fancy"
+  homebrew:
+    name: diff-so-fancy
+    state: present
+    update_homebrew: false

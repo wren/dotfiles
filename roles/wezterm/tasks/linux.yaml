@@ -1,0 +1,12 @@
+- name: Check Wezterm installion
+  check_mode: yes
+  stat:
+    path: /bin/wezterm
+  register: bin_wezterm
+
+- name: Install Wezterm (linux)
+  when: not bin_wezterm.stat.exists
+  apt:
+    deb: https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+    state: present
+  become: true

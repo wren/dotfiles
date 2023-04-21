@@ -1,0 +1,47 @@
+- name: Bootstrap's bootstraps
+  hosts: local
+  vars:
+    # general (probably don't edit)
+    home: "{{ '~' | expanduser }}"
+    config_home: "{{ home }}/.config"
+    data_home: "{{ home }}/.local/share"
+    cache_home: "{{ home }}/.cache"
+    bin_home: "{{ home }}/.local/bin"
+
+    # personal info (edit here)
+    dotfiles_home: "{{ home }}/Dotfiles"
+    full_name: Jonathan Wren
+    computer_user: jonathan
+    github_user_name: wren
+    email: jonathan@nowandwren.com
+  roles:
+    - role: wren.beautiful_output
+    - {role: bootstrap, tags: bootstrap}
+    - {role: encryption, tags: encryption}
+    - {role: 1password, tags: apps}
+    - {role: age, tags: cli}
+    - {role: asdf, tags: langs}
+    - {role: bat, tags: cli}
+    - {role: borg-backup, tags: backups}
+    - {role: discord, tags: apps}
+    - {role: doppler, tags: cli}
+    - {role: fira-code-nerd-font, tags: fonts}
+    - {role: monolisa-nerd-font, tags: fonts}
+    - {role: git, tags: cli}
+    - {role: jrnl, tags: cli}
+    - {role: less, tags: cli}
+    - {role: lolcat, tags: cli}
+    - {role: lunarvim, tags: editor}
+    # - {role: neovim, tags: editor} # vanilla neovim
+    - {role: python, tags: langs}
+    - {role: ripgrep, tags: cli}
+    - {role: qmk, tags: keeb}
+    - {role: signal, tags: apps}
+    - {role: ssh, tags: cli}
+    - {role: slack, tags: apps}
+    - {role: steam, tags: apps}
+    - {role: wezterm, tags: apps}
+    - {role: zoom, tags: apps}
+    - {role: zoxide, tags: cli}
+    - {role: viu, tags: cli}
+    - {role: zsh, tags: cli}

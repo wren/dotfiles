@@ -1,0 +1,23 @@
+# - import_tasks: mac.yaml
+#   when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  with_items:
+    - env
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: Add path to cron file
+  cron:
+    name: PATH
+    env: yes
+    job: "{{ home }}/.local/bin:/usr/local/bin:$PATH"
+
+- name: Ensure pipx installation
+  command: python3 -m pip install pipx
+  register: pip_output
+  changed_when: "'Requirement already satisfied: pipx' not in pip_output.stdout"

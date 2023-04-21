@@ -1,0 +1,5 @@
+- name: Install ripgrep (linux)
+  apt:
+    name: ripgrep
+    state: latest
+  become: true

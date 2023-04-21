@@ -1,0 +1,4 @@
+- name: "Install: steam"
+  homebrew:
+    name: steam
+    state: present

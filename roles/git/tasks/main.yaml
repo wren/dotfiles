@@ -1,0 +1,51 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+- import_tasks: linux.yaml
+  when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/git"
+    state: directory
+
+- name: "Link config: main"
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/_main"
+    dest: "{{ config_home }}/git/config"
+    state: link
+    force: yes
+
+- name: Link config
+  loop:
+    - aliases
+    - color
+    - core
+    - diff-and-merge
+    - format
+    - lfs
+    - sign
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/config/{{ item }}"
+    dest: "{{ config_home }}/git/{{ item }}"
+    state: link
+    force: yes
+
+- name: Link config
+  loop:
+    - allowed-signers
+    - attributes
+    - ignore
+    - mailmap
+    - exiftool-args
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/{{ item }}"
+    dest: "{{ config_home }}/git/{{ item }}"
+    state: link
+    force: yes
+
+- name: "Link config (template): user"
+  template:
+    src: user.j2
+    dest: "{{ config_home }}/git/user"
+

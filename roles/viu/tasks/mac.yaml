@@ -1,0 +1,6 @@
+- name: Install viu via homebrew
+  homebrew:
+    name:
+      - viu
+    state: present
+    update_homebrew: false

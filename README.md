@@ -1,7 +1,11 @@
 # Dotfiles
 
 ## Installation
-To install, run this command:
+To install, run:
 
-    /bin/zsh <(curl -s https://raw.githubusercontent.com/wren/dotfiles/main/sync.sh)
+  ```sh
+  git clone https://github.com/wren/dotfiles.git ~/Dotfiles
+  cd ~/Dotfiles
+  ./sync.sh
+  ```
 

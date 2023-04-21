@@ -1,0 +1,6 @@
+- name: Install fd
+  homebrew:
+    name:
+      - fd
+    state: present
+    update_homebrew: false

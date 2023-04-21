@@ -1,0 +1,12 @@
+- name: Parse json from Github API - download url
+  set_fact:
+    appimage_artifact_latest: "{{ json_content.json | json_query(artifact_query) }}"
+  vars:
+    artifact_query: '[?contains(tag_name, ''{{ appimage_version_latest }}'')].assets[] | [?contains(name, ''bionic_amd64'')].browser_download_url | [0]'
+
+- name: Install AppImagelauncher
+  when: appimage_version_local is version(appimage_version_latest, '<' )
+  apt:
+    deb: "{{ appimage_artifact_latest }}"
+    state: present
+  become: true

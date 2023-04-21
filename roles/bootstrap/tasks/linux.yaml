@@ -1,0 +1,24 @@
+- name: Install reqs for system
+  apt:
+    name: python3-apt
+    state: latest
+  become: true
+
+- name: Ensure Flatpak installation
+  apt:
+    name: flatpak
+    state: present
+  become: true
+
+- name: Add Flathub repo to Flatpak
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+
+# Some apt-installed apps need this for no real reason
+- name: Create gnupg data home dir
+  file:
+    name: "{{ data_home }}/gnupg"
+    state: directory

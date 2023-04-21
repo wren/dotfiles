@@ -1,0 +1,9 @@
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+  allowedSignersFile = "~/.config/git/allowed-signers"
+
+[commit]
+  gpgsign = false
