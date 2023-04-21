@@ -7,8 +7,16 @@
     state: directory
 
 - name: Link main config
+  when: ansible_os_family == "Debian"
   file:
-    src: "{{ role_path }}/files/main.ssh_config"
+    src: "{{ role_path }}/files/main.linux.ssh_config"
+    dest: "{{ home }}/.ssh/config"
+    state: link
+
+- name: Link main config
+  when: ansible_os_family == "Darwin"
+  file:
+    src: "{{ role_path }}/files/main.mac.ssh_config"
     dest: "{{ home }}/.ssh/config"
     state: link
 
