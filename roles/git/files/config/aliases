@@ -122,6 +122,7 @@
   todo = "!rg -i '@todo'"
 
   brs = branch-status
+  brd = branch -d
   brdm = branch-delete-merged
   brdr = branch-delete-reviewed
   brs-ls = branch-status-list
