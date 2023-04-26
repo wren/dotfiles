@@ -59,6 +59,8 @@ alias fa='alias | rg' # find an alias
 alias size='ff -d 1 -x du -sh -- ''{/}'' | sort -hr | l'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias poetry.shell='source "$(dirname $(poetry run which python))/activate"'
+alias wezterm.install='brew install --cask homebrew/cask-versions/wezterm-nightly'
+alias wezterm.update='brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest'
 
 # jrnl
 alias j='jrnl notes'
