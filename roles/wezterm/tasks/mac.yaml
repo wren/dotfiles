@@ -1,4 +1,4 @@
-- name: Install 1password
+- name: Install Wezterm
   homebrew_cask:
     name:
       - wez/wezterm/wezterm-nightly
