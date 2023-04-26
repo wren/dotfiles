@@ -62,6 +62,7 @@
 
   # remotes
   f = fetch
+  fa = fetch --all --tags
   pl = plr
   pls = "!git pl && git ps"
   plr = "!git print-header 'Pull (Rebase)' && git pull --rebase"
