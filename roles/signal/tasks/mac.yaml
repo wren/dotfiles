@@ -1,6 +1,6 @@
-- name: Install doppler cli
+- name: Install Signal
   homebrew:
     name:
-      - dopplerhq/cli/doppler
+      - signal
     state: present
     update_homebrew: false

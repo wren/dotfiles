@@ -1,3 +1,10 @@
+- name: Install newer less
+  homebrew:
+    name:
+      - less
+    state: present
+    update_homebrew: false
+
 - name: Create config dir
   file:
     path: "{{ config_home }}/less"

@@ -25,3 +25,5 @@
     src: "{{ dotfiles_home }}/roles/asdf/files/tool-versions"
     dest: "{{ home }}/.tool-versions"
     state: link
+
+# cut -d' ' -f1 ~/.tool-versions | xargs -I% asdf plugin add %
