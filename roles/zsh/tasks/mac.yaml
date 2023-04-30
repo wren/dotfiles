@@ -4,6 +4,7 @@
     - exa
     - vivid
     - fd
+    - fzf
   homebrew:
     name: "{{ item }}"
     state: present
