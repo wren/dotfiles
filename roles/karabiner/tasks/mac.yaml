@@ -1,0 +1,31 @@
+- name: 'Install: Karabiner Elements'
+  homebrew_cask:
+    name: karabiner-elements
+    state: present
+    update_homebrew: false
+
+- name: Create config dirs
+  loop:
+    - karabiner
+    - karabiner/assets/complex_modifications
+  file:
+    path: "{{ config_home }}/{{ item }}"
+    state: directory
+
+- name: 'Link config: main'
+  file:
+    src: "{{ role_path }}/files/main.json"
+    dest: "{{ config_home }}/karabiner/karabiner.json"
+    state: link
+
+- name: 'Link config: hyper-capslock'
+  file:
+    src: "{{ role_path }}/files/hyper-capslock.json"
+    dest: "{{ config_home }}/karabiner/assets/complex_modifications/hyper-capslock.json"
+    state: link
+
+- name: 'Link: sounds'
+  file:
+    src: "{{ role_path }}/files/sounds"
+    dest: "{{ config_home }}/karabiner/sounds"
+    state: link
