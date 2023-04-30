@@ -5,6 +5,6 @@
   when: ansible_os_family == "Debian"
 
 - file:
-    src: "{{ dotfiles_home }}/roles/zoxide/files/env"
+    src: "{{ role_path }}/files/env"
     dest: "{{ config_home }}/env/zoxide.env.sh"
     state: link
