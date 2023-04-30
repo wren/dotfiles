@@ -5,7 +5,7 @@ set -e
 # Config Options
 export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/Dotfiles}"
 
-PATH=~/.local/bin:$PATH
+PATH=~/.local/bin:$PATH:$HOME/Library/Python/3.9/bin
 
 function print-header() {
   printf -- "$(tput setaf 6)───── %s ─────$(tput sgr0)\n" "$@"
