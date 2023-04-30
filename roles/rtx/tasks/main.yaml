@@ -1,0 +1,32 @@
+- include_tasks: "{{ role_path }}/tasks/mac.yaml"
+  when: ansible_os_family == "Darwin"
+
+# - include_tasks: "{{ dotfiles_home }}/roles/asdf/tasks/linux.yaml"
+#   when: ansible_os_family == "Debian"
+
+- name: Create config dir
+  file:
+    path: "{{ config_home }}/rtx"
+    state: directory
+
+- name: Link config
+  file:
+    src: "{{ role_path }}/files/main.toml"
+    dest: "{{ config_home }}/rtx/config.toml"
+    state: link
+    force: true
+
+- name: Link env
+  file:
+    src: "{{ role_path }}/files/env"
+    dest: "{{ config_home }}/env/rtx.env.sh"
+    state: link
+
+- name: Trust config file
+  command: rtx trust "{{ config_home }}/rtx/config.toml"
+
+- name: Install languages
+  command:
+    cmd: rtx install
+  register: rtx_install_output
+  changed_when: "'no runtimes to install' not in rtx_install_output.stderr"

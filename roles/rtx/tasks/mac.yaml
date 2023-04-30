@@ -1,7 +1,6 @@
-- name: Install extras from homebrew
+- name: 'Install: rtx'
   homebrew:
     name:
-      - direnv
-      - asdf
+      - jdxcode/tap/rtx
     state: present
     update_homebrew: false

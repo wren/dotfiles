@@ -1,0 +1,14 @@
+# Initialize langs version manager
+if command -v rtx &>/dev/null; then
+  RTX_CACHE="${RTX_CACHE:-$HOME/.cache/rtx}"
+  RTX_CACHE_FILE="$RTX_CACHE/cached_init.sh"
+
+  # Check if file exists
+  if [[ ! -f "$RTX_CACHE_FILE" ]]; then
+    # regenerate init file
+    mkdir -vp "$RTX_CACHE"
+    RTX_CONFIRM=no rtx activate zsh > "$RTX_CACHE_FILE"
+  fi
+
+  source "$RTX_CACHE_FILE"
+fi

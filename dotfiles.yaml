@@ -21,7 +21,7 @@
     - {role: encryption, tags: encryption}
     - {role: 1password, tags: apps}
     - {role: age, tags: cli}
-    - {role: asdf, tags: langs}
+    - {role: rtx, tags: langs}
     - {role: bat, tags: cli}
     - {role: borg-backup, tags: backups}
     - {role: discord, tags: apps}
@@ -35,7 +35,6 @@
     - {role: lolcat, tags: cli}
     - {role: lunarvim, tags: editor}
     # - {role: neovim, tags: editor} # vanilla neovim
-    - {role: python, tags: langs}
     - {role: ripgrep, tags: cli}
     - {role: qmk, tags: keeb}
     - {role: signal, tags: apps}
