@@ -1,3 +1,4 @@
 dependencies:
   - role: age
   - role: encryption
+  - role: git

@@ -49,3 +49,7 @@
     src: user.j2
     dest: "{{ config_home }}/git/user"
 
+- name: Ensure Dotfiles repo git-lfs is up-to-date
+  command:
+    cmd: git lfs pull
+    chdir: "{{ dotfiles_home }}"
