@@ -26,3 +26,16 @@
   command: python3 -m pip install pipx
   register: pip_output
   changed_when: "'Requirement already satisfied: pipx' not in pip_output.stdout"
+
+
+- name: Check if brew exists
+  check_mode: yes
+  stat:
+    path: /usr/local/bin/brew
+  register: brew
+
+- name: Install homebrew
+  become: true
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not brew.stat.exists
+
