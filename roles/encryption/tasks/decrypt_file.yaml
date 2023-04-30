@@ -12,18 +12,17 @@
         my_file_checksum: "{{ lookup('file', my_filename) | checksum }}"
 
     - name: Checksum encrypted file
-      command: age -i "$AGE_KEY_FILE" -d '{{ encrypted_path }}'
+      shell: age -i "${AGE_KEY_FILE:-$HOME/.config/age/keys.txt}" -d '{{ encrypted_path }}'
       register: encrypted_file_contents
       changed_when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
 
     - name: Re-encrypt file
       when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
-      command: age -R "$AGE_RECIPIENTS_FILE" -o '{{ encrypted_path }}' -e '{{ my_filename }}'
+      shell: age -R "${AGE_RECIPIENTS_FILE:-$HOME/.config/age/recipients.txt}" -o '{{ encrypted_path }}' -e '{{ my_filename }}'
 
 - name: Decrypt file
   when: not my_file.stat.exists
-  command:
-    cmd: age -i "$AGE_KEY_FILE" -o '{{ my_filename }}' -d '{{ encrypted_path }}'
+  shell: age -i "${AGE_KEY_FILE:-$HOME/.config/age/keys.txt}" -o '{{ my_filename }}' -d '{{ encrypted_path }}'
 
 - name: Update permissions for decrypted file
   file:
