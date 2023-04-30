@@ -1,10 +1,10 @@
-- name: Install from homebrew
+- name: Install
+  with_items:
+    - zsh
+    - exa
+    - vivid
   homebrew:
-    name:
-      - zsh
-      - exa
-      - ripgrep
-      - vivid
+    name: "{{ item }}"
     state: present
     update_homebrew: false
 

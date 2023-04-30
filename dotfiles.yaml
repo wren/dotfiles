@@ -17,6 +17,7 @@
   roles:
     - role: wren.beautiful_output
     - {role: bootstrap, tags: bootstrap}
+    - {role: zsh, tags: cli}
     - {role: encryption, tags: encryption}
     - {role: 1password, tags: apps}
     - {role: age, tags: cli}
@@ -44,4 +45,3 @@
     - {role: zoom, tags: apps}
     - {role: zoxide, tags: cli}
     - {role: viu, tags: cli}
-    - {role: zsh, tags: cli}
