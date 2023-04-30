@@ -26,6 +26,7 @@
     src: "{{ item }}"
     dest: "{{ home }}/.ssh/configs/{{ item | basename | splitext | first }}"
     state: link
+    mode: '600'
 
 - name: Check if ssh key exists
   stat:
