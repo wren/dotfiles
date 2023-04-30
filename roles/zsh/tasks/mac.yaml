@@ -3,6 +3,7 @@
     - zsh
     - exa
     - vivid
+    - fd
   homebrew:
     name: "{{ item }}"
     state: present
