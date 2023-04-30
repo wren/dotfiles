@@ -1,6 +1,6 @@
 - name: Install Signal
-  homebrew:
-    name:
-      - signal
+  homebrew_cask:
+    name: signal
     state: present
     update_homebrew: false
+

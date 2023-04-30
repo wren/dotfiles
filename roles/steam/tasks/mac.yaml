@@ -1,4 +1,4 @@
 - name: "Install: steam"
-  homebrew:
+  homebrew_cask:
     name: steam
     state: present
