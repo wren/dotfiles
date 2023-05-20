@@ -1,0 +1,41 @@
+- import_tasks: mac.yaml
+  when: ansible_os_family == "Darwin"
+
+# - import_tasks: linux.yaml
+#   when: ansible_os_family == "Debian"
+
+- name: Create profiles dir
+  loop:
+    - firefox
+    - firefox/profiles
+  file:
+    path: "{{ data_home }}/{{ item }}"
+    state: directory
+
+- name: Create user profile
+  command:
+    # see: https://wiki.mozilla.org/Firefox/CommandLineOptions#-CreateProfile_.22profile_name_profile_dir.22
+    cmd: firefox -CreateProfile "{{ computer_user }} {{ data_home }}/firefox/profiles/{{ computer_user }}"
+
+- name: Create user chrome dir
+  loop:
+    - firefox/profiles/{{ computer_user }}/chrome
+  file:
+    path: "{{ data_home }}/{{ item }}"
+    state: directory
+
+- name: Link userChrome.css file
+  file:
+    src: "{{ role_path }}/files/userChrome.css"
+    dest: "{{ data_home }}/firefox/profiles/{{ computer_user }}/chrome/userChrome.css"
+    state: link
+
+- name: Link user.js file
+  file:
+    src: "{{ role_path }}/files/user.js"
+    dest: "{{ data_home }}/firefox/profiles/{{ computer_user }}/user.js"
+    state: link
+
+- name: Set Firefox as default browser
+  command:
+    cmd: firefox -setDefaultBrowser
