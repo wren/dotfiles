@@ -3,6 +3,7 @@ g.mapleader = ' '
 g.maplocalleader = '\\'
 
 -- save file
+map({ 'i', 'v', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 map({ 'n', 'x' }, '<leader>w', ':w<cr>', { desc = 'Save file' })
 map({ 'n', 'x' }, '<leader>W', ':w!<cr>', { desc = 'Save file (force)' })
 map('n', '<leader>q', '<c-w>c', { desc = 'Close window' })
