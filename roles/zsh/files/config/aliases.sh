@@ -1,14 +1,21 @@
 # One-liners of various flavors (aliases, functions, etc)
 
-#--- System ---#
+#-- Use better tools, if available --#
 function exists(){ command -v "$@" &>/dev/null; }
+function alias_if_exists(){ if exists "$1"; then echo "$2"; else echo "$3"; fi; }
+alias rg="$( alias_if_exists rg rg grep )"
+alias rm="$( alias_if_exists rm trash "rm -rv" )"
+alias v="$( alias_if_exists lvim lvim nvim )"
+alias top="$( alias_if_exists bpytop bpytop top)"
+
+#--- System ---#
+alias rgl="rg --color=never -l"
+function rgv(){ v "${(f)$(rgl ""$@"")}"; } # open files that match a pattern in editor
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
 function cdp(){ mkdir -p "$@"; cd "$@"; }
-alias rm="$( if exists trash; then echo 'trash'; else echo 'rm -rv'; fi )"
 alias plist-to-xml='plutil -convert xml1'
-alias top='bpytop'
 alias h='run-help'
 alias l='less-with-pipe'
 alias ll='exa --time-style=long-iso --color=always --icons -la'
@@ -91,7 +98,6 @@ alias speedtest='speed-test --verbose'
 alias ta='tmux-attach-fzf'
 alias tk='tmux kill-server'
 alias tn='tmux new'
-alias v='lvim'
 alias wh='which -a'
 alias pack='pretty-packer pack'
 alias unpack='pretty-packer unpack'
