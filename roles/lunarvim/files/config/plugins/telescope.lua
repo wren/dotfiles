@@ -3,31 +3,20 @@ local wk = lvim.builtin.which_key
 
 plugin.defaults.path_display.absolute = true
 plugin.defaults.path_display.shorten = nil
+plugin.theme = "ivy"
 -- plugin.pickers.wrap_results = true
 
+-- overrides from defaults
+plugin.pickers.buffers.initial_mode = "insert"
+plugin.pickers.buffers.mappings.i = {}
 
-plugin.pickers.commands = {}
-plugin.pickers.help_tags = {}
-plugin.pickers.keymaps = {}
+plugin.pickers.planets.show_pluto = false
+
 plugin.pickers.diagnostics = {}
-plugin.pickers.vim_options = {}
-plugin.pickers.colorscheme = {}
-plugin.pickers.oldfiles = {}
-plugin.pickers.command_history = {}
-plugin.pickers.search_history = {}
-plugin.pickers.filetypes = {}
-
-for _, val in pairs(plugin.pickers) do
-  val.theme = "ivy"
-  val.previewer = plugin.file_previewer
-  val.initial_mode = "insert"
-  -- val.wrap_results = true
-end
-
 plugin.pickers.diagnostics.wrap_results = true
 
--- plugin.pickers.find_files.previewer = plugin.file_previewer
--- plugin.pickers.live_grep.previewer = plugin.grep_previewer
+plugin.pickers.find_files.previewer = plugin.file_previewer
+plugin.pickers.live_grep.previewer = plugin.grep_previewer
 
 
 plugin.defaults.file_ignore_patterns = {
