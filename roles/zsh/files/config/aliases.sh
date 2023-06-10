@@ -1,12 +1,12 @@
 # One-liners of various flavors (aliases, functions, etc)
 
 #--- System ---#
+function exists(){ command -v "$@" &>/dev/null; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
-alias rm='rm -rv'
 alias mkdir="mkdir -pv"
 function cdp(){ mkdir -p "$@"; cd "$@"; }
-# alias rm='trash -v' # or: rm="rm -rv"
+alias rm="$( if exists trash; then echo 'trash'; else echo 'rm -rv'; fi )"
 alias plist-to-xml='plutil -convert xml1'
 alias top='bpytop'
 alias h='run-help'
@@ -20,7 +20,7 @@ alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killal
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
-function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 function show-all(){ cat -A $1 | sed 's/ /␠/g' | cat -n; }
 
