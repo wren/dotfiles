@@ -3,7 +3,7 @@ local plugin = lvim.builtin.treesitter
 plugin.ensure_installed = "all"
 
 plugin.ignore_install = {
-  "haskell"
+  "haskell",
 }
 
 plugin.highlight.enabled = true
