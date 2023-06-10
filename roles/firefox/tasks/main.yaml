@@ -8,6 +8,8 @@
   loop:
     - firefox
     - firefox/profiles
+    - firefox/profiles/{{ computer_user }}
+    - firefox/profiles/{{ computer_user }}/chrome
   file:
     path: "{{ data_home }}/{{ item }}"
     state: directory
@@ -15,14 +17,7 @@
 - name: Create user profile
   command:
     # see: https://wiki.mozilla.org/Firefox/CommandLineOptions#-CreateProfile_.22profile_name_profile_dir.22
-    cmd: firefox -CreateProfile "{{ computer_user }} {{ data_home }}/firefox/profiles/{{ computer_user }}"
-
-- name: Create user chrome dir
-  loop:
-    - firefox/profiles/{{ computer_user }}/chrome
-  file:
-    path: "{{ data_home }}/{{ item }}"
-    state: directory
+    cmd: firefox --headless -CreateProfile "{{ computer_user }} {{ data_home }}/firefox/profiles/{{ computer_user }}"
 
 - name: Link userChrome.css file
   file:
@@ -38,4 +33,4 @@
 
 - name: Set Firefox as default browser
   command:
-    cmd: firefox -setDefaultBrowser
+    cmd: firefox --headless -setDefaultBrowser
