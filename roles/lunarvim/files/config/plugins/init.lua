@@ -57,6 +57,7 @@ require 'plugins.symbols-outline'
 require 'plugins.indentline'
 require 'plugins.editorconfig'
 require 'plugins.null-ls'
+require 'plugins.copilot'
 require 'plugins.glance'
 require 'plugins.dial'
 
