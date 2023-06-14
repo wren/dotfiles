@@ -16,14 +16,15 @@ linters.setup {
   { command = "gitlint" },
 }
 
-local null_ls = require("null-ls")
-null_ls.register {
-  null_ls.builtins.diagnostics.flake8.with({
-    name = "flakeheaven",
-    command = "flake8heavened",
-    meta = {
-        url = "https://github.com/flakeheaven/flakeheaven",
-        description = "Flake8 wrapper to make it nice, legacy-friendly, configurable.",
-    },
-  }),
-}
+
+-- local null_ls = require("null-ls")
+-- null_ls.register {
+--   null_ls.builtins.diagnostics.flake8.with({
+--     name = "flakeheaven",
+--     command = "flake8heavened",
+--     meta = {
+--         url = "https://github.com/flakeheaven/flakeheaven",
+--         description = "Flake8 wrapper to make it nice, legacy-friendly, configurable.",
+--     },
+--   }),
+-- }
