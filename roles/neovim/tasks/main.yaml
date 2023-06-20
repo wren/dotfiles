@@ -42,8 +42,13 @@
     state: link
     force: true
 
-- file:
-    src: "{{ dotfiles_home }}/roles/neovim/files/config/core"
-    dest: "{{ config_home }}/nvim/lua/core"
+- name: Link config directories
+  loop:
+    - core
+    - config
+    - plugins
+  file:
+    src: "{{ dotfiles_home }}/roles/neovim/files/config/{{ item }}"
+    dest: "{{ config_home }}/nvim/lua/{{ item }}"
     state: link
     force: true
