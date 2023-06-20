@@ -14,6 +14,7 @@ linters.setup {
   },
   { command = "shellcheck", },
   { command = "gitlint" },
+  { command = "ruff" },
 }
 
 
