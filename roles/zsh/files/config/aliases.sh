@@ -5,7 +5,6 @@ function exists(){ command -v "$@" &>/dev/null; }
 function alias_if_exists(){ if exists "$1"; then echo "$2"; else echo "$3"; fi; }
 alias rg="$( alias_if_exists rg rg grep )"
 alias rm="$( alias_if_exists rm trash "rm -rv" )"
-alias v="$( alias_if_exists lvim lvim nvim )"
 alias top="$( alias_if_exists bpytop bpytop top)"
 
 #--- System ---#
@@ -58,6 +57,7 @@ alias d.start='eval $(docker-machine env default)'
 alias d.exec='func{docker exec -it "$@";}; func'
 
 #--- Apps ---#
+alias v='nvim'
 alias b='borg-wrapper'
 alias f='fd --hidden' # find including hidden
 alias ff='fd -HI' # find all
