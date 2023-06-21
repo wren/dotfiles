@@ -10,7 +10,8 @@ alias top="$( alias_if_exists bpytop bpytop top)"
 
 #--- System ---#
 alias rgl="rg --color=never -l"
-function rgv(){ v "${(f)$(rgl ""$@"")}"; } # open files that match a pattern in editor
+# open files that match a pattern in editor
+function rgv(){ v "${(f)$(rgl ""$@"")}"; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
