@@ -1,2 +1,6 @@
 # Z
-eval "$(zoxide init zsh --cmd c)"
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh --cmd c)"
+else
+  alias c=cd
+fi
