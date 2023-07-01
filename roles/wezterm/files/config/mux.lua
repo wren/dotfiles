@@ -1,6 +1,6 @@
 local config = {}
 
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- config = {
 --   unix_domains = {
@@ -22,20 +22,20 @@ _G.nav_nvim_split = function(direction)
     local running = pane:get_foreground_process_info()
 
     local action
-    if nil ~= string.find(running.executable, 'nvim') then
+    if nil ~= string.find(running.executable, "nvim") then
       -- pass the keystrokes on to nvim
-      wezterm.log_info('in nvim')
+      wezterm.log_info("in nvim")
       local direction_keys = {
         Left = "h",
         Down = "j",
         Up = "k",
         Right = "l",
       }
-      action = wezterm.action{SendKey={ key=direction_keys[direction], mods="CTRL|ALT" }}
+      action = wezterm.action({ SendKey = { key = direction_keys[direction], mods = "CTRL|ALT" } })
     else
       -- do the action in wezterm
-      wezterm.log_info('not in nvim')
-      action = wezterm.action{ActivatePaneDirection=direction}
+      wezterm.log_info("not in nvim")
+      action = wezterm.action({ ActivatePaneDirection = direction })
     end
     window:perform_action(action, pane)
   end

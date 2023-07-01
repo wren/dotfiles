@@ -1,5 +1,5 @@
 local config = {}
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- Window Appearance
 config.window_padding = {
@@ -35,26 +35,25 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   end
 
   return {
-    {Background={Color=color.window.bg}},
-    {Foreground={Color=tab_bg}},
-    {Text=" " .. ROUND_LEFT_EDGE},
-    {Background={Color=tab_bg}},
-    {Foreground={Color=tab_fg}},
-    {Text=" "},
-    {Text=basename(tab.active_pane.foreground_process_name)},
-    {Text=" "},
-    {Background={Color=color.window.bg}},
-    {Foreground={Color=tab_bg}},
-    {Text=ROUND_RIGHT_EDGE},
+    { Background = { Color = color.window.bg } },
+    { Foreground = { Color = tab_bg } },
+    { Text = " " .. ROUND_LEFT_EDGE },
+    { Background = { Color = tab_bg } },
+    { Foreground = { Color = tab_fg } },
+    { Text = " " },
+    { Text = basename(tab.active_pane.foreground_process_name) },
+    { Text = " " },
+    { Background = { Color = color.window.bg } },
+    { Foreground = { Color = tab_bg } },
+    { Text = ROUND_RIGHT_EDGE },
   }
 end)
 
-
-wezterm.on("update-right-status", function (window, pane)
-  local chars = require 'config.chars'
+wezterm.on("update-right-status", function(window, pane)
+  local chars = require("config.chars")
 
   -- battery
-  local battery = require 'config.battery'
+  local battery = require("config.battery")
   local percent, state = battery.get_info()
   local icon = battery.get_icon(state)
   local color = battery.get_color(percent)
@@ -62,17 +61,17 @@ wezterm.on("update-right-status", function (window, pane)
 
   local leader = ""
   if window:leader_is_active() then
-    leader = string.format(' %s ', chars.TERMINAL)
+    leader = string.format(" %s ", chars.TERMINAL)
   end
 
   window:set_right_status(wezterm.format({
-    {Background={Color=_G.MY_COLORS.window.bg}},
-    {Foreground={Color=_G.MY_COLORS.window.fg}},
-    {Text=leader},
-    {Foreground={Color=_G.MY_COLORS.split}},
-    {Text=string.format("  %s %.0f%%", icon, percent)},
-    {Foreground={Color=color}},
-    {Text=string.format(" %s ", bar)},
+    { Background = { Color = _G.MY_COLORS.window.bg } },
+    { Foreground = { Color = _G.MY_COLORS.window.fg } },
+    { Text = leader },
+    { Foreground = { Color = _G.MY_COLORS.split } },
+    { Text = string.format("  %s %.0f%%", icon, percent) },
+    { Foreground = { Color = color } },
+    { Text = string.format(" %s ", bar) },
   }))
 end)
 

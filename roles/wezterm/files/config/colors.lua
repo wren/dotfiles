@@ -1,6 +1,6 @@
 local config = {}
 
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 config.window_background_image = wezterm.home_dir .. "/.config/wezterm/bg_terminal.png"
 
@@ -30,8 +30,8 @@ local color = {
     [7] = "#ADE779", -- 70% <= b < 80%
     [8] = "#ADE779", -- 80% <= b < 90%
     [9] = "#98C379", -- 90% <= b < 100%
-    [10] = "#98C379",-- b = 100%
-  }
+    [10] = "#98C379", -- b = 100%
+  },
 }
 
 local C = {
