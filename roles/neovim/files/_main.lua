@@ -1,2 +1,3 @@
 -- require 'core'
-require 'config.lazy'
+require("config.helpers")
+require("config.lazy")
