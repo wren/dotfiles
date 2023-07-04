@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local map = vim.keymap.set
+local unmap = vim.keymap.del
 
 -- Insert newlines without leaving normal mode
 -- map("n", "<cr>", modifiable_only("<cr>", "m`o<Esc>``"))
@@ -13,6 +14,14 @@ map("n", "<s-cr>", "m`O<Esc>``")
 map("n", "<A-/>", "gcc", { remap = true })
 map("v", "<A-/>", "gc", { remap = true })
 map("i", "<A-/>", "<esc>gcca", { remap = true })
+
+-- Clear search highlights
+-- https://github.com/mhinz/vim-galore#saner-ctrl-l
+map("n", "<c-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", {
+  silent = true,
+  remap = false,
+  desc = "Clear & redraw screen",
+})
 
 --tab operation
 map({ "n", "v" }, "<c-,>", "<cmd>silent! bprevious<CR>", { desc = "Previous buffer" })
@@ -34,9 +43,40 @@ map({ "n", "x" }, "C", '"_C', { desc = "Delete" })
 map("v", "p", '"_dp', { desc = "Paste (after)" })
 map("v", "P", '"_dP', { desc = "Paste (before)" })
 
+-- redo
+map("n", "U", "<c-r>", { desc = "Redo" })
+
 -- Write and quit all with ZZ
 map("n", "ZZ", "<cmd>w<cr><cmd>qa<cr>", { desc = "Write and quit all" })
 
 -- navigation
 map({ "n", "v", "o" }, "H", "^", { desc = "Go to start of line" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Go to end of line" })
+
+-- splitting windows
+map({ "n", "x" }, "<leader>-", "<c-w>s", { desc = "Split window (horizontal)" })
+map({ "n", "x" }, "<leader>\\", "<c-w>v", { desc = "Split window (vertical)" })
+map({ "n", "x" }, "<leader>w-", "<c-w>s", { desc = "Split window below", remap = true })
+map({ "n", "x" }, "<leader>w\\", "<c-w>v", { desc = "Split window right", remap = true })
+
+-- Navigation in command mode
+local function pumvisible_keycodes(key1, key2)
+  return function()
+    return vim.fn.pumvisible() == 1 and key1 or key2
+  end
+end
+
+map("c", "<down>", pumvisible_keycodes("<c-n>", "<down>"), { expr = true })
+map("c", "<up>", pumvisible_keycodes("<c-p>", "<up>"), { expr = true })
+map("c", "<cr>", pumvisible_keycodes("<c-y>", "<cr>"), { expr = true })
+map("c", "<esc>", pumvisible_keycodes("<c-e>", "<esc>"), { expr = true })
+
+-- Get rid of some defaults that I don't like
+unmap({ "n" }, "<leader>|")
+unmap({ "n" }, "<leader>w|")
+unmap({ "n" }, "<leader><tab>l")
+unmap({ "n" }, "<leader><tab>f")
+unmap({ "n" }, "<leader><tab><tab>")
+unmap({ "n" }, "<leader><tab>]")
+unmap({ "n" }, "<leader><tab>d")
+unmap({ "n" }, "<leader><tab>[")
