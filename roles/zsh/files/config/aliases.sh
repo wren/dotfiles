@@ -10,7 +10,7 @@ alias top="$( alias_if_exists bpytop bpytop top)"
 #--- System ---#
 alias rgl="rg --color=never -l"
 # open files that match a pattern in editor
-function rgv(){ v "${(f)$(rgl ""$@"")}"; }
+function rgv(){ nvim "${(f)$(rgl ""$@"")}"; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias mkdir="mkdir -pv"
