@@ -6,6 +6,16 @@ return {
   { import = "lazyvim.plugins.extras.ui.mini-animate" },
 
   {
+    "LazyVim/LazyVim",
+    opts = function(_, opts)
+      require("lazyvim.util").get_root = function()
+        return vim.loop.cwd()
+      end
+      return opts
+    end,
+  },
+
+  {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       opts.section.header.opts.hl = "Label"
