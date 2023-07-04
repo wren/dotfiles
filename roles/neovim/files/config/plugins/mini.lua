@@ -2,9 +2,7 @@ return {
   {
     "echasnovski/mini.trailspace",
     version = false,
-    config = function()
-      require("mini.trailspace").setup()
-    end,
+    config = true,
     keys = {
       { "<leader>c<space>", ":lua MiniTrailspace.trim()<cr>", desc = "Delete trailing spaces" },
     },
