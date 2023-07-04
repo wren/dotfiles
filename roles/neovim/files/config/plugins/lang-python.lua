@@ -31,6 +31,7 @@ return {
       local nls = require("null-ls")
       table.insert(opts.sources, nls.builtins.formatting.ruff)
       table.insert(opts.sources, nls.builtins.diagnostics.ruff)
+      table.insert(opts.sources, nls.builtins.formatting.black)
     end,
   },
 
