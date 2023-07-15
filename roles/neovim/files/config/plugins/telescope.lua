@@ -23,6 +23,13 @@ return {
       end,
       desc = "Key mappings",
     },
+    {
+      "<leader>ft",
+      function()
+        require("telescope.builtin").filetypes()
+      end,
+      desc = "Filetypes",
+    },
   },
   opts = function(_, opts)
     opts.defaults = {
