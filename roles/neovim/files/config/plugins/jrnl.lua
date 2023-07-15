@@ -18,6 +18,17 @@ return {
     end,
   },
   {
+    -- Toggle markdown checkboxes
+    "jkramer/vim-checkbox",
+
+    ft = { "jrnl", "markdown" },
+
+    keys = {
+      -- { "<localleader>t", "<cmd>call checkbox#ToggleCB()<cr>", desc = "Check box" },
+      { "<localleader>t", vim.fn["checkbox#ToggleCB"], desc = "Check box" },
+    },
+  },
+  {
     -- nice formatting when writing (removes a lot of noise)
     "Pocco81/TrueZen.nvim",
 
