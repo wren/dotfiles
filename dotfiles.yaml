@@ -16,33 +16,33 @@
     email: jonathan@nowandwren.com
   roles:
     - role: wren.beautiful_output
-    - {role: bootstrap, tags: bootstrap}
-    - {role: zsh, tags: cli}
-    - {role: encryption, tags: encryption}
-    - {role: 1password, tags: apps}
-    - {role: age, tags: cli}
-    - {role: rtx, tags: langs}
-    - {role: bat, tags: cli}
-    - {role: borg-backup, tags: backups}
-    - {role: discord, tags: apps}
-    - {role: doppler, tags: cli}
-    - {role: firefox, tags: apps}
-    - {role: fira-code-nerd-font, tags: fonts}
-    - {role: monolisa-nerd-font, tags: fonts}
-    - {role: git, tags: cli}
-    - {role: jrnl, tags: cli}
-    - {role: karabiner, tags: apps}
-    - {role: less, tags: cli}
-    - {role: lolcat, tags: cli}
-    - {role: lunarvim, tags: editor}
+    - { role: bootstrap, tags: bootstrap }
+    - { role: zsh, tags: cli }
+    - { role: encryption, tags: encryption }
+    - { role: 1password, tags: apps }
+    - { role: age, tags: cli }
+    - { role: rtx, tags: langs }
+    - { role: bat, tags: cli }
+    - { role: borg-backup, tags: backups }
+    - { role: discord, tags: apps }
+    - { role: doppler, tags: cli }
+    - { role: firefox, tags: apps }
+    - { role: fira-code-nerd-font, tags: fonts }
+    - { role: monolisa-nerd-font, tags: fonts }
+    - { role: git, tags: cli }
+    - { role: jrnl, tags: cli }
+    - { role: karabiner, tags: apps }
+    - { role: less, tags: cli }
+    - { role: lolcat, tags: cli }
+    - { role: lunarvim, tags: editor }
     # - {role: neovim, tags: editor} # vanilla neovim
-    - {role: ripgrep, tags: cli}
-    - {role: qmk, tags: keeb}
-    - {role: signal, tags: apps}
-    - {role: ssh, tags: cli}
-    - {role: slack, tags: apps}
-    - {role: steam, tags: apps}
-    - {role: wezterm, tags: apps}
-    - {role: zoom, tags: apps}
-    - {role: zoxide, tags: cli}
-    - {role: viu, tags: cli}
+    - { role: ripgrep, tags: cli }
+    - { role: qmk, tags: keeb }
+    - { role: signal, tags: apps }
+    - { role: ssh, tags: cli }
+    - { role: slack, tags: apps }
+    - { role: steam, tags: apps }
+    - { role: wezterm, tags: apps }
+    - { role: zoom, tags: apps }
+    - { role: zoxide, tags: cli }
+    - { role: viu, tags: cli }
