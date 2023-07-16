@@ -1,8 +1,4 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-local map = vim.keymap.set
-local unmap = vim.keymap.del
+-- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
 -- Insert newlines without leaving normal mode
 -- map("n", "<cr>", modifiable_only("<cr>", "m`o<Esc>``"))

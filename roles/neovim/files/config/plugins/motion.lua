@@ -1,7 +1,7 @@
 return {
   "chaoren/vim-wordmotion",
   config = function()
-    vim.g.wordmotion_spaces = {
+    g.wordmotion_spaces = {
       '-', '_', '/',
       '.', ':', "'",
       '"', '=', '#',
@@ -10,7 +10,7 @@ return {
       '(', ')',
       '{', '}'
     }
-    vim.g.wordmotion_uppercase_spaces = {
+    g.wordmotion_uppercase_spaces = {
       ' ', ',', ';',
       '(', ')',
       '{', '}',
