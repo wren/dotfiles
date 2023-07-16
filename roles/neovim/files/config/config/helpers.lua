@@ -10,6 +10,7 @@ _G.call = vim.call
 _G.lsp = vim.lsp
 _G.set = api.nvim_set_option
 _G.get = api.nvim_get_option
+_G.map = vim.keymap.set
 _G.unmap = vim.keymap.del
 _G.create_autocmd = api.nvim_create_autocmd
 
