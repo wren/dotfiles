@@ -7,9 +7,9 @@ map("n", "<cr>", "m`o<Esc>``")
 map("n", "<s-cr>", "m`O<Esc>``")
 
 -- Comment/uncomment a line
-map("n", "<A-/>", "gcc", { remap = true })
-map("v", "<A-/>", "gc", { remap = true })
-map("i", "<A-/>", "<esc>gcca", { remap = true })
+map("n", "<a-/>", "gcc", { remap = true })
+map("v", "<a-/>", "gc", { remap = true })
+map("i", "<a-/>", "<esc>gcca", { remap = true })
 
 -- Clear search highlights
 -- https://github.com/mhinz/vim-galore#saner-ctrl-l
