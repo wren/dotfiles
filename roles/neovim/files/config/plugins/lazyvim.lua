@@ -1,4 +1,7 @@
 return {
+  -- disable some defaults
+  { "folke/flash.nvim", enabled = false },
+
   -- { import = "lazyvim.plugins.extras.coding.copilot" },
   { import = "lazyvim.plugins.extras.formatting.prettier" },
   { import = "lazyvim.plugins.extras.lang.json" },
