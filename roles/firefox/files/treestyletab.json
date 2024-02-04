@@ -1,4 +1,5 @@
 {
+  "__ConfigsMigration__userValeusSameToDefaultAreCleared": true,
   "autoAttachOnNewTabCommand": 3,
   "autoCollapseExpandSubtreeOnAttach": false,
   "autoCollapseExpandSubtreeOnSelect": false,
@@ -6,13 +7,6 @@
   "closeParentBehavior": 5,
   "closeParentBehaviorMode": 1,
   "configsVersion": 16,
-  "lastConfirmedToCloseTabs": 1601504135822,
-  "lastDraggedTabs": {
-    "tabIds": [
-      198
-    ],
-    "urlsDigest": "09450fb977344d56047a430e488e8a08d036c1c5"
-  },
   "notifiedFeaturesVersion": 6,
   "optionsExpandedSections": [
     "section-appearance",
@@ -25,6 +19,8 @@
   ],
   "showAutoGroupOptionHint": false,
   "showDialogInSidebar": true,
-  "style": "plain",
+  "sidebarPosition": 1,
+  "sidebarPositionRighsideNotificationShown": true,
+  "style": "proton",
   "userStyleRules": ""
 }
