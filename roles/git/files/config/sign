@@ -6,4 +6,4 @@
   allowedSignersFile = "~/.config/git/allowed-signers"
 
 [commit]
-  gpgsign = false
+  gpgsign = true
