@@ -26,7 +26,7 @@
     - { role: borg-backup, tags: backups }
     - { role: discord, tags: apps }
     - { role: doppler, tags: cli }
-    - { role: firefox, tags: apps }
+    # - { role: firefox, tags: apps } # TODO: currently hangs, needs to be fixed
     - { role: fira-code-nerd-font, tags: fonts }
     - { role: monolisa-nerd-font, tags: fonts }
     - { role: git, tags: cli }
