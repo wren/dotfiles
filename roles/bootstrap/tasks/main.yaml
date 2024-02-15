@@ -31,11 +31,10 @@
 - name: Check if brew exists
   check_mode: yes
   stat:
-    path: /usr/local/bin/brew
+    path: /opt/homebrew/bin/brew
   register: brew
 
 - name: Install homebrew
-  become: true
   shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   when: not brew.stat.exists
 
