@@ -29,7 +29,7 @@
 - name: Check if batpipe exists
   check_mode: yes
   stat:
-    path: /usr/local/bin/batpipe
+    path: "{{ bin_home }}/batpipe"
   register: batpipe
 
 - name: Get bat-extras
@@ -56,7 +56,7 @@
       - prettybat
     copy:
       src: '/tmp/bat-extras/bin/{{ item }}'
-      dest: '/usr/local/bin/{{ item }}'
+      dest: '{{ bin_home }}/{{ item }}'
       mode: 'a+x'
       force: yes
     become: true
