@@ -1,7 +1,7 @@
 - name: Check if lolcat exists
   check_mode: yes
   stat:
-    path: /usr/local/bin/lolcat
+    path: "{{ bin_home }}/lolcat"
   register: lolcat
 
 - name: Clone lolcat repo
@@ -20,6 +20,6 @@
   become: true
   copy:
     src: /tmp/lolcat/lolcat
-    dest: /usr/local/bin/lolcat
+    dest: "{{ bin_home }}/lolcat"
     mode: 755
   when: not lolcat.stat.exists
