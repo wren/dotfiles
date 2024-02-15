@@ -45,3 +45,5 @@
     - { role: zoom, tags: apps }
     - { role: zoxide, tags: cli }
     - { role: viu, tags: cli }
+    # - { role: chrome, tags: apps } # doesn't exist yet
+    # - { role: raycast, tags: apps } # doesn't exist yet
