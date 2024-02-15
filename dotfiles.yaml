@@ -21,7 +21,7 @@
     - { role: encryption, tags: encryption }
     - { role: 1password, tags: apps }
     - { role: age, tags: cli }
-    - { role: rtx, tags: langs }
+    # - { role: rtx, tags: langs } # was renamed. see: https://mise.jdx.dev/rtx.html
     - { role: bat, tags: cli }
     - { role: borg-backup, tags: backups }
     - { role: discord, tags: apps }
