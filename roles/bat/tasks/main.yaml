@@ -4,6 +4,8 @@
 - import_tasks: linux.yaml
   when: ansible_os_family == "Debian"
 
+# TODO: add shfmt
+
 - name: Ensure config dirs
   loop:
     - bat
