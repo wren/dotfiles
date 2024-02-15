@@ -58,6 +58,6 @@
   become: true
   file:
     src: /usr/local/src/nvim/stable/latest/bin/nvim
-    dest: /usr/local/bin/nvim
+    dest: "{{ bin_home }}/nvim"
     state: link
     force: true
