@@ -36,7 +36,7 @@
     - { role: lolcat, tags: cli }
     - {role: neovim, tags: editor}
     - { role: ripgrep, tags: cli }
-    - { role: qmk, tags: keeb }
+    # - { role: qmk, tags: keeb }
     - { role: signal, tags: apps }
     - { role: ssh, tags: cli }
     - { role: slack, tags: apps }
