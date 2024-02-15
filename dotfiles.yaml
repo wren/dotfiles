@@ -34,8 +34,7 @@
     - { role: karabiner, tags: apps }
     - { role: less, tags: cli }
     - { role: lolcat, tags: cli }
-    - { role: lunarvim, tags: editor }
-    # - {role: neovim, tags: editor} # vanilla neovim
+    - {role: neovim, tags: editor}
     - { role: ripgrep, tags: cli }
     - { role: qmk, tags: keeb }
     - { role: signal, tags: apps }
