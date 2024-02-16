@@ -14,6 +14,7 @@ path=(
 
   # Homebrew because ugh
   /home/linuxbrew/.linuxbrew/bin
+  /opt/homebrew/bin
 )
 
 fpath=(
