@@ -1,6 +1,6 @@
 - name: 'Install: rtx'
   homebrew:
     name:
-      - jdxcode/tap/rtx
+      - mise
     state: present
     update_homebrew: false
