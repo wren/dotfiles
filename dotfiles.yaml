@@ -21,7 +21,7 @@
     - { role: encryption, tags: encryption }
     - { role: 1password, tags: apps }
     - { role: age, tags: cli }
-    - { role: mise, tags: test }
+    - { role: mise, tags: cli }
     - { role: bat, tags: cli }
     - { role: borg-backup, tags: backups }
     - { role: discord, tags: apps }

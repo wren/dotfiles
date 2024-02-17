@@ -1,4 +1,4 @@
-- name: 'Install: rtx'
+- name: 'Install: mise'
   homebrew:
     name:
       - mise

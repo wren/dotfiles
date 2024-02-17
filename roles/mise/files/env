@@ -1,14 +1,14 @@
 # Initialize langs version manager
-if command -v rtx &>/dev/null; then
-  RTX_CACHE="${RTX_CACHE:-$HOME/.cache/rtx}"
-  RTX_CACHE_FILE="$RTX_CACHE/cached_init.sh"
+if command -v mise &>/dev/null; then
+  MISE_CACHE="${MISE_CACHE:-$HOME/.cache/mise}"
+  MISE_CACHE_FILE="$MISE_CACHE/cached_init.sh"
 
   # Check if file exists
-  if [[ ! -f "$RTX_CACHE_FILE" ]]; then
+  if [[ ! -f "$MISE_CACHE_FILE" ]]; then
     # regenerate init file
-    mkdir -vp "$RTX_CACHE"
-    RTX_CONFIRM=no rtx activate zsh > "$RTX_CACHE_FILE"
+    mkdir -vp "$MISE_CACHE"
+    mise activate zsh --yes >"$MISE_CACHE_FILE"
   fi
 
-  source "$RTX_CACHE_FILE"
+  source "$MISE_CACHE_FILE"
 fi

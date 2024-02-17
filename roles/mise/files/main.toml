@@ -1,5 +1,5 @@
 [env]
-# supports arbitrary env vars so rtx can be used like direnv/dotenv
+# supports arbitrary env vars so mise can be used like direnv/dotenv
 # NODE_ENV = 'production'
 
 [tools]
@@ -14,13 +14,13 @@ always_keep_download = false
 
 # config files with these prefixes will be trusted by default
 trusted_config_paths = [
-    '~/.config/rtx/config.toml',
+    '~/.config/mise/config.toml',
 ]
 
-verbose = false     # see full installation output, see `RTX_VERBOSE`
-asdf_compat = true  # ensure .tool-versions will be compatible with asdf, see `RTX_ASDF_COMPAT`
+verbose = false     # see full installation output, see `MISE_VERBOSE`
+asdf_compat = true  # ensure .tool-versions will be compatible with asdf, see `MISE_ASDF_COMPAT`
 jobs = 4            # number of plugins or runtimes to install in parallel. default: 4
 raw = false         # directly pipe plugins to stdin/stdout/stderr?
 
 experimental = false # enable experimental features
-# log_level = 'debug' # log verbosity, see `RTX_LOG_LEVEL`
+# log_level = 'debug' # log verbosity, see `MISE_LOG_LEVEL`
