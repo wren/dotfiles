@@ -30,6 +30,7 @@
     - { role: fira-code-nerd-font, tags: fonts }
     - { role: monolisa-nerd-font, tags: fonts }
     - { role: git, tags: cli }
+    - { role: itsycal, tags: apps }
     - { role: jrnl, tags: cli }
     - { role: karabiner, tags: apps }
     - { role: less, tags: cli }

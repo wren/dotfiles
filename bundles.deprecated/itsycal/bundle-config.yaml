@@ -1,9 +1,0 @@
-- cask:
-    - "itsycal" # Menu bar calendar
-
-- create:
-    - ~/Library/Preferences/
-
-- link:
-    ~/Library/Preferences/com.mowglii.ItsycalApp.plist:
-        path: 'com.mowglii.ItsycalApp.plist'

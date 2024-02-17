@@ -1,0 +1,22 @@
+- when: ansible_os_family == "Darwin"
+  # itsycal is mac only
+  block:
+    - name: "Install: itsycal"
+      homebrew_cask:
+        name:
+          - itsycal # Menu bar calendar
+        state: present
+        update_homebrew: false
+
+    - name: Create config dir
+      file:
+        path: "{{ home }}/Library/Preferences"
+        state: directory
+
+    - name: Link prefs file
+      become: true
+      file:
+        src: "{{ role_path }}/files/config.plist"
+        dest: "{{ home }}/Library/Preferences/com.mowglii.ItsycalApp.plist"
+        state: link
+        force: true
