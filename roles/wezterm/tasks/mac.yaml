@@ -2,5 +2,6 @@
   homebrew_cask:
     name:
       - wez/wezterm/wezterm-nightly
-    state: present
+    state: latest
+    greedy: true
     update_homebrew: false
