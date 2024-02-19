@@ -18,7 +18,7 @@ function cdp(){ mkdir -p "$@"; cd "$@"; }
 alias plist-to-xml='plutil -convert xml1'
 alias h='run-help'
 alias l='less-with-pipe'
-alias ll='exa --time-style=long-iso --color=always --icons -la'
+alias ll='eza --time-style=long-iso --color=always --icons=always --long --all'
 function lg(){ l ${2:-.} | rg --max-columns=999 --color=always -i $1; }
 function lt(){ ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences|node_modules" $@ | less; }
 alias ssh.init='eval `ssh-agent`;ssh-add'
@@ -62,7 +62,7 @@ alias b='borg-wrapper'
 alias f='fd --hidden' # find including hidden
 alias ff='fd -HI' # find all
 alias fp='printf ''%s\n'' "${path[@]}" | rg --passthru' # find in path
-alias fe='env | rg -v ''^(PATH|(LS|EXA)_?COLORS)='' | rg' # find in env
+alias fe='env | rg -v ''^(PATH|(LS|EZA)_?COLORS)='' | rg' # find in env
 alias fa='alias | rg' # find an alias
 alias size='ff -d 1 -x du -sh -- ''{/}'' | sort -hr | l'
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'

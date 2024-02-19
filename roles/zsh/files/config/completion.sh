@@ -12,7 +12,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_PATH/zsh"
 
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # Fast Completion Cache
 # Adapted from the various iterations here:

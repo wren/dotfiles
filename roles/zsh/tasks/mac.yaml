@@ -1,7 +1,7 @@
 - name: Install
   with_items:
     - zsh
-    - exa
+    - eza
     - vivid
     - fd
     - fzf
