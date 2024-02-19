@@ -1,2 +1,3 @@
 dependencies:
   - role: nvim-stable
+  - role: nvim-nightly
