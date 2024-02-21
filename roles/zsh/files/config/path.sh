@@ -9,12 +9,12 @@ path=(
   # apt installs some stuff here for some reason
   /usr/games
 
-  # default path
-  $path
-
   # Homebrew because ugh
   /home/linuxbrew/.linuxbrew/bin
   /opt/homebrew/bin
+
+  # default path
+  $path
 )
 
 fpath=(
