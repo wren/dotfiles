@@ -4,8 +4,8 @@ ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 my_dotfiles=(
   xdg
   completion
-  env
   path
+  env
   motd
   prompt
   options
