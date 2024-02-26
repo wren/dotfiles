@@ -19,6 +19,7 @@
   ],
   "showAutoGroupOptionHint": false,
   "showDialogInSidebar": true,
+  "showExpertOptions": true,
   "sidebarPosition": 1,
   "sidebarPositionRighsideNotificationShown": true,
   "style": "proton",
