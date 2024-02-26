@@ -9,7 +9,7 @@
 }
 
 tab-item {
-/*  margin-left: 0 !important; */
+  /*  margin-left: 0 !important; */
 }
 
 tab-item {
@@ -17,14 +17,14 @@ tab-item {
   padding-right: 0 !important;
 }
 tab-item[data-level="0"] {
-  background: #31363B;
+  background: #31363b;
 }
 tab-item[data-level="1"] {
-  background: #23262A;
+  background: #23262a;
   padding-left: 12px;
 }
 tab-item[data-level="2"] {
-  background: #1C1E21;
+  background: #1c1e21;
   padding-left: 24px;
 }
 tab-item[data-level="3"] {
@@ -33,9 +33,8 @@ tab-item[data-level="3"] {
 }
 
 tab-item[data-child-ids] {
-/*  border-bottom: 2px solid white; */
+  /*  border-bottom: 2px solid white; */
 }
-
 
 /* Push tab labels slightly to the right so they're completely hidden in collapsed state */
 .tab .label {
@@ -45,7 +44,7 @@ tab-item[data-child-ids] {
 /* Close buttons on tabs. */
 .tab .closebox {
   visibility: collapse;
-  background-color: #637A87;
+  background-color: #637a87;
 }
 .tab:hover .closebox {
   visibility: visible;
@@ -57,16 +56,15 @@ tab-item tab-closebox {
 }
 
 .tab .closebox:hover {
-  background-color: #C9CCCF;
+  background-color: #c9cccf;
 }
 
 :root.simulate-svg-context-fill tab-closebox::after {
-  background-color: #93999F;
+  background-color: #93999f;
 }
 :root.simulate-svg-context-fill tab-closebox:hover::after {
-  background-color: #31363B;
+  background-color: #31363b;
 }
-
 
 /* Hide sound playing/muted button. */
 .sound-button::before {
@@ -104,7 +102,7 @@ tab-item tab-closebox {
   }
 }
 :root {
-  background-color: #313B41;
+  background-color: #313b41;
 }
 #tabbar {
   border-right: 1px solid #1d1d1d;
@@ -121,7 +119,7 @@ tab-item tab-closebox {
   line-height: 1.5em;
 }
 .tab:hover {
-  background-color: #637A87 !important;
+  background-color: #637a87 !important;
   color: rgba(207, 207, 207, 1) !important;
 }
 .tab.discarded {
@@ -133,11 +131,10 @@ tab-item tab-closebox {
 }
 .tab.active {
   /* background-color: #475862; */
-  background-color: #FFFFFF;
-
+  background-color: #ffffff;
 }
 .tab.active:hover {
-  background-color: #637A87 !important;
+  background-color: #637a87 !important;
 }
 
 /* Adjust style for tab that has sound playing. */
@@ -157,5 +154,3 @@ tab-item tab-closebox {
 .tab.muted {
   opacity: 0.5;
 }
-
-
