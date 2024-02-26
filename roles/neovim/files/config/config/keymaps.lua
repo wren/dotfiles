@@ -11,9 +11,16 @@ map("n", "<a-/>", "gcc", { remap = true })
 map("v", "<a-/>", "gc", { remap = true })
 map("i", "<a-/>", "<esc>gcca", { remap = true })
 
--- Clear search highlights
--- https://github.com/mhinz/vim-galore#saner-ctrl-l
-map("n", "<c-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", {
+map("n", "<c-l>", function()
+  cmd("nohlsearch")
+  cmd("diffupdate")
+  cmd("syntax sync fromstart")
+
+  local Util = require("lazyvim.util")
+  if Util.has("noice.nvim") then
+    require("notify").dismiss({ silent = true, pending = true })
+  end
+end, {
   silent = true,
   remap = false,
   desc = "Clear & redraw screen",

@@ -38,12 +38,14 @@ map("v", "<", "<gv", { desc = "" })
 -- Yank, then reselect
 map("v", "y", "ygv", { desc = "Yank" })
 
--- Clear search highlights
--- https://github.com/mhinz/vim-galore#saner-ctrl-l
-map("n", "<c-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", {
+map("n", "<c-l>", function()
+  cmd("nohlsearch")
+  cmd("diffupdate")
+  cmd("syntax sync fromstart")
+end, {
   silent = true,
   remap = false,
-  desc = "Redraw / clear hlsearch / diff update",
+  desc = "Clear & redraw screen",
 })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
