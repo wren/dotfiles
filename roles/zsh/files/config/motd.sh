@@ -1,7 +1,5 @@
 # Message of the day
 
-clear
-
 # if [[ $TERM =~ ^xterm- ]] && command -v viu &>/dev/null; then
   viu -h $(( $LINES / 2 )) -t ~/.config/zsh/motd.png
   return
