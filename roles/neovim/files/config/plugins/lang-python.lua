@@ -25,15 +25,6 @@ return {
       },
     },
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      table.insert(opts.sources, nls.builtins.formatting.ruff)
-      table.insert(opts.sources, nls.builtins.diagnostics.ruff)
-      table.insert(opts.sources, nls.builtins.formatting.black)
-    end,
-  },
 
   {
     -- TODO: Enable dap support for python
