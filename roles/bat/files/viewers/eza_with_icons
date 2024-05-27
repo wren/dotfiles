@@ -19,7 +19,6 @@ viewer_eza_with_icons_process() {
     --color=always \
     --icons=always \
     --no-quotes \
-    --total-size \
     $1 2>&1
 	return $?
 }
