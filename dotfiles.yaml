@@ -42,7 +42,7 @@
     - { role: ssh, tags: cli }
     - { role: slack, tags: apps }
     - { role: steam, tags: apps }
-    - { role: wezterm, tags: apps }
+    - { role: wezterm, tags: [cli, apps, terminal] }
     - { role: zoom, tags: apps }
     - { role: zoxide, tags: cli }
     - { role: viu, tags: cli }
