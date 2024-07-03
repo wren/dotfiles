@@ -27,7 +27,7 @@ alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killal
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
-function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash; }
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 function show-all(){ cat -A $1 | sed 's/ /␠/g' | cat -n; }
 
