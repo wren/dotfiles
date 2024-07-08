@@ -5,6 +5,8 @@
     - vivid
     - fd
     - fzf
+    - coreutils
+    - util-linux
   homebrew:
     name: "{{ item }}"
     state: present
