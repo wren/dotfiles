@@ -17,6 +17,8 @@
     state: link
 
 - name: Locking in shell plugins
-  command: sheldon lock
+  command: sheldon lock --update
   register: sheldon_output
-  changed_when: "'CLONED' in sheldon_output.stderr"
+  changed_when:
+    - "'CLONED' in sheldon_output.stderr"
+    - "'Updated' in sheldon_output.stderr"
