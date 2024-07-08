@@ -9,4 +9,3 @@
     name: "{{ item }}"
     state: present
     update_homebrew: false
-
