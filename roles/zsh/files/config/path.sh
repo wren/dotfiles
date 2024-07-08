@@ -12,6 +12,10 @@ path=(
   # Homebrew because ugh
   /home/linuxbrew/.linuxbrew/bin
   /opt/homebrew/bin
+  /usr/local/opt/util-linux/bin
+  /usr/local/opt/util-linux/sbin
+  # not sure if we want this
+  # /usr/local/opt/coreutils/libexec/gnubin
 
   # default path
   $path
