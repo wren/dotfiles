@@ -30,7 +30,7 @@ alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
 function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
-function show-all(){ cat -A $1 | sed 's/ /␠/g' | cat -n; }
+alias show-all='bat --numbers --show-all'
 
 #--- Apt --- #
 apt.search(){apt -o apt::cmd::use-format=1 -o apt::cmd::format='${Package} ${apt:Status}|${Version}|${Description}' search $1 2>/dev/null | grep "${2:-^$1}" --color=always | column -ts'|' | l; }
