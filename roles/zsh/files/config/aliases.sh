@@ -18,7 +18,8 @@ function cdp(){ mkdir -p "$@"; cd "$@"; }
 alias plist-to-xml='plutil -convert xml1'
 alias h='run-help'
 alias l='less-with-pipe'
-alias ll='eza --time-style=long-iso --color=always --icons=always --long --all'
+alias ls='eza --time-style=long-iso --color=always --icons=always --long --all'
+alias ll='eza --time-style=long-iso --color=always --icons=always --long --all --total-size'
 function lg(){ l ${2:-.} | rg --max-columns=999 --color=always -i $1; }
 function lt(){ ll --tree --icons --ignore-glob=".git|Alfred.alfredpreferences|node_modules" $@ | less; }
 alias ssh.init='eval `ssh-agent`;ssh-add'
