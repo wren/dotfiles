@@ -1,4 +1,3 @@
 # (Clears the screen without losing any of the scrollback buffer)
-printf '\n%.0s' {1..$(( $(tput lines) - 4 ))}
-clear
-zle reset-prompt
+printf '\n%.0s' {1..$(( $(tput lines) - 5 ))}
+zle clear-screen
