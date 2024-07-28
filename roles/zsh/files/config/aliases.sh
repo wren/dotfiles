@@ -13,6 +13,7 @@ alias rgl="rg --color=never -l"
 function rgv(){ nvim "${(f)$(rgl ""$@"")}"; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
+alias rsync="rsync --compress --verbose --human-readable --partial --progress"
 alias mkdir="mkdir -pv"
 function cdp(){ mkdir -p "$@"; cd "$@"; }
 alias plist-to-xml='plutil -convert xml1'
