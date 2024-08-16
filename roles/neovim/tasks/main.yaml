@@ -36,6 +36,7 @@
 - loop:
     - after
     - spell
+    - filetype.lua
   file:
     src: "{{ role_path }}/files/config/{{ item }}"
     dest: "{{ config_home }}/nvim/{{ item }}"
