@@ -1,6 +1,6 @@
 - when: ansible_os_family == "Darwin"
   set_fact:
-    nvim_bin_name: macos
+    nvim_bin_name: macos-x86_64
 
 - when: ansible_os_family == "Debian"
   set_fact:
