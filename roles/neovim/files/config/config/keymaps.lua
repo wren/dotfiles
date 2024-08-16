@@ -57,8 +57,6 @@ map({ "n", "v", "o" }, "H", "^", { desc = "Go to start of line" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Go to end of line" })
 
 -- splitting windows
-map({ "n", "x" }, "<leader>-", "<c-w>s", { desc = "Split window (horizontal)" })
-map({ "n", "x" }, "<leader>\\", "<c-w>v", { desc = "Split window (vertical)" })
 map({ "n", "x" }, "<leader>w-", "<c-w>s", { desc = "Split window below", remap = true })
 map({ "n", "x" }, "<leader>w\\", "<c-w>v", { desc = "Split window right", remap = true })
 
@@ -74,14 +72,5 @@ map("c", "<up>", pumvisible_keycodes("<c-p>", "<up>"), { expr = true })
 map("c", "<cr>", pumvisible_keycodes("<c-y>", "<cr>"), { expr = true })
 map("c", "<esc>", pumvisible_keycodes("<c-e>", "<esc>"), { expr = true })
 
--- Get rid of some defaults that I don't like
-unmap("n", "<leader>|")
-unmap("n", "<leader>w|")
-unmap("n", "<leader><tab>l")
-unmap("n", "<leader><tab>f")
-unmap("n", "<leader><tab><tab>")
-unmap("n", "<leader><tab>]")
-unmap("n", "<leader><tab>d")
-unmap("n", "<leader><tab>[")
-unmap({ "n", "i", "v" }, "<a-j>")
-unmap({ "n", "i", "v" }, "<a-k>")
+-- Get rid of some defaults that I don't use and have conflicts
+unmap("n", "<leader>|") -- already have it mapped to <leader>\ (don't have to press shift)
