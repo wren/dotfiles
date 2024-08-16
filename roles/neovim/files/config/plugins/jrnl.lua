@@ -13,7 +13,7 @@ return {
 
     config = function()
       -- options
-      -- 0=disable, 1=one char, 2=hide char, 3=hide all (def)
+      -- 0=disable, 1=one char, 2=hide char, 3=hide all (default)
       vim.g["pencil#conceallevel"] = 2
     end,
   },
