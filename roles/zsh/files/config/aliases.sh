@@ -13,7 +13,7 @@ alias rgl="rg --color=never -l"
 function rgv(){ nvim "${(f)$(rgl ""$@"")}"; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
-alias rsync="rsync --compress --verbose --human-readable --partial --progress"
+alias rsync="rsync --compress --verbose --human-readable --partial --progress --recursive"
 alias mkdir="mkdir -pv"
 function cdp(){ mkdir -p "$@"; cd "$@"; }
 alias plist-to-xml='plutil -convert xml1'
@@ -29,7 +29,7 @@ alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killal
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
-function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 alias show-all='bat --numbers --show-all'
 
