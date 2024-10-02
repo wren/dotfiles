@@ -16,3 +16,12 @@
     dest: "{{ config_home }}/jrnl/{{ item }}"
     state: link
     force: true
+
+- name: Link
+  with_items:
+    # - env
+    - aliases
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ config_home }}/{{ item }}/jrnl.{{ item }}.sh"
+    state: link
