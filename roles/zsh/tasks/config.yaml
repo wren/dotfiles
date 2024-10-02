@@ -62,9 +62,13 @@
     dest: "{{ config_home }}/zsh/{{ item }}"
     state: link
 
-- file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/env"
-    dest: "{{ config_home }}/env/00_zsh.env.sh"
+- name: Linking
+  with_items:
+    - env
+    - aliases
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ config_home }}/{{ item }}/00_zsh.{{ item }}.sh"
     state: link
 
 - file:
