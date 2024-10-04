@@ -1,6 +1,0 @@
-- name: 'Install: mise'
-  homebrew:
-    name:
-      - mise
-    state: present
-    update_homebrew: false

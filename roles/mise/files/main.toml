@@ -4,9 +4,10 @@
 
 [tools]
 # specify single or multiple versions
-python = [ '3.11', '3.10']
-node = [ 'lts' ]
+python = [ '3.13-dev', '3.12', '3.11' ]
+node = [ 'lts', 'latest' ]
 rust = [ 'stable' ]
+pipx = [ 'latest' ]
 
 [settings] # project-local settings
 legacy_version_file = false

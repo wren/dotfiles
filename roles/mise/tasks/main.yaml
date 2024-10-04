@@ -1,8 +1,12 @@
-- include_tasks: "{{ role_path }}/tasks/mac.yaml"
-  when: ansible_os_family == "Darwin"
+- name: Check if mise exists
+  check_mode: yes
+  stat:
+    path: "{{ bin_home }}/mise"
+  register: mise
 
-# - include_tasks: "{{ dotfiles_home }}/roles/asdf/tasks/linux.yaml"
-#   when: ansible_os_family == "Debian"
+- name: Install mise
+  shell: /bin/sh -c "$(curl -fsSL https://mise.run)"
+  when: not mise.stat.exists
 
 - name: Create config dir
   file:

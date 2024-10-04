@@ -24,9 +24,9 @@
     job: "{{ home }}/.local/bin:/usr/local/bin:$PATH"
 
 - name: Ensure pipx installation
-  command: python3 -m pip install pipx
-  register: pip_output
-  changed_when: "'Requirement already satisfied: pipx' not in pip_output.stdout"
+  command: mise install pipx@latest --verbose
+  register: mise_output
+  changed_when: "'installed' in mise_output.stdout"
 
 - name: Check if brew exists
   check_mode: yes
