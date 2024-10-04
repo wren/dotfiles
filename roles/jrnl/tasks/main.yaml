@@ -1,6 +1,12 @@
+- name: Check if jrnl exists
+  check_mode: yes
+  stat:
+    path: "{{ bin_home }}/jrnl"
+  register: jrnl
+
 - name: Install jrnl
-  community.general.pipx:
-    name: jrnl
+  shell: mise x -- pipx install jrnl
+  when: not jrnl.stat.exists
 
 - name: Create config dir
   file:
