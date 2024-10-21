@@ -13,10 +13,36 @@
         path: "{{ home }}/Library/Preferences"
         state: directory
 
-    - name: Link prefs file
-      become: true
-      file:
+    - name: Check if config exists
+      check_mode: yes
+      stat:
+        path: "{{ home }}/Library/Preferences/com.mowglii.ItsycalApp.plist"
+      register: itsycal
+
+    - name: Install config file
+      become: yes
+      copy:
         src: "{{ role_path }}/files/config.plist"
         dest: "{{ home }}/Library/Preferences/com.mowglii.ItsycalApp.plist"
-        state: link
-        force: true
+        mode: 0644
+      when: not itsycal.stat.exists
+
+    - name: Change plist to binary in prefs
+      become: yes
+      command:
+        cmd: plutil -convert binary1 com.mowglii.ItsycalApp.plist
+        chdir: "{{ home }}/Library/Preferences"
+      when: not itsycal.stat.exists
+
+    - name: Copy changes in config file to repo
+      copy:
+        src: "{{ home }}/Library/Preferences/com.mowglii.ItsycalApp.plist"
+        dest: "{{ role_path }}/files/config.plist"
+        mode: 0644
+      when: itsycal.stat.exists
+
+    - name: Change plist to xml in repo
+      command:
+        cmd: plutil -convert xml1 config.plist
+        chdir: "{{ role_path }}/files"
+      when: itsycal.stat.exists
