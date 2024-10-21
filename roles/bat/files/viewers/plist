@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+# see: https://github.com/eth-p/bat-extras/blob/master/doc/batpipe.md
+
+BATPIPE_VIEWERS=('plist' "${BATPIPE_VIEWERS[@]}")
+
+function viewer_plist_supports() {
+  [[ -f "$2" ]] || return 1
+  [[ "$1" =~ \.plist$ ]] || return 1
+  command -v plutil &>/dev/null || return 1
+  return 0
+}
+
+function viewer_plist_process() {
+  batpipe_header "Viewing plist: %{PATH}%s" "$1"
+
+  plutil -p "$1" | bat -l ini
+}
