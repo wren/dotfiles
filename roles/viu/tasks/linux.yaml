@@ -19,6 +19,6 @@
   get_url:
     url: https://github.com/atanunq/viu/releases/download/{{ viu_version }}/viu
     dest: /bin/
-    mode: 755
+    mode: 0755
   become: true
   when: not bin_viu.stat.exists

@@ -27,7 +27,7 @@
       copy:
         content: "{{ dotfiles_key.stdout }}"
         dest: "{{ config_home }}/age/keys.txt"
-        mode: 400
+        mode: 0400
 
 - name: Decrypt individual files
   block:

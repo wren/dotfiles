@@ -27,4 +27,4 @@
 - name: Update permissions for decrypted file
   file:
     name: "{{ my_filename }}"
-    mode: 400
+    mode: 0400
