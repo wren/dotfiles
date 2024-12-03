@@ -63,7 +63,7 @@
 
 - name: Linking env
   file:
-    src: "{{ dotfiles_home }}/roles/bat/files/env"
+    src: "{{ role_path }}/files/env"
     dest: "{{ config_home }}/env/bat.env.sh"
     state: link
 
