@@ -17,7 +17,7 @@
   roles:
     - role: wren.beautiful_output
     - { role: bootstrap, tags: bootstrap }
-    - { role: zsh, tags: cli }
+    - { role: zsh, tags: [cli, shell] }
     - { role: encryption, tags: encryption }
     - { role: 1password, tags: apps }
     - { role: age, tags: cli }
@@ -27,17 +27,17 @@
     - { role: discord, tags: apps }
     - { role: doppler, tags: cli }
     # - { role: firefox, tags: apps } # TODO: currently hangs, needs to be fixed
-    - { role: fira-code-nerd-font, tags: fonts }
-    - { role: monolisa-nerd-font, tags: fonts }
+    - { role: fira-code-nerd-font, tags: [cli, fonts] }
+    - { role: monolisa-nerd-font, tags: [cli, fonts] }
     - { role: git, tags: cli }
     - { role: itsycal, tags: apps }
-    - { role: jrnl, tags: cli }
+    - { role: jrnl, tags: [cli, jrnl] }
     - { role: karabiner, tags: apps }
     - { role: less, tags: cli }
     - { role: lolcat, tags: cli }
-    - { role: neovim, tags: editor }
+    - { role: neovim, tags: [cli, editor] }
     - { role: ripgrep, tags: cli }
-    # - { role: qmk, tags: keeb }
+    - { role: qmk, tags: keeb }
     - { role: signal, tags: apps }
     - { role: ssh, tags: cli }
     - { role: slack, tags: apps }
@@ -46,5 +46,3 @@
     - { role: zoom, tags: apps }
     - { role: zoxide, tags: cli }
     - { role: viu, tags: cli }
-    # - { role: chrome, tags: apps } # doesn't exist yet
-    # - { role: raycast, tags: apps } # doesn't exist yet
