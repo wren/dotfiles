@@ -4,7 +4,7 @@
 function exists(){ command -v "$@" &>/dev/null; }
 function alias_if_exists(){ if exists "$1"; then echo "$2"; else echo "$3"; fi; }
 alias rg="$( alias_if_exists rg rg grep )"
-alias rm="$( alias_if_exists rm trash "rm -rv" )"
+alias rm="$( alias_if_exists trash "trash -v" "rm -rv" )"
 alias top="$( alias_if_exists bpytop bpytop top)"
 
 #--- System ---#
@@ -29,7 +29,7 @@ alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killal
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
-function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash; }
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
 alias show-all='bat --numbers --show-all'
 

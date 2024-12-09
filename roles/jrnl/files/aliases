@@ -24,7 +24,8 @@ alias jps='jp --short'
 
 # templates
 alias j.business='jn --config-override template ~/.config/jrnl/templates/business-times.jrnl'
-alias j.fate='jn --config-override template ~/.config/jrnl/templates/fate-times.jrnl'
+alias j.fate.meeting='jn --config-override template ~/.config/jrnl/templates/fate-times-meeting.jrnl'
+alias j.fate.session='jn --config-override template ~/.config/jrnl/templates/fate-times-session.jrnl'
 alias j.hwt='jn --config-override template ~Dotfiles/config/jrnl/templates/hwt.jrnl'
 alias j.test='jrnl --config-file ~/Projects/Jrnl/test-journals/test.yaml'
 alias je.test='j.test --edit'
