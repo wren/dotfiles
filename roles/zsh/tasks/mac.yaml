@@ -6,6 +6,7 @@
     - fd
     - fzf
     - coreutils
+    - trash
     - util-linux
   homebrew:
     name: "{{ item }}"
