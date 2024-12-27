@@ -81,9 +81,7 @@ return {
     -- Changes some settings to make writing prose/notes
     -- easier and nicer (ass opposed to writing code)
     "preservim/vim-pencil",
-
     ft = { "jrnl" },
-
     config = function()
       -- options
       -- 0=disable, 1=one char, 2=hide char, 3=hide all (default)
