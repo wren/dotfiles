@@ -22,6 +22,17 @@ return {
   },
 
   {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      sections = {
+        lualine_z = {
+          "filetype",
+        },
+      },
+    },
+  },
+
+  {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       opts.section.header.opts.hl = "Label"
