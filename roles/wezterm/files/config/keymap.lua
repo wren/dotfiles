@@ -14,7 +14,7 @@ config.keys = {
   { key = "c", mods = "CTRL", action = "DisableDefaultAssignment" },
   { key = "v", mods = "CTRL", action = "DisableDefaultAssignment" },
 
-  -- make some often used keys easier to access by using cmd
+  -- make some often used keys easier to access by using cmd instead of ctrl
   { key = "s", mods = "SUPER", action = { SendKey = { key = "s", mods = "CTRL" } } },
   { key = "d", mods = "SUPER", action = { SendKey = { key = "d", mods = "CTRL" } } },
   { key = "u", mods = "SUPER", action = { SendKey = { key = "u", mods = "CTRL" } } },
