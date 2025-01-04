@@ -60,17 +60,17 @@ map({ "n", "v", "o" }, "L", "$", { desc = "Go to end of line" })
 map({ "n", "x" }, "<leader>w-", "<c-w>s", { desc = "Split window below", remap = true })
 map({ "n", "x" }, "<leader>w\\", "<c-w>v", { desc = "Split window right", remap = true })
 
--- Navigation in command mode
-local function pumvisible_keycodes(key1, key2)
-  return function()
-    return vim.fn.pumvisible() == 1 and key1 or key2
-  end
-end
+-- Move to window using the hjkl keys
+map("n", "<C-A-h>", wezterm_split_by_key("h"), { desc = "Go to Left Window", remap = true, silent = true })
+map("n", "<C-A-j>", wezterm_split_by_key("j"), { desc = "Go to Lower Window", remap = true, silent = true })
+map("n", "<C-A-k>", wezterm_split_by_key("k"), { desc = "Go to Upper Window", remap = true, silent = true })
+map("n", "<C-A-l>", wezterm_split_by_key("l"), { desc = "Go to Right Window", remap = true, silent = true })
 
-map("c", "<down>", pumvisible_keycodes("<c-n>", "<down>"), { expr = true })
-map("c", "<up>", pumvisible_keycodes("<c-p>", "<up>"), { expr = true })
-map("c", "<cr>", pumvisible_keycodes("<c-y>", "<cr>"), { expr = true })
-map("c", "<esc>", pumvisible_keycodes("<c-e>", "<esc>"), { expr = true })
+-- Navigation in command mode
+map("c", "<down>", _G.pumvisible_keycodes("<c-n>", "<down>"), { expr = true })
+map("c", "<up>", _G.pumvisible_keycodes("<c-p>", "<up>"), { expr = true })
+map("c", "<cr>", _G.pumvisible_keycodes("<c-y>", "<cr>"), { expr = true })
+map("c", "<esc>", _G.pumvisible_keycodes("<c-e>", "<esc>"), { expr = true })
 
 -- Get rid of some defaults that I don't use and have conflicts
 unmap("n", "<leader>|") -- already have it mapped to <leader>\ (don't have to press shift)

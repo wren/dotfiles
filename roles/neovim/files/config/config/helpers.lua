@@ -21,3 +21,41 @@ function _G.custom_fold_text()
   local divider = string.rep(" ", fn.winwidth(0) - #line - #line_count - 2)
   return string.format("%s%s %s", line, divider, line_count)
 end
+
+-- For mapping alternate keycodes when pop-up menu is visible
+function _G.pumvisible_keycodes(key1, key2)
+  return function()
+    return vim.fn.pumvisible() == 1 and key1 or key2
+  end
+end
+
+-- for navigating split windows (integration with wezterm)
+function _G.nav_wezterm_split(key)
+  -- get pane info
+  local current = fn.winnr()
+  local next = fn.winnr(key)
+
+  if current ~= next then
+    -- keep in nvim
+    cmd("wincmd " .. key)
+  else
+    -- forward to wezterm
+    local key_directions = {
+      h = "Left",
+      j = "Down",
+      k = "Up",
+      l = "Right",
+    }
+    local cmd = "wezterm cli activate-pane-direction " .. key_directions[key]
+    local handle = io.popen(cmd)
+    if handle then
+      handle:close()
+    end
+  end
+end
+
+function _G.wezterm_split_by_key(key)
+  return function()
+    nav_wezterm_split(key)
+  end
+end
