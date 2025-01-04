@@ -14,7 +14,13 @@ config.tab_bar_at_bottom = false
 config.hide_tab_bar_if_only_one_tab = false
 config.window_decorations = "RESIZE"
 config.unzoom_on_switch_pane = false
-config.window_close_confirmation = "NeverPrompt"
+-- config.window_close_confirmation = "AlwaysPrompt"
+config.skip_close_confirmation_for_processes_named = {
+  "bash",
+  "sh",
+  "zsh",
+  "tmux",
+}
 -- config.enable_scroll_bar = true
 config.scrollback_lines = 1000000
 
