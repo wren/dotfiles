@@ -15,11 +15,7 @@ map("n", "<c-l>", function()
   cmd("nohlsearch")
   cmd("diffupdate")
   cmd("syntax sync fromstart")
-
-  local Util = require("lazyvim.util")
-  if Util.has("noice.nvim") then
-    require("notify").dismiss({ silent = true, pending = true })
-  end
+  Snacks.notifier.hide()
 end, {
   silent = true,
   remap = false,
