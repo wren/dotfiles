@@ -30,8 +30,6 @@ map({ "n", "v" }, "<a-.>", "<cmd>silent! tabnext<cr>", { desc = "Next buffer" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<c-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
--- map({ "n", "x" }, "<leader>w", "<cmd>silent! w<cr>", { desc = "Save file" })
--- map({ "n", "x" }, "<leader>W", "<cmd>silent! w!<cr>", { desc = "Save file (force)" })
 map("n", "<leader>q", "<c-w>c", { desc = "Close window" })
 map("n", "<leader>Q", ":qa<cr>", { desc = "Quit all" })
 
