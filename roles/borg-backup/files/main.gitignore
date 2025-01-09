@@ -39,3 +39,4 @@ ehthumbs.db
 Thumbs.db
 Desktop.ini
 **/node_modules
+**/Icon?
