@@ -3,4 +3,7 @@ vim.filetype.add({
   extension = {
     jrnl = "jrnl",
   },
+  pattern = {
+    [".*/.ssh/configs/.*"] = "sshconfig",
+  },
 })
