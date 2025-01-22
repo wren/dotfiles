@@ -15,18 +15,19 @@ return {
       heading = {
         sign = false,
         icons = {
-          "█▐ ",
-          "█▐▐ ",
-          "█▐▐▐ ",
-          "█▐▐▐▐ ",
-          "█▐▐▐▐▐ ",
-          "█▐▐▐▐▐▐ ",
+          -- full block: █
+          "▉▊",
+          "▉▊▋",
+          "▉▊▋▌",
+          "▉▊▋▌▍",
+          "▉▊▋▌▍▎",
+          "▉▊▋▌▍▎▏",
         },
-        -- border = true,
-        -- border_prefix = true,
-        -- border_virtual = false,
-        -- above = "▁",
-        -- below = "▔",
+      },
+      code = {
+        width = "block",
+        left_pad = 0,
+        right_pad = 1,
       },
       checkbox = {
         enabled = true,
