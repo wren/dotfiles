@@ -12,3 +12,7 @@ user_pref("sidebar.position_start", "false");
 
 // Highlight all in find
 user_pref("findbar.highlightAll", "true");
+
+// Ultima
+user_pref("ultima.sidebery.autohide", false);
+user_pref("ultima.disable.verticaltab.bar", true);
