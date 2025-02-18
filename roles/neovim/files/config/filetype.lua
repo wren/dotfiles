@@ -5,5 +5,6 @@ vim.filetype.add({
   },
   pattern = {
     [".*/.ssh/configs/.*"] = "sshconfig",
+    ["~/.config/git/.*"] = "gitconfig",
   },
 })

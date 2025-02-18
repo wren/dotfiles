@@ -8,16 +8,6 @@ return {
   { import = "lazyvim.plugins.extras.lsp.none-ls" },
   { import = "lazyvim.plugins.extras.ui.mini-animate" },
 
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = function(_, opts)
-  --     require("lazyvim.util").get_root = function()
-  --       return vim.loop.cwd()
-  --     end
-  --     return opts
-  --   end,
-  -- },
-
   {
     "nvim-lualine/lualine.nvim",
     opts = {
@@ -41,24 +31,22 @@ return {
       },
     },
   },
+  {
+    "snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
 
-  -- {
-  --   "goolord/alpha-nvim",
-  --   opts = function(_, opts)
-  --     opts.section.header.opts.hl = "Label"
-  --     opts.section.header.val = {
-  --       "                                                     ",
-  --       "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-  --       "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-  --       "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-  --       "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-  --       "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-  --       "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-  --       "                                                     ",
-  --     }
-  --     opts.opts.layout[1].val = 3
-  --     opts.shrink_margin = true
-  --     return opts
-  --   end,
-  -- },
+
+    ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+    ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+    ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+    ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+    ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+    ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        },
+      },
+    },
+  },
 }
