@@ -14,14 +14,6 @@ _G.map = vim.keymap.set
 _G.unmap = vim.keymap.del
 _G.create_autocmd = api.nvim_create_autocmd
 
--- folding
-function _G.custom_fold_text()
-  local line = vim.fn.getline(vim.v.foldstart)
-  local line_count = string.format("%s lines", vim.v.foldend - vim.v.foldstart + 1)
-  local divider = string.rep(" ", fn.winwidth(0) - #line - #line_count - 2)
-  return string.format("%s%s %s", line, divider, line_count)
-end
-
 -- For mapping alternate keycodes when pop-up menu is visible
 function _G.pumvisible_keycodes(key1, key2)
   return function()

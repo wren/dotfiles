@@ -1,7 +1,6 @@
 -- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 opt.foldenable = false
 opt.foldlevelstart = 99
-opt.foldtext = "v:lua.custom_fold_text()"
 opt.wildmode = "list:longest,list:full"
 opt.whichwrap:append("<,>,h,l")
 opt.wrap = false
