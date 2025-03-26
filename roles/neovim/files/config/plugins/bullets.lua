@@ -10,7 +10,7 @@ g.bullets_enabled_file_types = {
   "jrnl",
 }
 
--- don't user default keymaps
+-- don't use default keymaps
 g.bullets_set_mappings = 0
 
 g.bullets_checkbox_markers = " .x"
