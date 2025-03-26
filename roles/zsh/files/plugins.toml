@@ -79,6 +79,10 @@ export FORGIT_STASH_FZF_OPTS='--bind="ctrl-x:reload(git stash drop $(cut -d: -f1
 export FORGIT_INSTALL_DIR="${XDG_DATA_HOME}/sheldon/repos/github.com/wfxr/forgit"
 '''
 
+[plugins.prettyping]
+github = 'denilsonsa/prettyping'
+apply = ['path', 'chmodx']
+
 # 11-12ms
 [plugins.zsh-history-substring-search]
 github = 'zsh-users/zsh-history-substring-search'

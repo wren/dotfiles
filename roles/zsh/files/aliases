@@ -6,11 +6,14 @@ function alias_if_exists(){ if exists "$1"; then echo "$2"; else echo "$3"; fi; 
 alias rg="$( alias_if_exists rg rg grep )"
 alias rm="$( alias_if_exists trash "trash -v" "rm -rv" )"
 alias top="$( alias_if_exists bpytop bpytop top)"
+alias ping="$( alias_if_exists prettyping "prettyping --nolegend" ping )"
+alias cat="$( alias_if_exists bat bat cat )"
+alias cata="$( alias_if_exists bat 'bat --number --show-all' 'func(){cat -ev "$@" | tr " \t" "·󰌒" | cat -n;}; func' )"
 
 #--- System ---#
 alias rgl="rg --color=never -l"
 # open files that match a pattern in editor
-function rgv(){ nvim "${(f)$(rgl ""$@"")}"; }
+function rgv(){ $EDITOR "${(f)$(rgl ""$@"")}"; }
 alias mv="mv -iv"
 alias cp="cp -ivr"
 alias rsync="rsync --compress --verbose --human-readable --partial --progress --recursive"
@@ -27,11 +30,9 @@ alias ssh.init='eval `ssh-agent`;ssh-add'
 alias files.show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias files.hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias flushdns='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
-alias ping='prettyping --nolegend'
 alias sudo.with.env='sudo --preserve-env --shell'
-function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec trash -v; }
+function rmds(){ fd -HI '^\.DS_Store' ${@:-.} --type file --exec rm -rv; }
 function man(){ local max=88; COLUMNS=$(( $COLUMNS < $max ? $COLUMNS : $max )) command man "$@"; }
-alias show-all='bat --numbers --show-all'
 
 #--- Apt --- #
 apt.search(){apt -o apt::cmd::use-format=1 -o apt::cmd::format='${Package} ${apt:Status}|${Version}|${Description}' search $1 2>/dev/null | grep "${2:-^$1}" --color=always | column -ts'|' | l; }
