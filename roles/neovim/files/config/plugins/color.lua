@@ -43,7 +43,7 @@ return {
         RenderMarkdownCheckedText = { fg = "${gray}", strikethrough = true },
         ["@markup.list.checked"] = { fg = "${gray}", bg = nil },
         RenderMarkdownUnchecked = { fg = "${orange}" },
-        RenderMarkdownUncheckedText = { fg = "${green}", strikethrough = true },
+        RenderMarkdownUncheckedText = { fg = "${green}", strikethrough = false },
 
         -- code blocks
         RenderMarkdownCode = { bg = "${bg_darkest}" },

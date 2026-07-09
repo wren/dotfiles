@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.trailspace",
+    "nvim-mini/mini.trailspace",
     config = true,
     keys = {
       { "<leader>c<space>", ":lua MiniTrailspace.trim()<cr>", desc = "Delete trailing spaces" },
@@ -9,7 +9,7 @@ return {
 
   {
     {
-      "echasnovski/mini.surround",
+      "nvim-mini/mini.surround",
       opts = {
         mappings = {
           add = "sa",

@@ -7,7 +7,7 @@ return {
   },
   {
     -- overlay for jumping to places in the buffer (e.g. press "f")
-    "phaazon/hop.nvim",
+    "smoka7/hop.nvim",
     event = "BufRead",
     keys = {
       { "f", "<cmd>HopWord<cr>", desc = "Hop Word" },
