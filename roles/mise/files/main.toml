@@ -5,7 +5,7 @@
 [tools]
 # specify single or multiple versions
 python = [ '3.13-dev', '3.12', '3.11' ]
-node = [ 'lts', 'latest' ]
+node = [ 'latest', 'lts' ]
 rust = [ 'stable' ]
 pipx = [ 'latest' ]
 
