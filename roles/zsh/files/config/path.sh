@@ -9,6 +9,9 @@ path=(
   # apt installs some stuff here for some reason
   /usr/games
 
+  # node
+  $HOME/.local/share/npm/bin
+
   # Homebrew because ugh
   /home/linuxbrew/.linuxbrew/bin
   /opt/homebrew/bin
