@@ -1,0 +1,29 @@
+
+# prepend so we override the default rar viewer
+BATPIPE_VIEWERS=('rar_tree' "${BATPIPE_VIEWERS[@]}")
+
+function viewer_rar_tree_supports() {
+  # What in the flying hell do these even mean?
+  # [file_basename] [file_path] [inner_file_path]
+  # "inner_file_path" is apparently a path after an archive name (e.g. archive.rar/some/file.txt)
+  # printf 'batpipe rar_tree supports:\nfile_basename: %s\nfile_path: %s\ninner_file_path: %s\n\n' "$1" "$2" "$3"
+  command -v tar &> /dev/null || return 1
+  [[ "$1" =~ \.rar$ ]]        || return 1
+  return 0
+}
+
+function viewer_rar_tree_process() {
+  if [[ -n "$2" ]]; then
+    batpipe_header    "Viewing contents of file in archive: %{PATH}%s/%s" "$1" "$2"
+    tar -xaf "$1" -O "$2" | bat --file-name="$1/$2"
+  else
+    batpipe_header    "Viewing contents of archive: %{PATH}%s" "$1"
+    batpipe_subheader "To view a file inside, append a path to the file name (e.g. archive.rar/some/file.txt)."
+
+    tar -tf "$1" |
+
+    # format w/ tree if command is available
+    if command -v tree >/dev/null; then tree -L 3 -C -a --gitignore --fromfile; else cat; fi
+  fi
+}
+
