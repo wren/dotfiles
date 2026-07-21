@@ -6,7 +6,7 @@ config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = false
 config.enable_csi_u_key_encoding = true
 
-config.leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = " ", mods = "SUPER|SHIFT", timeout_milliseconds = 1000 }
 config.keys = {
   -- disable defaults
   { key = "l", mods = "CTRL", action = "DisableDefaultAssignment" },
