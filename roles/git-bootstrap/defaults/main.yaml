@@ -1,0 +1,6 @@
+# The URL used to re-attach git metadata when the repo was bootstrapped from a
+# tarball (see sync.sh). HTTPS on purpose: this runs before any SSH key exists.
+# Switch the remote to the `github:` SSH alias later with:
+#   git remote set-url origin github:wren/dotfiles
+dotfiles_repo_url: https://github.com/wren/dotfiles.git
+dotfiles_repo_branch: main

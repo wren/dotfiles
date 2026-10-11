@@ -17,6 +17,9 @@
   roles:
     - role: wren.beautiful_output
     - { role: bootstrap, tags: bootstrap }
+    # Must precede every role that clones (bat, lolcat, qmk) or pulls (git).
+    # Tagged for each of those tag groups so partial runs still get a usable git.
+    - { role: git-bootstrap, tags: [bootstrap, cli, keeb] }
     - { role: zsh, tags: [cli, shell] }
     - { role: encryption, tags: encryption }
     - { role: 1password, tags: apps }

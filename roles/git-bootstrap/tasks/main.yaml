@@ -1,0 +1,87 @@
+# Ensures a WORKING git exists, and that the Dotfiles directory is a real git
+# repo, before any later role tries to clone (bat, lolcat, qmk) or pull
+# (git's own `git lfs pull`).
+#
+# Why this role exists: sync.sh can bootstrap a fresh machine with no git at all
+# by fetching a tarball of this repo over curl. That leaves a working tree with
+# no .git, which breaks `git lfs pull` and `git pull`. This role heals both.
+
+# Do NOT use `stat` or `command -v` to detect git on macOS. /usr/bin/git always
+# exists as a Command Line Tools shim even when no CLT is installed; it only
+# fails (and prompts a GUI installer) when actually invoked. So invoke it.
+- name: Check for a working git
+  command: git --version
+  register: git_check
+  changed_when: false
+  failed_when: false
+  check_mode: false
+
+# On macOS the Homebrew installer runs `xcode-select --install` itself, so
+# installing brew supplies git. bootstrap runs before this role and does that,
+# meaning this branch is a fallback for the case where brew is present but CLT
+# is not.
+- name: Install git via Homebrew
+  when:
+    - git_check.rc != 0
+    - ansible_os_family == "Darwin"
+  homebrew:
+    name: git
+    state: present
+    update_homebrew: false
+
+# On Debian the git role apt-installs git, but that runs after the roles that
+# clone, so ensure it here.
+- name: Install git via apt
+  when:
+    - git_check.rc != 0
+    - ansible_os_family == "Debian"
+  apt:
+    name: git
+    state: present
+  become: true
+
+- name: Re-check git after install
+  command: git --version
+  register: git_recheck
+  changed_when: false
+  failed_when: git_recheck.rc != 0
+  check_mode: false
+  when: git_check.rc != 0
+
+- name: Check whether Dotfiles is a git repo
+  check_mode: false
+  stat:
+    path: "{{ dotfiles_home }}/.git"
+  register: dotfiles_git_dir
+
+# Reattach git metadata to a tarball-bootstrapped working tree. `reset --mixed`
+# (not --hard) moves HEAD and the index to the fetched commit while leaving
+# every file on disk untouched, so local edits are preserved and show up as
+# normal unstaged changes rather than being destroyed.
+- name: Convert tarball download into a git repo
+  when: not dotfiles_git_dir.stat.exists
+  block:
+    - name: Initialize repo
+      command:
+        cmd: git init
+        chdir: "{{ dotfiles_home }}"
+
+    - name: Add origin remote
+      command:
+        cmd: git remote add origin {{ dotfiles_repo_url }}
+        chdir: "{{ dotfiles_home }}"
+
+    - name: Fetch branch
+      command:
+        cmd: git fetch --depth 1 origin {{ dotfiles_repo_branch }}
+        chdir: "{{ dotfiles_home }}"
+
+    - name: Point HEAD and index at the fetched commit
+      command:
+        cmd: git reset --mixed FETCH_HEAD
+        chdir: "{{ dotfiles_home }}"
+
+    - name: Create local branch tracking origin
+      command:
+        cmd: git checkout -B {{ dotfiles_repo_branch }} --track origin/{{ dotfiles_repo_branch }}
+        chdir: "{{ dotfiles_home }}"
