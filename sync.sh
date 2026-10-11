@@ -37,8 +37,15 @@ if ! have ansible-playbook; then
   uv tool install "$ANSIBLE_PKG" "${ANSIBLE_EXTRAS[@]}"
 fi
 
-print-header 'Pre-reqs'
-ansible-galaxy install -r "${DOTFILES_DIR}/requirements.yaml"
+# Clean up the output a bit since ansible-galaxy is a bit verbose
+if ! out=$(ansible-galaxy install -r "${DOTFILES_DIR}/requirements.yaml" 2>&1); then
+  printf '%s\n' "$out" >&2
+  exit 1
+fi
+if ! grep -q "Nothing to do" <<<"$out"; then
+  print-header 'Pre-reqs'
+  printf '%s\n' "$out"
+fi
 
 print-header 'Tasks'
 ansible-playbook "${DOTFILES_DIR}/dotfiles.yaml" --ask-become-pass -i "${DOTFILES_DIR}/hosts" "$@"
