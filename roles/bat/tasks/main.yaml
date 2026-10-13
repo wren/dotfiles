@@ -59,7 +59,6 @@
       dest: '{{ bin_home }}/{{ item }}'
       mode: 'a+x'
       force: yes
-    become: true
 
 - name: Linking env
   file:

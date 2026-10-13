@@ -36,4 +36,4 @@
         dest: "{{ font_dir }}/"
         force: yes
       with_fileglob: "/tmp/ttf/*.ttf"
-      become: true
+      become: "{{ ansible_os_family == 'Debian' }}"

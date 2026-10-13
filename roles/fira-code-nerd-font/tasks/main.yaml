@@ -30,7 +30,7 @@
         fira_code_version: "{{ fira_code_get_url.url | regex_search('/(v[0-9\\.]+)$', '\\1') | first }}"
 
     - name: Download Fira Code Nerd Font {{ fira_code_version }}
-      become: true
+      become: "{{ ansible_os_family == 'Debian' }}"
       unarchive:
         src: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ fira_code_version }}/FiraCode.zip
         dest: "{{ font_dir }}"

@@ -17,7 +17,6 @@
   when: not lolcat.stat.exists
 
 - name: Install lolcat bin
-  become: true
   copy:
     src: /tmp/lolcat/lolcat
     dest: "{{ bin_home }}/lolcat"

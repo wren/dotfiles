@@ -20,4 +20,4 @@
     src: /bin/fdfind
     dest: /bin/fd
     state: link
-  become: true
+  become: "{{ ansible_os_family == 'Debian' }}"
