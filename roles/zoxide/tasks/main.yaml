@@ -1,7 +1,7 @@
-- import_tasks: "{{ dotfiles_home }}/roles/zoxide/tasks/mac.yaml"
+- import_tasks: mac.yaml
   when: ansible_os_family == "Darwin"
 
-- import_tasks: "{{ dotfiles_home }}/roles/zoxide/tasks/linux.yaml"
+- import_tasks: linux.yaml
   when: ansible_os_family == "Debian"
 
 - file:
