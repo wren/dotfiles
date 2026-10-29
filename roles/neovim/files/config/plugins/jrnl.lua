@@ -6,9 +6,9 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "jrnl", "markdown" },
+    ft = { "jrnl", "markdown", "Avante" },
     opts = {
-      file_types = { "jrnl", "markdown" },
+      file_types = { "jrnl", "markdown", "Avante" },
       bullet = {
         icons = { "" },
       },
