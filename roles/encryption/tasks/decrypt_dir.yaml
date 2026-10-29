@@ -11,7 +11,18 @@
     file_type: file
   register: encrypted_files
 
+- name: "Find files: {{ encrypted_dir_path | replace('.enc', '') }}"
+  find:
+    recurse: false
+    paths: "{{ encrypted_dir_path | replace('.enc', '') }}"
+    patterns: '*'
+    file_type: file
+  register: plaintext_files
+
 - include_tasks: decrypt_file.yaml
-  loop: "{{ encrypted_files.files | map(attribute='path') | list }}"
+  loop: "{{ encrypted_files.files | map(attribute='path') | map('basename')
+            | union(plaintext_files.files | map(attribute='path') | map('basename')) }}"
   loop_control:
-    loop_var: encrypted_path
+    loop_var: filename
+  vars:
+    encrypted_path: "{{ encrypted_dir_path + '/' + filename }}"

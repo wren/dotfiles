@@ -6,15 +6,25 @@
     path: "{{ my_filename }}"
   register: my_file
 
+- stat:
+    path: "{{ encrypted_path }}"
+  register: encrypted_file
+
 - when: my_file.stat.exists
   block:
     - set_fact:
         my_file_checksum: "{{ lookup('file', my_filename) | checksum }}"
 
     - name: Checksum encrypted file
+      when: encrypted_file.stat.exists
       shell: age -i "${AGE_KEY_FILE:-$HOME/.config/age/keys.txt}" -d '{{ encrypted_path }}'
       register: encrypted_file_contents
       changed_when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
+
+    - name: Checksum encrypted file (missing)
+      when: not encrypted_file.stat.exists
+      set_fact:
+        encrypted_file_contents: {stdout: ""}
 
     - name: Re-encrypt file
       when: (encrypted_file_contents.stdout | checksum) not in my_file_checksum
