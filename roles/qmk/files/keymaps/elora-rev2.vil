@@ -35,7 +35,7 @@
         "LT2(KC_BSPACE)",
         "MEH_T(KC_BSPACE)",
         "KC_NO",
-        "RGUI(KC_ENTER)",
+        "RGUI_T(KC_ENTER)",
         -1
       ],
       ["KC_NO", "KC_NO", "KC_TRNS", "KC_NO", "KC_NO", -1, -1]
@@ -105,13 +105,21 @@
       [
         -1,
         "KC_NO",
-        "KC_NO",
+        "KC_PGUP",
         "LSFT(KC_LBRACKET)",
         "LSFT(KC_RBRACKET)",
         "KC_NO",
         "KC_NO"
       ],
-      [-1, "KC_NO", "KC_NO", "KC_LBRACKET", "KC_RBRACKET", "KC_NO", "KC_NO"],
+      [
+        -1,
+        "KC_NO",
+        "KC_PGDOWN",
+        "KC_LBRACKET",
+        "KC_RBRACKET",
+        "KC_NO",
+        "KC_NO"
+      ],
       [
         "MO(5)",
         "KC_NO",
@@ -121,7 +129,7 @@
         "KC_NO",
         "KC_TRNS"
       ],
-      ["KC_TRNS", "KC_NO", "KC_TRNS", "KC_TRNS", "KC_TRNS", "KC_TRNS", -1],
+      ["KC_TRNS", "KC_TRNS", "KC_TRNS", "KC_TRNS", "KC_TRNS", "KC_TRNS", -1],
       ["KC_NO", "KC_NO", "KC_NO", "KC_NO", "KC_NO", -1, -1]
     ],
     [
