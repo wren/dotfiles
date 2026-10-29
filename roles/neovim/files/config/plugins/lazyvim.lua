@@ -27,6 +27,36 @@ return {
   },
 
   {
+    "snacks.nvim",
+    keys = {
+      -- override some keys to prefer cwd instead of repo root
+      {
+        "<leader>e",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "Explorer (cwd)",
+      },
+      {
+        "<leader>E",
+        function()
+          Snacks.explorer({ cwd = LazyVim.root() })
+        end,
+        desc = "Explorer (root dir)",
+      },
+
+      -- grep: lowercase = cwd; keep <leader>sg for root, or pick another key
+      { "<leader>/", LazyVim.pick("grep", { root = false }), desc = "Grep (cwd)" },
+      { "<leader>sg", LazyVim.pick("grep", { root = false }), desc = "Grep (cwd)" },
+      { "<leader>sG", LazyVim.pick("grep"), desc = "Grep (root dir)" },
+
+      -- find files: lowercase = cwd
+      { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+      { "<leader>ff", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+      { "<leader>fF", LazyVim.pick("files"), desc = "Find Files (root dir)" },
+    },
+  },
+  {
     "ibhagwan/fzf-lua",
     opts = {
       winopts = {
